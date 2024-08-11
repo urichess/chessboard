@@ -1,1 +1,0 @@
-"mcuboot":"/home/elotro/zephyrproject/bootloader/mcuboot":"/home/elotro/zephyrproject/bootloader/mcuboot/boot/zephyr/sysbuild"
