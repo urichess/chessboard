@@ -1,0 +1,26 @@
+&pinctrl {
+	sci9_default: sci9_default {
+		group1 {
+			pinmux = <P110_RXD9>, <P109_TXD9>;
+		};
+	};
+};
+
+
+&sci9 {
+	status = "okay";
+
+	pinctrl-0 = <&sci9_default>;
+	pinctrl-names = "default";
+
+	uart {		
+		status = "okay";
+		current-speed = <115200>;
+
+		esp32s3 {
+			compatible = "espressif,esp-at";
+			status = "okay";
+		};
+	};
+};
+
