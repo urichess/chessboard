@@ -1,4 +1,5 @@
 &pinctrl {
+
 	sci9_default: sci9_default {
 		group1 {
 			pinmux = <P110_RXD9>, <P109_TXD9>;
