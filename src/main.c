@@ -61,7 +61,7 @@ void blink(const struct led *led, uint32_t sleep_ms, uint32_t id)
 
 	while (1) {
 		gpio_pin_set(spec->port, spec->pin, cnt % 2);
-/*
+
 		struct printk_data_t tx_data = { .led = id, .cnt = cnt };
 
 		size_t size = sizeof(struct printk_data_t);
@@ -71,7 +71,7 @@ void blink(const struct led *led, uint32_t sleep_ms, uint32_t id)
 		memcpy(mem_ptr, &tx_data, size);
 
 		k_fifo_put(&printk_fifo, mem_ptr);
-*/
+
 		k_msleep(sleep_ms);
 		cnt++;
 	}
@@ -79,7 +79,7 @@ void blink(const struct led *led, uint32_t sleep_ms, uint32_t id)
 
 void blink0(void)
 {
-	blink(&led0, 100, 0);
+	blink(&led0, 1000, 0);
 }
 
 void uart_out(void)

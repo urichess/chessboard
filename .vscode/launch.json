@@ -1,28 +1,13 @@
 {
     "version": "0.2.0",
     "configurations": [
-
-        {
-            "cwd": "${workspaceFolder}",
-            "executable": "./build/zephyr/zephyr.elf",
-            "name": "Debug with PyOCD",
-            "request": "launch",
-            "type": "cortex-debug",
-            "runToEntryPoint": "main",
-            "showDevDebugOutput": "none",
-            "servertype": "pyocd",
-            "device": "RA4M1",
-            "gdbPath": "${userHome}/zephyr-sdk-0.16.8/arm-zephyr-eabi/bin/arm-zephyr-eabi-gdb",
-            //"armToolchainPath": "${userHome}/zephyr-sdk-0.16.8/arm-zephyr-eabi/bin/"
-            //"gdbPath": "${userHome}/zephyr-sdk-0.16.8/arm-zephyr-eabi/bin/arm-zephyr-eabi-gdb",
-        },
         {
             "cwd": "${workspaceFolder}",
             "executable": "${workspaceFolder}/build/zephyr/zephyr.elf",  // Update with the correct path to your ELF file
-            "name": "Debug Arduino Uno R4 WiFi with pyOCD",
+            "name": "Debug Arduino External",
             "request": "launch",
             "type": "cortex-debug",
-            "servertype": "pyocd",
+            "servertype": "external",
             "device": "r7fa4m1ab",  // RA4M1 is the family used in the Arduino Uno R4 WiFi
             "configFiles": [],
             "gdbPath": "${userHome}/zephyr-sdk-0.16.8/arm-zephyr-eabi/bin/arm-zephyr-eabi-gdb",
@@ -31,51 +16,14 @@
             "showDevDebugOutput": "raw",
             //"pyocdTargetOverride": "",  // The specific target for Renesas RA4M1
             "interface": "swd",  // Arduino Uno R4 WiFi typically uses SWD for debugging
+            "gdbTarget": "localhost:3333",
+            /*
             "postRestartCommands": [
                 "load",
-                "break main",
+                "hbreak main",
                 "continue"
             ],
-        },
-/*
-        {
-            
-            "name": "Debug Arduino Uno R4 WiFi",
-            "cwd": "${workspaceFolder}",
-            "executable": "${workspaceFolder}/build/your_project.elf",
-            "request": "launch",
-            "type": "cortex-debug",
-            "servertype": "pyocd",
-            "device": "RA4M1",
-            "interface": "swd",
-            "targetId": "1",
-            "runToMain": true,
-            "svdFile": "${workspaceFolder}/path_to_svd_file.svd",
-            "showDevDebugOutput": "verbose",
-            "preLaunchTask": "build",
-            "postRestartCommands": [
-                "load"
-            ],
-            "targetOverride": "renesas.ra4m1"
-
-        }
-        
-  */      
-        
-        {
-            "name": "Debug",
-            "type": "cortex-debug",
-            "cwd": "${workspaceFolder}",
-            "executable": "build/zephyr/zephyr.elf",
-//            "showDevDebugOutput": "raw",
-            "showDevDebugOutput": "raw",
- //           "device": "arduino_uno_r4_wifi",
-            "request": "launch",
-//            "runToEntryPoint": "main",
-            "servertype": "pyocd",  // Use gdbserver or similar if applicable
-            "gdbPath": "${userHome}/zephyr-sdk-0.16.8/arm-zephyr-eabi/bin/arm-zephyr-eabi-gdb",
-//            "preLaunchTask": "West Build"
-            
+            */
         },
         {
             "name": "Attach",

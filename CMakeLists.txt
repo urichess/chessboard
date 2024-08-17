@@ -9,6 +9,6 @@ target_sources(app PRIVATE src/main.c)
 
 # Optional: Set additional compile options if needed
 # e.g., add compile options or flags here if necessary
-target_compile_options(app PRIVATE -g -O0)  # Debugging symbols and no optimization
+#target_compile_options(app PRIVATE -g -O0)  # Debugging symbols and no optimization
 
 
