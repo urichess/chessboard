@@ -61,6 +61,8 @@ void blink(const struct led *led, uint32_t sleep_ms, uint32_t id)
 
 	while (1) {
 		gpio_pin_set(spec->port, spec->pin, cnt % 2);
+		//printf("Hello World! %s\n", CONFIG_BOARD_TARGET);
+		printk("Hello world from printk!\n");
 
 		struct printk_data_t tx_data = { .led = id, .cnt = cnt };
 

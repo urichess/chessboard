@@ -24,6 +24,7 @@
                 "continue"
             ],
             */
+            "svdFile": "${workspaceFolder}/svd/R7FA4M1AB.svd",
         },
         {
             "name": "Attach",

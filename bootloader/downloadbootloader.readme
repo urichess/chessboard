@@ -1,0 +1,1 @@
+pyocd flash build/zephyr/zephyr.elf --target r7fa4m1ab

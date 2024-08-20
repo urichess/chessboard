@@ -1,4 +1,17 @@
+
+/ {
+	chosen {
+		zephyr,console = &uart2;
+		zephyr,shell-uart = &uart2;
+	};
+};
+
 &pinctrl {
+	sci1_default: sci1_default {
+		group1 {
+			pinmux = <P502_RXD1>, <P501_TXD1>;
+		};
+	};
 
 	sci9_default: sci9_default {
 		group1 {
@@ -7,21 +20,35 @@
 	};
 };
 
+&sci1 {
+	status = "okay";
+	pinctrl-0 = <&sci1_default>;
+	pinctrl-names = "default";
+	uart1: uart {
+		current-speed = <115200>;
+		status = "okay";
+	};
+};
 
 &sci9 {
-	status = "okay";
-
 	pinctrl-0 = <&sci9_default>;
 	pinctrl-names = "default";
-
-	uart {		
+	status = "okay";
+	uart9: uart {
+		current-speed = <115200>;		
 		status = "okay";
-		current-speed = <115200>;
-
-		esp32s3 {
+/*
+		esp32s3: esp32s3 {
 			compatible = "espressif,esp-at";
 			status = "okay";
+
+			cdc_acm_uart0: cdc_acm_uart0 {
+				status = "okay";
+				compatible = "zephyr,cdc-acm-uart";
+			};
+			
 		};
+*/
 	};
 };
 
