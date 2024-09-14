@@ -13,11 +13,13 @@
 		};
 	};
 
+/*
 	sci9_default: sci9_default {
 		group1 {
 			pinmux = <P110_RXD9>, <P109_TXD9>;
 		};
 	};
+*/
 };
 
 &sci1 {
@@ -27,28 +29,22 @@
 	uart1: uart {
 		current-speed = <115200>;
 		status = "okay";
+
+		esp32s3: esp32s3 {
+			compatible = "espressif,esp-at";
+//			status = "okay";			
+		};
 	};
 };
 
-&sci9 {
+/*
+&sci9 { 
 	pinctrl-0 = <&sci9_default>;
 	pinctrl-names = "default";
 	status = "okay";
 	uart9: uart {
 		current-speed = <115200>;		
 		status = "okay";
-/*
-		esp32s3: esp32s3 {
-			compatible = "espressif,esp-at";
-			status = "okay";
-
-			cdc_acm_uart0: cdc_acm_uart0 {
-				status = "okay";
-				compatible = "zephyr,cdc-acm-uart";
-			};
-			
-		};
-*/
 	};
 };
-
+*/

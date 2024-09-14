@@ -62,7 +62,7 @@ void blink(const struct led *led, uint32_t sleep_ms, uint32_t id)
 	while (1) {
 		gpio_pin_set(spec->port, spec->pin, cnt % 2);
 		//printf("Hello World! %s\n", CONFIG_BOARD_TARGET);
-		printk("Hello world from printk!\n");
+		//printk("Hello world from printk!\n");
 
 		struct printk_data_t tx_data = { .led = id, .cnt = cnt };
 
@@ -89,8 +89,8 @@ void uart_out(void)
 	while (1) {
 		struct printk_data_t *rx_data = k_fifo_get(&printk_fifo,
 							   K_FOREVER);
-		printk("Toggled led%d; counter=%d\n",
-		       rx_data->led, rx_data->cnt);
+	//	printk("Toggled led%d; counter=%d\n",
+	//	       rx_data->led, rx_data->cnt);
 		k_free(rx_data);
 	}
 }

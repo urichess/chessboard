@@ -1,4 +1,10 @@
 {
-    "C_Cpp.default.compileCommands": "${workspaceFolder}/build/compile_commands.json",
-    "zephyr-ide.projects": {}
+    "C_Cpp.default.compileCommands": "${workspaceFolder}/.vscode/compile_commands.json",
+    "zephyr-ide.projects": null,
+    "zephyr-ide.use-zephyr-ide-json": true,
+    "terminal.integrated.defaultProfile.windows": "Zephyr IDE Terminal",
+    "terminal.integrated.defaultProfile.linux": "Zephyr IDE Terminal",
+    "terminal.integrated.defaultProfile.osx": "Zephyr IDE Terminal",
+    "cmake.configureOnOpen": false,
+    "kconfig.zephyr.base": "/home/elotro/.zephyr_ide/external/zephyr"
 }
