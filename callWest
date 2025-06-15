@@ -1,0 +1,3 @@
+source ~/zephyrproject/.venv/bin/activate
+export ZEPHYR_BASE=~/zephyrproject/zephyr
+west "$@"
