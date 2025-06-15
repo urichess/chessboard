@@ -3,6 +3,10 @@
 	chosen {
 		zephyr,console = &uart2;
 		zephyr,shell-uart = &uart2;
+		zephyr,user {
+			io-channels =
+				<&adc0 0>;
+		};
 	};
 };
 
@@ -48,3 +52,18 @@
 	};
 };
 */
+
+&adc0 {
+	status = "okay";
+	#address-cells = <1>;
+	#size-cells = <0>;
+
+	channel@0 {
+		reg = <0>;
+		zephyr,gain = "ADC_GAIN_1_4";
+		zephyr,reference = "ADC_REF_INTERNAL";
+		zephyr,acquisition-time = <ADC_ACQ_TIME_DEFAULT>;
+		zephyr,resolution = <14>;
+		zephyr,input-positive = <P014_AN009>; 
+	};
+};
