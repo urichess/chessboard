@@ -30,7 +30,8 @@
 
 
 #if !DT_NODE_EXISTS(DT_PATH(zephyr_user)) || \
-	!DT_NODE_HAS_PROP(DT_PATH(zephyr_user), io_channels)
+	!DT_NODE_HAS_PROP(DT_PATH(zephyr_user), io_channels) || \
+	!DT_NODE_HAS_PROP(DT_PATH(zephyr_user), mux_gpios)
 #error "Unsupported board: zephyr_user devicetree alias is not defined"
 #endif
 
@@ -43,6 +44,14 @@ static const struct adc_dt_spec adc_channels[] = {
 			     DT_SPEC_AND_COMMA)
 };
 
+#define DT_GPIO_SPEC_AND_COMMA(node_id, prop, idx) \
+	GPIO_DT_SPEC_GET_BY_IDX(node_id, prop, idx),
+
+
+static const struct gpio_dt_spec gpios_mux[] = {
+	DT_FOREACH_PROP_ELEM(DT_PATH(zephyr_user), mux_gpios,
+			     DT_GPIO_SPEC_AND_COMMA)
+};
 
 
 
@@ -130,6 +139,7 @@ K_THREAD_DEFINE(uart_out_id, STACKSIZE, uart_out, NULL, NULL, NULL,
 
 int main(void)
 {
+	int ret;
 	int err;
 	uint32_t count = 0;
 	uint16_t buf;
@@ -152,6 +162,31 @@ int main(void)
 			return 0;
 		}
 	}
+
+	/* Configure mux gpios */
+	int muxsValue = 0;
+	for (size_t nmux = 0U; nmux < ARRAY_SIZE(gpios_mux); nmux++)
+	{
+		const struct gpio_dt_spec *spec = &gpios_mux[nmux];
+		if (!device_is_ready(spec->port)) {
+			printk("Error: %s device is not ready\n", spec->port->name);
+			return 0;
+		}
+
+		ret = gpio_pin_configure_dt(spec, GPIO_OUTPUT);
+		if (ret != 0) {
+			printk("Error %d: failed to configure gpioMux %d')\n",
+				ret, nmux);
+			return 0;
+		}
+
+
+		gpio_pin_set(spec->port, spec->pin, muxsValue);
+	}
+	printk("Initialized muxs to: %d\n", muxsValue);
+
+
+
 
 #ifndef CONFIG_COVERAGE
 	while (1) {
@@ -194,6 +229,16 @@ int main(void)
 				printk(" = %"PRId32" mV\n", val_mv);
 			}
 		}
+
+		muxsValue = muxsValue==0? 1:0;
+		for (size_t nmux = 0U; nmux < ARRAY_SIZE(gpios_mux); nmux++)
+		{
+			const struct gpio_dt_spec *spec = &gpios_mux[nmux];
+			gpio_pin_set(spec->port, spec->pin, muxsValue);
+
+		}
+		printk("Setting all muxs to: %d\n", muxsValue);
+
 
 		k_sleep(K_MSEC(20000));
 	}
