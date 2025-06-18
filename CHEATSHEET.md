@@ -5,10 +5,13 @@ source ~/zephyrproject/.venv/bin/activate
 #COMPILE
 
 west build -p always -b arduino_uno_r4_wifi
-west build -p always -b arduino_uno_r4_wifi -t devicetree
 
 west build -p always -b nucleo_g474re
-west build -p always -b nucleo_g474re -t devicetree
+west build -p auto -b nucleo_g474re
+
+
+
+west build -p always -b nucleo_g474re -t dt
 
 #CONFIG
 
