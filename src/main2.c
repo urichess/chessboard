@@ -240,7 +240,7 @@ int main(void)
 		printk("Setting all muxs to: %d\n", muxsValue);
 
 
-		k_sleep(K_MSEC(20000));
+		k_sleep(K_MSEC(5000));
 	}
 	return 0;
 }
