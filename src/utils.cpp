@@ -8,8 +8,56 @@
 #define CONFIG_MV_PER_GAUSS 2
 #endif
 
+int32_t torben_median_filter(int32_t *arr, int size)
+{
+    int32_t min = arr[0], max = arr[0], guess, maxltguess, mingtguess;
+    int i, less, greater, equal;
 
-int32_t readMv(const struct adc_dt_spec * adc_spec)
+    // Encuentra el valor mínimo y máximo en el array
+    for (i = 1; i < size; i++) {
+        if (arr[i] < min) min = arr[i];
+        if (arr[i] > max) max = arr[i];
+    }
+
+    // Bucle principal que busca la mediana
+    while (min < max) {
+        guess = (min + max) / 2;
+        less = greater = equal = 0;
+        maxltguess = min;
+        mingtguess = max;
+
+        for (i = 0; i < size; i++) {
+            if (arr[i] < guess) {
+                less++;
+                if (arr[i] > maxltguess) maxltguess = arr[i];
+            } else if (arr[i] > guess) {
+                greater++;
+                if (arr[i] < mingtguess) mingtguess = arr[i];
+            } else {
+                equal++;
+            }
+        }
+
+        // Si la cantidad de elementos menores o mayores es suficiente para encontrar la mediana
+        if (less <= size / 2 && greater <= size / 2) {
+            if (less >= size / 2) return maxltguess;
+            if (greater >= size / 2) return mingtguess;
+            return guess;
+        } else if (less > greater) {
+            max = maxltguess;  // Ajusta el límite superior a maxltguess
+        } else {
+            min = mingtguess;  // Ajusta el límite inferior a mingtguess
+        }
+
+        // Si min y max se acercan lo suficiente, devolver min o max
+        if (min == max) break;
+    }
+
+    // Si el bucle termina, devolvemos min (o max, ya que min == max)
+    return min;
+}
+
+int32_t internalRead(const struct adc_dt_spec * adc_spec)
 {
 	int32_t val_mv = -1;
 	int err;
@@ -52,12 +100,24 @@ int32_t readMv(const struct adc_dt_spec * adc_spec)
 	return val_mv;
 }
 
+int32_t readMv(const struct adc_dt_spec * adc_spec)
+{
+	int32_t mv[CONFIG_SAMPLES_FOR_TORBEN];
+
+	for (int s = 0; s<CONFIG_SAMPLES_FOR_TORBEN; s++) {
+		mv[s] = internalRead(adc_spec);
+	}
+	return torben_median_filter(mv, CONFIG_SAMPLES_FOR_TORBEN);
+}
+
+/*
 float readGauss(const struct adc_dt_spec * adc_spec, int32_t aCalibration)
 {
     const int32_t mv = readMv(adc_spec);
     const float gauss = millivoltsToGauss(mv, aCalibration);
     return gauss;
 }
+*/
 
 float millivoltsToGauss(int32_t millivolts, int32_t referenceMillivolts)
 {

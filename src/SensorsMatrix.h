@@ -17,18 +17,25 @@ class SensorsMatrix
 {
     public:
 
-    explicit SensorsMatrix(const struct gpio_dt_spec * gpios_mux, const struct adc_dt_spec * adc_channels) : gpios_mux_(gpios_mux), adc_channels_(adc_channels) {}
+    explicit SensorsMatrix(const struct gpio_dt_spec * gpio_enable, const struct gpio_dt_spec * gpios_mux, const struct adc_dt_spec * adc_channels) : gpio_enable_(gpio_enable), gpios_mux_(gpios_mux), adc_channels_(adc_channels) {}
 
     int initialize();
 
-    void read(uint8_t aMatrix[8][8]);
+    void getPosition(uint8_t aMatrix[8][8]);
+
+    bool refresh();
+
+    void printCalibrations();
 
     protected:
 
     void select(uint8_t sensor);
 
+    void readGauss(uint8_t aMatrix[8][8]);
+
     private:
 
+    const struct gpio_dt_spec * gpio_enable_;
     const struct gpio_dt_spec * gpios_mux_;
     const struct adc_dt_spec * adc_channels_;
 };

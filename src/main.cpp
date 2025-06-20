@@ -36,7 +36,8 @@
 
 #if !DT_NODE_EXISTS(DT_PATH(zephyr_user)) || \
 	!DT_NODE_HAS_PROP(DT_PATH(zephyr_user), io_channels) || \
-	!DT_NODE_HAS_PROP(DT_PATH(zephyr_user), mux_gpios)
+	!DT_NODE_HAS_PROP(DT_PATH(zephyr_user), mux_gpios) || \
+	!DT_NODE_HAS_PROP(DT_PATH(zephyr_user), enable_gpios)
 #error "Unsupported board: zephyr_user devicetree alias is not defined"
 #endif
 
@@ -55,6 +56,11 @@ static const struct adc_dt_spec adc_channels[] = {
 
 static const struct gpio_dt_spec gpios_mux[] = {
 	DT_FOREACH_PROP_ELEM(DT_PATH(zephyr_user), mux_gpios,
+			     DT_GPIO_SPEC_AND_COMMA)
+};
+
+static const struct gpio_dt_spec enable_gpios[] = {
+	DT_FOREACH_PROP_ELEM(DT_PATH(zephyr_user), enable_gpios,
 			     DT_GPIO_SPEC_AND_COMMA)
 };
 
@@ -89,29 +95,45 @@ int main(void)
 		return -1;
 	}
 
-	SensorsMatrix sm(gpios_mux, adc_channels);
+	if (ARRAY_SIZE(enable_gpios) != 1)
+	{
+		printk("Error: Expected 1 elements in enable_gpios\n");
+		return -1;
+	}
+
+	SensorsMatrix sm(enable_gpios, gpios_mux, adc_channels);
 
 	if (sm.initialize() != 0) {
 		printk("Error: Could not initialize sensors matrix\n");
 		return -1;
 	}
 
+	int iteration = 0;
 	while (1)
 	{
 		uint8_t aMatrix[8][8];
-		sm.read(aMatrix);
 
-		printk("Read all sensors:\n");
-		for (int row = 0; row < 8; ++row) {
-			for (int col = 0; col < 8; ++col) {
-				printk("%3d ", aMatrix[row][col]);  // 3-digit width for alignment
+		if (sm.refresh()) {
+
+			sm.getPosition(aMatrix);
+
+			printk("Position changed:\n");
+			for (int row = 0; row < 8; ++row) {
+				for (int col = 0; col < 8; ++col) {
+					printk("%3d ", aMatrix[row][col]);  // 3-digit width for alignment
+				}
+				printk("\n");
 			}
 			printk("\n");
+
+			//sm.printCalibrations();
+
+		} else {
+
 		}
-		printk("\n");
 
-
-		k_msleep(1000);
+		k_msleep(110);
+		iteration++;
 	}
 
 	return 0;

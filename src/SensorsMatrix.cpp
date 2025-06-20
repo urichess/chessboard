@@ -12,7 +12,16 @@
 #define NROWS 8
 #define NFILES 8
 
-int32_t calibrations[NROWS][NFILES] = {0};
+#define BUFFER_SIZE 5 // buffer used to filter position changes.
+
+int32_t calibrations[NROWS][NFILES] = {0}; // mv. used to find the 0
+
+uint8_t buffer[BUFFER_SIZE][NROWS][NFILES] = {0}; // gauss
+uint8_t current = 0;
+uint8_t previous = 0;
+
+uint8_t currentPosition[NROWS][NFILES] = {0}; // 0-empty and 1-piece
+
 
 uint8_t calculateState(uint8_t currentState, float gauss)
 {
@@ -24,9 +33,6 @@ uint8_t calculateState(uint8_t currentState, float gauss)
     
     return gauss>CONFIG_DETECTION_HISTERESYS_PIECE? 1:0;
 }
-
-
-
 
 int SensorsMatrix::initialize()
 {
@@ -72,15 +78,20 @@ int SensorsMatrix::initialize()
 		gpio_pin_set(spec->port, spec->pin, 0);
 	}
 
-# if 0
+	if (!device_is_ready(gpio_enable_->port)) {
+		printk("SensorsMatrix::initialize() Error: %s device is not ready\n", gpio_enable_->port->name);
+		return -1;
+	}
 
-  // Configure GPIO pins as outputs
-  pinMode(gpioEnable_, OUTPUT);
-  digitalWrite(gpioEnableMuxs, LOW);
+	ret = gpio_pin_configure_dt(gpio_enable_, GPIO_OUTPUT);
+	if (ret != 0) {
+		printk("SensorsMatrix::initialize() Error: failed to configure %s\n", gpio_enable_->port->name);
+		return -1;
+	}
 
-#endif
+	gpio_pin_set(gpio_enable_->port, gpio_enable_->pin, 0); // 0 to enable
 
-	k_msleep(1000);
+	k_msleep(5000);
 
 	printk ("SensorsMatrix::initialize() Initialized Sensors Matrix...OK\n");
 
@@ -96,37 +107,27 @@ int SensorsMatrix::initialize()
 			const int theRow = iRow[r];
 
 			// Filtering calibrations
-#if 0
-			float mv[5];
+
+			int32_t mv[5];
 			for (int s = 0; s<5; s++) {
-				mv[s] = readMv(adcSensors_[r]);
-				delay(1);
+				mv[s] = readMv(&adc_channels_[r]);
+				k_msleep(1);
 			}
 			calibrations[theRow][file] = torben_median_filter(mv, 5);
-#endif
-			calibrations[theRow][file] = readMv(&adc_channels_[r]); // No torben mogensen?
 		}
 	}
 
 	printk ("SensorsMatrix::initialize() Calculated calibrations...OK\n");
 
-# if 0
-  Serial.println ("Calibrations: ");
-    for (int i=0; i<8; i++)
-    {
-        for (int j=0; j<8; j++)
-        {
-        Serial.print (calibrations[i][j]);
-        Serial.print (" ");
-        }
-        Serial.println (" ");
-    }
-    Serial.println ("--------------------");
-#endif
     return 0;
 }
 
-void SensorsMatrix::read(uint8_t aMatrix[8][8])
+void SensorsMatrix::getPosition(uint8_t aMatrix[8][8])
+{
+	memcpy (aMatrix, currentPosition, 64);
+}
+
+void SensorsMatrix::readGauss(uint8_t aMatrix[8][8])
 {
   for (int i = 0; i < 16; i++) {
     select(i);
@@ -139,11 +140,59 @@ void SensorsMatrix::read(uint8_t aMatrix[8][8])
     {
       const int theRow = iRow[r];
 
-      const float gauss = readGauss(&adc_channels_[r], calibrations[theRow][file]);
+      const float gauss = millivoltsToGauss (readMv(&adc_channels_[r]), calibrations[theRow][file]);
       aMatrix[theRow][file] = (uint8_t)gauss; //calculateState (aMatrix[theRow][file], gauss);
     }
   }
 }
+
+bool SensorsMatrix::refresh()
+{
+	bool changed = false;
+
+    previous = current;
+    current++;
+
+    if (current >= BUFFER_SIZE)
+    {
+        current = 0;
+    }
+
+    readGauss(buffer[current]);
+
+    for (int i = 0; i<8; i++)
+    {
+      for (int j=0; j<8; j++)
+      {
+        bool allGreaterThanHighLimit = true;
+        bool allLowerThanLowLimit = true;
+        for (int k = 0; k < BUFFER_SIZE; k++)
+        {
+          if (buffer[k][i][j] < 45 ) allGreaterThanHighLimit = false;
+          if (buffer[k][i][j] > 25 ) allLowerThanLowLimit = false;
+
+        }
+
+        if ( currentPosition[i][j] == 1 && allLowerThanLowLimit)
+        {
+          changed = true;
+          currentPosition[i][j] = 0;
+        }
+        else if ( currentPosition[i][j] == 0 && allGreaterThanHighLimit)
+        {
+          changed = true;
+          currentPosition[i][j] = 1;
+        }
+      }
+    }
+
+    if (changed) {
+    	printk ("changes detected!");
+    }
+
+    return changed;
+}
+
 
 void SensorsMatrix::select(uint8_t number) {
   if (number > 15) {
@@ -156,4 +205,16 @@ void SensorsMatrix::select(uint8_t number) {
   gpio_pin_set(gpios_mux_[3].port, gpios_mux_[3].pin, (number & 0b1000)); // Set bit 0
 
   k_usleep(1);
+}
+
+void SensorsMatrix::printCalibrations()
+{
+	printk("Calibrations:\n");
+	for (int row = 0; row < 8; ++row) {
+		for (int col = 0; col < 8; ++col) {
+			printk("%3d ", calibrations[row][col]);  // 3-digit width for alignment
+		}
+		printk("\n");
+	}
+	printk("\n");
 }

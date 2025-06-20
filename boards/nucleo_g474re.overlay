@@ -14,6 +14,7 @@
 		             <&arduino_header 10 0>, // D4
 		             <&arduino_header 11 0>, // D5
 		             <&arduino_header 12 0>; // D6
+		enable-gpios =  <&arduino_header 8 0>; // D2
 
         };
 
