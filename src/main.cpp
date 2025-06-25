@@ -20,6 +20,7 @@
 
 #include "Led.hpp"
 #include "SensorsMatrix.h"
+#include "UartSender.h"
 
 /* size of stack area used by each thread */
 #define STACKSIZE 1024
@@ -52,10 +53,15 @@ void alive(void)
 
 K_THREAD_DEFINE(alive_id, STACKSIZE, alive, NULL, NULL, NULL, PRIORITY, 0, 0);
 
-
 void matrix(void)
 {
 	SensorsMatrix sm;
+	UartSender sender;
+
+	if (!sender.initialize()) {
+		printk("ERROR INITIALIZING");
+		return;
+	}
 
 	if (sm.initialize() != 0) {
 		printk("Error: Could not initialize sensors matrix\n");
@@ -76,43 +82,29 @@ void matrix(void)
 
 
 			// Step 1: Pack each row into a byte
-			    for (int row = 0; row < 8; ++row) {
+			for (int row = 0; row < 8; ++row) {
 				uint8_t bits = 0;
 
 				for (int col = 0; col < 8; ++col) {
-				    if (aMatrix[row][col]) {
+					if (aMatrix[row][col]) {
 					bits |= (1 << (7 - col));  // col 0 is MSB
-				    }
+					}
 				}
 
 				packed_board[row] = bits;
-			    }
-
-			    // Step 2: Format UART message as one hex string
-			    int len = snprintf(uart_msg, sizeof(uart_msg),
-					       "BOARD:%02X-%02X-%02X-%02X-%02X-%02X-%02X-%02X",
-					       packed_board[0], packed_board[1],
-					       packed_board[2], packed_board[3],
-					       packed_board[4], packed_board[5],
-					       packed_board[6], packed_board[7]);
-
-			    // Step 3: Send over UART (use printk or uart_tx)
-			    printk("%s\n", uart_msg);
-
-
-
-#if 0
-			printk("Position changed:\n");
-			for (int row = 0; row < 8; ++row) {
-				for (int col = 0; col < 8; ++col) {
-					printk("%3d ", aMatrix[row][col]);  // 3-digit width for alignment
-				}
-				printk("\n");
 			}
-			printk("\n");
-#endif
 
-			//sm.printCalibrations();
+			// Step 2: Format UART message as one hex string
+			int len = snprintf(uart_msg, sizeof(uart_msg),
+				"BOARD:%02X-%02X-%02X-%02X-%02X-%02X-%02X-%02X\r\n",
+				packed_board[0], packed_board[1],
+				packed_board[2], packed_board[3],
+				packed_board[4], packed_board[5],
+				packed_board[6], packed_board[7]);
+
+			// Step 3: Send over UART (use printk or uart_tx)
+			printk("Sent: %s", uart_msg);
+			sender.send(uart_msg);
 
 		} else {
 			//printk("No changes\n");
@@ -123,8 +115,25 @@ void matrix(void)
 	}
 }
 
-K_THREAD_DEFINE(matrix_id, STACKSIZE, matrix, NULL, NULL, NULL, PRIORITY, 0, 0);
+K_THREAD_DEFINE(matrix_reader_id, STACKSIZE, matrix, NULL, NULL, NULL, PRIORITY, 0, 0);
 
+#if 0
+//TODO. two different threads
+void uart_sender(void) {
+	UartSender sender;
+
+	if (!sender.initialize()) {
+		printk("ERROR INITIALIZING");
+		return;
+	}
+
+	sender.send("bieeen!!");
+
+	return;
+}
+
+K_THREAD_DEFINE(uart_sender_id, STACKSIZE, uart_sender, NULL, NULL, NULL, PRIORITY, 0, 0);
+#endif
 
 int main(void)
 {
