@@ -52,14 +52,14 @@ void alive(void)
 
 K_THREAD_DEFINE(alive_id, STACKSIZE, alive, NULL, NULL, NULL, PRIORITY, 0, 0);
 
-int main(void)
-{
 
+void matrix(void)
+{
 	SensorsMatrix sm;
 
 	if (sm.initialize() != 0) {
 		printk("Error: Could not initialize sensors matrix\n");
-		return -1;
+		return;
 	}
 
 	int iteration = 0;
@@ -71,6 +71,7 @@ int main(void)
 
 			sm.getPosition(aMatrix);
 
+#if 0
 			printk("Position changed:\n");
 			for (int row = 0; row < 8; ++row) {
 				for (int col = 0; col < 8; ++col) {
@@ -79,6 +80,7 @@ int main(void)
 				printk("\n");
 			}
 			printk("\n");
+#endif
 
 			//sm.printCalibrations();
 
@@ -89,6 +91,15 @@ int main(void)
 		k_msleep(110);
 		iteration++;
 	}
+}
+
+K_THREAD_DEFINE(matrix_id, STACKSIZE, matrix, NULL, NULL, NULL, PRIORITY, 0, 0);
+
+
+int main(void)
+{
+
+
 
 #if 0
 	while (1)
