@@ -1,6 +1,10 @@
 #include "SensorsMatrix.h"
 #include "utils.h"
 
+#include <zephyr/logging/log.h>
+
+LOG_MODULE_REGISTER(sensormatrix, LOG_LEVEL_INF);  // or LOG_LEVEL_DBG
+
 #ifndef CONFIG_DETECTION_HISTERESYS_EMPTY
 #define CONFIG_DETECTION_HISTERESYS_EMPTY 10
 #endif
@@ -45,7 +49,7 @@ static const struct gpio_dt_spec enable_gpios[] = {
 };
 
 
-int32_t calibrations[NROWS][NFILES] = {0}; // mv. used to find the 0
+nt32_t calibrations[NROWS][NFILES] = {0}; // mv. used to find the 0
 
 uint8_t buffer[BUFFER_SIZE][NROWS][NFILES] = {0}; // gauss
 uint8_t current = 0;
@@ -67,7 +71,8 @@ uint8_t calculateState(uint8_t currentState, float gauss)
 
 int SensorsMatrix::initialize()
 {
-	printk ("SensorsMatrix::initialize() Initializing Sensors Matrix...");
+
+	LOG_DBG ("SensorsMatrix::initialize() Initializing Sensors Matrix...");
 	int ret;
 	int err;
 	uint32_t count = 0;
@@ -79,19 +84,19 @@ int SensorsMatrix::initialize()
 
 	if (ARRAY_SIZE(adc_channels) != 4)
 	{
-		printk("Error: Expected 4 elements in adc_channels\n");
+		LOG_ERR("Error: Expected 4 elements in adc_channels\n");
 		return -1;
 	}
 
 	if (ARRAY_SIZE(gpios_mux) != 4)
 	{
-		printk("Error: Expected 4 elements in gpios_mux\n");
+		LOG_ERR("Error: Expected 4 elements in gpios_mux\n");
 		return -1;
 	}
 
 	if (ARRAY_SIZE(enable_gpios) != 1)
 	{
-		printk("Error: Expected 1 elements in enable_gpios\n");
+		LOG_ERR("Error: Expected 1 elements in enable_gpios\n");
 		return -1;
 	}
 
@@ -99,17 +104,17 @@ int SensorsMatrix::initialize()
 	/* Configure channels individually prior to sampling. */
 	for (size_t i = 0U; i < 4; i++) {
 		if (!adc_is_ready_dt(&adc_channels[i])) {
-			printk("SensorsMatrix::initialize() ADC controller device %s not ready\n", adc_channels[i].dev->name);
+			LOG_ERR("SensorsMatrix::initialize() ADC controller device %s not ready\n", adc_channels[i].dev->name);
 			return -1;
 		}
 
 		err = adc_channel_setup_dt(&adc_channels[i]);
 		if (err < 0) {
-			printk("SensorsMatrix::initialize() Could not setup channel #%d (%d)\n", i, err);
+			LOG_ERR("SensorsMatrix::initialize() Could not setup channel #%d (%d)\n", i, err);
 			return -1;
 		}
 
-		printk("Configuted ADC CHANNEL %d\n", adc_channels[i].channel_id);
+		LOG_DBG("Configuted ADC CHANNEL %d\n", adc_channels[i].channel_id);
 	}
 
 	/* Configure mux gpios */
@@ -117,40 +122,42 @@ int SensorsMatrix::initialize()
 	{
 		const struct gpio_dt_spec *spec = &gpios_mux[nmux];
 		if (!device_is_ready(spec->port)) {
-			printk("SensorsMatrix::initialize() Error: %s device is not ready\n", spec->port->name);
+			LOG_ERR("SensorsMatrix::initialize() Error: %s device is not ready\n", spec->port->name);
 			return -1;
 		}
 
 		ret = gpio_pin_configure_dt(spec, GPIO_OUTPUT);
 		if (ret != 0) {
-			printk("SensorsMatrix::initialize() Error: failed to configure %s\n", spec->port->name);
+			LOG_ERR("SensorsMatrix::initialize() Error: failed to configure %s\n", spec->port->name);
 			return -1;
 		}
 
-		printk("Configuted port %s pin %d as GPIO_OUTPUT\n", spec->port->name, spec->pin);
+		LOG_DBG("Configuted port %s pin %d as GPIO_OUTPUT\n", spec->port->name, spec->pin);
 
 		gpio_pin_set(spec->port, spec->pin, 0);
 	}
 
 
 	if (!device_is_ready(enable_gpios->port)) {
-		printk("SensorsMatrix::initialize() Error: %s device is not ready\n", enable_gpios->port->name);
+		LOG_ERR("SensorsMatrix::initialize() Error: %s device is not ready\n", enable_gpios->port->name);
 		return -1;
 	}
 
 	ret = gpio_pin_configure_dt(enable_gpios, GPIO_OUTPUT);
 	if (ret != 0) {
-		printk("SensorsMatrix::initialize() Error: failed to configure %s\n", enable_gpios->port->name);
+		LOG_ERR("SensorsMatrix::initialize() Error: failed to configure %s\n", enable_gpios->port->name);
 		return -1;
 	}
 
 	gpio_pin_set(enable_gpios->port, enable_gpios->pin, 0); // 0 to enable
+								//
+	LOG_INF ("SensorsMatrix::initialize() Initialized Sensors Matrix...OK\n");
+	LOG_INF ("Waitting 5s");
 
 	k_msleep(5000);
 
-	printk ("SensorsMatrix::initialize() Initialized Sensors Matrix...OK\n");
 
-	printk ("SensorsMatrix::initialize() Calculating calibrations...\n");
+	LOG_INF("SensorsMatrix::initialize() Calculating calibrations...\n");
 	for (int i = 0; i < 16; i++) {
 		select(i);
 
@@ -172,7 +179,7 @@ int SensorsMatrix::initialize()
 		}
 	}
 
-	printk ("SensorsMatrix::initialize() Calculated calibrations...OK\n");
+	LOG_INF ("SensorsMatrix::initialize() Calculated calibrations...OK\n");
 
     return 0;
 }
@@ -203,7 +210,7 @@ void SensorsMatrix::readGauss(uint8_t aMatrix[8][8])
 
 bool SensorsMatrix::refresh()
 {
-	bool changed = false;
+    bool changed = false;
 
     previous = current;
     current++;
