@@ -3,7 +3,7 @@
 
 #include <zephyr/logging/log.h>
 
-LOG_MODULE_REGISTER(sensormatrix, LOG_LEVEL_INF);  // or LOG_LEVEL_DBG
+LOG_MODULE_REGISTER(sensormatrix, LOG_LEVEL_DBG);  // or LOG_LEVEL_DBG
 
 #ifndef CONFIG_DETECTION_HISTERESYS_EMPTY
 #define CONFIG_DETECTION_HISTERESYS_EMPTY 10
@@ -49,7 +49,7 @@ static const struct gpio_dt_spec enable_gpios[] = {
 };
 
 
-nt32_t calibrations[NROWS][NFILES] = {0}; // mv. used to find the 0
+int32_t calibrations[NROWS][NFILES] = {0}; // mv. used to find the 0
 
 uint8_t buffer[BUFFER_SIZE][NROWS][NFILES] = {0}; // gauss
 uint8_t current = 0;
@@ -84,19 +84,19 @@ int SensorsMatrix::initialize()
 
 	if (ARRAY_SIZE(adc_channels) != 4)
 	{
-		LOG_ERR("Error: Expected 4 elements in adc_channels\n");
+		LOG_ERR("Error: Expected 4 elements in adc_channels");
 		return -1;
 	}
 
 	if (ARRAY_SIZE(gpios_mux) != 4)
 	{
-		LOG_ERR("Error: Expected 4 elements in gpios_mux\n");
+		LOG_ERR("Error: Expected 4 elements in gpios_mux");
 		return -1;
 	}
 
 	if (ARRAY_SIZE(enable_gpios) != 1)
 	{
-		LOG_ERR("Error: Expected 1 elements in enable_gpios\n");
+		LOG_ERR("Error: Expected 1 elements in enable_gpios");
 		return -1;
 	}
 
@@ -104,17 +104,17 @@ int SensorsMatrix::initialize()
 	/* Configure channels individually prior to sampling. */
 	for (size_t i = 0U; i < 4; i++) {
 		if (!adc_is_ready_dt(&adc_channels[i])) {
-			LOG_ERR("SensorsMatrix::initialize() ADC controller device %s not ready\n", adc_channels[i].dev->name);
+			LOG_ERR("SensorsMatrix::initialize() ADC controller device %s not ready", adc_channels[i].dev->name);
 			return -1;
 		}
 
 		err = adc_channel_setup_dt(&adc_channels[i]);
 		if (err < 0) {
-			LOG_ERR("SensorsMatrix::initialize() Could not setup channel #%d (%d)\n", i, err);
+			LOG_ERR("SensorsMatrix::initialize() Could not setup channel #%d (%d)", i, err);
 			return -1;
 		}
 
-		LOG_DBG("Configuted ADC CHANNEL %d\n", adc_channels[i].channel_id);
+		LOG_DBG("Configuted ADC CHANNEL %d", adc_channels[i].channel_id);
 	}
 
 	/* Configure mux gpios */
@@ -122,42 +122,42 @@ int SensorsMatrix::initialize()
 	{
 		const struct gpio_dt_spec *spec = &gpios_mux[nmux];
 		if (!device_is_ready(spec->port)) {
-			LOG_ERR("SensorsMatrix::initialize() Error: %s device is not ready\n", spec->port->name);
+			LOG_ERR("SensorsMatrix::initialize() Error: %s device is not ready", spec->port->name);
 			return -1;
 		}
 
 		ret = gpio_pin_configure_dt(spec, GPIO_OUTPUT);
 		if (ret != 0) {
-			LOG_ERR("SensorsMatrix::initialize() Error: failed to configure %s\n", spec->port->name);
+			LOG_ERR("SensorsMatrix::initialize() Error: failed to configure %s", spec->port->name);
 			return -1;
 		}
 
-		LOG_DBG("Configuted port %s pin %d as GPIO_OUTPUT\n", spec->port->name, spec->pin);
+		LOG_DBG("Configuted port %s pin %d as GPIO_OUTPUT", spec->port->name, spec->pin);
 
 		gpio_pin_set(spec->port, spec->pin, 0);
 	}
 
 
 	if (!device_is_ready(enable_gpios->port)) {
-		LOG_ERR("SensorsMatrix::initialize() Error: %s device is not ready\n", enable_gpios->port->name);
+		LOG_ERR("SensorsMatrix::initialize() Error: %s device is not ready", enable_gpios->port->name);
 		return -1;
 	}
 
 	ret = gpio_pin_configure_dt(enable_gpios, GPIO_OUTPUT);
 	if (ret != 0) {
-		LOG_ERR("SensorsMatrix::initialize() Error: failed to configure %s\n", enable_gpios->port->name);
+		LOG_ERR("SensorsMatrix::initialize() Error: failed to configure %s", enable_gpios->port->name);
 		return -1;
 	}
 
 	gpio_pin_set(enable_gpios->port, enable_gpios->pin, 0); // 0 to enable
 								//
-	LOG_INF ("SensorsMatrix::initialize() Initialized Sensors Matrix...OK\n");
+	LOG_INF ("SensorsMatrix::initialize() Initialized Sensors Matrix...OK");
 	LOG_INF ("Waitting 5s");
 
 	k_msleep(5000);
 
 
-	LOG_INF("SensorsMatrix::initialize() Calculating calibrations...\n");
+	LOG_INF("SensorsMatrix::initialize() Calculating calibrations...");
 	for (int i = 0; i < 16; i++) {
 		select(i);
 
@@ -179,7 +179,7 @@ int SensorsMatrix::initialize()
 		}
 	}
 
-	LOG_INF ("SensorsMatrix::initialize() Calculated calibrations...OK\n");
+	LOG_INF ("SensorsMatrix::initialize() Calculated calibrations...OK");
 
     return 0;
 }
