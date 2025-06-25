@@ -14,6 +14,37 @@
 
 #define BUFFER_SIZE 5 // buffer used to filter position changes.
 
+#if !DT_NODE_EXISTS(DT_PATH(zephyr_user)) || \
+	!DT_NODE_HAS_PROP(DT_PATH(zephyr_user), io_channels) || \
+	!DT_NODE_HAS_PROP(DT_PATH(zephyr_user), mux_gpios) || \
+	!DT_NODE_HAS_PROP(DT_PATH(zephyr_user), enable_gpios)
+#error "Unsupported board: zephyr_user devicetree alias is not defined"
+#endif
+
+#define DT_SPEC_AND_COMMA(node_id, prop, idx) \
+	ADC_DT_SPEC_GET_BY_IDX(node_id, idx),
+
+/* Data of ADC io-channels specified in devicetree. */
+static const struct adc_dt_spec adc_channels[] = {
+	DT_FOREACH_PROP_ELEM(DT_PATH(zephyr_user), io_channels,
+			     DT_SPEC_AND_COMMA)
+};
+
+#define DT_GPIO_SPEC_AND_COMMA(node_id, prop, idx) \
+	GPIO_DT_SPEC_GET_BY_IDX(node_id, prop, idx),
+
+
+static const struct gpio_dt_spec gpios_mux[] = {
+	DT_FOREACH_PROP_ELEM(DT_PATH(zephyr_user), mux_gpios,
+			     DT_GPIO_SPEC_AND_COMMA)
+};
+
+static const struct gpio_dt_spec enable_gpios[] = {
+	DT_FOREACH_PROP_ELEM(DT_PATH(zephyr_user), enable_gpios,
+			     DT_GPIO_SPEC_AND_COMMA)
+};
+
+
 int32_t calibrations[NROWS][NFILES] = {0}; // mv. used to find the 0
 
 uint8_t buffer[BUFFER_SIZE][NROWS][NFILES] = {0}; // gauss
@@ -46,24 +77,45 @@ int SensorsMatrix::initialize()
 		.buffer_size = sizeof(buf), /* buffer size in bytes, not number of samples */
 	};
 
+	if (ARRAY_SIZE(adc_channels) != 4)
+	{
+		printk("Error: Expected 4 elements in adc_channels\n");
+		return -1;
+	}
+
+	if (ARRAY_SIZE(gpios_mux) != 4)
+	{
+		printk("Error: Expected 4 elements in gpios_mux\n");
+		return -1;
+	}
+
+	if (ARRAY_SIZE(enable_gpios) != 1)
+	{
+		printk("Error: Expected 1 elements in enable_gpios\n");
+		return -1;
+	}
+
+
 	/* Configure channels individually prior to sampling. */
-	for (size_t i = 0U; i < ARRAY_SIZE(adc_channels_); i++) {
-		if (!adc_is_ready_dt(&adc_channels_[i])) {
-			printk("SensorsMatrix::initialize() ADC controller device %s not ready\n", adc_channels_[i].dev->name);
+	for (size_t i = 0U; i < 4; i++) {
+		if (!adc_is_ready_dt(&adc_channels[i])) {
+			printk("SensorsMatrix::initialize() ADC controller device %s not ready\n", adc_channels[i].dev->name);
 			return -1;
 		}
 
-		err = adc_channel_setup_dt(&adc_channels_[i]);
+		err = adc_channel_setup_dt(&adc_channels[i]);
 		if (err < 0) {
 			printk("SensorsMatrix::initialize() Could not setup channel #%d (%d)\n", i, err);
 			return -1;
 		}
+
+		printk("Configuted ADC CHANNEL %d\n", adc_channels[i].channel_id);
 	}
 
 	/* Configure mux gpios */
-	for (size_t nmux = 0U; nmux < ARRAY_SIZE(gpios_mux_); nmux++)
+	for (size_t nmux = 0U; nmux < 4; nmux++)
 	{
-		const struct gpio_dt_spec *spec = &gpios_mux_[nmux];
+		const struct gpio_dt_spec *spec = &gpios_mux[nmux];
 		if (!device_is_ready(spec->port)) {
 			printk("SensorsMatrix::initialize() Error: %s device is not ready\n", spec->port->name);
 			return -1;
@@ -75,21 +127,24 @@ int SensorsMatrix::initialize()
 			return -1;
 		}
 
+		printk("Configuted port %s pin %d as GPIO_OUTPUT\n", spec->port->name, spec->pin);
+
 		gpio_pin_set(spec->port, spec->pin, 0);
 	}
 
-	if (!device_is_ready(gpio_enable_->port)) {
-		printk("SensorsMatrix::initialize() Error: %s device is not ready\n", gpio_enable_->port->name);
+
+	if (!device_is_ready(enable_gpios->port)) {
+		printk("SensorsMatrix::initialize() Error: %s device is not ready\n", enable_gpios->port->name);
 		return -1;
 	}
 
-	ret = gpio_pin_configure_dt(gpio_enable_, GPIO_OUTPUT);
+	ret = gpio_pin_configure_dt(enable_gpios, GPIO_OUTPUT);
 	if (ret != 0) {
-		printk("SensorsMatrix::initialize() Error: failed to configure %s\n", gpio_enable_->port->name);
+		printk("SensorsMatrix::initialize() Error: failed to configure %s\n", enable_gpios->port->name);
 		return -1;
 	}
 
-	gpio_pin_set(gpio_enable_->port, gpio_enable_->pin, 0); // 0 to enable
+	gpio_pin_set(enable_gpios->port, enable_gpios->pin, 0); // 0 to enable
 
 	k_msleep(5000);
 
@@ -110,7 +165,7 @@ int SensorsMatrix::initialize()
 
 			int32_t mv[5];
 			for (int s = 0; s<5; s++) {
-				mv[s] = readMv(&adc_channels_[r]);
+				mv[s] = readMv(&adc_channels[r]);
 				k_msleep(1);
 			}
 			calibrations[theRow][file] = torben_median_filter(mv, 5);
@@ -140,7 +195,7 @@ void SensorsMatrix::readGauss(uint8_t aMatrix[8][8])
     {
       const int theRow = iRow[r];
 
-      const float gauss = millivoltsToGauss (readMv(&adc_channels_[r]), calibrations[theRow][file]);
+      const float gauss = millivoltsToGauss (readMv(&adc_channels[r]), calibrations[theRow][file]);
       aMatrix[theRow][file] = (uint8_t)gauss; //calculateState (aMatrix[theRow][file], gauss);
     }
   }
@@ -186,9 +241,21 @@ bool SensorsMatrix::refresh()
       }
     }
 
-    if (changed) {
-    	printk ("changes detected!");
-    }
+#if 0
+    //if (changed) {
+    	printk ("Printing gauss matrixes\n");
+
+    	for (int i = 0; i < 8; i++) {
+       	    for (int k = 0; k < BUFFER_SIZE; k++) {
+		    for (int j = 0; j < 8; j++) {
+			printk("%6d", buffer[k][i][j]);  // Matrixs with gauss to filter position 
+		    }
+		    printk(" | ");
+	    }
+	    printk("\n");
+    	}
+    //}
+#endif
 
     return changed;
 }
@@ -199,10 +266,10 @@ void SensorsMatrix::select(uint8_t number) {
     number = 15;
   }
   
-  gpio_pin_set(gpios_mux_[0].port, gpios_mux_[0].pin, (number & 0b0001)); // Set bit 0
-  gpio_pin_set(gpios_mux_[1].port, gpios_mux_[1].pin, (number & 0b0010)); // Set bit 0
-  gpio_pin_set(gpios_mux_[2].port, gpios_mux_[2].pin, (number & 0b0100)); // Set bit 0
-  gpio_pin_set(gpios_mux_[3].port, gpios_mux_[3].pin, (number & 0b1000)); // Set bit 0
+  gpio_pin_set(gpios_mux[0].port, gpios_mux[0].pin, (number & 0b0001)); // Set bit 0
+  gpio_pin_set(gpios_mux[1].port, gpios_mux[1].pin, (number & 0b0010)); // Set bit 1
+  gpio_pin_set(gpios_mux[2].port, gpios_mux[2].pin, (number & 0b0100)); // Set bit 2
+  gpio_pin_set(gpios_mux[3].port, gpios_mux[3].pin, (number & 0b1000)); // Set bit 3
 
   k_usleep(1);
 }
@@ -217,4 +284,34 @@ void SensorsMatrix::printCalibrations()
 		printk("\n");
 	}
 	printk("\n");
+}
+
+static int32_t max[4] = {0}, min[4] = {0};
+static bool isFirstTime = true;
+
+void SensorsMatrix::test()
+{
+
+
+	//select(0);
+
+	int32_t mv[4];
+	for (int r=0; r<4; r++)
+	{
+		mv[r] = readMv(&adc_channels[r]);
+		if (mv[r] < min[r]) min[r] = mv[r];
+		if (mv[r] > max[r]) max[r] = mv[r];
+
+		if (isFirstTime)
+		{
+
+			min[r] = max[r] = mv[r];
+		}
+	}
+
+	isFirstTime = false;
+
+
+
+	printk ("raw mv read: %4d [%4d   %4d].    %4d [%4d   %4d].     %4d [%4d   %4d].     %4d [%4d   %4d].\n", mv[0], min[0], max[0], mv[1], min[1], max[1], mv[2], min[2], max[2], mv[3], min[3], max[3]);
 }

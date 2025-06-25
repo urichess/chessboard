@@ -3,6 +3,30 @@
 tests of chessboard using arduino + zephyr
 
 
+Start up
+
+1. install zephyr
+
+https://docs.zephyrproject.org/latest/develop/getting_started/index.html
+
+
+2. install Stm32CubeIDE & Stm32CubeProgrammer
+
+
+3. clone this repo
+
+
+
+4. (optionl) configure cubeide
+https://docs.zephyrproject.org/latest/develop/tools/stm32cubeide.html
+
+
+
+
+
+
+
+
 Interesting links
 
 Proyectos y tecnologías clave que te pueden ayudar
