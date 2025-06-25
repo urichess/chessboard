@@ -20,8 +20,12 @@
 
 };
 
-
-
+&usart3 {
+	pinctrl-0 = <&usart3_tx_pc10 &usart3_rx_pc11>;
+	pinctrl-names = "default";
+	current-speed = <115200>;
+	status = "okay";
+};
 
 &adc1 {
     pinctrl-0 = <&adc1_in1_pa0 &adc1_in2_pa1 &adc1_in15_pb0>;  // add whatever inputs you need

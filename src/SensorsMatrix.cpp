@@ -58,6 +58,8 @@ uint8_t previous = 0;
 uint8_t currentPosition[NROWS][NFILES] = {0}; // 0-empty and 1-piece
 
 
+K_MUTEX_DEFINE(my_mutex);
+
 uint8_t calculateState(uint8_t currentState, float gauss)
 {
     // Adding histeresys
@@ -186,7 +188,13 @@ int SensorsMatrix::initialize()
 
 void SensorsMatrix::getPosition(uint8_t aMatrix[8][8])
 {
-	memcpy (aMatrix, currentPosition, 64);
+	if (k_mutex_lock(&my_mutex, K_FOREVER) == 0) {
+		memcpy (aMatrix, currentPosition, 64);
+	        k_mutex_unlock(&my_mutex);
+	} else {
+		LOG_ERR("SensorMatrix::getPosition() Cannot take mutex");
+	}
+
 }
 
 void SensorsMatrix::readGauss(uint8_t aMatrix[8][8])
@@ -210,6 +218,9 @@ void SensorsMatrix::readGauss(uint8_t aMatrix[8][8])
 
 bool SensorsMatrix::refresh()
 {
+
+
+
     bool changed = false;
 
     previous = current;
@@ -221,6 +232,12 @@ bool SensorsMatrix::refresh()
     }
 
     readGauss(buffer[current]);
+
+	if (k_mutex_lock(&my_mutex, K_FOREVER) != 0) {
+		LOG_ERR("SensorMatrix::refresh() Cannot take mutex");
+		return false;
+	}
+
 
     for (int i = 0; i<8; i++)
     {
@@ -248,6 +265,7 @@ bool SensorsMatrix::refresh()
       }
     }
 
+	    k_mutex_unlock(&my_mutex);
 #if 0
     //if (changed) {
     	printk ("Printing gauss matrixes\n");

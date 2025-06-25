@@ -65,11 +65,41 @@ void matrix(void)
 	int iteration = 0;
 	while (1)
 	{
-		uint8_t aMatrix[8][8];
 
 		if (sm.refresh()) {
 
+			uint8_t aMatrix[8][8];
+			uint8_t packed_board[8];    // Each byte = 1 row
+			char uart_msg[64];          // UART message buffer
 			sm.getPosition(aMatrix);
+
+
+
+			// Step 1: Pack each row into a byte
+			    for (int row = 0; row < 8; ++row) {
+				uint8_t bits = 0;
+
+				for (int col = 0; col < 8; ++col) {
+				    if (aMatrix[row][col]) {
+					bits |= (1 << (7 - col));  // col 0 is MSB
+				    }
+				}
+
+				packed_board[row] = bits;
+			    }
+
+			    // Step 2: Format UART message as one hex string
+			    int len = snprintf(uart_msg, sizeof(uart_msg),
+					       "BOARD:%02X-%02X-%02X-%02X-%02X-%02X-%02X-%02X",
+					       packed_board[0], packed_board[1],
+					       packed_board[2], packed_board[3],
+					       packed_board[4], packed_board[5],
+					       packed_board[6], packed_board[7]);
+
+			    // Step 3: Send over UART (use printk or uart_tx)
+			    printk("%s\n", uart_msg);
+
+
 
 #if 0
 			printk("Position changed:\n");
