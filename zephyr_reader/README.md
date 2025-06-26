@@ -1,5 +1,7 @@
 # chessboard
 
+This code runs in the micro in charge of reading the board sensors and exporting it to the uart
+
 tests of chessboard using arduino + zephyr
 
 
