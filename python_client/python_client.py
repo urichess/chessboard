@@ -37,7 +37,7 @@ def print_board_with_chess(board_matrix):
                 square = chess.square(col, 7 - row)  # col = file, 7-row = rank index (0-based)
                 board.set_piece_at(square, chess.Piece(chess.PAWN, chess.WHITE))
 
-    print(board.unicode(borders=True))
+    print(board.unicode(empty_square=" ", borders=True))
     print()
 
 def main():
