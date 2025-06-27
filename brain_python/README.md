@@ -14,3 +14,4 @@ pip freeze > requirements.txt
 #How to run it
 source venv_brain/bin/activate
 python python_client.py -p /dev/ttyUSB0 -b 115200
+python python_client.py -p /dev/ttyUSB1 -b 115200

@@ -6,7 +6,7 @@
 LOG_MODULE_REGISTER(sensormatrix, LOG_LEVEL_DBG);  // or LOG_LEVEL_DBG
 
 #ifndef CONFIG_DETECTION_HISTERESYS_EMPTY
-#define CONFIG_DETECTION_HISTERESYS_EMPTY 15
+#define CONFIG_DETECTION_HISTERESYS_EMPTY 5
 #endif
 
 #ifndef CONFIG_DETECTION_HISTERESYS_PIECE
@@ -177,9 +177,11 @@ int SensorsMatrix::initialize()
 				mv[s] = readMv(&adc_channels[r]);
 				k_msleep(1);
 			}
-			calibrations[theRow][file] = torben_median_filter(mv, 5);
+			calibrations[file][theRow] = torben_median_filter(mv, 5);
 		}
 	}
+
+	printCalibrations();
 
 	LOG_INF ("SensorsMatrix::initialize() Calculated calibrations...OK");
 
@@ -210,8 +212,8 @@ void SensorsMatrix::readGauss(uint8_t aMatrix[8][8])
     {
       const int theRow = iRow[r];
 
-      const float gauss = millivoltsToGauss (readMv(&adc_channels[r]), calibrations[theRow][file]);
-      aMatrix[theRow][file] = (uint8_t)gauss; //calculateState (aMatrix[theRow][file], gauss);
+      const float gauss = millivoltsToGauss (readMv(&adc_channels[r]), calibrations[file][theRow]);
+      aMatrix[file][theRow] = (uint8_t)gauss; //calculateState (aMatrix[theRow][file], gauss);
     }
   }
 }
@@ -296,19 +298,45 @@ void SensorsMatrix::select(uint8_t number) {
   gpio_pin_set(gpios_mux[2].port, gpios_mux[2].pin, (number & 0b0100)); // Set bit 2
   gpio_pin_set(gpios_mux[3].port, gpios_mux[3].pin, (number & 0b1000)); // Set bit 3
 
-  k_usleep(1);
+  k_usleep(10);
 }
 
 void SensorsMatrix::printCalibrations()
 {
-	printk("Calibrations:\n");
+	char buf[1024];
+	char* p = buf;
+	size_t remaining = sizeof(buf);
+	int written;
+
+	written = snprintf(p, remaining, "Calibrations:\r\n");
+	if (written < 0 || (size_t)written >= remaining) {
+		buf[sizeof(buf) - 1] = '\0';
+		LOG_DBG("%s", buf);
+		return;
+	}
+	p += written;
+	remaining -= written;
+
 	for (int row = 0; row < 8; ++row) {
 		for (int col = 0; col < 8; ++col) {
-			printk("%3d ", calibrations[row][col]);  // 3-digit width for alignment
+			written = snprintf(p, remaining, "%3d ", calibrations[row][col]);
+			if (written < 0 || (size_t)written >= remaining) {
+				LOG_DBG("%s", buf);
+				return;
+			}
+			p += written;
+			remaining -= written;
 		}
-		printk("\n");
+		written = snprintf(p, remaining, "\r\n");
+		if (written < 0 || (size_t)written >= remaining) {
+			LOG_DBG("%s", buf);
+			return;
+		}
+		p += written;
+		remaining -= written;
 	}
-	printk("\n");
+
+	LOG_DBG("%s", buf);
 }
 
 static int32_t max[4] = {0}, min[4] = {0};

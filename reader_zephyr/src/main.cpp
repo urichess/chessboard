@@ -83,7 +83,7 @@ void matrix(void)
 	}
 }
 
-K_THREAD_DEFINE(matrix_reader_id, STACKSIZE, matrix, NULL, NULL, NULL, PRIORITY, 0, 0);
+K_THREAD_DEFINE(matrix_reader_id, 4096, matrix, NULL, NULL, NULL, PRIORITY, 0, 0);
 
 void uart_sender(void) {
 	UartSender sender;
