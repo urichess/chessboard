@@ -5,7 +5,7 @@ This code runs in the micro in charge of reading the board sensors and exporting
 tests of chessboard using arduino + zephyr
 
 
-Start up
+#Start up
 
 1. install zephyr
 
@@ -29,7 +29,7 @@ https://docs.zephyrproject.org/latest/develop/tools/stm32cubeide.html
 
 
 
-Interesting links
+#Interesting links
 
 Proyectos y tecnologías clave que te pueden ayudar
 1. lichess-bot
