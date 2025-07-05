@@ -3,7 +3,8 @@ import time
 import chess
 
 INITIAL_BOARD_STATE = "FF-FF-00-00-00-00-FF-FF"
-SERIAL_PORT = "/dev/ttyV1"
+#SERIAL_PORT = "/dev/ttyV1"
+SERIAL_PORT = "/dev/ttyUSB1"
 BAUD_RATE = 115200
 
 def read_board_state(ser):
