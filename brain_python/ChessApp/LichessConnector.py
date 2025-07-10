@@ -1,0 +1,117 @@
+import threading
+import berserk
+from berserk.exceptions import ResponseError
+import chess
+
+class LichessConnector:
+    def __init__(self, token: str):
+        self.session = berserk.TokenSession(token)
+        self.client = berserk.Client(session=self.session)
+        # self.start_event_listener()
+
+    def getUsername(self) -> str:
+        account_info = self.client.account.get()
+        return account_info["username"]
+
+    def createGame(self):
+        pass
+
+    def findGame(self) -> 'LichessConnector.LichessGame':
+        try:
+            for event in self.client.board.stream_incoming_events():
+                if event["type"] == "gameStart":
+                    new_game_id = event["game"]["id"]
+                    print(f"New game detected: {new_game_id}")
+                    return self.LichessGame(self, event)
+        except Exception as e:
+            print(f"[findGame] event listener error {e}")
+            return None
+
+    def start_event_listener(self):
+        def listen():
+            print("[Event Listener] Listening to incoming events...")
+            try:
+                for event in self.client.board.stream_incoming_events():
+                    print("[Lichess Event]", event)
+            except Exception as e:
+                print(f"[Event Listener Error] {e}")
+
+        listener_thread = threading.Thread(target=listen, daemon=True)
+        listener_thread.start()
+
+    class LichessGame:
+        def __init__(self, connector, event_start: dict):
+            self.connector = connector
+            self.event_start = event_start
+            print(event_start)
+            #{'type': 'gameStart', 'game': {'fullId': '9zQU8L09BUnp', 'gameId': '9zQU8L09', 'fen': 'r1bqkbnr/ppp2ppp/8/4Q3/2P5/4P3/PP1P2PP/RNB1KB1R b KQkq - 0 7', 'color': 'black', 'lastMove': 'h5e5', 'source': 'ai', 'status': {'id': 20, 'name': 'started'}, 'variant': {'key': 'standard', 'name': 'Standard'}, 'speed': 'correspondence', 'perf': 'correspondence', 'rated': False, 'hasMoved': True, 'opponent': {'id': None, 'username': 'Stockfish level 8', 'ai': 8}, 'isMyTurn': True, 'compat': {'bot': False, 'board': True}, 'id': '9zQU8L09'}}
+
+            
+            self.initialPosition = event_start["game"]["fen"]
+            board = chess.Board(self.initialPosition)
+            
+            if event_start["game"]["isMyTurn"] == True:
+                self.myColor = board.turn
+                
+                print(board)
+                print("Your turn")
+            else:
+                if board.turn == "white":
+                    self.myColor = "black"
+                else:
+                    self.myColor = "white"
+            
+                        
+            self.game_id = event_start["game"]["id"]
+            self.thread = threading.Thread(target=self._monitor_game, daemon=True)
+            self.start()
+
+        def start(self):
+            print(f"[LichessGame] Starting game state monitor for game {self.game_id}")
+            self.thread.start()
+
+        def waitmyColor(self) -> chess.Board:
+            for event in self.connector.client.board.stream_game_state(self.game_id):
+                if event["type"] == "gameState":
+                    status = event.get("status", "started")
+                    if status != "started":
+                        print(f"Game ended or aborted with status: {status}")
+                        return None
+
+                    board = chess.Board()
+                    moves = event["moves"].strip().split()
+                    for move in moves:
+                        board.push_uci(move)
+
+                    return board
+
+        def sendMove(self, move: str):
+            try:
+                self.connector.client.board.make_move(self.game_id, move)
+                print(f"Move {move} sent to game {self.game_id}.")
+            except ResponseError as e:
+                print(f"Failed to send move {move} to game {self.game_id}: {e}")
+
+        def _monitor_game(self):
+            while True:
+                try:
+                    for event in self.connector.client.board.stream_game_state(self.game_id):
+                        print(f"[Game {self.game_id} State]", event)
+                        if event["type"] == "gameState":
+                        #{'type': 'gameState', 'moves': 'e2e4 c7c5 g1f3 d7d6 d2d3 e7e5 f1e2 f8e7', 'wtime': datetime.datetime(1970, 1, 25, 20, 31, 23, 647000, tzinfo=datetime.timezone.utc), 'btime': datetime.datetime(1970, 1, 25, 20, 31, 23, 647000, tzinfo=datetime.timezone.utc), 'winc': datetime.datetime(1970, 1, 1, 0, 0, tzinfo=datetime.timezone.utc), 'binc': datetime.datetime(1970, 1, 1, 0, 0, tzinfo=datetime.timezone.utc), 'status': 'started'}
+                            status = event.get("status", "started")
+                            if status != "started":
+                                print(f"Game ended or aborted with status: {status}")
+                            else:
+                                #board = chess.Board(self.initialPosition)
+                                board = chess.Board()
+                                moves = event["moves"].strip().split()
+                                for move in moves:
+                                    board.push_uci(move)
+                                    
+                                if board.turn == self.myColor:
+                                    print(board)
+                                    print ("Your turn")
+                except Exception as e:
+                    print(f"[LichessGame Error] {e}")
+

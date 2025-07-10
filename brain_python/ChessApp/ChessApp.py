@@ -1,8 +1,7 @@
 import argparse
 import sys
 import requests
-import berserk
-from berserk.exceptions import ResponseError
+from LichessConnector import LichessConnector
 
 REQUIRED_SCOPES = {"challenge:write", "play:write"}
 
@@ -28,12 +27,9 @@ class ChessApp:
         #check_token_scopes(token)  # Check permissions first
 
         self.running = True
-        self.session = berserk.TokenSession(token)
-        self.client = berserk.Client(session=self.session)
-
         try:
-            user = self.client.account.get()
-            self.username = user['username']
+            self.lichess = LichessConnector(token)
+            self.username = self.lichess.getUsername()
         except ResponseError:
             print("Error: Invalid or unauthorized token.")
             sys.exit(1)

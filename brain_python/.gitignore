@@ -1,2 +1,3 @@
 venv_brain/
 lichess_token.txt
+__pycache__/
