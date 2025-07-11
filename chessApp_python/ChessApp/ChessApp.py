@@ -5,7 +5,8 @@ from LichessConnector import LichessConnector
 from BoardSerial import BoardSerial
 
 REQUIRED_SCOPES = {"challenge:write", "play:write"}
-SERIAL_PORT = "/dev/ttyUSB1"
+#SERIAL_PORT = "/dev/ttyUSB1"
+SERIAL_PORT = "/dev/ttyV1"
 SERIAL_BAUDRATE = 115200
 
 def check_token_scopes(token: str):
