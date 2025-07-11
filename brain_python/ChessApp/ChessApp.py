@@ -2,8 +2,11 @@ import argparse
 import sys
 import requests
 from LichessConnector import LichessConnector
+from BoardSerial import BoardSerial
 
 REQUIRED_SCOPES = {"challenge:write", "play:write"}
+SERIAL_PORT = "/dev/ttyUSB1"
+SERIAL_BAUDRATE = 115200
 
 def check_token_scopes(token: str):
     url = "https://lichess.org/api/token"
@@ -34,6 +37,8 @@ class ChessApp:
             print("Error: Invalid or unauthorized token.")
             sys.exit(1)
 
+        self.board = BoardSerial(SERIAL_PORT, SERIAL_BAUDRATE) 
+
     def show_menu(self):
         print(f"\nHello, {self.username}!")
         print("=== ChessApp Menu ===")
@@ -52,6 +57,19 @@ class ChessApp:
             elif choice == '2':
                 pass
             elif choice == '3':
+                 game = self.lichess.findGame()
+
+                 currentBoard = game.waitMyTurn()
+                 while not game.finished() and currentBoard != None:
+                    print(currentBoard)
+                    print("Play your move")
+                    board.sync(currentBoard)
+                    aMove = board.getMove(currentBoard)
+
+                    #confirmation??
+                    game.sendMove(aMove)
+                    currentBoard = game.waitMyTurn()
+
                 pass
             elif choice == 'q':
                 print("Exiting ChessApp.")

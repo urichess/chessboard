@@ -64,20 +64,6 @@ class BoardSerial:
             ranks.append(hex_value)
         return "-".join(ranks)
 
-    def compare_states(self, old_state: str, new_state: str):
-        """
-        Dummy placeholder: you must replace this with your actual comparison logic.
-        Returns two lists: removed squares and inserted squares.
-        """
-        return [], []
-
-    def waitPosition(self, expected_state: str):
-        while True:
-            state = self._readCurrentPosition()
-            if state and state.upper() == expected_state:
-                return
-            time.sleep(0.2)
-
     def getMove(self, board: chess.Board):
         piece_removed_from = None
         last_valid_state = self._readCurrentPosition()
@@ -184,6 +170,10 @@ class BoardSerial:
 
             time.sleep(0.2)
 
+    def sync(board: chess.Board):
+        ff = board_to_ff_format(board)
+        waitBoard(board)
+        
     def __del__(self):
         self.close_connection()
 

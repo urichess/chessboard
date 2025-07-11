@@ -46,22 +46,28 @@ class LichessConnector:
             print(event_start)
             #{'type': 'gameStart', 'game': {'fullId': '9zQU8L09BUnp', 'gameId': '9zQU8L09', 'fen': 'r1bqkbnr/ppp2ppp/8/4Q3/2P5/4P3/PP1P2PP/RNB1KB1R b KQkq - 0 7', 'color': 'black', 'lastMove': 'h5e5', 'source': 'ai', 'status': {'id': 20, 'name': 'started'}, 'variant': {'key': 'standard', 'name': 'Standard'}, 'speed': 'correspondence', 'perf': 'correspondence', 'rated': False, 'hasMoved': True, 'opponent': {'id': None, 'username': 'Stockfish level 8', 'ai': 8}, 'isMyTurn': True, 'compat': {'bot': False, 'board': True}, 'id': '9zQU8L09'}}
 
-            
+
             self.initialPosition = event_start["game"]["fen"]
-            board = chess.Board(self.initialPosition)
-            
-            if event_start["game"]["isMyTurn"] == True:
-                self.myColor = board.turn
-                
-                print(board)
+            self.current_board = chess.Board(self.initialPosition)
+            self.board_lock = threading.Lock()
+            self.turn_event = threading.Event()
+
+            if event_start["game"]["isMyTurn"] == "True":
+                self.isMyTurn = True
+                self.myColor = self.current_board.turn
+
+                print(self.current_board)
                 print("Your turn")
             else:
-                if board.turn == "white":
+                self.isMyTurn = False
+                if self.current_board.turn == "white":
                     self.myColor = "black"
                 else:
                     self.myColor = "white"
-            
-                        
+
+            self.finished = False
+
+
             self.game_id = event_start["game"]["id"]
             self.thread = threading.Thread(target=self._monitor_game, daemon=True)
             self.start()
@@ -70,24 +76,29 @@ class LichessConnector:
             print(f"[LichessGame] Starting game state monitor for game {self.game_id}")
             self.thread.start()
 
-        def waitmyColor(self) -> chess.Board:
-            for event in self.connector.client.board.stream_game_state(self.game_id):
-                if event["type"] == "gameState":
-                    status = event.get("status", "started")
-                    if status != "started":
-                        print(f"Game ended or aborted with status: {status}")
-                        return None
+        def finished(self):
+            return self.finished
 
-                    board = chess.Board()
-                    moves = event["moves"].strip().split()
-                    for move in moves:
-                        board.push_uci(move)
 
-                    return board
+        def waitMyTurn(self) -> chess.Board:
+            print("Waiting for your turn...")
+            self.turn_event.wait()  # Blocks until it's your turn
+            with self.board_lock:
+                if finished():
+                    return None
+                else:
+                    return self.current_board.copy()
+                           
+
 
         def sendMove(self, move: str):
             try:
-                self.connector.client.board.make_move(self.game_id, move)
+                
+                with self.board_lock:
+                    self.connector.client.board.make_move(self.game_id, move)
+                    self.isMyTurn = False
+                    self.turn_event.clear()
+                    
                 print(f"Move {move} sent to game {self.game_id}.")
             except ResponseError as e:
                 print(f"Failed to send move {move} to game {self.game_id}: {e}")
@@ -98,20 +109,30 @@ class LichessConnector:
                     for event in self.connector.client.board.stream_game_state(self.game_id):
                         print(f"[Game {self.game_id} State]", event)
                         if event["type"] == "gameState":
+                            lastGameEvent = event
                         #{'type': 'gameState', 'moves': 'e2e4 c7c5 g1f3 d7d6 d2d3 e7e5 f1e2 f8e7', 'wtime': datetime.datetime(1970, 1, 25, 20, 31, 23, 647000, tzinfo=datetime.timezone.utc), 'btime': datetime.datetime(1970, 1, 25, 20, 31, 23, 647000, tzinfo=datetime.timezone.utc), 'winc': datetime.datetime(1970, 1, 1, 0, 0, tzinfo=datetime.timezone.utc), 'binc': datetime.datetime(1970, 1, 1, 0, 0, tzinfo=datetime.timezone.utc), 'status': 'started'}
                             status = event.get("status", "started")
                             if status != "started":
                                 print(f"Game ended or aborted with status: {status}")
+                                self.finished = True
+                                with self.board_lock:
+                                    self.turn_event.set()  # Notify waitMyTurn()
+                                    
                             else:
                                 #board = chess.Board(self.initialPosition)
                                 board = chess.Board()
                                 moves = event["moves"].strip().split()
                                 for move in moves:
                                     board.push_uci(move)
-                                    
+
                                 if board.turn == self.myColor:
-                                    print(board)
-                                    print ("Your turn")
+                                    with self.board_lock:
+                                        self.current_board = board
+                                        self.isMyTurn = True
+                                        self.turn_event.set()  # Notify waitMyTurn()
+                                else:
+                                    print ("Move sent. Waitting response")
                 except Exception as e:
                     print(f"[LichessGame Error] {e}")
+
 
