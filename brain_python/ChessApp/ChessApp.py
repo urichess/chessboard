@@ -60,17 +60,22 @@ class ChessApp:
                  game = self.lichess.findGame()
 
                  currentBoard = game.waitMyTurn()
-                 while not game.finished() and currentBoard != None:
-                    print(currentBoard)
-                    print("Play your move")
-                    board.sync(currentBoard)
-                    aMove = board.getMove(currentBoard)
+                 while currentBoard != None:
+
+                    if currentBoard.move_stack:
+                        previousBoard = currentBoard.copy(stack=True)
+                        last_move = previousBoard.pop()
+                        san = previousBoard.san(last_move)
+                        print(f"Opponent played: {san}.")
+                    else:
+                        print("You start.")
+
+                    self.board.sync(currentBoard)
+                    aMove = self.board.getMove(currentBoard)
 
                     #confirmation??
                     game.sendMove(aMove)
                     currentBoard = game.waitMyTurn()
-
-                pass
             elif choice == 'q':
                 print("Exiting ChessApp.")
                 self.running = False

@@ -7,9 +7,9 @@ class BoardSerial:
         self.port = port
         self.baudrate = baudrate
         self.connection = None
-        self.open_connection()
+        self._open_connection()
 
-    def open_connection(self):
+    def _open_connection(self):
         try:
             self.connection = serial.Serial(self.port, self.baudrate, timeout=1)
             print(f"Connected to {self.port} at {self.baudrate} baud.")
@@ -17,7 +17,7 @@ class BoardSerial:
             print(f"Failed to connect to {self.port}: {e}")
             self.connection = None
 
-    def close_connection(self):
+    def _close_connection(self):
         if self.connection and self.connection.is_open:
             self.connection.close()
             print("Serial connection closed.")
@@ -31,7 +31,7 @@ class BoardSerial:
             print(f"Error reading from serial: {e}")
         return None
 
-    def wait_board(self, expected_state):
+    def _wait_board(self, expected_state):
         while True:
             try:
                 line = self.connection.readline().decode('utf-8').strip()
@@ -43,17 +43,18 @@ class BoardSerial:
                 print(f"Error while waiting for board: {e}")
             time.sleep(0.2)
 
-    def wait_until_board_matches(self, expected_state):
-        print("Waiting for board to return to the correct state...")
-        self.wait_board(expected_state)
-        print("Board restored to valid state.")
+    def _recover_position(self, board: chess.Board, message: str):
+        print(message)
+        print(board)
+        print("Please, place pieces back to position.")
+        self.sync(board)
 
     def wait_end_castling(self, expected_state):
         print("Waiting for castling to complete...")
-        self.wait_board(expected_state)
+        self._wait_board(expected_state)
         print("Castling complete.")
 
-    def board_to_ff_format(self, board: chess.Board) -> str:
+    def _board_to_ff_format(self, board: chess.Board) -> str:
         ranks = []
         for rank in range(1, 9):  # rank 1 to 8
             bits = ''
@@ -65,6 +66,8 @@ class BoardSerial:
         return "-".join(ranks)
 
     def getMove(self, board: chess.Board):
+        self.sync(board)
+
         piece_removed_from = None
         last_valid_state = self._readCurrentPosition()
         current_state = last_valid_state
@@ -81,27 +84,21 @@ class BoardSerial:
             removed2, inserted2 = self.compare_states(prev_state, current_state)
 
             if len(inserted) > 1:
-                print("Illegal move: more than one piece inserted at once.")
-                print(board)
-                self.wait_until_board_matches(last_valid_state)
+                self._recover_position(board, "Illegal move: more than one piece inserted at once.")
                 piece_removed_from = None
                 continue
 
             piece_removed_from = None
             if len(removed) >= 1:
                 if len(removed) > 2:
-                    print("Illegal move: more than one piece removed at once.")
-                    print(board)
-                    self.wait_until_board_matches(last_valid_state)
+                    self._recover_position(board, "Illegal move: more than one piece removed at once.")
                     continue
 
                 square0 = chess.parse_square(removed[0])
                 piece0 = board.piece_at(square0)
 
                 if not piece0:
-                    print("Illegal move: no piece found on removed square.")
-                    print(board)
-                    self.wait_until_board_matches(last_valid_state)
+                    self._recover_position(board, "Illegal move: no piece found on removed square.")
                     continue
 
                 if len(removed) == 2:
@@ -109,39 +106,28 @@ class BoardSerial:
                     piece1 = board.piece_at(square1)
 
                     if not piece1:
-                        print("Illegal move: no piece found on removed square.")
-                        print(board)
-                        self.wait_until_board_matches(last_valid_state)
+                        self._recover_position(board, "Illegal move: no piece found on removed square.")
                         continue
 
                     if piece0.color == piece1.color:
-                        print("Illegal move: Removed two pieces of same color.")
-                        print(board)
-                        self.wait_until_board_matches(last_valid_state)
+                        self._recover_position(board, "Illegal move: Removed two pieces of same color.")
                         continue
 
                     if piece0.color == board.turn:
                         piece_removed_from = removed[0]
-                        print(f"Piece lifted from {piece_removed_from}...")
                     elif piece1.color == board.turn:
                         piece_removed_from = removed[1]
-                        print(f"Piece lifted from {piece_removed_from}...")
                     else:
-                        print("Illegal move: wrong color's turn. Both pieces are NOK.")
-                        print(board)
-                        self.wait_until_board_matches(last_valid_state)
+                        self._recover_position(board, "Illegal move: wrong color's turn. Both pieces are NOK.")
                         continue
                 else:
                     if not piece0.color == board.turn:
                         color_str = "white" if piece0.color == chess.WHITE else "black"
                         turn_str = "white" if board.turn == chess.WHITE else "black"
-                        print(f"Illegal move: wrong color's turn. Piece color: {color_str}, Turn: {turn_str}")
-                        print(board)
-                        self.wait_until_board_matches(last_valid_state)
+                        self._recover_position(board, f"Illegal move: wrong color's turn. Piece color: {color_str}, Turn: {turn_str}")
                         continue
 
                     piece_removed_from = removed[0]
-                    print(f"Piece lifted from {piece_removed_from}...")
 
             piece_inserted_at = None
             if len(inserted) == 1:
@@ -151,29 +137,29 @@ class BoardSerial:
 
             if piece_inserted_at:
                 if not piece_removed_from:
-                    print("Illegal move: piece inserted without prior removal.")
-                    print(board)
-                    self.wait_until_board_matches(last_valid_state)
+                    self._recover_position(board, "Illegal move: piece inserted without prior removal.")
                     continue
 
                 move_uci = piece_removed_from + piece_inserted_at
                 move = chess.Move.from_uci(move_uci)
 
                 if move in board.legal_moves:
+                    if move.is_castling():
+                        board.push_uci(move_uci)
+                        print ("Wait castles end.")
+                        self.sync(board)
+
                     print(f"Move detected: {move_uci}")
                     return move_uci
                 else:
-                    print(f"Illegal move: {move_uci}")
-                    print(board)
-                    self.wait_until_board_matches(last_valid_state)
+                    self._recover_position(board, f"Illegal move: {move_uci}")
                     continue
 
             time.sleep(0.2)
 
-    def sync(board: chess.Board):
-        ff = board_to_ff_format(board)
-        waitBoard(board)
-        
-    def __del__(self):
-        self.close_connection()
+    def sync(self, board: chess.Board):
+        ff = self._board_to_ff_format(board)
+        self._wait_board(ff)
 
+    def __del__(self):
+        self._close_connection()
