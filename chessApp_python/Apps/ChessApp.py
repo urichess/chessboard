@@ -1,8 +1,8 @@
 import argparse
 import sys
 import requests
-from LichessConnector import LichessConnector
-from BoardSerial import BoardSerial
+from lib.LichessConnector import LichessConnector
+from lib.BoardSerial import BoardSerial
 
 REQUIRED_SCOPES = {"challenge:write", "play:write"}
 #SERIAL_PORT = "/dev/ttyUSB1"

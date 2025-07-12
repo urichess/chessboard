@@ -1,4 +1,4 @@
-from BoardSerial import BoardSerial
+from lib.BoardSerial import BoardSerial
 import chess
 
 
