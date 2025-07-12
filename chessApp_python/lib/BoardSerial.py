@@ -234,6 +234,21 @@ class BoardSerial:
                     continue
 
                 move_uci = piece_removed_from + piece_inserted_at
+
+                # check promotion
+                to_square = chess.parse_square(piece_inserted_at)
+                rank = chess.square_rank(to_square)
+
+                if rank in (0, 7):
+                    from_square = chess.parse_square(piece_removed_from)
+                    piece = board.piece_at(from_square)
+
+                    if piece and piece.piece_type == chess.PAWN:
+                        if (piece.color == chess.WHITE and rank == 7) or (piece.color == chess.BLACK and rank == 0):
+                            print ("promotion! Asuming queen...")
+                            move_uci = piece_removed_from + piece_inserted_at + 'q'  # PROMOTION
+
+
                 move = chess.Move.from_uci(move_uci)
 
                 if move in board.legal_moves:
