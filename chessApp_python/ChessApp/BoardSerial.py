@@ -143,30 +143,38 @@ class BoardSerial:
         return ff
     
     def getMove(self, board: chess.Board):
-        last_valid_state = self.sync(board)
-        current_state = last_valid_state
-        piece_removed_from = None
+        ff_initial = self.sync(board)
+        current_state = ff_initial
+
+        recovered = False
 
         while True:
             prev_state = current_state
             current_state = self._get_next_board_message()
 
-            if not current_state or current_state == last_valid_state:
+            if recovered:
+                piece_removed_from = None
+                piece_inserted_at = None
+                recovered = False
+
+
+            if not current_state or current_state == ff_initial:
                 time.sleep(0.1)
                 continue
 
-            removed, inserted = self._compare_states(last_valid_state, current_state)
+            removed, inserted = self._compare_states(ff_initial, current_state)
             removed2, inserted2 = self._compare_states(prev_state, current_state)
 
             if len(inserted) > 1:
                 self._recover_position(board, "Illegal move: more than one piece inserted at once.")
-                piece_removed_from = None
+                recovered = True
                 continue
 
             piece_removed_from = None
             if len(removed) >= 1:
                 if len(removed) > 2:
                     self._recover_position(board, "Illegal move: more than one piece removed at once.")
+                    recovered = True
                     continue
 
                 square0 = chess.parse_square(removed[0])
@@ -174,6 +182,7 @@ class BoardSerial:
 
                 if not piece0:
                     self._recover_position(board, "Illegal move: no piece found on removed square.")
+                    recovered = True
                     continue
 
                 if len(removed) == 2:
@@ -182,10 +191,12 @@ class BoardSerial:
 
                     if not piece1:
                         self._recover_position(board, "Illegal move: no piece found on removed square.")
+                        recovered = True
                         continue
 
                     if piece0.color == piece1.color:
                         self._recover_position(board, "Illegal move: Removed two pieces of same color.")
+                        recovered = True
                         continue
 
                     if piece0.color == board.turn:
@@ -194,6 +205,7 @@ class BoardSerial:
                         piece_removed_from = removed[1]
                     else:
                         self._recover_position(board, "Illegal move: wrong color's turn. Both pieces are NOK.")
+                        recovered = True
                         continue
 
                     print("Lifted another piece")
@@ -202,6 +214,7 @@ class BoardSerial:
                         color_str = "white" if piece0.color == chess.WHITE else "black"
                         turn_str = "white" if board.turn == chess.WHITE else "black"
                         self._recover_position(board, f"Illegal move: wrong color's turn. Piece color: {color_str}, Turn: {turn_str}")
+                        recovered = True
                         continue
 
                     piece_removed_from = removed[0]
@@ -217,6 +230,7 @@ class BoardSerial:
                 print ("Inserted a piece")
                 if not piece_removed_from:
                     self._recover_position(board, "Illegal move: piece inserted without prior removal.")
+                    recovered = True
                     continue
 
                 move_uci = piece_removed_from + piece_inserted_at
@@ -224,14 +238,16 @@ class BoardSerial:
 
                 if move in board.legal_moves:
                     if board.is_castling(move):
-                        board.push_uci(move_uci)
+                        bcopy = board.copy()
+                        bcopy.push_uci(move_uci)
                         print ("Wait castles end.")
-                        self.sync(board)
+                        self.sync(bcopy)
 
                     print(f"Move detected: {move_uci}")
                     return move_uci
                 else:
                     self._recover_position(board, f"Illegal move: {move_uci}")
+                    recovered = True
                     continue
 
             time.sleep(0.2)
