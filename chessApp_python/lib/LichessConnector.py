@@ -3,6 +3,7 @@ import threading
 import berserk
 from berserk.exceptions import ResponseError
 import chess
+from datetime import datetime, timezone
 
 class LichessConnector:
     def __init__(self, token: str):
@@ -123,9 +124,43 @@ class LichessConnector:
                 except Exception as e:
                     print(f"[LichessGame Error] {e}")
 
+        def print_game_state(self, game_state):
+            def to_seconds(value):
+                if isinstance(value, datetime):
+                    epoch = datetime(1970, 1, 1, tzinfo=timezone.utc)
+                    return int((value - epoch).total_seconds())
+                return int(value)
+
+            def format_time(seconds):
+                h = seconds // 3600
+                m = (seconds % 3600) // 60
+                s = seconds % 60
+                return f"{h}:{m:02}:{s:02}"
+
+            moves = game_state.get('moves', '').split()
+            last_move = moves[-1] if moves else '(no moves)'
+
+            wtime = to_seconds(game_state['wtime'])
+            btime = to_seconds(game_state['btime'])
+            winc = to_seconds(game_state['winc'])
+            binc = to_seconds(game_state['binc'])
+
+            print(
+                f"[{game_state['status'].upper()}] Last: {last_move} | "
+                f"W: {format_time(wtime)} (+{winc}s) | B: {format_time(btime)} (+{binc}s)"
+            )
+
+            
+
+           
+
         def processEventState(self, event):
             lastGameEvent = event
         #{'type': 'gameState', 'moves': 'e2e4 c7c5 g1f3 d7d6 d2d3 e7e5 f1e2 f8e7', 'wtime': datetime.datetime(1970, 1, 25, 20, 31, 23, 647000, tzinfo=datetime.timezone.utc), 'btime': datetime.datetime(1970, 1, 25, 20, 31, 23, 647000, tzinfo=datetime.timezone.utc), 'winc': datetime.datetime(1970, 1, 1, 0, 0, tzinfo=datetime.timezone.utc), 'binc': datetime.datetime(1970, 1, 1, 0, 0, tzinfo=datetime.timezone.utc), 'status': 'started'}
+
+
+            self.print_game_state(event)
+
             status = event.get("status", "started")
             if status != "started":
                 print(f"Game ended or aborted with status: {status}")
@@ -145,5 +180,5 @@ class LichessConnector:
                         self.current_board = board
                         self.isMyTurn = True
                         self.turn_event.set()  # Notify waitMyTurn()
-                else:
-                    print ("Move sent. Waitting response")
+#                else:
+#                    print ("Waitting opponent's move")

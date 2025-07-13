@@ -67,7 +67,7 @@ class ChessApp:
                         previousBoard = currentBoard.copy(stack=True)
                         last_move = previousBoard.pop()
                         san = previousBoard.san(last_move)
-                        print(f"Opponent played: {san}.")
+                        print(f"Opponent's move: \033[31m{san}\033[0m")
                     else:
                         print("You start.")
 
