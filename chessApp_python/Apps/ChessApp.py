@@ -5,7 +5,6 @@ from lib.LichessConnector import LichessConnector
 from lib.BoardSerial import BoardSerial
 
 REQUIRED_SCOPES = {"challenge:write", "play:write"}
-#SERIAL_PORT = "/dev/ttyUSB1"
 SERIAL_PORT = "/dev/ttyV1"
 SERIAL_BAUDRATE = 115200
 
@@ -27,7 +26,7 @@ def check_token_scopes(token: str):
         sys.exit(1)
 
 class ChessApp:
-    def __init__(self, token: str):
+    def __init__(self, token: str, serialport: str):
         #check_token_scopes(token)  # Check permissions first
 
         self.running = True
@@ -38,7 +37,7 @@ class ChessApp:
             print("Error: Invalid or unauthorized token.")
             sys.exit(1)
 
-        self.board = BoardSerial(SERIAL_PORT, SERIAL_BAUDRATE) 
+        self.board = BoardSerial(serialport, SERIAL_BAUDRATE) 
 
     def show_menu(self):
         print(f"\nHello, {self.username}!")
@@ -86,8 +85,11 @@ class ChessApp:
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Run the ChessApp with a Lichess token.")
     parser.add_argument('--token', required=True, help='Your Lichess API token')
+    parser.add_argument('--serial', required=False, help='Serial to reach serialboard')
     args = parser.parse_args()
 
-    app = ChessApp(args.token)
+    serialToUse = args.serial if args.serial else SERIAL_PORT
+
+    app = ChessApp(args.token, serialToUse)
     app.run()
 
