@@ -37,6 +37,7 @@
 #error "Unsupported board: led0 devicetree alias is not defined"
 #endif
 
+bool initialized = false;
 
 
 void alive(void)
@@ -62,10 +63,8 @@ SensorsMatrix sm;
 
 void matrix(void)
 {
-	if (sm.initialize() != 0) {
-		printk("Error: Could not initialize sensors matrix\n");
-		return;
-	}
+	while (!initialized) k_msleep(1);
+        printk("matrix periodic refresh starts.\n");
 
 	int iteration = 0;
 	while (1)
@@ -85,16 +84,16 @@ void matrix(void)
 
 K_THREAD_DEFINE(matrix_reader_id, 4096, matrix, NULL, NULL, NULL, PRIORITY, 0, 0);
 
-void uart_sender(void) {
-	UartSender sender;
+UartSender uart;
+void board_monitor(void) {
 	uint8_t aMatrix[8][8];
 	uint8_t packed_board[8];    // Each byte = 1 row
 	char uart_msg[64];          // UART message buffer
 
-	if (!sender.initialize()) {
-		printk("ERROR INITIALIZING");
-		return;
-	}
+
+
+	while (!initialized) k_msleep(1);
+        printk("board monitor starts.\n");
 
 	while (1) {
 
@@ -125,16 +124,45 @@ void uart_sender(void) {
 
 		// Step 3: Send over UART (use printk or uart_tx)
 		printk("Sent: %s", uart_msg);
-		sender.send(uart_msg);
+		uart.send(uart_msg);
 	}
 
 	return;
 }
 
-K_THREAD_DEFINE(uart_sender_id, STACKSIZE, uart_sender, NULL, NULL, NULL, PRIORITY, 0, 0);
+K_THREAD_DEFINE(board_monitor_id, STACKSIZE, board_monitor, NULL, NULL, NULL, PRIORITY, 0, 0);
 
 int main(void)
 {
+
+	if (sm.initialize() != 0) {
+		printk("Error: Could not initialize sensors matrix\n");
+		return -1;
+	}
+
+	if (!uart.initialize()) {
+		printk("ERROR INITIALIZING Uart");
+		return -1;
+	}
+
+
+	if (sm.calibrate() != 0) {
+		printk("Error: Could not calibrate sensors matrix\n");
+	}
+
+#if 0
+	if (sm.calibrate() != 0) {
+		printk("Error: Could not calibrate sensors matrix\n");
+	}
+
+	if (sm.calibrate() != 0) {
+		printk("Error: Could not calibrate sensors matrix\n");
+	}
+
+#endif
+
+	printk("Hw initialized.\n");
+	initialized = true;
 
 
 

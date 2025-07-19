@@ -59,6 +59,7 @@ uint8_t currentPosition[NROWS][NFILES] = {0}; // 0-empty and 1-piece
 
 
 K_MUTEX_DEFINE(my_mutex);
+K_MUTEX_DEFINE(calib_mutex);
 
 uint8_t calculateState(uint8_t currentState, float gauss)
 {
@@ -154,12 +155,25 @@ int SensorsMatrix::initialize()
 	gpio_pin_set(enable_gpios->port, enable_gpios->pin, 0); // 0 to enable
 								//
 	LOG_INF ("SensorsMatrix::initialize() Initialized Sensors Matrix...OK");
+
+	return 0;
+}
+
+int SensorsMatrix::calibrate()
+{
+	if (k_mutex_lock(&calib_mutex, K_FOREVER) != 0) {
+
+		LOG_ERR("Cannot take mutex");
+
+	    return -1;
+    	}
+
 	LOG_INF ("Waitting 5s");
 
 	k_msleep(5000);
 
 
-	LOG_INF("SensorsMatrix::initialize() Calculating calibrations...");
+	LOG_INF("SensorsMatrix::calibrate() Calculating calibrations...");
 	for (int i = 0; i < 16; i++) {
 		select(i);
 
@@ -175,18 +189,22 @@ int SensorsMatrix::initialize()
 			int32_t mv[5];
 			for (int s = 0; s<5; s++) {
 				mv[s] = readMv(&adc_channels[r]);
-				k_msleep(1);
+				//k_msleep(1);
 			}
 			calibrations[file][theRow] = torben_median_filter(mv, 5);
 		}
 	}
 
+	k_mutex_unlock(&calib_mutex);
+
 	printCalibrations();
 
-	LOG_INF ("SensorsMatrix::initialize() Calculated calibrations...OK");
+	LOG_INF ("SensorsMatrix::calibrate() Calculated calibrations...OK");
 
-    return 0;
+
+	return 0;
 }
+
 
 void SensorsMatrix::getPosition(uint8_t aMatrix[8][8])
 {
@@ -201,6 +219,13 @@ void SensorsMatrix::getPosition(uint8_t aMatrix[8][8])
 
 void SensorsMatrix::readGauss(uint8_t aMatrix[8][8])
 {
+	if (k_mutex_lock(&calib_mutex, K_FOREVER) != 0) {
+
+		LOG_ERR("SensorMatrix::readGauss() Cannot take calib_mutex");
+
+	    return;
+	}
+
   for (int i = 0; i < 16; i++) {
     select(i);
 
@@ -216,6 +241,9 @@ void SensorsMatrix::readGauss(uint8_t aMatrix[8][8])
       aMatrix[file][theRow] = (uint8_t)gauss; //calculateState (aMatrix[theRow][file], gauss);
     }
   }
+
+  k_mutex_unlock(&calib_mutex);
+
 }
 
 bool SensorsMatrix::refresh()
@@ -223,7 +251,10 @@ bool SensorsMatrix::refresh()
 
 
 
+
+
     bool changed = false;
+
 
     previous = current;
     current++;
@@ -268,8 +299,9 @@ bool SensorsMatrix::refresh()
     }
 
 	    k_mutex_unlock(&my_mutex);
+
 #if 0
-    //if (changed) {
+    if (changed) {
     	printk ("Printing gauss matrixes\n");
 
     	for (int i = 0; i < 8; i++) {
@@ -281,7 +313,7 @@ bool SensorsMatrix::refresh()
 	    }
 	    printk("\n");
     	}
-    //}
+    }
 #endif
 
     return changed;

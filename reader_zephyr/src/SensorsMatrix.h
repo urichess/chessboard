@@ -21,6 +21,8 @@ class SensorsMatrix
 
     int initialize();
 
+    int calibrate();
+
     void getPosition(uint8_t aMatrix[8][8]);
 
     bool refresh();
