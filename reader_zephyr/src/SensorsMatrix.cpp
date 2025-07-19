@@ -13,6 +13,9 @@ LOG_MODULE_REGISTER(sensormatrix, LOG_LEVEL_DBG);  // or LOG_LEVEL_DBG
 #define CONFIG_DETECTION_HISTERESYS_PIECE 45
 #endif
 
+static const uint32_t histeresys_empty_mv = gauss2mv(CONFIG_DETECTION_HISTERESYS_EMPTY);
+static const uint32_t histeresys_piece_mv = gauss2mv(CONFIG_DETECTION_HISTERESYS_PIECE);
+
 #define NROWS 8
 #define NFILES 8
 
@@ -48,10 +51,10 @@ static const struct gpio_dt_spec enable_gpios[] = {
 			     DT_GPIO_SPEC_AND_COMMA)
 };
 
-
 int32_t calibrations[NROWS][NFILES] = {0}; // mv. used to find the 0
 
-uint8_t buffer[BUFFER_SIZE][NROWS][NFILES] = {0}; // gauss
+uint32_t voltages[BUFFER_SIZE][NROWS][NFILES] = {0};
+//uint8_t buffer[BUFFER_SIZE][NROWS][NFILES] = {0}; // gauss
 uint8_t current = 0;
 uint8_t previous = 0;
 
@@ -217,60 +220,40 @@ void SensorsMatrix::getPosition(uint8_t aMatrix[8][8])
 
 }
 
-void SensorsMatrix::readGauss(uint8_t aMatrix[8][8])
-{
-	if (k_mutex_lock(&calib_mutex, K_FOREVER) != 0) {
-
-		LOG_ERR("SensorMatrix::readGauss() Cannot take calib_mutex");
-
-	    return;
+void SensorsMatrix::readVoltages() {
+	previous = current;
+	current++;
+	if (current >= BUFFER_SIZE)
+	{
+		current = 0;
 	}
 
-  for (int i = 0; i < 16; i++) {
-    select(i);
+	for (int i = 0; i < 16; i++) {
+	    select(i);
 
-    const int row0 = i/NROWS;
-    const int iRow[4] = {row0, row0+2, row0+4, row0+6 };
-    const int file = i%NFILES;
+	    const int row0 = i/NROWS;
+	    const int iRow[4] = {row0, row0+2, row0+4, row0+6 };
+	    const int file = i%NFILES;
 
-    for (int r=0; r<4; r++)
-    {
-      const int theRow = iRow[r];
-
-      const float gauss = millivoltsToGauss (readMv(&adc_channels[r]), calibrations[file][theRow]);
-      aMatrix[file][theRow] = (uint8_t)gauss; //calculateState (aMatrix[theRow][file], gauss);
-    }
-  }
-
-  k_mutex_unlock(&calib_mutex);
-
+	    for (int r=0; r<4; r++)
+	    {
+	      const int theRow = iRow[r];
+	      voltages[current][file][theRow] = readMv(&adc_channels[r]);
+	    }
+	}
 }
 
 bool SensorsMatrix::refresh()
 {
-
-
-
-
-
     bool changed = false;
 
+    readVoltages();
 
-    previous = current;
-    current++;
-
-    if (current >= BUFFER_SIZE)
-    {
-        current = 0;
-    }
-
-    readGauss(buffer[current]);
 
 	if (k_mutex_lock(&my_mutex, K_FOREVER) != 0) {
 		LOG_ERR("SensorMatrix::refresh() Cannot take mutex");
 		return false;
 	}
-
 
     for (int i = 0; i<8; i++)
     {
@@ -280,8 +263,9 @@ bool SensorsMatrix::refresh()
         bool allLowerThanLowLimit = true;
         for (int k = 0; k < BUFFER_SIZE; k++)
         {
-          if (buffer[k][i][j] < 45 ) allGreaterThanHighLimit = false;
-          if (buffer[k][i][j] > 25 ) allLowerThanLowLimit = false;
+			const uint32_t calibratedVoltage = voltages[k][i][j] - calibrations[i][j];
+			if (calibratedVoltage < histeresys_piece_mv ) allGreaterThanHighLimit = false;
+			if (calibratedVoltage > histeresys_empty_mv ) allLowerThanLowLimit = false;
 
         }
 
@@ -298,27 +282,18 @@ bool SensorsMatrix::refresh()
       }
     }
 
-	    k_mutex_unlock(&my_mutex);
-
-#if 0
-    if (changed) {
-    	printk ("Printing gauss matrixes\n");
-
-    	for (int i = 0; i < 8; i++) {
-       	    for (int k = 0; k < BUFFER_SIZE; k++) {
-		    for (int j = 0; j < 8; j++) {
-			printk("%6d", buffer[k][i][j]);  // Matrixs with gauss to filter position 
-		    }
-		    printk(" | ");
-	    }
-	    printk("\n");
-    	}
-    }
-#endif
+	k_mutex_unlock(&my_mutex);
 
     return changed;
 }
 
+uint32_t SensorsMatrix::getVoltage(uint8_t i, uint8_t j) {
+	return voltages[current][i][j];
+}
+
+float SensorsMatrix::getGauss(uint8_t i, uint8_t j) {
+	return mv2Gauss(voltages[current][i][j] - calibrations[i][j]);
+}
 
 void SensorsMatrix::select(uint8_t number) {
   if (number > 15) {
@@ -368,35 +343,5 @@ void SensorsMatrix::printCalibrations()
 		remaining -= written;
 	}
 
-	LOG_DBG("%s", buf);
-}
-
-static int32_t max[4] = {0}, min[4] = {0};
-static bool isFirstTime = true;
-
-void SensorsMatrix::test()
-{
-
-
-	//select(0);
-
-	int32_t mv[4];
-	for (int r=0; r<4; r++)
-	{
-		mv[r] = readMv(&adc_channels[r]);
-		if (mv[r] < min[r]) min[r] = mv[r];
-		if (mv[r] > max[r]) max[r] = mv[r];
-
-		if (isFirstTime)
-		{
-
-			min[r] = max[r] = mv[r];
-		}
-	}
-
-	isFirstTime = false;
-
-
-
-	printk ("raw mv read: %4d [%4d   %4d].    %4d [%4d   %4d].     %4d [%4d   %4d].     %4d [%4d   %4d].\n", mv[0], min[0], max[0], mv[1], min[1], max[1], mv[2], min[2], max[2], mv[3], min[3], max[3]);
+	printk("%s", buf);
 }

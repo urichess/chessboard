@@ -4,10 +4,6 @@
 #define CONFIG_SAMPLES_FOR_TORBEN 5
 #endif
 
-#ifndef CONFIG_MV_PER_GAUSS
-#define CONFIG_MV_PER_GAUSS 2
-#endif
-
 int32_t torben_median_filter(int32_t *arr, int size)
 {
     int32_t min = arr[0], max = arr[0], guess, maxltguess, mingtguess;
@@ -121,6 +117,8 @@ float readGauss(const struct adc_dt_spec * adc_spec, int32_t aCalibration)
 
 float millivoltsToGauss(int32_t millivolts, int32_t referenceMillivolts)
 {
-  float gauss = 1.0 * (millivolts - referenceMillivolts) / CONFIG_MV_PER_GAUSS;
+  float gauss = mv2Gauss(millivolts - referenceMillivolts);
   return gauss<0?-gauss:gauss; // ??
 }
+
+

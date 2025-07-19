@@ -11,6 +11,7 @@
 #include <zephyr/sys/printk.h>
 #include <zephyr/sys/__assert.h>
 #include <string.h>
+#include <ctype.h>
 
 
 #include <zephyr/devicetree.h>
@@ -23,6 +24,8 @@
 #include "UartSender.h"
 
 #include <zephyr/kernel.h>
+
+#include <zephyr/shell/shell.h>
 
 
 /* size of stack area used by each thread */
@@ -181,3 +184,99 @@ int main(void)
 	return 0;
 //hola
 }
+
+
+
+
+static int cmd_cb_calibrate(const struct shell *shell, size_t argc, char **argv)
+{
+    shell_print(shell, "Calibrating..");
+
+    sm.calibrate();
+
+    return 0;
+}
+
+static int cmd_cb_printCalibrations(const struct shell *shell, size_t argc, char **argv)
+{
+    sm.printCalibrations();
+
+    return 0;
+}
+
+static int cmd_cb_readmv(const struct shell *shell, size_t argc, char **argv)
+{
+    if (argc != 2) {
+        shell_print(shell, "Usage: cb readMv <square>");
+        return -EINVAL;
+    }
+
+    const char *square = argv[1];
+
+    if (strlen(square) != 2) {
+        shell_print(shell, "Invalid format. Square must be 2 characters (e.g., A1).");
+        return -EINVAL;
+    }
+
+    char file = toupper(square[0]);
+    char rank = square[1];
+
+    if (file < 'A' || file > 'H' || rank < '1' || rank > '8') {
+        shell_print(shell, "Invalid square. Must be between A1 and H8.");
+        return -EINVAL;
+    }
+
+    int file_index = file - 'A';  // A=0, B=1, ..., H=7
+    int rank_index = rank - '1';  // 1=0, ..., 8=7
+
+    const uint32_t mv = sm.getVoltage(file_index, rank_index);
+    shell_print(shell, "%s (%d %d): %dmv", square, file_index, rank_index, mv);
+
+    return 0;
+}
+
+static int cmd_cb_readGauss(const struct shell *shell, size_t argc, char **argv)
+{
+    if (argc != 2) {
+        shell_print(shell, "Usage: cb readMv <square>");
+        return -EINVAL;
+    }
+
+    const char *square = argv[1];
+
+    if (strlen(square) != 2) {
+        shell_print(shell, "Invalid format. Square must be 2 characters (e.g., A1).");
+        return -EINVAL;
+    }
+
+    char file = toupper(square[0]);
+    char rank = square[1];
+
+    if (file < 'A' || file > 'H' || rank < '1' || rank > '8') {
+        shell_print(shell, "Invalid square. Must be between A1 and H8.");
+        return -EINVAL;
+    }
+
+    int file_index = file - 'A';  // A=0, B=1, ..., H=7
+    int rank_index = rank - '1';  // 1=0, ..., 8=7
+
+    const uint32_t gauss = (uint32_t)sm.getGauss(file_index, rank_index);
+    shell_print(shell, "%s (%d %d): %dG", square, file_index, rank_index, gauss);
+
+    return 0;
+}
+
+
+
+SHELL_STATIC_SUBCMD_SET_CREATE(sub_cb,
+    SHELL_CMD(calibrate, NULL, "Sensors calibration", cmd_cb_calibrate),
+	SHELL_CMD(printCalibrations, NULL, "print calibrations", cmd_cb_printCalibrations),
+	SHELL_CMD(readMv,    NULL, "mv of a square", cmd_cb_readmv),
+	SHELL_CMD(readGauss, NULL, "gauss of a square", cmd_cb_readGauss),
+    SHELL_SUBCMD_SET_END /* Obligatorio para cerrar la lista */
+);
+
+SHELL_CMD_REGISTER(cb, &sub_cb, "Chessboard debug commands", NULL);
+
+
+

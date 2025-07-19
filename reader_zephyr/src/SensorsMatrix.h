@@ -23,19 +23,21 @@ class SensorsMatrix
 
     int calibrate();
 
-    void getPosition(uint8_t aMatrix[8][8]);
-
     bool refresh();
+
+    void getPosition(uint8_t aMatrix[8][8]);
 
     void printCalibrations();
 
-    void test();
+    uint32_t getVoltage(uint8_t i, uint8_t j);
+
+    float getGauss(uint8_t i, uint8_t j);
 
     protected:
 
     void select(uint8_t sensor);
 
-    void readGauss(uint8_t aMatrix[8][8]);
+    void readVoltages(); // called in a thread appart
 
     private:
 
