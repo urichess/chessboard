@@ -23,9 +23,9 @@ class SensorsMatrix
 
     int calibrate();
 
-    void getCalibrations(uint32_t aMatrix[8][8]);
+    void getCalibrations(int32_t aMatrix[8][8]);
 
-    void setCalibrations(uint32_t aMatrix[8][8]);
+    void setCalibrations(int32_t aMatrix[8][8]);
 
     bool refresh();
 
@@ -35,7 +35,7 @@ class SensorsMatrix
 
     char * formatVoltages();
 
-    uint32_t getVoltage(uint8_t i, uint8_t j);
+    int32_t getVoltage(uint8_t i, uint8_t j);
 
     float getGauss(uint8_t i, uint8_t j);
 

@@ -6,15 +6,15 @@
 LOG_MODULE_REGISTER(sensormatrix, LOG_LEVEL_DBG);  // or LOG_LEVEL_DBG
 
 #ifndef CONFIG_DETECTION_HISTERESYS_EMPTY
-#define CONFIG_DETECTION_HISTERESYS_EMPTY 5
+#define CONFIG_DETECTION_HISTERESYS_EMPTY 15
 #endif
 
 #ifndef CONFIG_DETECTION_HISTERESYS_PIECE
-#define CONFIG_DETECTION_HISTERESYS_PIECE 45
+#define CONFIG_DETECTION_HISTERESYS_PIECE 50
 #endif
 
-static const uint32_t histeresys_empty_mv = gauss2mv(CONFIG_DETECTION_HISTERESYS_EMPTY);
-static const uint32_t histeresys_piece_mv = gauss2mv(CONFIG_DETECTION_HISTERESYS_PIECE);
+static const int32_t histeresys_empty_mv = gauss2mv(CONFIG_DETECTION_HISTERESYS_EMPTY);
+static const int32_t histeresys_piece_mv = gauss2mv(CONFIG_DETECTION_HISTERESYS_PIECE);
 
 #define NROWS 8
 #define NFILES 8
@@ -51,9 +51,9 @@ static const struct gpio_dt_spec enable_gpios[] = {
 			     DT_GPIO_SPEC_AND_COMMA)
 };
 
-uint32_t calibrations[NROWS][NFILES] = {0}; // mv. used to find the 0
+int32_t calibrations[NROWS][NFILES] = {0}; // mv. used to find the 0
 
-uint32_t voltages[BUFFER_SIZE][NROWS][NFILES] = {0};
+int32_t voltages[BUFFER_SIZE][NROWS][NFILES] = {0};
 //uint8_t buffer[BUFFER_SIZE][NROWS][NFILES] = {0}; // gauss
 uint8_t current = 0;
 uint8_t previous = 0;
@@ -64,24 +64,12 @@ uint8_t currentPosition[NROWS][NFILES] = {0}; // 0-empty and 1-piece
 K_MUTEX_DEFINE(my_mutex);
 K_MUTEX_DEFINE(calib_mutex);
 
-uint8_t calculateState(uint8_t currentState, float gauss)
-{
-    // Adding histeresys
-    if (currentState == 1)
-    {
-      return gauss<CONFIG_DETECTION_HISTERESYS_EMPTY? 0:1;
-    }
-    
-    return gauss>CONFIG_DETECTION_HISTERESYS_PIECE? 1:0;
-}
-
 int SensorsMatrix::initialize()
 {
 
 	LOG_DBG ("SensorsMatrix::initialize() Initializing Sensors Matrix...");
 	int ret;
 	int err;
-	uint32_t count = 0;
 	uint16_t buf;
 	struct adc_sequence sequence = {
 		.buffer = &buf,
@@ -157,7 +145,7 @@ int SensorsMatrix::initialize()
 
 	gpio_pin_set(enable_gpios->port, enable_gpios->pin, 0); // 0 to enable
 								//
-	LOG_INF ("SensorsMatrix::initialize() Initialized Sensors Matrix...OK");
+	LOG_INF ("SensorsMatrix::initialize() Initialized Sensors Matrix...OK Histeresis(%dG-%dG (%dmV-%dmV))", (int32_t)CONFIG_DETECTION_HISTERESYS_EMPTY, (int32_t)CONFIG_DETECTION_HISTERESYS_PIECE, histeresys_empty_mv, histeresys_piece_mv);
 
 	return 0;
 }
@@ -205,7 +193,7 @@ int SensorsMatrix::calibrate()
 }
 
 
-void SensorsMatrix::setCalibrations(uint32_t cals[8][8]) {
+void SensorsMatrix::setCalibrations(int32_t cals[8][8]) {
 	if (k_mutex_lock(&calib_mutex, K_FOREVER) != 0) {
 		LOG_ERR("Cannot take mutex");
 		//assert(false);
@@ -218,7 +206,7 @@ void SensorsMatrix::setCalibrations(uint32_t cals[8][8]) {
 }
 
 
-void SensorsMatrix::getCalibrations(uint32_t cals[8][8]) {
+void SensorsMatrix::getCalibrations(int32_t cals[8][8]) {
 	if (k_mutex_lock(&calib_mutex, K_FOREVER) != 0) {
 
 		LOG_ERR("Cannot take mutex");
@@ -285,7 +273,8 @@ bool SensorsMatrix::refresh()
         bool allLowerThanLowLimit = true;
         for (int k = 0; k < BUFFER_SIZE; k++)
         {
-			const uint32_t calibratedVoltage = voltages[k][i][j] - calibrations[i][j];
+			const int32_t signedCalibratedVoltage = voltages[k][i][j] - calibrations[i][j];
+			const int32_t calibratedVoltage = signedCalibratedVoltage<0? -signedCalibratedVoltage: signedCalibratedVoltage;
 			if (calibratedVoltage < histeresys_piece_mv ) allGreaterThanHighLimit = false;
 			if (calibratedVoltage > histeresys_empty_mv ) allLowerThanLowLimit = false;
 
@@ -309,7 +298,7 @@ bool SensorsMatrix::refresh()
     return changed;
 }
 
-uint32_t SensorsMatrix::getVoltage(uint8_t i, uint8_t j) {
+int32_t SensorsMatrix::getVoltage(uint8_t i, uint8_t j) {
 	return voltages[current][i][j];
 }
 

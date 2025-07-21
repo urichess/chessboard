@@ -121,7 +121,7 @@ float millivoltsToGauss(int32_t millivolts, int32_t referenceMillivolts)
   return gauss<0?-gauss:gauss; // ??
 }
 
-char* formatVoltagesMatrix(uint32_t aMatrix[8][8]) {
+char* formatVoltagesMatrix(int32_t aMatrix[8][8]) {
 	//const size_t buf_size = (NFILES * 4 + 2) * NROWS + 32; // Estimate
 	const size_t buf_size = 512;
 	char* buf = (char*)k_malloc(buf_size);

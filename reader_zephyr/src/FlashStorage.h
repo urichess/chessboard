@@ -10,7 +10,7 @@
 
 struct storage_data {
     uint32_t magic = 0;
-    uint32_t calibrations[8][8] = {0};
+    int32_t calibrations[8][8] = {0};
     uint32_t crc = 0;
 };
 

@@ -94,7 +94,7 @@ void matrix(void)
 		}
 
 
-		k_msleep(110);
+		k_msleep(30);
 		iteration++;
 	}
 }
@@ -300,7 +300,7 @@ static int cmd_cb_readmv(const struct shell *shell, size_t argc, char **argv) {
     int file_index = file - 'A';  // A=0, B=1, ..., H=7
     int rank_index = 7-(rank - '1');  // 1=0, ..., 8=7
 
-    const uint32_t mv = sm.getVoltage(rank_index, file_index);
+    const int32_t mv = sm.getVoltage(rank_index, file_index);
     shell_print(shell, "%s (%d %d): %dmv", square, file_index, rank_index, mv);
 
     return 0;
@@ -330,7 +330,7 @@ static int cmd_cb_readGauss(const struct shell *shell, size_t argc, char **argv)
     int file_index = file - 'A';  // A=0, B=1, ..., H=7
     int rank_index = 7-(rank - '1');  // 1=0, ..., 8=7
 
-    const uint32_t gauss = (uint32_t)sm.getGauss(rank_index, file_index);
+    const int32_t gauss = (int32_t)sm.getGauss(rank_index, file_index);
     shell_print(shell, "%s (%d %d): %dG", square, file_index, rank_index, gauss);
 
     return 0;
