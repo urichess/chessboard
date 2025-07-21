@@ -23,11 +23,17 @@ class SensorsMatrix
 
     int calibrate();
 
+    void getCalibrations(uint32_t aMatrix[8][8]);
+
+    void setCalibrations(uint32_t aMatrix[8][8]);
+
     bool refresh();
 
     void getPosition(uint8_t aMatrix[8][8]);
 
-    void printCalibrations();
+    char * formatCalibrations();
+
+    char * formatVoltages();
 
     uint32_t getVoltage(uint8_t i, uint8_t j);
 

@@ -22,6 +22,7 @@
 #include "Led.hpp"
 #include "SensorsMatrix.h"
 #include "UartSender.h"
+#include "FlashStorage.h"
 
 #include <zephyr/kernel.h>
 
@@ -64,6 +65,8 @@ K_THREAD_DEFINE(alive_id, STACKSIZE, alive, NULL, NULL, NULL, PRIORITY, 0, 0);
 K_SEM_DEFINE(my_sem, 0, 1);  // Initial count = 0, Max count = 1
 SensorsMatrix sm;
 
+FlashStorage fs;
+
 void matrix(void)
 {
 	while (!initialized) k_msleep(1);
@@ -75,10 +78,21 @@ void matrix(void)
 
 		if (sm.refresh()) {
 			k_sem_give(&my_sem);
+#if 0
+			char * buffer = sm.formatVoltages();
+			if (buffer) {
+				printk("%s", buffer);
+
+				k_free(buffer);
+			} else {
+				printk("Error. Could not format voltages to be printed");
+			}
+#endif
 	
 		} else {
 			//printk("No changes\n");
 		}
+
 
 		k_msleep(110);
 		iteration++;
@@ -138,6 +152,11 @@ K_THREAD_DEFINE(board_monitor_id, STACKSIZE, board_monitor, NULL, NULL, NULL, PR
 int main(void)
 {
 
+	if (fs.initialize() != 0) {
+		printk("Error: Could not initialize flash storage\n");
+		return -1;
+	}
+
 	if (sm.initialize() != 0) {
 		printk("Error: Could not initialize sensors matrix\n");
 		return -1;
@@ -149,8 +168,22 @@ int main(void)
 	}
 
 
-	if (sm.calibrate() != 0) {
-		printk("Error: Could not calibrate sensors matrix\n");
+	storage_data sd;
+	if (fs.read(sd) == 0) {
+		printk("Calibrations found in flash. Let's use them\n");
+		sm.setCalibrations(sd.calibrations);
+	} else {
+		printk("No calibrations found in flash. Calibrating sensors.\n");
+		if (sm.calibrate() != 0) {
+			printk("Error: Could not calibrate sensors matrix\n");
+			return -1;
+		}
+	}
+
+	char * buffer = sm.formatCalibrations();
+	if (buffer) {
+		printk("%s", buffer);
+		k_free(buffer);
 	}
 
 #if 0
@@ -188,8 +221,7 @@ int main(void)
 
 
 
-static int cmd_cb_calibrate(const struct shell *shell, size_t argc, char **argv)
-{
+static int cmd_cb_calibrate(const struct shell *shell, size_t argc, char **argv) {
     shell_print(shell, "Calibrating..");
 
     sm.calibrate();
@@ -197,15 +229,54 @@ static int cmd_cb_calibrate(const struct shell *shell, size_t argc, char **argv)
     return 0;
 }
 
-static int cmd_cb_printCalibrations(const struct shell *shell, size_t argc, char **argv)
-{
-    sm.printCalibrations();
+static int cmd_cb_printCalibrations(const struct shell *shell, size_t argc, char **argv) {
+	char * buffer = sm.formatCalibrations();
+	if (buffer) {
+		shell_print(shell, "%s", buffer);
+
+		k_free(buffer);
+	} else {
+		shell_print(shell, "Error. Could not format calibrations to be printed");
+	}
+
+
 
     return 0;
 }
 
-static int cmd_cb_readmv(const struct shell *shell, size_t argc, char **argv)
-{
+static int cmd_cb_saveCalibrations(const struct shell *shell, size_t argc, char **argv) {
+
+	shell_print(shell, "Saving calibrations in flash storage...");
+	storage_data sd;
+	sm.getCalibrations(sd.calibrations);
+
+	if (fs.write(sd) == 0) {
+		shell_print(shell, "SAVED!\n");
+	} else {
+		shell_print(shell, "ERROR!\n");
+	}
+
+
+    return 0;
+}
+
+static int cmd_cb_loadCalibrations(const struct shell *shell, size_t argc, char **argv) {
+
+	shell_print(shell, "Loading calibrations from flash...");
+	storage_data sd;
+	if (fs.read(sd) == 0) {
+		sm.setCalibrations(sd.calibrations);
+		shell_print(shell, "LOADED OK!\n");
+	} else {
+		shell_print(shell, "No calibrations found. Calibrate manually and save them.\n");
+	}
+
+
+    return 0;
+}
+
+
+static int cmd_cb_readmv(const struct shell *shell, size_t argc, char **argv) {
     if (argc != 2) {
         shell_print(shell, "Usage: cb readMv <square>");
         return -EINVAL;
@@ -227,16 +298,15 @@ static int cmd_cb_readmv(const struct shell *shell, size_t argc, char **argv)
     }
 
     int file_index = file - 'A';  // A=0, B=1, ..., H=7
-    int rank_index = rank - '1';  // 1=0, ..., 8=7
+    int rank_index = 7-(rank - '1');  // 1=0, ..., 8=7
 
-    const uint32_t mv = sm.getVoltage(file_index, rank_index);
+    const uint32_t mv = sm.getVoltage(rank_index, file_index);
     shell_print(shell, "%s (%d %d): %dmv", square, file_index, rank_index, mv);
 
     return 0;
 }
 
-static int cmd_cb_readGauss(const struct shell *shell, size_t argc, char **argv)
-{
+static int cmd_cb_readGauss(const struct shell *shell, size_t argc, char **argv) {
     if (argc != 2) {
         shell_print(shell, "Usage: cb readMv <square>");
         return -EINVAL;
@@ -258,10 +328,25 @@ static int cmd_cb_readGauss(const struct shell *shell, size_t argc, char **argv)
     }
 
     int file_index = file - 'A';  // A=0, B=1, ..., H=7
-    int rank_index = rank - '1';  // 1=0, ..., 8=7
+    int rank_index = 7-(rank - '1');  // 1=0, ..., 8=7
 
-    const uint32_t gauss = (uint32_t)sm.getGauss(file_index, rank_index);
+    const uint32_t gauss = (uint32_t)sm.getGauss(rank_index, file_index);
     shell_print(shell, "%s (%d %d): %dG", square, file_index, rank_index, gauss);
+
+    return 0;
+}
+
+
+
+static int cmd_cb_printVoltages(const struct shell *shell, size_t argc, char **argv) {
+	char * buffer = sm.formatVoltages();
+	if (buffer) {
+		shell_print(shell, "%s", buffer);
+
+		k_free(buffer);
+	} else {
+		shell_print(shell, "Error. Could not format voltages to be printed");
+	}
 
     return 0;
 }
@@ -270,9 +355,13 @@ static int cmd_cb_readGauss(const struct shell *shell, size_t argc, char **argv)
 
 SHELL_STATIC_SUBCMD_SET_CREATE(sub_cb,
     SHELL_CMD(calibrate, NULL, "Sensors calibration", cmd_cb_calibrate),
-	SHELL_CMD(printCalibrations, NULL, "print calibrations", cmd_cb_printCalibrations),
-	SHELL_CMD(readMv,    NULL, "mv of a square", cmd_cb_readmv),
-	SHELL_CMD(readGauss, NULL, "gauss of a square", cmd_cb_readGauss),
+    SHELL_CMD(printCalibrations, NULL, "print calibrations", cmd_cb_printCalibrations),
+    SHELL_CMD(saveCalbrations  , NULL, "save current calibrations to flash", cmd_cb_saveCalibrations),
+    SHELL_CMD(loadCalbrations  , NULL, "save current calibrations to flash", cmd_cb_loadCalibrations),
+
+    SHELL_CMD(readMv,    NULL, "mv of a square", cmd_cb_readmv),
+    SHELL_CMD(readGauss, NULL, "gauss of a square", cmd_cb_readGauss),
+    SHELL_CMD(printVoltages, NULL, "Print voltages matrix", cmd_cb_printVoltages),
     SHELL_SUBCMD_SET_END /* Obligatorio para cerrar la lista */
 );
 

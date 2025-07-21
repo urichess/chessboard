@@ -51,7 +51,7 @@ static const struct gpio_dt_spec enable_gpios[] = {
 			     DT_GPIO_SPEC_AND_COMMA)
 };
 
-int32_t calibrations[NROWS][NFILES] = {0}; // mv. used to find the 0
+uint32_t calibrations[NROWS][NFILES] = {0}; // mv. used to find the 0
 
 uint32_t voltages[BUFFER_SIZE][NROWS][NFILES] = {0};
 //uint8_t buffer[BUFFER_SIZE][NROWS][NFILES] = {0}; // gauss
@@ -200,14 +200,36 @@ int SensorsMatrix::calibrate()
 
 	k_mutex_unlock(&calib_mutex);
 
-	printCalibrations();
-
 	LOG_INF ("SensorsMatrix::calibrate() Calculated calibrations...OK");
-
-
 	return 0;
 }
 
+
+void SensorsMatrix::setCalibrations(uint32_t cals[8][8]) {
+	if (k_mutex_lock(&calib_mutex, K_FOREVER) != 0) {
+		LOG_ERR("Cannot take mutex");
+		//assert(false);
+		return;
+    	}
+
+	memcpy(calibrations, cals, sizeof(calibrations));
+
+	k_mutex_unlock(&calib_mutex);
+}
+
+
+void SensorsMatrix::getCalibrations(uint32_t cals[8][8]) {
+	if (k_mutex_lock(&calib_mutex, K_FOREVER) != 0) {
+
+		LOG_ERR("Cannot take mutex");
+		//assert(false);
+		return;
+    	}
+
+	memcpy(cals, calibrations, sizeof(calibrations));
+
+	k_mutex_unlock(&calib_mutex);
+}
 
 void SensorsMatrix::getPosition(uint8_t aMatrix[8][8])
 {
@@ -308,40 +330,12 @@ void SensorsMatrix::select(uint8_t number) {
   k_usleep(10);
 }
 
-void SensorsMatrix::printCalibrations()
-{
-	char buf[1024];
-	char* p = buf;
-	size_t remaining = sizeof(buf);
-	int written;
-
-	written = snprintf(p, remaining, "Calibrations:\r\n");
-	if (written < 0 || (size_t)written >= remaining) {
-		buf[sizeof(buf) - 1] = '\0';
-		LOG_DBG("%s", buf);
-		return;
-	}
-	p += written;
-	remaining -= written;
-
-	for (int row = 0; row < 8; ++row) {
-		for (int col = 0; col < 8; ++col) {
-			written = snprintf(p, remaining, "%3d ", calibrations[row][col]);
-			if (written < 0 || (size_t)written >= remaining) {
-				LOG_DBG("%s", buf);
-				return;
-			}
-			p += written;
-			remaining -= written;
-		}
-		written = snprintf(p, remaining, "\r\n");
-		if (written < 0 || (size_t)written >= remaining) {
-			LOG_DBG("%s", buf);
-			return;
-		}
-		p += written;
-		remaining -= written;
-	}
-
-	printk("%s", buf);
+char * SensorsMatrix::formatCalibrations() {
+	return formatVoltagesMatrix(calibrations);
 }
+
+char * SensorsMatrix::formatVoltages() {
+	return formatVoltagesMatrix(voltages[current]);
+}
+
+

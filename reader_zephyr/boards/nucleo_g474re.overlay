@@ -3,22 +3,22 @@
 		zephyr,console = &usart3;
 		zephyr,shell-uart = &usart3;
 		uart-sender = &usart1;
+		config-data = &storage_partition;
 	};
 
-        zephyr,user {
-                /* adjust channel number according to pinmux in board.dts */
-                /*               A0-PA0      A1-PA1    A2-PA4         A3-PB0       A4-PC1      A5-PC0*/
-                //io-channels = <&adc1 1>, <&adc1 2>, <&adc2 17>,  <&adc1 15>,   <&adc12 7>, <&adc12 6> ;
-                io-channels = <&adc1 1>, <&adc1 2>, <&adc2 17>,  <&adc1 15> ;
-                //io-channels = <&adc1 1>, <&adc1 2>;
-		mux-gpios =  <&arduino_header 9 0>, // D3
-		             <&arduino_header 10 0>, // D4
-		             <&arduino_header 11 0>, // D5
-		             <&arduino_header 12 0>; // D6
-		enable-gpios =  <&arduino_header 8 0>; // D2
+    zephyr,user {
+            /* adjust channel number according to pinmux in board.dts */
+            /*               A0-PA0      A1-PA1    A2-PA4         A3-PB0       A4-PC1      A5-PC0*/
+            //io-channels = <&adc1 1>, <&adc1 2>, <&adc2 17>,  <&adc1 15>,   <&adc12 7>, <&adc12 6> ;
+            io-channels = <&adc1 1>, <&adc1 2>, <&adc2 17>,  <&adc1 15> ;
+            //io-channels = <&adc1 1>, <&adc1 2>;
+	mux-gpios =  <&arduino_header 9 0>, // D3
+	             <&arduino_header 10 0>, // D4
+	             <&arduino_header 11 0>, // D5
+	             <&arduino_header 12 0>; // D6
+	enable-gpios =  <&arduino_header 8 0>; // D2
 
-        };
-
+    };
 };
 
 &usart3 {

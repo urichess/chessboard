@@ -21,6 +21,8 @@ int32_t readMv(const struct adc_dt_spec * adc_spec);
 
 float millivoltsToGauss(int32_t millivolts, int32_t referenceMillivolts);
 
+char* formatVoltagesMatrix(uint32_t aMatrix[8][8]);
+
 #ifndef CONFIG_MV_PER_GAUSS
 #define CONFIG_MV_PER_GAUSS 2
 #endif

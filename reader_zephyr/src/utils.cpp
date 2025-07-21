@@ -121,4 +121,36 @@ float millivoltsToGauss(int32_t millivolts, int32_t referenceMillivolts)
   return gauss<0?-gauss:gauss; // ??
 }
 
+char* formatVoltagesMatrix(uint32_t aMatrix[8][8]) {
+	//const size_t buf_size = (NFILES * 4 + 2) * NROWS + 32; // Estimate
+	const size_t buf_size = 512;
+	char* buf = (char*)k_malloc(buf_size);
+	if (!buf) {
+		printk("ERROR: SensorsMatrix::formatMatrix() Allocation failed (%d)\n", buf_size);
+		return nullptr; // Allocation failed
+	}
 
+	char* p = buf;
+	char* end = buf + buf_size;
+
+	for (int row = 0; row < 8; ++row) {
+		for (int col = 0; col < 8; ++col) {
+			if (p + 4 >= end) {
+				k_free(buf);
+				printk("ERROR: SensorsMatrix::formatMatrix() Small buffer A (%d)\n", buf_size);
+				return nullptr;
+			}
+			p += sprintf(p, "%3d ", aMatrix[row][col]);
+		}
+		if (p + 2 >= end) {
+			k_free(buf);
+			printk("ERROR: SensorsMatrix::formatMatrix() Small buffer B (%d)\n", buf_size);
+			return nullptr;
+		}
+		*p++ = '\r';
+		*p++ = '\n';
+	}
+	*p = '\0';
+
+	return buf; // Caller must free it with k_free()
+}
