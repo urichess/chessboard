@@ -13,21 +13,19 @@
 #include <zephyr/drivers/adc.h>
 #include <zephyr/sys/util.h>
 
-int32_t torben_median_filter(int32_t *arr, int size);
-
-int32_t readMv(const struct adc_dt_spec * adc_spec);
-
-//float readGauss(const struct adc_dt_spec * adc_spec, int32_t aCalibration);
-
-float millivoltsToGauss(int32_t millivolts, int32_t referenceMillivolts);
-
-char* formatVoltagesMatrix(int32_t aMatrix[8][8]);
-
 #ifndef CONFIG_MV_PER_GAUSS
 #define CONFIG_MV_PER_GAUSS 2
 #endif
 
 #define gauss2mv(x) (int32_t)((float)(x)*CONFIG_MV_PER_GAUSS)
 #define mv2Gauss(x) (float)((float)(x)/CONFIG_MV_PER_GAUSS)
+
+int32_t torben_median_filter(int32_t *arr, int size);
+
+int32_t readMv(const struct adc_dt_spec * adc_spec);
+
+float millivoltsToGauss(int32_t millivolts, int32_t referenceMillivolts);
+
+char* formatVoltagesMatrix(int32_t aMatrix[8][8]);
 
 #endif /*__UTILS_H__*/

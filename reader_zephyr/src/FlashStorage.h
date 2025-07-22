@@ -25,15 +25,6 @@ public:
 
 	int write(storage_data & data);
 
-	/*
-
-	read();
-
-	write();
-
-	isEmpty();
-
-	 */
 protected:
 };
 

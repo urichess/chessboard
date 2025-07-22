@@ -15,7 +15,7 @@
 
 class UartSender
 {
-    public:
+public:
 
     explicit UartSender() {}
 
@@ -23,9 +23,9 @@ class UartSender
 
     void send(const char*);
 
-    protected:
+protected:
 
-    private:
+private:
 
 };
 

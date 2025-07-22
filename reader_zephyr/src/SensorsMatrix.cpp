@@ -54,19 +54,16 @@ static const struct gpio_dt_spec enable_gpios[] = {
 int32_t calibrations[NROWS][NFILES] = {0}; // mv. used to find the 0
 
 int32_t voltages[BUFFER_SIZE][NROWS][NFILES] = {0};
-//uint8_t buffer[BUFFER_SIZE][NROWS][NFILES] = {0}; // gauss
 uint8_t current = 0;
 uint8_t previous = 0;
 
 uint8_t currentPosition[NROWS][NFILES] = {0}; // 0-empty and 1-piece
-
 
 K_MUTEX_DEFINE(my_mutex);
 K_MUTEX_DEFINE(calib_mutex);
 
 int SensorsMatrix::initialize()
 {
-
 	LOG_DBG ("SensorsMatrix::initialize() Initializing Sensors Matrix...");
 	int ret;
 	int err;
@@ -192,11 +189,10 @@ int SensorsMatrix::calibrate()
 	return 0;
 }
 
-
 void SensorsMatrix::setCalibrations(int32_t cals[8][8]) {
 	if (k_mutex_lock(&calib_mutex, K_FOREVER) != 0) {
 		LOG_ERR("Cannot take mutex");
-		//assert(false);
+		//TODO: Return error
 		return;
     	}
 
@@ -204,7 +200,6 @@ void SensorsMatrix::setCalibrations(int32_t cals[8][8]) {
 
 	k_mutex_unlock(&calib_mutex);
 }
-
 
 void SensorsMatrix::getCalibrations(int32_t cals[8][8]) {
 	if (k_mutex_lock(&calib_mutex, K_FOREVER) != 0) {
@@ -233,8 +228,7 @@ void SensorsMatrix::getPosition(uint8_t aMatrix[8][8])
 void SensorsMatrix::readVoltages() {
 	previous = current;
 	current++;
-	if (current >= BUFFER_SIZE)
-	{
+	if (current >= BUFFER_SIZE) {
 		current = 0;
 	}
 
@@ -259,36 +253,31 @@ bool SensorsMatrix::refresh()
 
     readVoltages();
 
-
 	if (k_mutex_lock(&my_mutex, K_FOREVER) != 0) {
 		LOG_ERR("SensorMatrix::refresh() Cannot take mutex");
 		return false;
 	}
 
-    for (int i = 0; i<8; i++)
-    {
-      for (int j=0; j<8; j++)
-      {
+    for (int i = 0; i<8; i++) {
+      for (int j=0; j<8; j++) {
         bool allGreaterThanHighLimit = true;
         bool allLowerThanLowLimit = true;
-        for (int k = 0; k < BUFFER_SIZE; k++)
-        {
+        int32_t signOfAll = 0;
+
+        for (int k = 0; k < BUFFER_SIZE; k++) {
 			const int32_t signedCalibratedVoltage = voltages[k][i][j] - calibrations[i][j];
 			const int32_t calibratedVoltage = signedCalibratedVoltage<0? -signedCalibratedVoltage: signedCalibratedVoltage;
+			signOfAll = signedCalibratedVoltage;
 			if (calibratedVoltage < histeresys_piece_mv ) allGreaterThanHighLimit = false;
 			if (calibratedVoltage > histeresys_empty_mv ) allLowerThanLowLimit = false;
-
         }
 
-        if ( currentPosition[i][j] == 1 && allLowerThanLowLimit)
-        {
+        if ( currentPosition[i][j] == 1 && allLowerThanLowLimit) {
           changed = true;
           currentPosition[i][j] = 0;
-        }
-        else if ( currentPosition[i][j] == 0 && allGreaterThanHighLimit)
-        {
+        } else if ( currentPosition[i][j] == 0 && allGreaterThanHighLimit) {
           changed = true;
-          currentPosition[i][j] = 1;
+          currentPosition[i][j] = (signOfAll > 0)? 1 : 2;
         }
       }
     }
@@ -326,5 +315,3 @@ char * SensorsMatrix::formatCalibrations() {
 char * SensorsMatrix::formatVoltages() {
 	return formatVoltagesMatrix(voltages[current]);
 }
-
-

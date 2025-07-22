@@ -13,9 +13,8 @@ LOG_MODULE_REGISTER(uartsender, LOG_LEVEL_DBG);  // or LOG_LEVEL_DBG
 const struct device *uart_dev = DEVICE_DT_GET(DT_CHOSEN(uart_sender));
 
 bool UartSender::initialize() {
-
 	if (!device_is_ready(uart_dev)) {
-		LOG_ERR("uart device for uartsender is not ready\n");
+		LOG_ERR("%s uart device for uartsender is not ready\n", __func__);
 		return false;
 	}
 

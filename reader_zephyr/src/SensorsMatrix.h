@@ -15,7 +15,7 @@
 
 class SensorsMatrix
 {
-    public:
+public:
 
     explicit SensorsMatrix() {}
 
@@ -23,13 +23,15 @@ class SensorsMatrix
 
     int calibrate();
 
-    void getCalibrations(int32_t aMatrix[8][8]);
-
-    void setCalibrations(int32_t aMatrix[8][8]);
-
     bool refresh();
 
     void getPosition(uint8_t aMatrix[8][8]);
+
+public:
+
+    void getCalibrations(int32_t aMatrix[8][8]);
+
+    void setCalibrations(int32_t aMatrix[8][8]);
 
     char * formatCalibrations();
 
@@ -39,13 +41,13 @@ class SensorsMatrix
 
     float getGauss(uint8_t i, uint8_t j);
 
-    protected:
+protected:
 
     void select(uint8_t sensor);
 
     void readVoltages(); // called in a thread appart
 
-    private:
+private:
 
 };
 

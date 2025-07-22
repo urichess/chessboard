@@ -4,8 +4,7 @@
 #define CONFIG_SAMPLES_FOR_TORBEN 5
 #endif
 
-int32_t torben_median_filter(int32_t *arr, int size)
-{
+int32_t torben_median_filter(int32_t *arr, int size) {
     int32_t min = arr[0], max = arr[0], guess, maxltguess, mingtguess;
     int i, less, greater, equal;
 
@@ -53,8 +52,7 @@ int32_t torben_median_filter(int32_t *arr, int size)
     return min;
 }
 
-int32_t internalRead(const struct adc_dt_spec * adc_spec)
-{
+int32_t internalRead(const struct adc_dt_spec * adc_spec) {
 	int32_t val_mv = -1;
 	int err;
 	uint16_t buf;
@@ -96,8 +94,7 @@ int32_t internalRead(const struct adc_dt_spec * adc_spec)
 	return val_mv;
 }
 
-int32_t readMv(const struct adc_dt_spec * adc_spec)
-{
+int32_t readMv(const struct adc_dt_spec * adc_spec) {
 	int32_t mv[CONFIG_SAMPLES_FOR_TORBEN];
 
 	for (int s = 0; s<CONFIG_SAMPLES_FOR_TORBEN; s++) {
@@ -106,24 +103,13 @@ int32_t readMv(const struct adc_dt_spec * adc_spec)
 	return torben_median_filter(mv, CONFIG_SAMPLES_FOR_TORBEN);
 }
 
-/*
-float readGauss(const struct adc_dt_spec * adc_spec, int32_t aCalibration)
-{
-    const int32_t mv = readMv(adc_spec);
-    const float gauss = millivoltsToGauss(mv, aCalibration);
-    return gauss;
-}
-*/
-
-float millivoltsToGauss(int32_t millivolts, int32_t referenceMillivolts)
-{
+float millivoltsToGauss(int32_t millivolts, int32_t referenceMillivolts) {
   float gauss = mv2Gauss(millivolts - referenceMillivolts);
   return gauss<0?-gauss:gauss; // ??
 }
 
 char* formatVoltagesMatrix(int32_t aMatrix[8][8]) {
-	//const size_t buf_size = (NFILES * 4 + 2) * NROWS + 32; // Estimate
-	const size_t buf_size = 512;
+	const size_t buf_size = 512; // TODO: Adjust buffer size
 	char* buf = (char*)k_malloc(buf_size);
 	if (!buf) {
 		printk("ERROR: SensorsMatrix::formatMatrix() Allocation failed (%d)\n", buf_size);

@@ -7,27 +7,21 @@
 
 #include <zephyr/kernel.h>
 #include <zephyr/device.h>
+#include <zephyr/devicetree.h>
 #include <zephyr/drivers/gpio.h>
+#include <zephyr/drivers/adc.h>
 #include <zephyr/sys/printk.h>
+#include <zephyr/sys/util.h>
 #include <zephyr/sys/__assert.h>
+#include <zephyr/shell/shell.h>
+
 #include <string.h>
 #include <ctype.h>
-
-
-#include <zephyr/devicetree.h>
-#include <zephyr/drivers/adc.h>
-#include <zephyr/sys/util.h>
-
 
 #include "Led.hpp"
 #include "SensorsMatrix.h"
 #include "UartSender.h"
 #include "FlashStorage.h"
-
-#include <zephyr/kernel.h>
-
-#include <zephyr/shell/shell.h>
-
 
 /* size of stack area used by each thread */
 #define STACKSIZE 1024
@@ -43,9 +37,14 @@
 
 bool initialized = false;
 
+K_SEM_DEFINE(my_sem, 0, 1);  // Initial count = 0, Max count = 1
 
-void alive(void)
-{
+
+SensorsMatrix sm;
+FlashStorage fs;
+UartSender uart;
+
+void alive(void) {
 	Led aLed( GPIO_DT_SPEC_GET_OR(LED0_NODE, gpios, {0}) );
 
 	if ( aLed.initialize() != 0 ) {
@@ -59,49 +58,26 @@ void alive(void)
 	}
 }
 
-K_THREAD_DEFINE(alive_id, STACKSIZE, alive, NULL, NULL, NULL, PRIORITY, 0, 0);
+void matrix(void) {
+	while (!initialized)
+		k_msleep(1);
 
-
-K_SEM_DEFINE(my_sem, 0, 1);  // Initial count = 0, Max count = 1
-SensorsMatrix sm;
-
-FlashStorage fs;
-
-void matrix(void)
-{
-	while (!initialized) k_msleep(1);
-        printk("matrix periodic refresh starts.\n");
+	printk("matrix periodic refresh starts.\n");
 
 	int iteration = 0;
-	while (1)
-	{
+	while (1) {
 
 		if (sm.refresh()) {
 			k_sem_give(&my_sem);
-#if 0
-			char * buffer = sm.formatVoltages();
-			if (buffer) {
-				printk("%s", buffer);
-
-				k_free(buffer);
-			} else {
-				printk("Error. Could not format voltages to be printed");
-			}
-#endif
-	
 		} else {
 			//printk("No changes\n");
 		}
-
 
 		k_msleep(30);
 		iteration++;
 	}
 }
 
-K_THREAD_DEFINE(matrix_reader_id, 4096, matrix, NULL, NULL, NULL, PRIORITY, 0, 0);
-
-UartSender uart;
 void board_monitor(void) {
 	uint8_t aMatrix[8][8];
 	uint8_t packed_board[8];    // Each byte = 1 row
@@ -124,7 +100,7 @@ void board_monitor(void) {
 
 			for (int col = 0; col < 8; ++col) {
 				if (aMatrix[row][col]) {
-				bits |= (1 << (7 - col));  // col 0 is MSB
+					bits |= (1 << (7 - col));  // col 0 is MSB
 				}
 			}
 
@@ -147,10 +123,11 @@ void board_monitor(void) {
 	return;
 }
 
+K_THREAD_DEFINE(alive_id, STACKSIZE, alive, NULL, NULL, NULL, PRIORITY, 0, 0);
+K_THREAD_DEFINE(matrix_reader_id, 4096, matrix, NULL, NULL, NULL, PRIORITY, 0, 0);
 K_THREAD_DEFINE(board_monitor_id, STACKSIZE, board_monitor, NULL, NULL, NULL, PRIORITY, 0, 0);
 
-int main(void)
-{
+int main(void) {
 
 	if (fs.initialize() != 0) {
 		printk("Error: Could not initialize flash storage\n");
@@ -167,13 +144,14 @@ int main(void)
 		return -1;
 	}
 
-
 	storage_data sd;
 	if (fs.read(sd) == 0) {
 		printk("Calibrations found in flash. Let's use them\n");
+
 		sm.setCalibrations(sd.calibrations);
 	} else {
 		printk("No calibrations found in flash. Calibrating sensors.\n");
+
 		if (sm.calibrate() != 0) {
 			printk("Error: Could not calibrate sensors matrix\n");
 			return -1;
@@ -186,41 +164,13 @@ int main(void)
 		k_free(buffer);
 	}
 
-#if 0
-	if (sm.calibrate() != 0) {
-		printk("Error: Could not calibrate sensors matrix\n");
-	}
-
-	if (sm.calibrate() != 0) {
-		printk("Error: Could not calibrate sensors matrix\n");
-	}
-
-#endif
-
 	printk("Hw initialized.\n");
 	initialized = true;
 
-
-
-#if 0
-	while (1)
-	{
-		sm.test();
-		k_msleep(110);
-	}
-#endif
-
-
-
-//	printk ("ENDING\n");
-
 	return 0;
-//hola
 }
 
-
-
-
+// Uart shell commands
 static int cmd_cb_calibrate(const struct shell *shell, size_t argc, char **argv) {
     shell_print(shell, "Calibrating..");
 
@@ -239,13 +189,10 @@ static int cmd_cb_printCalibrations(const struct shell *shell, size_t argc, char
 		shell_print(shell, "Error. Could not format calibrations to be printed");
 	}
 
-
-
     return 0;
 }
 
 static int cmd_cb_saveCalibrations(const struct shell *shell, size_t argc, char **argv) {
-
 	shell_print(shell, "Saving calibrations in flash storage...");
 	storage_data sd;
 	sm.getCalibrations(sd.calibrations);
@@ -256,12 +203,10 @@ static int cmd_cb_saveCalibrations(const struct shell *shell, size_t argc, char 
 		shell_print(shell, "ERROR!\n");
 	}
 
-
     return 0;
 }
 
 static int cmd_cb_loadCalibrations(const struct shell *shell, size_t argc, char **argv) {
-
 	shell_print(shell, "Loading calibrations from flash...");
 	storage_data sd;
 	if (fs.read(sd) == 0) {
@@ -270,7 +215,6 @@ static int cmd_cb_loadCalibrations(const struct shell *shell, size_t argc, char 
 	} else {
 		shell_print(shell, "No calibrations found. Calibrate manually and save them.\n");
 	}
-
 
     return 0;
 }
@@ -336,8 +280,6 @@ static int cmd_cb_readGauss(const struct shell *shell, size_t argc, char **argv)
     return 0;
 }
 
-
-
 static int cmd_cb_printVoltages(const struct shell *shell, size_t argc, char **argv) {
 	char * buffer = sm.formatVoltages();
 	if (buffer) {
@@ -350,8 +292,6 @@ static int cmd_cb_printVoltages(const struct shell *shell, size_t argc, char **a
 
     return 0;
 }
-
-
 
 SHELL_STATIC_SUBCMD_SET_CREATE(sub_cb,
     SHELL_CMD(calibrate, NULL, "Sensors calibration", cmd_cb_calibrate),
@@ -366,6 +306,3 @@ SHELL_STATIC_SUBCMD_SET_CREATE(sub_cb,
 );
 
 SHELL_CMD_REGISTER(cb, &sub_cb, "Chessboard debug commands", NULL);
-
-
-
