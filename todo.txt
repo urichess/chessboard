@@ -1,0 +1,30 @@
+Issues / next steps
+
+hw
+
+calibrations unestable - stable 3v3
+black/white detection. Improves captures.
+wifi/bluetooth with esp32
+
+sw
+
+- handling promotion, now it's always a queen
+- UI
+- play a friend on lichess, both OTB
+- sparring from a study
+
+
+
+next protos
+
+- chesscomputer soldering.
+ a. test esp32.
+ b. validate stm32 debug jtag
+ c. validate esp32 debug jtag
+ d. see other features are also working ok. reading sensors + calibrations stability
+
+- new board x5
+ - including esp32 for extra option with bluetooth serial wireless? or perhaps better working ONLY with usb?
+ - autonomous with esp32? android?
+
+
