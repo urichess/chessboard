@@ -5,6 +5,7 @@ hw
 calibrations unestable - stable 3v3
 black/white detection. Improves captures.
 wifi/bluetooth with esp32
+make a sound on my turn
 
 sw
 
@@ -12,6 +13,8 @@ sw
 - UI
 - play a friend on lichess, both OTB
 - sparring from a study
+- lichess authentication instead of token?
+- 
 
 
 
