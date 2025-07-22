@@ -134,10 +134,10 @@ void board_monitor(void) {
 		// Step 2: Format UART message as one hex string
 		int len = snprintf(uart_msg, sizeof(uart_msg),
 			"BOARD:%02X-%02X-%02X-%02X-%02X-%02X-%02X-%02X\r\n",
-			packed_board[0], packed_board[1],
-			packed_board[2], packed_board[3],
-			packed_board[4], packed_board[5],
-			packed_board[6], packed_board[7]);
+			packed_board[7], packed_board[6],
+			packed_board[5], packed_board[4],
+			packed_board[3], packed_board[2],
+			packed_board[1], packed_board[0]);
 
 		// Step 3: Send over UART (use printk or uart_tx)
 		printk("Sent: %s", uart_msg);
