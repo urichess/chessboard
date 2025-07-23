@@ -174,6 +174,10 @@ int SensorsMatrix::calibrate() {
 				//k_msleep(1);
 			}
 			calibrations[file][theRow] = torben_median_filter(mv, 5);
+
+			if (calibrations[file][theRow] < 1700 || calibrations[file][theRow] > 1900) {
+				LOG_ERR("calibrations[%d][%d]=%d looks out of range[%d,%d]", file, theRow, calibrations[file][theRow], 1700, 1900);
+			}
 		}
 	}
 
