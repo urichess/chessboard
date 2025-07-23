@@ -181,47 +181,6 @@ int SensorsMatrix::calibrate() {
 	return 0;
 }
 
-void SensorsMatrix::setCalibrations(int32_t cals[8][8]) {
-	ScopedLock sl(&calib_mutex);
-
-	memcpy(calibrations, cals, sizeof(calibrations));
-}
-
-void SensorsMatrix::getCalibrations(int32_t cals[8][8]) {
-	ScopedLock sl(&calib_mutex);
-	
-	memcpy(cals, calibrations, sizeof(calibrations));
-}
-
-void SensorsMatrix::getPosition(uint8_t aMatrix[8][8])
-{
-	ScopedLock sl(&my_mutex);
-
-	memcpy (aMatrix, currentPosition, 64);
-}
-
-void SensorsMatrix::readVoltages() {
-	previous = current;
-	current++;
-	if (current >= BUFFER_SIZE) {
-		current = 0;
-	}
-
-	for (int i = 0; i < 16; i++) {
-	    select(i);
-
-	    const int row0 = i/NROWS;
-	    const int iRow[4] = {row0, row0+2, row0+4, row0+6 };
-	    const int file = i%NFILES;
-
-	    for (int r=0; r<4; r++)
-	    {
-	      const int theRow = iRow[r];
-	      voltages[current][file][theRow] = readMv(&adc_channels[r]);
-	    }
-	}
-}
-
 bool SensorsMatrix::refresh()
 {
 	bool changed = false;
@@ -257,6 +216,35 @@ bool SensorsMatrix::refresh()
 	return changed;
 }
 
+void SensorsMatrix::getPosition(uint8_t aMatrix[8][8])
+{
+	ScopedLock sl(&my_mutex);
+
+	memcpy (aMatrix, currentPosition, 64);
+}
+
+//////////////////////////////////////////////
+
+void SensorsMatrix::getCalibrations(int32_t cals[8][8]) {
+	ScopedLock sl(&calib_mutex);
+	
+	memcpy(cals, calibrations, sizeof(calibrations));
+}
+
+void SensorsMatrix::setCalibrations(int32_t cals[8][8]) {
+	ScopedLock sl(&calib_mutex);
+
+	memcpy(calibrations, cals, sizeof(calibrations));
+}
+
+char * SensorsMatrix::formatCalibrations() {
+	return formatVoltagesMatrix(calibrations);
+}
+
+char * SensorsMatrix::formatVoltages() {
+	return formatVoltagesMatrix(voltages[current]);
+}
+
 int32_t SensorsMatrix::getVoltage(uint8_t i, uint8_t j) {
 	return voltages[current][i][j];
 }
@@ -264,6 +252,8 @@ int32_t SensorsMatrix::getVoltage(uint8_t i, uint8_t j) {
 float SensorsMatrix::getGauss(uint8_t i, uint8_t j) {
 	return mv2Gauss(voltages[current][i][j] - calibrations[i][j]);
 }
+
+//////////////////////////////////////////////////
 
 void SensorsMatrix::select(uint8_t number) {
 	if (number > 15) {
@@ -278,10 +268,24 @@ void SensorsMatrix::select(uint8_t number) {
 	k_usleep(10);
 }
 
-char * SensorsMatrix::formatCalibrations() {
-	return formatVoltagesMatrix(calibrations);
-}
+void SensorsMatrix::readVoltages() {
+	previous = current;
+	current++;
+	if (current >= BUFFER_SIZE) {
+		current = 0;
+	}
 
-char * SensorsMatrix::formatVoltages() {
-	return formatVoltagesMatrix(voltages[current]);
+	for (int i = 0; i < 16; i++) {
+	    select(i);
+
+	    const int row0 = i/NROWS;
+	    const int iRow[4] = {row0, row0+2, row0+4, row0+6 };
+	    const int file = i%NFILES;
+
+	    for (int r=0; r<4; r++)
+	    {
+	      const int theRow = iRow[r];
+	      voltages[current][file][theRow] = readMv(&adc_channels[r]);
+	    }
+	}
 }
