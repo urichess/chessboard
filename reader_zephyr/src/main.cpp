@@ -27,7 +27,8 @@
 #define STACKSIZE 1024
 
 /* scheduling priority used by each thread */
-#define PRIORITY 7
+#define PRIORITY_NORMAL 7
+#define PRIORITY_HIGH 5
 
 #define LED0_NODE DT_ALIAS(led0)
 
@@ -78,7 +79,7 @@ void matrix(void) {
 	}
 }
 
-void board_monitor(void) {
+void changes_notifier(void) {
 	uint8_t aMatrix[8][8];
 	uint8_t packed_board[8];    // Each byte = 1 row
 	char uart_msg[64];          // UART message buffer
@@ -94,12 +95,11 @@ void board_monitor(void) {
 
 		sm.getPosition(aMatrix);
 
-		// Step 1: Pack each row into a byte
 		for (int row = 0; row < 8; ++row) {
 			uint8_t bits = 0;
 
 			for (int col = 0; col < 8; ++col) {
-				if (aMatrix[row][col]) {
+				if (aMatrix[row][col] != 0) {
 					bits |= (1 << (7 - col));  // col 0 is MSB
 				}
 			}
@@ -107,7 +107,6 @@ void board_monitor(void) {
 			packed_board[row] = bits;
 		}
 
-		// Step 2: Format UART message as one hex string
 		int len = snprintf(uart_msg, sizeof(uart_msg),
 			"BOARD:%02X-%02X-%02X-%02X-%02X-%02X-%02X-%02X\r\n",
 			packed_board[7], packed_board[6],
@@ -115,7 +114,6 @@ void board_monitor(void) {
 			packed_board[3], packed_board[2],
 			packed_board[1], packed_board[0]);
 
-		// Step 3: Send over UART (use printk or uart_tx)
 		printk("Sent: %s", uart_msg);
 		uart.send(uart_msg);
 	}
@@ -123,9 +121,9 @@ void board_monitor(void) {
 	return;
 }
 
-K_THREAD_DEFINE(alive_id, STACKSIZE, alive, NULL, NULL, NULL, PRIORITY, 0, 0);
-K_THREAD_DEFINE(matrix_reader_id, 4096, matrix, NULL, NULL, NULL, PRIORITY, 0, 0);
-K_THREAD_DEFINE(board_monitor_id, STACKSIZE, board_monitor, NULL, NULL, NULL, PRIORITY, 0, 0);
+K_THREAD_DEFINE(alive_id, STACKSIZE, alive, NULL, NULL, NULL, PRIORITY_NORMAL, 0, 0);
+K_THREAD_DEFINE(matrix_reader_id, 4096, matrix, NULL, NULL, NULL, PRIORITY_NORMAL, 0, 0);
+K_THREAD_DEFINE(changes_notifier_id, STACKSIZE, changes_notifier, NULL, NULL, NULL, PRIORITY_HIGH, 0, 0);
 
 int main(void) {
 

@@ -22,7 +22,7 @@ public:
     ScopedLock& operator=(const ScopedLock&) = delete;
 
 private:
-    k_mutex* mutex_;
+    k_mutex* mutex_ = nullptr;
 };
 
 #endif

@@ -126,7 +126,7 @@ char* formatVoltagesMatrix(int32_t aMatrix[8][8]) {
 				printk("ERROR: SensorsMatrix::formatMatrix() Small buffer A (%d)\n", buf_size);
 				return nullptr;
 			}
-			p += sprintf(p, "%3d ", aMatrix[row][col]);
+			p += sprintf(p, "%5d ", aMatrix[row][col]);
 		}
 		if (p + 2 >= end) {
 			k_free(buf);

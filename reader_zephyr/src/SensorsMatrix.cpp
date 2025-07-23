@@ -8,11 +8,11 @@
 LOG_MODULE_REGISTER(sensormatrix, LOG_LEVEL_DBG);  // or LOG_LEVEL_DBG
 
 #ifndef CONFIG_DETECTION_HISTERESYS_EMPTY
-#define CONFIG_DETECTION_HISTERESYS_EMPTY 15
+#define CONFIG_DETECTION_HISTERESYS_EMPTY 30
 #endif
 
 #ifndef CONFIG_DETECTION_HISTERESYS_PIECE
-#define CONFIG_DETECTION_HISTERESYS_PIECE 50
+#define CONFIG_DETECTION_HISTERESYS_PIECE 70
 #endif
 
 static const int32_t histeresys_empty_mv = gauss2mv(CONFIG_DETECTION_HISTERESYS_EMPTY);
@@ -191,8 +191,6 @@ bool SensorsMatrix::refresh()
 
 	readVoltages();
 
-	ScopedLock sl(&my_mutex);
-
 	for (int i = 0; i<8; i++) {
 		for (int j=0; j<8; j++) {
 			bool allGreaterThanHighLimit = true;
@@ -207,12 +205,15 @@ bool SensorsMatrix::refresh()
 				if (calibratedVoltage > histeresys_empty_mv ) allLowerThanLowLimit = false;
 			}
 
-			if ( currentPosition[i][j] == 1 && allLowerThanLowLimit) {
-				changed = true;
-				currentPosition[i][j] = 0;
-			} else if ( currentPosition[i][j] == 0 && allGreaterThanHighLimit) {
-				changed = true;
-				currentPosition[i][j] = (signOfAll > 0)? 1 : 2;
+			{
+				ScopedLock sl(&my_mutex);
+				if ( currentPosition[i][j] != 0 && allLowerThanLowLimit) {
+					changed = true;
+					currentPosition[i][j] = 0;
+				} else if ( currentPosition[i][j] == 0 && allGreaterThanHighLimit) {
+					changed = true;
+					currentPosition[i][j] = (signOfAll > 0)? 1 : 2;
+				}
 			}
 		}	
 	}
@@ -224,7 +225,7 @@ void SensorsMatrix::getPosition(uint8_t aMatrix[8][8])
 {
 	ScopedLock sl(&my_mutex);
 
-	memcpy (aMatrix, currentPosition, 64);
+	memcpy (aMatrix, currentPosition, sizeof(currentPosition));
 }
 
 //////////////////////////////////////////////
