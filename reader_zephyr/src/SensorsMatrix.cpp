@@ -3,6 +3,8 @@
 
 #include <zephyr/logging/log.h>
 
+#include "LockObjects.h"
+
 LOG_MODULE_REGISTER(sensormatrix, LOG_LEVEL_DBG);  // or LOG_LEVEL_DBG
 
 #ifndef CONFIG_DETECTION_HISTERESYS_EMPTY
@@ -147,19 +149,11 @@ int SensorsMatrix::initialize()
 	return 0;
 }
 
-int SensorsMatrix::calibrate()
-{
-	if (k_mutex_lock(&calib_mutex, K_FOREVER) != 0) {
-
-		LOG_ERR("Cannot take mutex");
-
-	    return -1;
-    	}
+int SensorsMatrix::calibrate() {
+	ScopedLock sl(&calib_mutex);
 
 	LOG_INF ("Waitting 5s");
-
 	k_msleep(5000);
-
 
 	LOG_INF("SensorsMatrix::calibrate() Calculating calibrations...");
 	for (int i = 0; i < 16; i++) {
@@ -183,46 +177,27 @@ int SensorsMatrix::calibrate()
 		}
 	}
 
-	k_mutex_unlock(&calib_mutex);
-
 	LOG_INF ("SensorsMatrix::calibrate() Calculated calibrations...OK");
 	return 0;
 }
 
 void SensorsMatrix::setCalibrations(int32_t cals[8][8]) {
-	if (k_mutex_lock(&calib_mutex, K_FOREVER) != 0) {
-		LOG_ERR("Cannot take mutex");
-		//TODO: Return error
-		return;
-    	}
+	ScopedLock sl(&calib_mutex);
 
 	memcpy(calibrations, cals, sizeof(calibrations));
-
-	k_mutex_unlock(&calib_mutex);
 }
 
 void SensorsMatrix::getCalibrations(int32_t cals[8][8]) {
-	if (k_mutex_lock(&calib_mutex, K_FOREVER) != 0) {
-
-		LOG_ERR("Cannot take mutex");
-		//assert(false);
-		return;
-    	}
-
+	ScopedLock sl(&calib_mutex);
+	
 	memcpy(cals, calibrations, sizeof(calibrations));
-
-	k_mutex_unlock(&calib_mutex);
 }
 
 void SensorsMatrix::getPosition(uint8_t aMatrix[8][8])
 {
-	if (k_mutex_lock(&my_mutex, K_FOREVER) == 0) {
-		memcpy (aMatrix, currentPosition, 64);
-	        k_mutex_unlock(&my_mutex);
-	} else {
-		LOG_ERR("SensorMatrix::getPosition() Cannot take mutex");
-	}
+	ScopedLock sl(&my_mutex);
 
+	memcpy (aMatrix, currentPosition, 64);
 }
 
 void SensorsMatrix::readVoltages() {
@@ -249,42 +224,37 @@ void SensorsMatrix::readVoltages() {
 
 bool SensorsMatrix::refresh()
 {
-    bool changed = false;
+	bool changed = false;
 
-    readVoltages();
+	readVoltages();
 
-	if (k_mutex_lock(&my_mutex, K_FOREVER) != 0) {
-		LOG_ERR("SensorMatrix::refresh() Cannot take mutex");
-		return false;
+	ScopedLock sl(&my_mutex);
+
+	for (int i = 0; i<8; i++) {
+		for (int j=0; j<8; j++) {
+			bool allGreaterThanHighLimit = true;
+			bool allLowerThanLowLimit = true;
+			int32_t signOfAll = 0;
+
+			for (int k = 0; k < BUFFER_SIZE; k++) {
+				const int32_t signedCalibratedVoltage = voltages[k][i][j] - calibrations[i][j];
+				const int32_t calibratedVoltage = signedCalibratedVoltage<0? -signedCalibratedVoltage: signedCalibratedVoltage;
+				signOfAll = signedCalibratedVoltage;
+				if (calibratedVoltage < histeresys_piece_mv ) allGreaterThanHighLimit = false;
+				if (calibratedVoltage > histeresys_empty_mv ) allLowerThanLowLimit = false;
+			}
+
+			if ( currentPosition[i][j] == 1 && allLowerThanLowLimit) {
+				changed = true;
+				currentPosition[i][j] = 0;
+			} else if ( currentPosition[i][j] == 0 && allGreaterThanHighLimit) {
+				changed = true;
+				currentPosition[i][j] = (signOfAll > 0)? 1 : 2;
+			}
+		}	
 	}
 
-    for (int i = 0; i<8; i++) {
-      for (int j=0; j<8; j++) {
-        bool allGreaterThanHighLimit = true;
-        bool allLowerThanLowLimit = true;
-        int32_t signOfAll = 0;
-
-        for (int k = 0; k < BUFFER_SIZE; k++) {
-			const int32_t signedCalibratedVoltage = voltages[k][i][j] - calibrations[i][j];
-			const int32_t calibratedVoltage = signedCalibratedVoltage<0? -signedCalibratedVoltage: signedCalibratedVoltage;
-			signOfAll = signedCalibratedVoltage;
-			if (calibratedVoltage < histeresys_piece_mv ) allGreaterThanHighLimit = false;
-			if (calibratedVoltage > histeresys_empty_mv ) allLowerThanLowLimit = false;
-        }
-
-        if ( currentPosition[i][j] == 1 && allLowerThanLowLimit) {
-          changed = true;
-          currentPosition[i][j] = 0;
-        } else if ( currentPosition[i][j] == 0 && allGreaterThanHighLimit) {
-          changed = true;
-          currentPosition[i][j] = (signOfAll > 0)? 1 : 2;
-        }
-      }
-    }
-
-	k_mutex_unlock(&my_mutex);
-
-    return changed;
+	return changed;
 }
 
 int32_t SensorsMatrix::getVoltage(uint8_t i, uint8_t j) {
@@ -296,16 +266,16 @@ float SensorsMatrix::getGauss(uint8_t i, uint8_t j) {
 }
 
 void SensorsMatrix::select(uint8_t number) {
-  if (number > 15) {
-    number = 15;
-  }
+	if (number > 15) {
+		number = 15;
+	}
   
-  gpio_pin_set(gpios_mux[0].port, gpios_mux[0].pin, (number & 0b0001)); // Set bit 0
-  gpio_pin_set(gpios_mux[1].port, gpios_mux[1].pin, (number & 0b0010)); // Set bit 1
-  gpio_pin_set(gpios_mux[2].port, gpios_mux[2].pin, (number & 0b0100)); // Set bit 2
-  gpio_pin_set(gpios_mux[3].port, gpios_mux[3].pin, (number & 0b1000)); // Set bit 3
+	gpio_pin_set(gpios_mux[0].port, gpios_mux[0].pin, (number & 0b0001)); // Set bit 0
+	gpio_pin_set(gpios_mux[1].port, gpios_mux[1].pin, (number & 0b0010)); // Set bit 1
+	gpio_pin_set(gpios_mux[2].port, gpios_mux[2].pin, (number & 0b0100)); // Set bit 2
+	gpio_pin_set(gpios_mux[3].port, gpios_mux[3].pin, (number & 0b1000)); // Set bit 3
 
-  k_usleep(10);
+	k_usleep(10);
 }
 
 char * SensorsMatrix::formatCalibrations() {
