@@ -1,24 +1,20 @@
-Issues / next steps
+PROBLEMS
 
 hw
+----
 
-calibrations unestable - stable 3v3
 black/white detection. Improves captures.
-wifi/bluetooth with esp32
-make a sound on my turn
 
 sw
+----
 
-- handling promotion, now it's always a queen
-- UI
-- play a friend on lichess, both OTB
-- sparring from a study
-- lichess authentication instead of token?
-- 
+handling promotion, now it's always a queen
+support moving opponent piece before player on turn, when capturing
 
 
+PROTOS UPGRADE
 
-next protos
+wifi/bluetooth with esp32
 
 - chesscomputer soldering.
  a. test esp32.
@@ -31,3 +27,11 @@ next protos
  - autonomous with esp32? android?
 
 
+NEW FUNCTIONALITIES
+
+- UI
+- play a friend on lichess, both OTB
+- sparring from a study
+- lichess authentication instead of token?
+
+- Android App? 
