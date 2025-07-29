@@ -8,7 +8,7 @@
 LOG_MODULE_REGISTER(sensormatrix, LOG_LEVEL_DBG);  // or LOG_LEVEL_DBG
 
 #ifndef CONFIG_DETECTION_HISTERESYS_EMPTY
-#define CONFIG_DETECTION_HISTERESYS_EMPTY 30
+#define CONFIG_DETECTION_HISTERESYS_EMPTY 50
 #endif
 
 #ifndef CONFIG_DETECTION_HISTERESYS_PIECE
@@ -21,7 +21,7 @@ static const int32_t histeresys_piece_mv = gauss2mv(CONFIG_DETECTION_HISTERESYS_
 #define NROWS 8
 #define NFILES 8
 
-#define BUFFER_SIZE 3 // buffer used to filter position changes.
+#define BUFFER_SIZE 2 // buffer used to filter position changes.
 
 #if !DT_NODE_EXISTS(DT_PATH(zephyr_user)) || \
 	!DT_NODE_HAS_PROP(DT_PATH(zephyr_user), io_channels) || \
