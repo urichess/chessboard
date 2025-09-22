@@ -1,0 +1,5 @@
+# Copyright (c) 2016 BayLibre, SAS
+# SPDX-License-Identifier: Apache-2.0
+
+config BOARD_CHESSBOARD_L431_V1
+	select SOC_STM32L431XX

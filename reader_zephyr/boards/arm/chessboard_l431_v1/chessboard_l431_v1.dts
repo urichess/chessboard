@@ -1,0 +1,203 @@
+/*
+ * Copyright (c) 2017 Linaro Limited
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+/dts-v1/;
+#include <st/l4/stm32l431Xc.dtsi>
+#include <st/l4/stm32l431k(b-c)ux-pinctrl.dtsi>
+
+/ {
+	model = "Custom STM32L431CCT6 board";
+	compatible = "st,stm32l431";
+
+	chosen {
+		zephyr,console = &usart1;
+		zephyr,shell-uart = &usart1;
+		zephyr,sram = &sram0;
+		zephyr,flash = &flash0;
+		//zephyr,canbus = &can1;
+                uart-sender = &usart1;
+                config-data = &storage_partition;
+	};
+
+	leds: leds {
+		compatible = "gpio-leds";
+
+		green_led: led_0 {
+			gpios = <&gpiob 0 GPIO_ACTIVE_HIGH>;
+			label = "User LD3";
+		};
+	};
+
+	aliases {
+		led0 = &green_led;
+	};
+
+
+        zephyr,user {
+            //               A0-PA0      A1-PA1    A2-PA4         A3-PB0       A4-PC1      A5-PC0
+            io-channels = <&adc1 6>, <&adc1 7>, <&adc1 8>,  <&adc1 9> ;
+            //io-channels = <&adc1 1>, <&adc1 2>;
+	    mux-gpios = <&gpioa 0 GPIO_ACTIVE_HIGH>,
+	    	        <&gpioh 1 GPIO_ACTIVE_HIGH>,
+	    	        <&gpioh 0 GPIO_ACTIVE_HIGH>,
+	    	        <&gpioc 13 GPIO_ACTIVE_HIGH>;
+
+            enable-gpios =  <&gpiob 2 GPIO_ACTIVE_HIGH>;
+	};
+
+};
+
+&clk_hsi {
+        status = "okay";          /* Enable 16 MHz HSI */
+};
+
+/* Disable unused external oscillators if present */
+&clk_hse {
+        status = "disabled";
+};
+&clk_lse {
+        status = "disabled";
+};
+&clk_msi {
+        status = "disabled";
+};
+
+/* Optional: keep LSI for watchdog/RTC */
+&clk_lsi {
+        status = "okay";
+};
+
+/* Configure PLL to multiply HSI up to 80 MHz */
+&pll {
+        div-m = <1>;              /* /1  */
+        mul-n = <20>;             /* ×20 */
+        div-r = <4>;              /* /4  → 80 MHz */
+        clocks = <&clk_hsi>;
+        status = "okay";
+};
+
+&rcc {
+        clocks = <&pll>;
+        clock-frequency = <DT_FREQ_M(80)>;
+        ahb-prescaler  = <1>;
+        apb1-prescaler = <1>;
+        apb2-prescaler = <1>;
+};
+
+&usart1 {
+	pinctrl-0 = <&usart1_tx_pb6 &usart1_rx_pb7>;
+	pinctrl-names = "default";
+	current-speed = <115200>;
+	status = "okay";
+};
+
+/*dd
+&usart2 {
+	pinctrl-0 = <&usart2_tx_pa2 &usart2_rx_pa15>;
+	pinctrl-names = "default";
+	current-speed = <115200>;
+	status = "okay";
+};
+
+&spi1 {
+	pinctrl-0 = <&spi1_nss_pa4 &spi1_sck_pa5
+		     &spi1_miso_pa6 &spi1_mosi_pa7>;
+	pinctrl-names = "default";
+	status = "okay";
+};
+
+&i2c1 {
+	pinctrl-0 = <&i2c1_scl_pb6 &i2c1_sda_pb7>;
+	pinctrl-names = "default";
+	clock-frequency = <I2C_BITRATE_FAST>;
+	status = "okay";
+};
+
+&timers2 {
+	status = "okay";
+
+	pwm2: pwm {
+		status = "okay";
+		pinctrl-0 = <&tim2_ch1_pa0>;
+		pinctrl-names = "default";
+	};
+};
+
+&can1 {
+	pinctrl-0 = <&can1_rx_pa11 &can1_tx_pa12>;
+	pinctrl-names = "default";
+	status = "okay";
+};
+
+&rtc {
+	clocks = <&rcc STM32_CLOCK_BUS_APB1 0x10000000>,
+		 <&rcc STM32_SRC_LSI RTC_SEL(2)>;
+	status = "okay";
+};
+
+*/
+
+&flash0 {
+	partitions {
+		compatible = "fixed-partitions";
+		#address-cells = <1>;
+		#size-cells = <1>;
+
+		/*
+		 * Reserve the final 16 KiB for file system partition
+		 */
+		storage_partition: partition@3c000 {
+			label = "storage";
+			reg = <0x0003c000 DT_SIZE_K(16)>;
+		};
+	};
+};
+&adc1 {
+    pinctrl-0 = <&adc1_in6_pa1 &adc1_in7_pa2 &adc1_in8_pa3 &adc1_in9_pa4>;  // add whatever inputs you need
+    pinctrl-names = "default";
+    st,adc-clock-source = "SYNC";
+    st,adc-prescaler = <4>;
+
+    vref-mv = <3300>;
+    status = "okay";
+
+     #address-cells = <1>;
+    #size-cells = <0>;
+
+    channel@6 {
+        reg = <6>;
+        zephyr,gain = "ADC_GAIN_1";
+        zephyr,reference = "ADC_REF_INTERNAL";
+        zephyr,acquisition-time = <ADC_ACQ_TIME_DEFAULT>;
+        zephyr,resolution = <12>;
+    };
+
+    channel@7 {
+        reg = <7>;
+        zephyr,gain = "ADC_GAIN_1";
+        zephyr,reference = "ADC_REF_INTERNAL";
+        zephyr,acquisition-time = <ADC_ACQ_TIME_DEFAULT>;
+        zephyr,resolution = <12>;
+    };
+
+    channel@8 {
+        reg = <8>;
+        zephyr,gain = "ADC_GAIN_1";
+        zephyr,reference = "ADC_REF_INTERNAL";
+        zephyr,acquisition-time = <ADC_ACQ_TIME_DEFAULT>;
+        zephyr,resolution = <12>;
+    };
+
+    channel@9 {
+        reg = <9>;
+        zephyr,gain = "ADC_GAIN_1";
+        zephyr,reference = "ADC_REF_INTERNAL";
+        zephyr,acquisition-time = <ADC_ACQ_TIME_DEFAULT>;
+        zephyr,resolution = <12>;
+    };
+
+};
+

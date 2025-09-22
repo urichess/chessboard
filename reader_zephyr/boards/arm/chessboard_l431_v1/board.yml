@@ -1,0 +1,6 @@
+board:
+  name: chessboard_l431_v1
+  full_name: Custom chessboard v1
+  vendor: st
+  socs:
+    - name: stm32l431xx
