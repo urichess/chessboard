@@ -28,3 +28,4 @@ git pull
 west update
 west packages pip --install
 
+python -m serial.tools.miniterm /dev/ttyACM0 115200

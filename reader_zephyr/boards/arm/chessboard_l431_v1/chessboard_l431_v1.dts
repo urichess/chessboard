@@ -6,7 +6,7 @@
 
 /dts-v1/;
 #include <st/l4/stm32l431Xc.dtsi>
-#include <st/l4/stm32l431k(b-c)ux-pinctrl.dtsi>
+#include <st/l4/stm32l431c(b-c)tx-pinctrl.dtsi>
 
 / {
 	model = "Custom STM32L431CCT6 board";
@@ -18,7 +18,7 @@
 		zephyr,sram = &sram0;
 		zephyr,flash = &flash0;
 		//zephyr,canbus = &can1;
-                uart-sender = &usart1;
+                uart-sender = &usart3;
                 config-data = &storage_partition;
 	};
 
@@ -104,6 +104,14 @@
 	current-speed = <115200>;
 	status = "okay";
 };
+
+&usart3 {
+	pinctrl-0 = <&usart3_tx_pb10 &usart3_rx_pb11>;
+	pinctrl-names = "default";
+	current-speed = <115200>;
+	status = "okay";
+};
+
 
 /*dd
 &usart2 {

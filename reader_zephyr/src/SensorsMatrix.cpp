@@ -12,7 +12,7 @@ LOG_MODULE_REGISTER(sensormatrix, LOG_LEVEL_DBG);  // or LOG_LEVEL_DBG
 #endif
 
 #ifndef CONFIG_DETECTION_HISTERESYS_PIECE
-#define CONFIG_DETECTION_HISTERESYS_PIECE 70
+#define CONFIG_DETECTION_HISTERESYS_PIECE 80
 #endif
 
 static const int32_t histeresys_empty_mv = gauss2mv(CONFIG_DETECTION_HISTERESYS_EMPTY);
@@ -270,7 +270,8 @@ void SensorsMatrix::select(uint8_t number) {
 	gpio_pin_set(gpios_mux[2].port, gpios_mux[2].pin, (number & 0b0100)); // Set bit 2
 	gpio_pin_set(gpios_mux[3].port, gpios_mux[3].pin, (number & 0b1000)); // Set bit 3
 
-	k_usleep(10);
+	//k_usleep(10);
+	k_msleep(2); // RC filter of 1uF && 100ohm stabilization
 }
 
 void SensorsMatrix::readVoltages() {
