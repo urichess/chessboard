@@ -175,8 +175,8 @@ int SensorsMatrix::calibrate() {
 			}
 			calibrations[file][theRow] = torben_median_filter(mv, 5);
 
-			if (calibrations[file][theRow] < 1700 || calibrations[file][theRow] > 1900) {
-				LOG_ERR("calibrations[%d][%d]=%d looks out of range[%d,%d]", file, theRow, calibrations[file][theRow], 1700, 1900);
+			if (calibrations[file][theRow] < 1500 || calibrations[file][theRow] > 1650) {
+				LOG_ERR("calibrations[%d][%d]=%d looks out of range[%d,%d]", file, theRow, calibrations[file][theRow], 1500, 1650);
 			}
 		}
 	}
