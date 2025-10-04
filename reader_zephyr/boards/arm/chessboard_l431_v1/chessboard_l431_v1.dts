@@ -63,9 +63,13 @@
 
 
 
-/* Keep HSI enabled for system clock */
+/* Keep HSI enabled for system clock. This is 16Mhz */
 &clk_hsi {
         status = "okay";
+};
+
+&clk_hse {
+        status = "disabled";   /* no MHz external crystal */
 };
 
 /* Enable LSE for RTC/time base */
@@ -73,15 +77,12 @@
         status = "okay";
 };
 
-/* Disable unused oscillators */
-&clk_hse {
-        status = "disabled";   /* no MHz external crystal */
-};
+
 &clk_msi {
         status = "disabled";
 };
 
-/* Optional: keep LSI if you want dual RTC sources/watchdog */
+/* Optional: keep LSI even LSE is enabled if you want dual RTC sources/watchdog */
 &clk_lsi {
         status = "okay";
 };
@@ -90,7 +91,7 @@
 &pll {
         div-m = <1>;              /* /1  */
         mul-n = <20>;             /* ×20 */
-        div-r = <4>;              /* /4 → 80 MHz */
+        div-r = <4>;              /* /4  → 80 MHz */
         clocks = <&clk_hsi>;
         status = "okay";
 };
