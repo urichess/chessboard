@@ -79,6 +79,7 @@ void matrix(void) {
 	}
 }
 
+bool board_inverted = false;
 void changes_notifier(void) {
 	uint8_t aMatrix[8][8];
 	uint8_t packed_board[8];    // Each byte = 1 row
@@ -100,7 +101,7 @@ void changes_notifier(void) {
 
 			for (int col = 0; col < 8; ++col) {
 				if (aMatrix[row][col] != 0) {
-					bits |= (1 << (7 - col));  // col 0 is MSB
+					bits |= (1 << (board_inverted? col : (7 - col)));  // col 0 is MSB
 				}
 			}
 
@@ -217,6 +218,26 @@ static int cmd_cb_loadCalibrations(const struct shell *shell, size_t argc, char 
     return 0;
 }
 
+static int cmd_cb_setBoardInverted(const struct shell *shell, size_t argc, char **argv) {
+    if (argc != 2) {
+        shell_print(shell, "Usage: cb setBoardInverted <true/false>");
+        return -EINVAL;
+    }
+
+    const char *param = argv[1];
+
+    if (strcmp(param, "true") != 0) {
+	    board_inverted = false;
+
+    } else {
+	    board_inverted = true;
+    }
+
+    shell_print(shell, "Inversion set to: %s", board_inverted? "true":"false");
+
+    return 0;
+}
+
 
 static int cmd_cb_readmv(const struct shell *shell, size_t argc, char **argv) {
     if (argc != 2) {
@@ -296,6 +317,8 @@ SHELL_STATIC_SUBCMD_SET_CREATE(sub_cb,
     SHELL_CMD(printCalibrations, NULL, "print calibrations", cmd_cb_printCalibrations),
     SHELL_CMD(saveCalbrations  , NULL, "save current calibrations to flash", cmd_cb_saveCalibrations),
     SHELL_CMD(loadCalbrations  , NULL, "save current calibrations to flash", cmd_cb_loadCalibrations),
+
+    SHELL_CMD(setBoardInverted  , NULL, "Inverts the board", cmd_cb_setBoardInverted),
 
     SHELL_CMD(readMv,    NULL, "mv of a square", cmd_cb_readmv),
     SHELL_CMD(readGauss, NULL, "gauss of a square", cmd_cb_readGauss),
