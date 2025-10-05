@@ -61,27 +61,33 @@
 
 };
 
+
+
+/* Keep HSI enabled for system clock. This is 16Mhz */
 &clk_hsi {
-        status = "okay";          /* Enable 16 MHz HSI */
+        status = "okay";
 };
 
-/* Disable unused external oscillators if present */
 &clk_hse {
-        status = "disabled";
+        status = "disabled";   /* no MHz external crystal */
 };
+
+/* Enable LSE for RTC/time base */
 &clk_lse {
-        status = "disabled";
+        status = "okay";
 };
+
+
 &clk_msi {
         status = "disabled";
 };
 
-/* Optional: keep LSI for watchdog/RTC */
+/* Optional: keep LSI even LSE is enabled if you want dual RTC sources/watchdog */
 &clk_lsi {
         status = "okay";
 };
 
-/* Configure PLL to multiply HSI up to 80 MHz */
+/* Configure PLL from HSI (16 MHz → 80 MHz) */
 &pll {
         div-m = <1>;              /* /1  */
         mul-n = <20>;             /* ×20 */
@@ -90,6 +96,7 @@
         status = "okay";
 };
 
+/* Use PLL output as system clock */
 &rcc {
         clocks = <&pll>;
         clock-frequency = <DT_FREQ_M(80)>;
