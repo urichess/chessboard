@@ -1,7 +1,7 @@
 #include "utils.h"
 
 #ifndef CONFIG_SAMPLES_FOR_TORBEN
-#define CONFIG_SAMPLES_FOR_TORBEN 5
+#define CONFIG_SAMPLES_FOR_TORBEN 3
 #endif
 
 int32_t torben_median_filter(int32_t *arr, int size) {

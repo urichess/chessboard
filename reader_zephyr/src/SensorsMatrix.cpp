@@ -8,11 +8,11 @@
 LOG_MODULE_REGISTER(sensormatrix, LOG_LEVEL_DBG);  // or LOG_LEVEL_DBG
 
 #ifndef CONFIG_DETECTION_HISTERESYS_EMPTY
-#define CONFIG_DETECTION_HISTERESYS_EMPTY 50
+#define CONFIG_DETECTION_HISTERESYS_EMPTY 30
 #endif
 
 #ifndef CONFIG_DETECTION_HISTERESYS_PIECE
-#define CONFIG_DETECTION_HISTERESYS_PIECE 80
+#define CONFIG_DETECTION_HISTERESYS_PIECE 60
 #endif
 
 static const int32_t histeresys_empty_mv = gauss2mv(CONFIG_DETECTION_HISTERESYS_EMPTY);
@@ -21,7 +21,7 @@ static const int32_t histeresys_piece_mv = gauss2mv(CONFIG_DETECTION_HISTERESYS_
 #define NROWS 8
 #define NFILES 8
 
-#define BUFFER_SIZE 2 // buffer used to filter position changes.
+#define BUFFER_SIZE 1 // buffer used to filter position changes.
 
 #if !DT_NODE_EXISTS(DT_PATH(zephyr_user)) || \
 	!DT_NODE_HAS_PROP(DT_PATH(zephyr_user), io_channels) || \
@@ -152,41 +152,39 @@ int SensorsMatrix::initialize()
 int SensorsMatrix::calibrate() {
 	ScopedLock sl(&calib_mutex);
 
-	LOG_INF ("Waitting 5s");
-	k_msleep(5000);
+	//LOG_INF ("Waitting 5s");
+	//k_msleep(5000);
 
 	LOG_INF("SensorsMatrix::calibrate() Calculating calibrations...");
-	for (int i = 0; i < 16; i++) {
-		select(i);
+	
+	for (int k = 0; k < BUFFER_SIZE; k++) {
+		readVoltages();
+	}
 
-		const int row0 = i/NROWS;
-		const int iRow[4] = {row0, row0+2, row0+4, row0+6 };
-		const int file = i%NFILES;
+	for (int i = 0; i<8; i++) {
+		for (int j=0; j<8; j++) {
+			int32_t sum = 0;
 
-		for (int r=0; r<4; r++) {
-			const int theRow = iRow[r];
-
-			// Filtering calibrations
-
-			int32_t mv[5];
-			for (int s = 0; s<5; s++) {
-				mv[s] = readMv(&adc_channels[r]);
-				//k_msleep(1);
+			for (int k = 0; k < BUFFER_SIZE; k++) {
+				sum = sum + voltages[k][i][j];
 			}
-			calibrations[file][theRow] = torben_median_filter(mv, 5);
+			calibrations[i][j] = sum / BUFFER_SIZE;
 
-			if (calibrations[file][theRow] < 1500 || calibrations[file][theRow] > 1650) {
-				LOG_ERR("calibrations[%d][%d]=%d looks out of range[%d,%d]", file, theRow, calibrations[file][theRow], 1500, 1650);
+			if (calibrations[i][j] < 1500 || calibrations[i][j] > 1750) {
+				LOG_ERR("calibrations[%d][%d]=%d looks out of range[%d,%d]", i, j, calibrations[i][j], 1500, 1750);
 			}
+
 		}
 	}
 
-	LOG_INF ("SensorsMatrix::calibrate() Calculated calibrations...OK");
+	LOG_INF ("SensorsMatrix::calibrate() Ended calibrations calculation.");
 	return 0;
 }
 
 bool SensorsMatrix::refresh()
 {
+	ScopedLock sl(&calib_mutex); // in case of calibrating, this needs to wait
+
 	bool changed = false;
 
 	readVoltages();
@@ -250,6 +248,19 @@ char * SensorsMatrix::formatVoltages() {
 	return formatVoltagesMatrix(voltages[current]);
 }
 
+char * SensorsMatrix::formatGaussesMatrix() {
+	int32_t gaussesMatrix[NROWS][NFILES] = {0};
+
+	for (int i = 0; i<8; i++) {
+		for (int j=0; j<8; j++) {
+			gaussesMatrix[i][j] = voltages[current][i][j] - calibrations[i][j];
+		}
+	}
+
+	return formatVoltagesMatrix(gaussesMatrix);
+}
+
+
 int32_t SensorsMatrix::getVoltage(uint8_t i, uint8_t j) {
 	return voltages[current][i][j];
 }
@@ -271,7 +282,7 @@ void SensorsMatrix::select(uint8_t number) {
 	gpio_pin_set(gpios_mux[3].port, gpios_mux[3].pin, (number & 0b1000)); // Set bit 3
 
 	//k_usleep(10);
-	k_msleep(2); // RC filter of 1uF && 100ohm stabilization
+	k_msleep(4); // RC filter of 1uF && 100ohm stabilization
 }
 
 void SensorsMatrix::readVoltages() {
