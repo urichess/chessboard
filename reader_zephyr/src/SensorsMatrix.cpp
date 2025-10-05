@@ -170,8 +170,8 @@ int SensorsMatrix::calibrate() {
 			}
 			calibrations[i][j] = sum / BUFFER_SIZE;
 
-			if (calibrations[i][j] < 1500 || calibrations[i][j] > 1700) {
-				LOG_ERR("calibrations[%d][%d]=%d looks out of range[%d,%d]", i, j, calibrations[i][j], 1500, 1700);
+			if (calibrations[i][j] < 1500 || calibrations[i][j] > 1750) {
+				LOG_ERR("calibrations[%d][%d]=%d looks out of range[%d,%d]", i, j, calibrations[i][j], 1500, 1750);
 			}
 
 		}
@@ -247,6 +247,19 @@ char * SensorsMatrix::formatCalibrations() {
 char * SensorsMatrix::formatVoltages() {
 	return formatVoltagesMatrix(voltages[current]);
 }
+
+char * SensorsMatrix::formatGaussesMatrix() {
+	int32_t gaussesMatrix[NROWS][NFILES] = {0};
+
+	for (int i = 0; i<8; i++) {
+		for (int j=0; j<8; j++) {
+			gaussesMatrix[i][j] = voltages[current][i][j] - calibrations[i][j];
+		}
+	}
+
+	return formatVoltagesMatrix(gaussesMatrix);
+}
+
 
 int32_t SensorsMatrix::getVoltage(uint8_t i, uint8_t j) {
 	return voltages[current][i][j];

@@ -37,6 +37,8 @@ public:
 
     char * formatVoltages();
 
+    char * formatGaussesMatrix();
+
     int32_t getVoltage(uint8_t i, uint8_t j);
 
     float getGauss(uint8_t i, uint8_t j);

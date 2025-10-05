@@ -312,6 +312,20 @@ static int cmd_cb_printVoltages(const struct shell *shell, size_t argc, char **a
     return 0;
 }
 
+static int cmd_cb_printGaussesMatrix (const struct shell *shell, size_t argc, char **argv) {
+	char * buffer = sm.formatGaussesMatrix();
+	if (buffer) {
+		shell_print(shell, "%s", buffer);
+
+		k_free(buffer);
+	} else {
+		shell_print(shell, "Error. Could not format gauss matrix to be printed");
+	}
+
+    return 0;
+}
+
+
 SHELL_STATIC_SUBCMD_SET_CREATE(sub_cb,
     SHELL_CMD(calibrate, NULL, "Sensors calibration", cmd_cb_calibrate),
     SHELL_CMD(printCalibrations, NULL, "print calibrations", cmd_cb_printCalibrations),
@@ -323,6 +337,7 @@ SHELL_STATIC_SUBCMD_SET_CREATE(sub_cb,
     SHELL_CMD(readMv,    NULL, "mv of a square", cmd_cb_readmv),
     SHELL_CMD(readGauss, NULL, "gauss of a square", cmd_cb_readGauss),
     SHELL_CMD(printVoltages, NULL, "Print voltages matrix", cmd_cb_printVoltages),
+    SHELL_CMD(printGaussesMatrix, NULL, "Print voltages matrix", cmd_cb_printGaussesMatrix),
     SHELL_SUBCMD_SET_END /* Obligatorio para cerrar la lista */
 );
 
