@@ -282,7 +282,7 @@ void SensorsMatrix::select(uint8_t number) {
 	gpio_pin_set(gpios_mux[3].port, gpios_mux[3].pin, (number & 0b1000)); // Set bit 3
 
 	//k_usleep(10);
-	k_msleep(3); // RC filter of 1uF && 100ohm stabilization
+	k_msleep(4); // RC filter of 1uF && 100ohm stabilization
 }
 
 void SensorsMatrix::readVoltages() {
