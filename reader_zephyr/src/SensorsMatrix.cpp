@@ -8,7 +8,7 @@
 LOG_MODULE_REGISTER(sensormatrix, LOG_LEVEL_DBG);  // or LOG_LEVEL_DBG
 
 #ifndef CONFIG_DETECTION_HISTERESYS_EMPTY
-#define CONFIG_DETECTION_HISTERESYS_EMPTY 30
+#define CONFIG_DETECTION_HISTERESYS_EMPTY 15
 #endif
 
 #ifndef CONFIG_DETECTION_HISTERESYS_PIECE
@@ -253,7 +253,7 @@ char * SensorsMatrix::formatGaussesMatrix() {
 
 	for (int i = 0; i<8; i++) {
 		for (int j=0; j<8; j++) {
-			gaussesMatrix[i][j] = voltages[current][i][j] - calibrations[i][j];
+			gaussesMatrix[i][j] = (int32_t) mv2Gauss (voltages[current][i][j] - calibrations[i][j]);
 		}
 	}
 
