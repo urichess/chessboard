@@ -81,7 +81,7 @@ void matrix(void) {
 			//printk("No changes\n");
 		}
 
-		k_msleep(30);
+		k_msleep(200); // refresh takes 65ms aprox. Thus 64+200 is about 4 samples/second
 		iteration++;
 	}
 }
