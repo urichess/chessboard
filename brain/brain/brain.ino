@@ -103,19 +103,21 @@ void loop() {
   while (Serial.available()) {
     uint8_t c = Serial.read();
     Serial1.write(c);
-    txQueue.push(c);
+    if (deviceConnected)
+      txQueue.push(c);
   }
 
   // UART → USB + BLE
   while (Serial1.available()) {
     uint8_t c = Serial1.read();
     Serial.write(c);
-    txQueue.push(c);
+    if (deviceConnected)
+      txQueue.push(c);
   }
 
       // Send one byte at a time via BLE if ready
-    while (deviceConnected && !txQueue.empty()) {
-      while (!notificationReady) asm("NOP"); // just wait
+    if (deviceConnected && !txQueue.empty() && notificationReady) {
+      //while (!notificationReady) asm("NOP"); // just wait
 
       uint8_t buffer[20];
       int len = 0;
