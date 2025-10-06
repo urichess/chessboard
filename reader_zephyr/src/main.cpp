@@ -36,6 +36,13 @@
 #error "Unsupported board: led0 devicetree alias is not defined"
 #endif
 
+#define LED1_NODE DT_ALIAS(led1)
+
+#if !DT_NODE_HAS_STATUS(LED1_NODE, okay)
+#error "Unsupported board: led1 devicetree alias is not defined"
+#endif
+
+
 bool initialized = false;
 
 K_SEM_DEFINE(my_sem, 0, 1);  // Initial count = 0, Max count = 1
@@ -81,6 +88,13 @@ void matrix(void) {
 
 bool board_inverted = false;
 void changes_notifier(void) {
+	Led aLed( GPIO_DT_SPEC_GET_OR(LED1_NODE, gpios, {0}) );
+
+	if ( aLed.initialize() != 0 ) {
+		printk("cannot initialize LED1");
+		return;
+	}
+
 	uint8_t aMatrix[8][8];
 	uint8_t packed_board[8];    // Each byte = 1 row
 	char uart_msg[64];          // UART message buffer
@@ -117,6 +131,7 @@ void changes_notifier(void) {
 
 		printk("Sent: %s", uart_msg);
 		uart.send(uart_msg);
+		aLed.toogle();
 	}
 
 	return;
