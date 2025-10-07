@@ -7,6 +7,7 @@ std::queue<uint8_t> txQueue;
 #define UART_TX_PIN 43
 #define UART_RX_PIN 44
 #define BAUD_RATE   115200
+#define BUFFER_SIZE 1024
 
 // Nordic UART Service UUIDs
 #define SERVICE_UUID        "6E400001-B5A3-F393-E0A9-E50E24DCCA9E"
@@ -92,7 +93,7 @@ void setup() {
   NimBLEDevice::startAdvertising();
 
   NimBLEDevice::setSecurityAuth(false, false, true); // bonding, MITM, secure connections
-
+  
   Serial.println("[BLE] Advertising as 'ESP32S3_BLE_Bridge'");
   Serial.println("Bridge active: USB ↔ UART ↔ BLE\n");
 }
@@ -117,15 +118,17 @@ void loop() {
 
       // Send one byte at a time via BLE if ready
     if (deviceConnected && !txQueue.empty() && notificationReady) {
-      //while (!notificationReady) asm("NOP"); // just wait
-
-      uint8_t buffer[20];
+      static uint8_t buffer[BUFFER_SIZE];
       int len = 0;
 
-      while (!txQueue.empty() && len < 20) {
+      const uint16_t characteristic_max_size = pTxCharacteristic->getValue().max_size();
+      const int MAXIMUM_SIZE = characteristic_max_size < BUFFER_SIZE? (int)characteristic_max_size:(int)BUFFER_SIZE;
+
+      while (!txQueue.empty() && len < MAXIMUM_SIZE) {
           buffer[len++] = txQueue.front();
           txQueue.pop();
       }
+
 
       pTxCharacteristic->setValue(buffer, len);     
       notificationReady = false;  // wait for onStatus
