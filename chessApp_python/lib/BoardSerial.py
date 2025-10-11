@@ -148,15 +148,16 @@ class BoardSerial:
 
         recovered = False
 
+        print("Your turn. Make your move")
         while True:
-            prev_state = current_state
-            current_state = self._get_next_board_message()
 
             if recovered:
-                piece_removed_from = None
-                piece_inserted_at = None
+                print("Recovered position. Make your move")
+                current_state = ff_initial
                 recovered = False
 
+            prev_state = current_state
+            current_state = self._get_next_board_message()
 
             if not current_state or current_state == ff_initial:
                 time.sleep(0.1)
@@ -210,15 +211,19 @@ class BoardSerial:
 
                     print("Lifted another piece")
                 else:
-                    if not piece0.color == board.turn:
-                        color_str = "white" if piece0.color == chess.WHITE else "black"
-                        turn_str = "white" if board.turn == chess.WHITE else "black"
-                        self._recover_position(board, f"Illegal move: wrong color's turn. Piece color: {color_str}, Turn: {turn_str}")
-                        recovered = True
-                        continue
+                    #if not piece0.color == board.turn:
+                    #    color_str = "white" if piece0.color == chess.WHITE else "black"
+                    #    turn_str = "white" if board.turn == chess.WHITE else "black"
+                    #    self._recover_position(board, f"Illegal move: wrong color's turn. Piece color: {color_str}, Turn: {turn_str}")
+                    #    recovered = True
+                    #    continue
 
-                    piece_removed_from = removed[0]
-                    print("Lifted a piece")
+                    if piece0.color == board.turn:
+                        piece_removed_from = removed[0]
+                        print("Lifted player piece")
+                    else:
+                        print("Lifted opponent piece") #remove_from will be managed when removing player piece
+
 
             piece_inserted_at = None
             if len(inserted) == 1:
@@ -255,7 +260,7 @@ class BoardSerial:
                     if board.is_castling(move):
                         bcopy = board.copy()
                         bcopy.push_uci(move_uci)
-                        print ("Wait castles end.")
+                        print ("Waitting for castles end.")
                         self.sync(bcopy)
 
                     print(f"Move detected: {move_uci}")

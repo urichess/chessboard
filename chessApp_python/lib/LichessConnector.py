@@ -86,7 +86,7 @@ class LichessConnector:
 
         def waitMyTurn(self) -> chess.Board:
             if not self.isMyTurn and self.finished == False:
-                print("Waiting for your turn...")
+                print("Opponent's turn. Wait.")
                 self.turn_event.wait()  # Blocks until it's your turn
 
             with self.board_lock:
