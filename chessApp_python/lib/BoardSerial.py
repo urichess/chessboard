@@ -54,10 +54,41 @@ class BoardSerial:
                     print(f"Error reading from serial: {e}")
             time.sleep(0.1)
 
-    def _handle_received_data(self, data):
-        print(f"Received: {data}")
-        if data.startswith("BOARD:"):
-            self._board_message_queue.put(data.split("BOARD:")[1])
+
+    def _handle_received_data(self, data: str):
+        """
+        Handle a single line received from the serial port.
+        Only processes lines starting with 'BOARD:' and ignores all others.
+        Expected format: 'BOARD:FF-FF-00-00-00-00-FF-FF'
+        """
+        if not data:
+            return  # ignore empty lines
+
+        data = data.strip()
+        if not data.startswith("BOARD:"):
+            # Ignore any line not starting with BOARD:
+            # (could be firmware logs, pings, etc.)
+            return
+
+        try:
+            payload = data.split("BOARD:", 1)[1].strip().upper()
+            # Validate format: should be 8 hex bytes separated by '-'
+            parts = payload.split("-")
+            if len(parts) == 8 and all(len(p) == 2 and all(c in "0123456789ABCDEF" for c in p) for p in parts):
+                self._board_message_queue.put(payload)
+                # shpuld i protect currentposition? 
+                #with self._pos_lock:
+                self._current_position = payload
+            else:
+                    print(f"Ignored malformed board data: {payload}")
+        except Exception as e:
+            print(f"Error handling serial data '{data}': {e}")
+
+
+    #def _handle_received_data(self, data):
+    #    print(f"Received: {data}")
+    #    if data.startswith("BOARD:"):
+    #        self._board_message_queue.put(data.split("BOARD:")[1])
 
     def _get_next_board_message(self, timeout=None):
         try:
@@ -78,6 +109,53 @@ class BoardSerial:
             hex_value = '{:02X}'.format(int(bits, 2))
             ranks.append(hex_value)
         return "-".join(ranks)
+
+    def _diff_squares(self, prev: str, curr: str) -> list[str]:
+        """
+        Given two 8-byte board state strings like 'FF-FF-00-00-00-00-FF-FF',
+        return a list of all squares (e.g., ['e2', 'e4']) where occupancy differs.
+
+            Args:
+            prev (str): Previous state (8 bytes separated by '-')
+            curr (str): Current state (8 bytes separated by '-')
+
+        Returns:
+            list[str]: Square names that differ between the two states.
+        """
+        # 🛡️ Handle missing or invalid data
+        if not prev or not curr:
+            # Nothing to compare yet
+            # Return all 64 squares to indicate total difference
+            return list(chess.SQUARE_NAMES)
+
+        try:
+            prev_bytes = prev.split("-")
+            curr_bytes = curr.split("-")
+        except AttributeError:
+            # Either prev or curr wasn't a string
+            return list(chess.SQUARE_NAMES)
+
+        if len(prev_bytes) != 8 or len(curr_bytes) != 8:
+            raise ValueError("Expected exactly 8 bytes (64 bits) in each state string")
+
+        diff = []
+        bit_index = 0
+        for pb, cb in zip(prev_bytes, curr_bytes):
+            try:
+                prev_byte = int(pb, 16)
+                curr_byte = int(cb, 16)
+            except ValueError:
+                raise ValueError(f"Invalid hex byte in input: {pb} or {cb}")
+
+            for i in reversed(range(8)):  # MSB = file a, LSB = file h
+                prev_bit = (prev_byte >> i) & 1
+                curr_bit = (curr_byte >> i) & 1
+                if prev_bit != curr_bit:
+                    square = chess.SQUARE_NAMES[bit_index]
+                    diff.append(square)
+                bit_index += 1
+
+        return diff
 
     @staticmethod    
     def _compare_states(prev, curr):
@@ -124,6 +202,15 @@ class BoardSerial:
 
         return removed, inserted
 
+    def _recover_position(self, board: chess.Board, message: str):
+        # Ask user to physically restore position then call sync
+        print("RECOVER: " + message)
+        print(board)
+        print("Please place pieces back to position. Waiting for correct board state...")
+        try:
+            self.sync(board)
+        except TimeoutError:
+            print("Timeout while waiting for user to recover position.")
 
     
     def _recover_position(self, board: chess.Board, message: str):
@@ -137,6 +224,8 @@ class BoardSerial:
 
         position = self._currentPosition
         while position != ff:
+            diff = self._diff_squares(position, ff)
+            print(f"Synchronizing. Differing squares: {diff}")
             position = self._get_next_board_message()
 
         print("synchronized")
@@ -148,15 +237,16 @@ class BoardSerial:
 
         recovered = False
 
+        print("Your turn. Make your move")
         while True:
-            prev_state = current_state
-            current_state = self._get_next_board_message()
 
             if recovered:
-                piece_removed_from = None
-                piece_inserted_at = None
+                print("Recovered position. Make your move")
+                current_state = ff_initial
                 recovered = False
 
+            prev_state = current_state
+            current_state = self._get_next_board_message()
 
             if not current_state or current_state == ff_initial:
                 time.sleep(0.1)
@@ -210,15 +300,19 @@ class BoardSerial:
 
                     print("Lifted another piece")
                 else:
-                    if not piece0.color == board.turn:
-                        color_str = "white" if piece0.color == chess.WHITE else "black"
-                        turn_str = "white" if board.turn == chess.WHITE else "black"
-                        self._recover_position(board, f"Illegal move: wrong color's turn. Piece color: {color_str}, Turn: {turn_str}")
-                        recovered = True
-                        continue
+                    #if not piece0.color == board.turn:
+                    #    color_str = "white" if piece0.color == chess.WHITE else "black"
+                    #    turn_str = "white" if board.turn == chess.WHITE else "black"
+                    #    self._recover_position(board, f"Illegal move: wrong color's turn. Piece color: {color_str}, Turn: {turn_str}")
+                    #    recovered = True
+                    #    continue
 
-                    piece_removed_from = removed[0]
-                    print("Lifted a piece")
+                    if piece0.color == board.turn:
+                        piece_removed_from = removed[0]
+                        print("Lifted player piece")
+                    else:
+                        print("Lifted opponent piece") #remove_from will be managed when removing player piece
+
 
             piece_inserted_at = None
             if len(inserted) == 1:
@@ -255,7 +349,7 @@ class BoardSerial:
                     if board.is_castling(move):
                         bcopy = board.copy()
                         bcopy.push_uci(move_uci)
-                        print ("Wait castles end.")
+                        print ("Waitting for castles end.")
                         self.sync(bcopy)
 
                     print(f"Move detected: {move_uci}")
