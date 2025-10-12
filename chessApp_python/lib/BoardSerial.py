@@ -125,14 +125,15 @@ class BoardSerial:
         # 🛡️ Handle missing or invalid data
         if not prev or not curr:
             # Nothing to compare yet
-            return []
+            # Return all 64 squares to indicate total difference
+            return list(chess.SQUARE_NAMES)
 
         try:
             prev_bytes = prev.split("-")
             curr_bytes = curr.split("-")
         except AttributeError:
             # Either prev or curr wasn't a string
-            return []
+            return list(chess.SQUARE_NAMES)
 
         if len(prev_bytes) != 8 or len(curr_bytes) != 8:
             raise ValueError("Expected exactly 8 bytes (64 bits) in each state string")
