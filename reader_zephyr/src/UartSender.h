@@ -23,6 +23,8 @@ public:
 
     void send(const char*);
 
+    void resend();
+
 protected:
 
 private:
