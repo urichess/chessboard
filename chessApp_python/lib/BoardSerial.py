@@ -223,6 +223,13 @@ class BoardSerial:
         ff = self._board_to_ff_format(board)
 
         position = self._currentPosition
+
+        if position is None:
+            print(f"Board is not initialized. Requesting current state...")
+            self._send_data("REQUEST:1\n")
+            position = self._get_next_board_message()
+            print(f"Ready!!")
+       
         while position != ff:
             diff = self._diff_squares(position, ff)
             print(f"Synchronizing. Differing squares: {diff}")
