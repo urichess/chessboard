@@ -20,3 +20,14 @@ python ChessApp/ChessApp.py --token <aToken>
 
 #initial position
 echo -e BOARD:FF-FF-00-00-00-00-FF-FFn > /dev/ttyV0 
+
+
+#CREATE ANDROID APP
+
+#sudo apt install -y python3-pip python3-setuptools python3-venv git zip unzip openjdk-17-jdk
+
+cd folder_with_main.py
+buildozer init
+#condigure buildozer.spec
+buildozer -v android debug
+buildozer android deploy run
