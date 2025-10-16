@@ -1,0 +1,142 @@
+"""
+Ejemplo simplificado: Kivy + transitions (máquina de estados)
+
+Flujo simple con control manual entre 2 pantallas:
+- Estados: idle → step → done → idle
+- Botones para avanzar, retroceder, cancelar.
+- Comunicación entre la UI y el workflow usando la librería `transitions`.
+
+Requisitos:
+    pip install kivy transitions
+
+Ejecutar:
+    python kivy_transitions_example.py
+"""
+
+from kivy.app import App
+from kivy.lang import Builder
+from kivy.properties import StringProperty
+from kivy.uix.screenmanager import ScreenManager, Screen
+from kivy.uix.boxlayout import BoxLayout
+from transitions import Machine
+
+KV = r"""
+<RootWidget>:
+    orientation: 'vertical'
+    sm: sm
+
+    ScreenManager:
+        id: sm
+        HomeScreen:
+            name: 'home'
+        StepScreen:
+            name: 'step'
+
+<HomeScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        padding: dp(20)
+        spacing: dp(12)
+
+        Label:
+            text: 'Demo: Kivy + transitions'
+            font_size: '24sp'
+        Label:
+            text: 'Pulsa iniciar para comenzar el flujo'
+
+        Button:
+            text: 'Iniciar'
+            size_hint_y: None
+            height: dp(48)
+            on_release: app.start_workflow()
+
+<StepScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        padding: dp(20)
+        spacing: dp(10)
+
+        Label:
+            text: 'Pantalla de paso'
+            font_size: '20sp'
+
+        Label:
+            text: 'Estado actual: ' + app.workflow_state
+
+        BoxLayout:
+            size_hint_y: None
+            height: dp(48)
+            spacing: dp(8)
+
+            Button:
+                text: 'Atrás'
+                on_release: app.prev_workflow()
+
+            Button:
+                text: 'Siguiente'
+                on_release: app.next_workflow()
+
+            Button:
+                text: 'Cancelar'
+                on_release: app.cancel_workflow()
+"""
+
+class Workflow:
+    def __init__(self, on_state_change):
+        self.on_state_change = on_state_change
+        states = ['idle', 'step', 'done', 'cancelled']
+        transitions = [
+            {'trigger': 'start', 'source': 'idle', 'dest': 'step', 'after': self.notify},
+            {'trigger': 'next', 'source': 'step', 'dest': 'done', 'after': self.notify},
+            {'trigger': 'prev', 'source': 'step', 'dest': 'idle', 'after': self.notify},
+            {'trigger': 'cancel', 'source': ['step'], 'dest': 'cancelled', 'after': self.notify},
+            {'trigger': 'reset', 'source': ['done', 'cancelled'], 'dest': 'idle', 'after': self.notify},
+        ]
+        self.machine = Machine(model=self, states=states, transitions=transitions, initial='idle')
+
+    def notify(self):
+        self.on_state_change(self.state)
+
+class HomeScreen(Screen):
+    pass
+
+class StepScreen(Screen):
+    pass
+
+class RootWidget(BoxLayout):
+    pass
+
+class WorkflowApp(App):
+    workflow_state = StringProperty('idle')
+
+    def build(self):
+        Builder.load_string(KV)
+        self.workflow = Workflow(on_state_change=self.update_state)
+        self.root_widget = RootWidget()
+        return self.root_widget
+
+    def update_state(self, state):
+        self.workflow_state = state
+        sm = self.root_widget.ids.sm
+        if state == 'idle':
+            sm.current = 'home'
+        else:
+            sm.current = 'step'
+
+    def start_workflow(self):
+        self.workflow.start()
+
+    def next_workflow(self):
+        self.workflow.next()
+
+    def prev_workflow(self):
+        self.workflow.prev()
+
+    def cancel_workflow(self):
+        self.workflow.cancel()
+
+    def reset_workflow(self):
+        self.workflow.reset()
+
+if __name__ == '__main__':
+    WorkflowApp().run()
