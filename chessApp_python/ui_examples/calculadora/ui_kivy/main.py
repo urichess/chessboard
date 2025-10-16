@@ -13,6 +13,8 @@ class CalculatorUI(BoxLayout):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.workflow = WorkflowManager()
+        from kivy.clock import Clock
+        Clock.schedule_once(lambda *_: print("Loaded ids:", self.ids), 0)
 
         # Subscribe to workflow events
         self.workflow.on("status", self._on_status)
