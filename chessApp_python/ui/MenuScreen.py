@@ -1,6 +1,7 @@
 import json
 import os
 from kivy.uix.screenmanager import Screen, ScreenManager
+from ui.ChessGameScreen import ChessGameScreen
 
 CONFIG_FILE = "config.json"
 
@@ -32,4 +33,17 @@ class MenuScreen(Screen):
 
         print(f"Starting game with token: {lichess_token} and serial port: {serial_port}")
         # TODO: Add your game-starting logic here
+
+        # Switch to the ChessGameScreen screen and pass the values
+        if not self.manager:
+            print("No ScreenManager available to switch screens.")
+            return
+
+        if not self.manager.has_screen("chess"):
+            self.manager.add_widget(ChessGameScreen(name="chess"))
+
+        chess_screen = self.manager.get_screen("chess")
+        chess_screen.lichess_token = lichess_token
+        chess_screen.serial_port = serial_port
+        self.manager.current = "chess"
 
