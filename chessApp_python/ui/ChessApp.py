@@ -1,5 +1,6 @@
 from kivy.app import App
-from ui.chessui import ChessUI
+from ui.MenuScreen import MenuScreen
+from kivy.uix.screenmanager import Screen, ScreenManager
 
 import argparse
 import sys
@@ -10,7 +11,9 @@ import requests
 
 class ChessApp(App):
     def build(self):
-        return ChessUI()
+        sm = ScreenManager()
+        sm.add_widget(MenuScreen(name="menu"))
+        return sm
 
 
 if __name__ == "__main__":

@@ -1,19 +1,32 @@
 #:kivy 1.0.9
 
-<ChessUI>:    
-    canvas:
-        Rectangle:
-            pos: self.center_x - 5, 0
-            size: 10, self.height
-            
-    Label:
-        font_size: 70  
-        center_x: root.width / 4
-        top: root.top - 50
-        text: "0"
-        
-    Label:
-        font_size: 70  
-        center_x: root.width * 3 / 4
-        top: root.top - 50
-        text: "0"
+<MenuScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        padding: 20
+        spacing: 15
+
+        Label:
+            text: "Lichess Game Setup"
+            font_size: '24sp'
+            size_hint_y: 0.2
+
+        TextInput:
+            id: token_input
+            hint_text: "Enter Lichess Token"
+            multiline: False
+            size_hint_y: 0.2
+
+        TextInput:
+            id: serial_input
+            hint_text: "Enter Serial Port (e.g., COM3 or /dev/ttyUSB0)"
+            multiline: False
+            size_hint_y: 0.2
+
+        Button:
+            text: "Start Game"
+            size_hint_y: 0.2
+            background_color: 0.1, 0.6, 0.3, 1
+            on_press:
+                root.start_game()
+
