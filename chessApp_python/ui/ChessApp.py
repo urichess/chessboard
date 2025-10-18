@@ -7,9 +7,11 @@ from lib.workflow_manager import WorkflowManager
 class ChessApp(App):
     def build(self):
         sm = ScreenManager()
-        sm.add_widget(MenuScreen(name="menu"))
+        menu = MenuScreen(name="menu")
+        sm.add_widget(menu)
         sm.add_widget(ChessGameScreen(name="game"))
         self.workflow = WorkflowManager(sm)
+        self.workflow.bind_menu_events(menu)
         return sm
 
 

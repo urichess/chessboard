@@ -7,6 +7,13 @@ from ui.ChessGameScreen import ChessGameScreen
 CONFIG_FILE = "config.json"
 
 class MenuScreen(Screen):
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.register_event_type('on_start_game')
+
+    def on_start_game(self, lichess_token, serial_port):
+        pass  # To be bound by the workflow manager or App
+
     def on_pre_enter(self):
         """Load saved values when screen opens."""
         if os.path.exists(CONFIG_FILE):
@@ -33,15 +40,6 @@ class MenuScreen(Screen):
             json.dump(data, f)
 
         print(f"Starting game with token: {lichess_token} and serial port: {serial_port}")
-        # Use workflow manager to switch to game screen
-        app = App.get_running_app()
-        if hasattr(app, 'workflow'):
-            # Set up game screen values before switching
-            game_screen = app.root.get_screen("game")
-            game_screen.lichess_token = lichess_token
-            game_screen.serial_port = serial_port
-            # Optionally set player/opponent names here
-            app.workflow.go_to("game")
-        else:
-            print("Workflow manager not found!")
+        # Dispatch event instead of direct workflow call
+        self.dispatch('on_start_game', lichess_token, serial_port)
 

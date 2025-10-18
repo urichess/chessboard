@@ -14,3 +14,13 @@ class WorkflowManager:
             self.sm.transition = SlideTransition(direction='left')
             self.sm.current = "game"
         # Add more states/screens as needed
+
+    def bind_menu_events(self, menu_screen):
+        menu_screen.bind(on_start_game=self.on_start_game)
+
+    def on_start_game(self, instance, lichess_token, serial_port):
+        # Set up game screen values before switching
+        game_screen = self.sm.get_screen("game")
+        game_screen.lichess_token = lichess_token
+        game_screen.serial_port = serial_port
+        self.go_to("game")
