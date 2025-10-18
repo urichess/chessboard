@@ -1,31 +1,32 @@
 from kivy.app import App
 from ui.MenuScreen import MenuScreen
-from kivy.uix.screenmanager import Screen, ScreenManager
+from ui.ChessGameScreen import ChessGameScreen
+from kivy.uix.screenmanager import ScreenManager, SlideTransition
 
-import argparse
-import sys
-import requests
-#from lib.LichessConnector import LichessConnector
-#from lib.BoardSerial import BoardSerial
+class WorkflowManager:
+    def __init__(self, screen_manager):
+        self.sm = screen_manager
+        self.state = "menu"
 
+    def go_to(self, state):
+        self.state = state
+        if state == "menu":
+            self.sm.transition = SlideTransition(direction='right')
+            self.sm.current = "menu"
+        elif state == "game":
+            self.sm.transition = SlideTransition(direction='left')
+            self.sm.current = "game"
+        # Add more states/screens as needed
 
 class ChessApp(App):
     def build(self):
         sm = ScreenManager()
         sm.add_widget(MenuScreen(name="menu"))
+        sm.add_widget(ChessGameScreen(name="game"))
+        self.workflow = WorkflowManager(sm)
         return sm
 
 
 if __name__ == "__main__":
-    #parser = argparse.ArgumentParser(description="Run the ChessApp with a Lichess token.")
-    #parser.add_argument('--token', required=True, help='Your Lichess API token')
-    #parser.add_argument('--serial', required=False, help='Serial to reach serialboard')
-    #args = parser.parse_args()
-
-    #serialToUse = args.serial if args.serial else SERIAL_PORT
-
-#    app = ChessApp(args.token, serialToUse)
-#    app.run()
-
     ChessApp().run()
 
