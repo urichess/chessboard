@@ -1,5 +1,6 @@
 from kivy.uix.screenmanager import Screen
 from kivy.properties import StringProperty, NumericProperty
+from kivy.clock import Clock
 
 class ChessGameScreen(Screen):
     """A simple screen shown when a game starts.
@@ -8,25 +9,44 @@ class ChessGameScreen(Screen):
     initialization code can access them.
     """
 
-    lichess_token = StringProperty("")
-    serial_port = StringProperty("")
+    white_name = StringProperty("???")
+    black_name = StringProperty("???")
+    white_time = StringProperty("05:00")
+    black_time = StringProperty("05:00")
+    white_last_move = StringProperty("-")
+    black_last_move = StringProperty("-")
 
-    player_name = StringProperty("Player")
-    opponent_name = StringProperty("Opponent")
-    player_time = StringProperty("05:00")
-    opponent_time = StringProperty("05:00")
-    player_increment = NumericProperty(3)
-    opponent_increment = NumericProperty(3)
-    player_last_move = StringProperty("-")
-    opponent_last_move = StringProperty("-")
+    active_player = StringProperty("white")  # 'white' or 'black'
 
-    active_player = StringProperty("player")  # 'player' or 'opponent'
+    _timer_event = None
 
     def on_pre_enter(self):
         """Called before the screen is shown. Prints received values for now."""
-        print(f"ChessGameScreen: starting with token={self.lichess_token!r}, serial={self.serial_port!r}")
-        # TODO: initialize game, connectors, board serial, etc.
+        # Start the timer when the screen is shown
+        self._timer_event = Clock.schedule_interval(self._decrement_time, 1)
 
     def on_leave(self):
         """Optional cleanup when leaving the game screen."""
+        # Stop the timer when leaving the screen
+        if self._timer_event:
+            self._timer_event.cancel()
         print("Leaving ChessGameScreen")
+
+    def _decrement_time(self, dt):
+        """Decrement the active player's time by 1 second."""
+        if self.active_player == "white":
+            self.white_time = self._decrement_time_str(self.white_time)
+        elif self.active_player == "black":
+            self.black_time = self._decrement_time_str(self.black_time)
+
+    def _decrement_time_str(self, time_str):
+        """Convert 'mm:ss' to seconds, decrement, and format back."""
+        try:
+            minutes, seconds = map(int, time_str.split(":"))
+            total_seconds = minutes * 60 + seconds
+            total_seconds = max(0, total_seconds - 1)
+            new_minutes = total_seconds // 60
+            new_seconds = total_seconds % 60
+            return f"{new_minutes:02d}:{new_seconds:02d}"
+        except Exception:
+            return time_str

@@ -36,79 +36,67 @@
         padding: 20
         spacing: 15
 
-        # Opponent section (left)
+        # White section (left)
         BoxLayout:
             orientation: 'vertical'
             size_hint_x: 0.48
             spacing: 8
             canvas.before:
                 Color:
-                    rgba: (0.75, 0.82, 1, 1) if root.active_player == 'opponent' else (0.93, 0.93, 0.93, 1)
+                    rgba: (1, 1, 1, 1) if root.active_player == 'white' else (0.93, 0.93, 0.93, 1)
                 Rectangle:
                     pos: self.pos
                     size: self.size
             Label:
-                text: root.opponent_name
+                text: 'White: {}'.format(root.white_name)
                 font_size: '22sp'
                 bold: True
-                color: (0.13, 0.22, 0.5, 1) if root.active_player == 'opponent' else (0.3, 0.3, 0.3, 1)
+                color: (0.1, 0.1, 0.1, 1) if root.active_player == 'white' else (0.5, 0.5, 0.5, 1)
                 size_hint_y: 0.2
             Label:
-                id: opponent_time
-                text: root.opponent_time
+                id: white_time
+                text: root.white_time if hasattr(root, 'white_time') else '05:00'
                 font_size: '36sp'
-                color: (0.8,0.1,0.1,1) if root.active_player == 'opponent' else (0.4,0.4,0.4,1)
+                color: (0.1,0.1,0.1,1) if root.active_player == 'white' else (0.4,0.4,0.4,1)
                 size_hint_y: 0.35
             Label:
-                id: opponent_increment
-                text: '+{}'.format(root.opponent_increment)
-                font_size: '18sp'
-                color: (0.4,0.4,0.7,1) if root.active_player == 'opponent' else (0.6,0.6,0.6,1)
-                size_hint_y: 0.15
-            Label:
-                id: opponent_last_move
-                text: 'Last move: {}'.format(root.opponent_last_move)
-                font_size: '18sp'
-                color: (0.13, 0.22, 0.5, 1) if root.active_player == 'opponent' else (0.5,0.5,0.5,1)
+                id: white_last_move
+                text: 'Moved: {}'.format(root.white_last_move) if hasattr(root, 'white_last_move') else 'Last move: -'
+                font_size: '42sp'
+                color: (0.1, 0.1, 0.1, 1) if root.active_player == 'white' else (0.5,0.5,0.5,1)
                 size_hint_y: 0.2
 
         # Divider
         Widget:
             size_hint_x: 0.04
 
-        # Player section (right)
+        # Black section (right)
         BoxLayout:
             orientation: 'vertical'
             size_hint_x: 0.48
             spacing: 8
             canvas.before:
                 Color:
-                    rgba: (0.78, 1, 0.78, 1) if root.active_player == 'player' else (0.93, 0.93, 0.93, 1)
+                    rgba: (0.15, 0.15, 0.15, 1) if root.active_player == 'black' else (0.3, 0.3, 0.3, 1)
                 Rectangle:
                     pos: self.pos
                     size: self.size
             Label:
-                text: root.player_name
+                text: 'Black: {}'.format(root.black_name)
                 font_size: '22sp'
                 bold: True
-                color: (0.1, 0.5, 0.1, 1) if root.active_player == 'player' else (0.3, 0.3, 0.3, 1)
+                color: (1, 1, 1, 1) if root.active_player == 'black' else (0.7, 0.7, 0.7, 1)
                 size_hint_y: 0.2
             Label:
-                id: player_time
-                text: root.player_time
+                id: black_time
+                text: root.black_time if hasattr(root, 'black_time') else '05:00'
                 font_size: '36sp'
-                color: (0.1,0.5,0.1,1) if root.active_player == 'player' else (0.4,0.4,0.4,1)
+                color: (1,1,1,1) if root.active_player == 'black' else (0.7,0.7,0.7,1)
                 size_hint_y: 0.35
             Label:
-                id: player_increment
-                text: '+{}'.format(root.player_increment)
-                font_size: '18sp'
-                color: (0.2,0.5,0.2,1) if root.active_player == 'player' else (0.6,0.6,0.6,1)
-                size_hint_y: 0.15
-            Label:
-                id: player_last_move
-                text: 'Last move: {}'.format(root.player_last_move)
-                font_size: '18sp'
-                color: (0.1, 0.5, 0.1, 1) if root.active_player == 'player' else (0.5,0.5,0.5,1)
+                id: black_last_move
+                text: 'Moved: {}'.format(root.black_last_move) if hasattr(root, 'black_last_move') else 'Last move: -'
+                font_size: '42sp'
+                color: (1, 1, 1, 1) if root.active_player == 'black' else (0.7,0.7,0.7,1)
                 size_hint_y: 0.2
 
