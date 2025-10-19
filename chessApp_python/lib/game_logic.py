@@ -4,16 +4,13 @@ from lib.BoardSerial import BoardSerial
 SERIAL_BAUDRATE = 115200
 
 class GameLogic:
-    def __init__(self, lichess_token, serial_port):
-        self.board = BoardSerial(serial_port, SERIAL_BAUDRATE) 
-        self.lichess = LichessConnector(lichess_token)
-        #username = self.lichess.getUsername()    
-        
-        #self.game = self.lichess.findGame()
+    def __init__(self, lichess_token, serial_port, report_callback=None):
+        self.report_callback = report_callback
+        self.board = BoardSerial(serial_port, SERIAL_BAUDRATE)
+        self.lichess = LichessConnector(lichess_token, report_callback=report_callback)
     
     def play(self):
         game = self.lichess.findGame()
-        gameid = game.game_id
         
         currentBoard = game.waitMyTurn()
         while currentBoard is not None:
@@ -33,3 +30,4 @@ class GameLogic:
             game.sendMove(aMove)
                        
             currentBoard = game.waitMyTurn()
+            

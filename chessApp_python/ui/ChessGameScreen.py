@@ -1,6 +1,7 @@
 from kivy.uix.screenmanager import Screen
 from kivy.properties import StringProperty, NumericProperty
 from kivy.clock import Clock
+from lib.messages import GameState
 
 class ChessGameScreen(Screen):
     """A simple screen shown when a game starts.
@@ -50,3 +51,46 @@ class ChessGameScreen(Screen):
             return f"{new_minutes:02d}:{new_seconds:02d}"
         except Exception:
             return time_str
+
+    def refresh_state(self, state: GameState):
+        """
+        Update the game state based on the provided GameState object.
+        """
+        #if state.status:
+        #    print(f"Game status: {state.status.name}")
+
+        if state.wtime is not None:
+            if state.wtime == 2147483647:
+                self.white_time = "Unlimited"
+            else:
+                hours = state.wtime // 3600
+                minutes = (state.wtime % 3600) // 60
+                seconds = state.wtime % 60
+                if hours > 0:
+                    self.white_time = f"{hours:d}:{minutes:02d}:{seconds:02d}"
+                else:
+                    self.white_time = f"{minutes:02d}:{seconds:02d}"
+
+        if state.btime is not None:
+            if state.btime == 2147483647:
+                self.black_time = "Unlimited"
+            else:
+                hours = state.btime // 3600
+                minutes = (state.btime % 3600) // 60
+                seconds = state.btime % 60
+                if hours > 0:
+                    self.black_time = f"{hours:d}:{minutes:02d}:{seconds:02d}"
+                else:
+                    self.black_time = f"{minutes:02d}:{seconds:02d}"
+
+
+        
+        if state.lastMove:
+            print(f"Last move: {state.lastMove} Turn: {state.turn}")
+
+            if state.turn == "black":
+                self.white_last_move = state.lastMove
+                self.black_last_move = ""
+            else:
+                self.white_last_move = ""
+                self.black_last_move = state.lastMove

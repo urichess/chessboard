@@ -1,0 +1,20 @@
+from dataclasses import dataclass
+from datetime import datetime
+from enum import Enum
+from typing import Optional
+
+class GameStatus(Enum):
+    STARTED = "started"
+    ABORTED = "aborted"
+    MATE = "mate"
+    RESIGN = "resign"
+    DRAW = "draw"
+
+@dataclass
+class GameState:
+    moves: str
+    wtime: float   # white time remaining in seconds
+    btime: float   # black time remaining in seconds
+    lastMove: str
+    turn: str
+    status: GameStatus
