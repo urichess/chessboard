@@ -29,10 +29,11 @@ class GameInfo:
     buser: str
     wrate: str
     brate: str
-
+    wremote: bool
+    bremote: bool
 
 
 @dataclass
-class GameSync:
+class BoardSync:
     aMove: str
-    turn: str # if local player's turn, move is being sent. If remote player turn, move is not yet synced to the board
+    color: str

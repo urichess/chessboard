@@ -65,7 +65,9 @@ class LichessConnector:
                                      wuser=event_start["game"]["opponent"]["username"] if event_start["game"]["color"] == "black" else connector.getAccountInfo()["username"],
                                      buser=event_start["game"]["opponent"]["username"] if event_start["game"]["color"] == "white" else connector.getAccountInfo()["username"],
                                      wrate=opponent_rating if event_start["game"]["color"] == "black" else connector.getAccountInfo()["perfs"][speed]["rating"], 
-                                     brate=opponent_rating if event_start["game"]["color"] == "white" else connector.getAccountInfo()["perfs"][speed]["rating"], )
+                                     brate=opponent_rating if event_start["game"]["color"] == "white" else connector.getAccountInfo()["perfs"][speed]["rating"],
+                                     bremote=(event_start["game"]["color"] == "white"), 
+                                     wremote=(event_start["game"]["color"] == "black") )
             
             self.initialPosition = event_start["game"]["fen"]
             self.current_board = chess.Board(self.initialPosition)

@@ -1,5 +1,6 @@
 from lib.LichessConnector import LichessConnector
 from lib.BoardSerial import BoardSerial
+from lib.messages import BoardSync
 
 SERIAL_BAUDRATE = 115200
 
@@ -22,11 +23,16 @@ class GameLogic:
                 last_move = previousBoard.pop()
                 san = previousBoard.san(last_move)
                 print(f"Opponent's move: \033[31m{san}\033[0m")
+
+                self.board.sync(currentBoard)
+
+                if self.report_callback:
+                    self.report_callback( BoardSync(aMove=san, color="white" if previousBoard.turn else "black") )
                 
             else:
-                print("You start.")
+                print("You start.")         
 
-            self.board.sync(currentBoard)
+                self.board.sync(currentBoard)
 
             previousBoard = currentBoard.copy(stack=True)
             aMove = self.board.getMove(currentBoard)

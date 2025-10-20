@@ -1,7 +1,7 @@
 from kivy.uix.screenmanager import Screen
 from kivy.properties import StringProperty, NumericProperty
 from kivy.clock import Clock
-from lib.messages import GameState
+from lib.messages import GameState, BoardSync
 
 class ChessGameScreen(Screen):
     """A simple screen shown when a game starts.
@@ -24,6 +24,9 @@ class ChessGameScreen(Screen):
 
     active_player = StringProperty("white")  # 'white' or 'black'
 
+    blackIsRemote = False
+    whiteIsRemote = False
+
     _timer_event = None
 
     def setGameInfo(self, gameInfo):
@@ -34,6 +37,8 @@ class ChessGameScreen(Screen):
         self.game_id = gameInfo.gameid
         self.white_rating = gameInfo.wrate
         self.black_rating = gameInfo.brate
+        self.blackIsRemote = gameInfo.bremote
+        self.whiteIsRemote = gameInfo.wremote
 
     def on_pre_enter(self):
         """Called before the screen is shown. Prints received values for now."""
@@ -76,44 +81,56 @@ class ChessGameScreen(Screen):
 
         obj = args[0] if args else kwargs if kwargs else None
 
-        if not isinstance(obj, GameState):
-            print("⚠️ No llegó GameState, llegó:", type(obj))
+        if isinstance(obj, BoardSync):
+            sync: BoardSync = obj
+
+            if sync.aMove:
+                if sync.color == "white":
+                    self.white_last_move = f"{sync.aMove}"
+                    self.black_last_move = "Your turn"
+                else:
+                    self.white_last_move = "Your turn"
+                    self.black_last_move = f"{sync.aMove}"
+
+        elif isinstance(obj, GameState):
+        
+            state: GameState = obj
+
+            if state.wtime is not None:
+                if state.wtime > 604800: # more than a week....
+                    self.white_time = "Unlimited"
+                else:
+                    hours = state.wtime // 3600
+                    minutes = (state.wtime % 3600) // 60
+                    seconds = state.wtime % 60
+                    if hours > 0:
+                        self.white_time = f"{hours:d}:{minutes:02d}:{seconds:02d}"
+                    else:
+                        self.white_time = f"{minutes:02d}:{seconds:02d}"
+
+            if state.btime is not None:
+                if state.btime > 604800: # more than a week....
+                    self.black_time = "Unlimited"
+                else:
+                    hours = state.btime // 3600
+                    minutes = (state.btime % 3600) // 60
+                    seconds = state.btime % 60
+                    if hours > 0:
+                        self.black_time = f"{hours:d}:{minutes:02d}:{seconds:02d}"
+                    else:
+                        self.black_time = f"{minutes:02d}:{seconds:02d}"
+
+
+            
+            if state.lastMove:
+                print(f"Last move: {state.lastMove} Turn: {state.turn}")
+
+                if state.turn == "black":
+                    self.white_last_move = f"{state.lastMove}"
+                    self.black_last_move = "Opponent moved" if self.whiteIsRemote else ""
+                else:
+                    self.white_last_move = "Opponent moved" if self.blackIsRemote else ""
+                    self.black_last_move = f"{state.lastMove}"
+        else:
+            print("Unknown object type:", type(obj))
             return
-        
-        state: GameState = obj
-
-        if state.wtime is not None:
-            if state.wtime > 604800: # more than a week....
-                self.white_time = "Unlimited"
-            else:
-                hours = state.wtime // 3600
-                minutes = (state.wtime % 3600) // 60
-                seconds = state.wtime % 60
-                if hours > 0:
-                    self.white_time = f"{hours:d}:{minutes:02d}:{seconds:02d}"
-                else:
-                    self.white_time = f"{minutes:02d}:{seconds:02d}"
-
-        if state.btime is not None:
-            if state.btime > 604800: # more than a week....
-                self.black_time = "Unlimited"
-            else:
-                hours = state.btime // 3600
-                minutes = (state.btime % 3600) // 60
-                seconds = state.btime % 60
-                if hours > 0:
-                    self.black_time = f"{hours:d}:{minutes:02d}:{seconds:02d}"
-                else:
-                    self.black_time = f"{minutes:02d}:{seconds:02d}"
-
-
-        
-        if state.lastMove:
-            print(f"Last move: {state.lastMove} Turn: {state.turn}")
-
-            if state.turn == "black":
-                self.white_last_move = state.lastMove
-                self.black_last_move = ""
-            else:
-                self.white_last_move = ""
-                self.black_last_move = state.lastMove
