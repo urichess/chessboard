@@ -127,9 +127,9 @@ class ChessGameScreen(Screen):
 
                 if state.turn == "black":
                     self.white_last_move = f"{state.lastMove}"
-                    self.black_last_move = "Opponent moved" if self.whiteIsRemote else ""
+                    self.black_last_move = "Opponent moved!!" if self.whiteIsRemote else ""
                 else:
-                    self.white_last_move = "Opponent moved" if self.blackIsRemote else ""
+                    self.white_last_move = "Opponent moved!!" if self.blackIsRemote else ""
                     self.black_last_move = f"{state.lastMove}"
         else:
             print("Unknown object type:", type(obj))
