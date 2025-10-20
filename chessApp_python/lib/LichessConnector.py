@@ -13,10 +13,12 @@ class LichessConnector:
         self.session = berserk.TokenSession(token)
         self.client = berserk.Client(session=self.session)
         # self.start_event_listener()
+        self.accountInfo = self.client.account.get()
 
-    def getUsername(self) -> str:
-        account_info = self.client.account.get()
-        return account_info["username"]
+        print("self.accountInfo:", self.accountInfo)
+
+    def getAccountInfo(self):
+        return self.accountInfo
 
     def createGame(self):
         pass
@@ -52,14 +54,19 @@ class LichessConnector:
             print(event_start)
             #{'type': 'gameStart', 'game': {'fullId': '9zQU8L09BUnp', 'gameId': '9zQU8L09', 'fen': 'r1bqkbnr/ppp2ppp/8/4Q3/2P5/4P3/PP1P2PP/RNB1KB1R b KQkq - 0 7', 'color': 'black', 'lastMove': 'h5e5', 'source': 'ai', 'status': {'id': 20, 'name': 'started'}, 'variant': {'key': 'standard', 'name': 'Standard'}, 'speed': 'correspondence', 'perf': 'correspondence', 'rated': False, 'hasMoved': True, 'opponent': {'id': None, 'username': 'Stockfish level 8', 'ai': 8}, 'isMyTurn': True, 'compat': {'bot': False, 'board': True}, 'id': '9zQU8L09'}}
 
+            speed = event_start["game"]["speed"] #if "speed" in event_start["game"] else "blitz"
+            if event_start["game"]["opponent"].get("rating") is None:
+                opponent_rating = "0"
+            else:
+                opponent_rating = event_start["game"]["opponent"]["rating"]
+
             self.gameInfo = GameInfo(gameid = event_start["game"]["id"], 
                                      initialPosition=event_start["game"]["fen"],
-                                     wuser=event_start["game"]["opponent"]["username"] if event_start["game"]["color"] == "black" else connector.getUsername(),
-                                     buser=event_start["game"]["opponent"]["username"] if event_start["game"]["color"] == "white" else connector.getUsername(),
-                                     wrate=0, 
-                                     brate=0)
+                                     wuser=event_start["game"]["opponent"]["username"] if event_start["game"]["color"] == "black" else connector.getAccountInfo()["username"],
+                                     buser=event_start["game"]["opponent"]["username"] if event_start["game"]["color"] == "white" else connector.getAccountInfo()["username"],
+                                     wrate=opponent_rating if event_start["game"]["color"] == "black" else connector.getAccountInfo()["perfs"][speed]["rating"], 
+                                     brate=opponent_rating if event_start["game"]["color"] == "white" else connector.getAccountInfo()["perfs"][speed]["rating"], )
             
-
             self.initialPosition = event_start["game"]["fen"]
             self.current_board = chess.Board(self.initialPosition)
             self.board_lock = threading.Lock()

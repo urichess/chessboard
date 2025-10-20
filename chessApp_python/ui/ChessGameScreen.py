@@ -16,6 +16,11 @@ class ChessGameScreen(Screen):
     black_time = StringProperty("05:00")
     white_last_move = StringProperty("-")
     black_last_move = StringProperty("-")
+    white_rating = NumericProperty(1500)
+    black_rating = NumericProperty(1500)
+
+    game_id = StringProperty("12345")
+    game_status = StringProperty("In Progress")
 
     active_player = StringProperty("white")  # 'white' or 'black'
 
@@ -26,6 +31,9 @@ class ChessGameScreen(Screen):
         self._gameInfo = gameInfo
         self.white_name = gameInfo.wuser
         self.black_name = gameInfo.buser
+        self.game_id = gameInfo.gameid
+        self.white_rating = gameInfo.wrate
+        self.black_rating = gameInfo.brate
 
     def on_pre_enter(self):
         """Called before the screen is shown. Prints received values for now."""
