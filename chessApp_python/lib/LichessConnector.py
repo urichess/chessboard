@@ -60,14 +60,15 @@ class LichessConnector:
             else:
                 opponent_rating = event_start["game"]["opponent"]["rating"]
 
+            self.realColor = "white" if event_start["game"]["color"] == "white" else "black"
             self.gameInfo = GameInfo(gameid = event_start["game"]["id"], 
                                      initialPosition=event_start["game"]["fen"],
                                      wuser=event_start["game"]["opponent"]["username"] if event_start["game"]["color"] == "black" else connector.getAccountInfo()["username"],
                                      buser=event_start["game"]["opponent"]["username"] if event_start["game"]["color"] == "white" else connector.getAccountInfo()["username"],
                                      wrate=opponent_rating if event_start["game"]["color"] == "black" else connector.getAccountInfo()["perfs"][speed]["rating"], 
                                      brate=opponent_rating if event_start["game"]["color"] == "white" else connector.getAccountInfo()["perfs"][speed]["rating"],
-                                     bremote=(event_start["game"]["color"] == "white"), 
-                                     wremote=(event_start["game"]["color"] == "black") )
+                                     bremote=True if self.realColor == "white" else False, 
+                                     wremote=True if self.realColor == "black" else False )
             
             self.initialPosition = event_start["game"]["fen"]
             self.current_board = chess.Board(self.initialPosition)
@@ -93,6 +94,8 @@ class LichessConnector:
             self.thread = threading.Thread(target=self._monitor_game, daemon=True)
             self.start()
             time.sleep(0.5)
+
+            
 
         def start(self):
             #print(f"[LichessGame] Starting game state monitor for game {self.game_id}")
@@ -179,13 +182,20 @@ class LichessConnector:
                 for move in moves:
                     board.push_uci(move)
 
+                currentTurn = "white" if board.turn == chess.WHITE else "black"
+                
                 lMove = board.pop()
                 sanMove = board.san(lMove)
 
-                if self.myColor == chess.WHITE:
-                    currentTurn="white" if board.turn else "black"
-                else:
-                    currentTurn="white" if not board.turn else "black"
+                #if self.realColor == "white" and
+
+
+                
+
+                #if self.myColor == chess.WHITE:
+                #    currentTurn="white" if board.turn else "black"
+                #else:
+                #    currentTurn="white" if not board.turn else "black"
 
                 self.report_callback(GameState(moves=game_state.get('moves', '').split(),
                                             wtime=to_seconds(game_state['wtime']),

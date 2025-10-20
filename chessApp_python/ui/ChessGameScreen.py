@@ -19,6 +19,9 @@ class ChessGameScreen(Screen):
     white_rating = NumericProperty(1500)
     black_rating = NumericProperty(1500)
 
+    white_time_seconds = NumericProperty(10000)
+    black_time_seconds = NumericProperty(10000)
+
     game_id = StringProperty("12345")
     game_status = StringProperty("In Progress")
 
@@ -55,22 +58,40 @@ class ChessGameScreen(Screen):
     def _decrement_time(self, dt):
         """Decrement the active player's time by 1 second."""
         if self.active_player == "white":
-            self.white_time = self._decrement_time_str(self.white_time)
+            if self.white_time != "Unlimited":
+                self.white_time_seconds = (self.white_time_seconds-1) if self.white_time_seconds > 0 else 0
+                self.white_time = self._seconds_to_time_str( self.white_time_seconds)
         elif self.active_player == "black":
-            self.black_time = self._decrement_time_str(self.black_time)
+            if self.black_time != "Unlimited":
+                self.black_time_seconds = (self.black_time_seconds-1) if self.black_time_seconds > 0 else 0
+                self.black_time = self._seconds_to_time_str( self.black_time_seconds)
 
-    def _decrement_time_str(self, time_str):
-        """Convert 'mm:ss' to seconds, decrement, and format back."""
+    def _time_str_to_seconds(self, time_str):
+        """Convert 'hh:mm:ss' to total seconds."""
         try:
-            minutes, seconds = map(int, time_str.split(":"))
-            total_seconds = minutes * 60 + seconds
-            total_seconds = max(0, total_seconds - 1)
-            new_minutes = total_seconds // 60
-            new_seconds = total_seconds % 60
-            return f"{new_minutes:02d}:{new_seconds:02d}"
+            parts = list(map(int, time_str.split(":")))
+            if len(parts) == 3:
+                hours, minutes, seconds = parts
+            elif len(parts) == 2:
+                hours = 0
+                minutes, seconds = parts
+            else:
+                return 0
+            return hours * 3600 + minutes * 60 + seconds
         except Exception:
-            return time_str
+            return 0
+        
+    def _seconds_to_time_str(self, total_seconds):
+        """Convert total seconds to 'hh:mm:ss' format."""
+        hours = total_seconds // 3600
+        minutes = (total_seconds % 3600) // 60
+        seconds = total_seconds % 60
+        if hours > 0:
+            return f"{hours:d}:{minutes:02d}:{seconds:02d}"
+        else:
+            return f"{minutes:02d}:{seconds:02d}"
 
+           
 
     def refresh_state(self, *args, **kwargs):
         """
@@ -97,40 +118,34 @@ class ChessGameScreen(Screen):
             state: GameState = obj
 
             if state.wtime is not None:
+                self.white_time_seconds = state.wtime
                 if state.wtime > 604800: # more than a week....
                     self.white_time = "Unlimited"
                 else:
-                    hours = state.wtime // 3600
-                    minutes = (state.wtime % 3600) // 60
-                    seconds = state.wtime % 60
-                    if hours > 0:
-                        self.white_time = f"{hours:d}:{minutes:02d}:{seconds:02d}"
-                    else:
-                        self.white_time = f"{minutes:02d}:{seconds:02d}"
+                    self.white_time = self._seconds_to_time_str(self.white_time_seconds)
 
             if state.btime is not None:
+                self.black_time_seconds = state.btime
                 if state.btime > 604800: # more than a week....
                     self.black_time = "Unlimited"
                 else:
-                    hours = state.btime // 3600
-                    minutes = (state.btime % 3600) // 60
-                    seconds = state.btime % 60
-                    if hours > 0:
-                        self.black_time = f"{hours:d}:{minutes:02d}:{seconds:02d}"
-                    else:
-                        self.black_time = f"{minutes:02d}:{seconds:02d}"
-
+                    self.black_time = self._seconds_to_time_str(self.black_time_seconds)
+                    
 
             
             if state.lastMove:
                 print(f"Last move: {state.lastMove} Turn: {state.turn}")
 
-                if state.turn == "black":
-                    self.white_last_move = f"{state.lastMove}"
-                    self.black_last_move = "Opponent moved!!" if self.whiteIsRemote else ""
-                else:
-                    self.white_last_move = "Opponent moved!!" if self.blackIsRemote else ""
+                if state.turn == "white":
+                    self.white_last_move = "" if self.whiteIsRemote else "Opponent moved!!"
                     self.black_last_move = f"{state.lastMove}"
+                    
+                else:
+                    self.white_last_move = f"{state.lastMove}"
+                    self.black_last_move = "" if self.blackIsRemote else "Opponent moved!!"
+
+                self.active_player = state.turn
+                    
         else:
             print("Unknown object type:", type(obj))
             return

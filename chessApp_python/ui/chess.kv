@@ -64,12 +64,12 @@
                 padding: 10
                 canvas.before:
                     Color:
-                        rgba: (0.85, 0.85, 0.85, 1) if root.active_player == 'white' else (0.65, 0.65, 0.65, 1)
+                        rgba: (0.85, 0.85, 0.85, 1)
                     Rectangle:
                         pos: self.pos
                         size: self.size
                     Color:
-                        rgba: (1, 1, 1, 0.2) if root.active_player == 'white' else (0, 0, 0, 0)
+                        rgba: (1, 1, 1, 0.2)
                     RoundedRectangle:
                         pos: self.pos
                         size: self.size
@@ -79,14 +79,14 @@
                     text: "{} ({} Elo)".format(root.white_name, root.white_rating if hasattr(root, 'white_rating') else '?')
                     font_size: '22sp'
                     bold: True
-                    color: (0.1, 0.1, 0.1, 1) if root.active_player == 'white' else (0.4, 0.4, 0.4, 1)
+                    color: (0.1, 0.1, 0.1, 1)
                     size_hint_y: 0.2
 
                 Label:
                     id: white_time
                     text: root.white_time if hasattr(root, 'white_time') else '05:00'
                     font_size: '36sp'
-                    color: (0.1,0.1,0.1,1) if root.active_player == 'white' else (0.4,0.4,0.4,1)
+                    color: (1,0,0,1) if root.white_time_seconds <= 30 else (0.1,0.1,0.1,1) if root.white_time_seconds < 604800 else (1,1,1,1)
                     size_hint_y: 0.35
 
                 Label:
@@ -94,7 +94,7 @@
                     text: '{}'.format(root.white_last_move if hasattr(root, 'white_last_move') else '-')
                     font_size: '20sp'
                     italic: True
-                    color: (0.2, 0.2, 0.2, 1) if root.active_player == 'white' else (0.5,0.5,0.5,1)
+                    color: (0.2, 0.2, 0.2, 1)
                     size_hint_y: 0.2
 
             # Divider
@@ -109,12 +109,12 @@
                 padding: 10
                 canvas.before:
                     Color:
-                        rgba: (0.35, 0.35, 0.35, 1) if root.active_player == 'black' else (0.25, 0.25, 0.25, 1)
+                        rgba: (0.35, 0.35, 0.35, 1)
                     Rectangle:
                         pos: self.pos
                         size: self.size
                     Color:
-                        rgba: (1, 1, 1, 0.2) if root.active_player == 'black' else (0, 0, 0, 0)
+                        rgba: (1, 1, 1, 0.2)
                     RoundedRectangle:
                         pos: self.pos
                         size: self.size
@@ -124,14 +124,14 @@
                     text: "{} ({} Elo)".format(root.black_name, root.black_rating if hasattr(root, 'black_rating') else '?')
                     font_size: '22sp'
                     bold: True
-                    color: (1, 1, 1, 1) if root.active_player == 'black' else (0.7, 0.7, 0.7, 1)
+                    color: (1, 1, 1, 1)
                     size_hint_y: 0.2
 
                 Label:
                     id: black_time
                     text: root.black_time if hasattr(root, 'black_time') else '05:00'
                     font_size: '36sp'
-                    color: (1,1,1,1) if root.active_player == 'black' else (0.7,0.7,0.7,1)
+                    color: (1,0,0,1) if root.black_time_seconds <= 30 else (0.1,0.1,0.1,1) if root.black_time_seconds < 604800 else (1,1,1,1)
                     size_hint_y: 0.35
 
                 Label:
@@ -139,5 +139,5 @@
                     text: '{}'.format(root.black_last_move if hasattr(root, 'black_last_move') else '-')
                     font_size: '20sp'
                     italic: True
-                    color: (1, 1, 1, 1) if root.active_player == 'black' else (0.7,0.7,0.7,1)
+                    color: (1, 1, 1, 1)
                     size_hint_y: 0.2
