@@ -86,7 +86,7 @@
                     id: white_time
                     text: root.white_time if hasattr(root, 'white_time') else '05:00'
                     font_size: '36sp'
-                    color: (1,0,0,1) if root.white_time_seconds <= 30 else (0.1,0.1,0.1,1) #if root.white_time_seconds < 604800 else (0.2,0.2,0.2,1)
+                    color: (1,0,0,1) if root.white_time_seconds <= 30 else (0,0.5,0,1) if root.white_time_seconds < 604800 else (0.2,0.2,0.2,1)
                     size_hint_y: 0.35
 
                 Label:
@@ -131,7 +131,7 @@
                     id: black_time
                     text: root.black_time if hasattr(root, 'black_time') else '05:00'
                     font_size: '36sp'
-                    color: (1,0,0,1) if root.black_time_seconds <= 30 else (0.1,0.1,0.1,1) if root.black_time_seconds < 604800 else (1,1,1,1)
+                    color: (1,0,0,1) if root.black_time_seconds <= 30 else (0,0.5,0,1) if root.black_time_seconds < 604800 else (1,1,1,1)
                     size_hint_y: 0.35
 
                 Label:
