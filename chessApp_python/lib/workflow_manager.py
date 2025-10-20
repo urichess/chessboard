@@ -25,9 +25,7 @@ class WorkflowManager:
         menu_screen.bind(on_start_game=self.on_start_game)
 
     def on_start_game(self, instance, lichess_token, serial_port):
-        # Set up game screen values before switching
-        game_screen = self.sm.get_screen("game") 
-        self.go_to("game")
+
 
         # Pass the reporting callback to GameLogic
         self.game_logic = GameLogic(
@@ -38,8 +36,16 @@ class WorkflowManager:
             )
         )
 
-        # Start game loop in a background thread
-        threading.Thread(target=self.game_logic.play, args=(), daemon=True).start()
+        gameInfo = self.game_logic.findGame()
+
+        if gameInfo:
+            # Set up game screen values before switching
+            game_screen = self.sm.get_screen("game") 
+            game_screen.setGameInfo(gameInfo)
+            self.go_to("game")
+
+            # Start game loop in a background thread
+            threading.Thread(target=self.game_logic.play, args=(), daemon=True).start()
 
     def reportGameData(self, *args, **kwargs):
         game_screen = self.sm.get_screen("game")

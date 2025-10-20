@@ -8,11 +8,14 @@ class GameLogic:
         self.report_callback = report_callback
         self.board = BoardSerial(serial_port, SERIAL_BAUDRATE)
         self.lichess = LichessConnector(lichess_token, report_callback=report_callback)
+        self.game = None
+
+    def findGame(self):
+        self.game = self.lichess.findGame()
+        return self.getGameInfo()
     
-    def play(self):
-        game = self.lichess.findGame()
-        
-        currentBoard = game.waitMyTurn()
+    def play(self):        
+        currentBoard = self.game.waitMyTurn()
         while currentBoard is not None:
             if currentBoard.move_stack:
                 previousBoard = currentBoard.copy(stack=True)
@@ -27,7 +30,12 @@ class GameLogic:
 
             previousBoard = currentBoard.copy(stack=True)
             aMove = self.board.getMove(currentBoard)
-            game.sendMove(aMove)
+            self.game.sendMove(aMove)
                        
-            currentBoard = game.waitMyTurn()
+            currentBoard = self.game.waitMyTurn()
+        
+        self.game = None
+
+    def getGameInfo(self):
+        return self.game.getGameInfo() if self.game else None
             

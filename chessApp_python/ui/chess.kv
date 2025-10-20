@@ -48,7 +48,7 @@
                     pos: self.pos
                     size: self.size
             Label:
-                text: 'White: {}'.format(root.white_name)
+                text: '{}'.format(root.white_name)
                 font_size: '22sp'
                 bold: True
                 color: (0.1, 0.1, 0.1, 1) if root.active_player == 'white' else (0.5, 0.5, 0.5, 1)
@@ -82,7 +82,7 @@
                     pos: self.pos
                     size: self.size
             Label:
-                text: 'Black: {}'.format(root.black_name)
+                text: '{}'.format(root.black_name)
                 font_size: '22sp'
                 bold: True
                 color: (1, 1, 1, 1) if root.active_player == 'black' else (0.7, 0.7, 0.7, 1)

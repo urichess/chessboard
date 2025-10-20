@@ -4,7 +4,7 @@ import berserk
 from berserk.exceptions import ResponseError
 import chess
 from datetime import datetime, timezone
-from lib.messages import GameState, GameStatus
+from lib.messages import GameState, GameStatus, GameInfo
 
 class LichessConnector:
     def __init__(self, token, report_callback=None):
@@ -52,6 +52,13 @@ class LichessConnector:
             print(event_start)
             #{'type': 'gameStart', 'game': {'fullId': '9zQU8L09BUnp', 'gameId': '9zQU8L09', 'fen': 'r1bqkbnr/ppp2ppp/8/4Q3/2P5/4P3/PP1P2PP/RNB1KB1R b KQkq - 0 7', 'color': 'black', 'lastMove': 'h5e5', 'source': 'ai', 'status': {'id': 20, 'name': 'started'}, 'variant': {'key': 'standard', 'name': 'Standard'}, 'speed': 'correspondence', 'perf': 'correspondence', 'rated': False, 'hasMoved': True, 'opponent': {'id': None, 'username': 'Stockfish level 8', 'ai': 8}, 'isMyTurn': True, 'compat': {'bot': False, 'board': True}, 'id': '9zQU8L09'}}
 
+            self.gameInfo = GameInfo(gameid = event_start["game"]["id"], 
+                                     initialPosition=event_start["game"]["fen"],
+                                     wuser=event_start["game"]["opponent"]["username"] if event_start["game"]["color"] == "black" else connector.getUsername(),
+                                     buser=event_start["game"]["opponent"]["username"] if event_start["game"]["color"] == "white" else connector.getUsername(),
+                                     wrate=0, 
+                                     brate=0)
+            
 
             self.initialPosition = event_start["game"]["fen"]
             self.current_board = chess.Board(self.initialPosition)
@@ -73,7 +80,6 @@ class LichessConnector:
 
             self.finished = False
 
-
             self.game_id = event_start["game"]["id"]
             self.thread = threading.Thread(target=self._monitor_game, daemon=True)
             self.start()
@@ -86,6 +92,9 @@ class LichessConnector:
 
         def finished(self):
             return self.finished
+        
+        def getGameInfo(self) -> GameInfo:
+            return self.gameInfo 
 
 
         def waitMyTurn(self) -> chess.Board:

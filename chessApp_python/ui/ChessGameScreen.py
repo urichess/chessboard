@@ -21,6 +21,12 @@ class ChessGameScreen(Screen):
 
     _timer_event = None
 
+    def setGameInfo(self, gameInfo):
+        """Set initial game information from the workflow manager."""
+        self._gameInfo = gameInfo
+        self.white_name = gameInfo.wuser
+        self.black_name = gameInfo.buser
+
     def on_pre_enter(self):
         """Called before the screen is shown. Prints received values for now."""
         # Start the timer when the screen is shown
@@ -69,7 +75,7 @@ class ChessGameScreen(Screen):
         state: GameState = obj
 
         if state.wtime is not None:
-            if state.wtime == 2147483647:
+            if state.wtime > 604800: # more than a week....
                 self.white_time = "Unlimited"
             else:
                 hours = state.wtime // 3600
@@ -81,7 +87,7 @@ class ChessGameScreen(Screen):
                     self.white_time = f"{minutes:02d}:{seconds:02d}"
 
         if state.btime is not None:
-            if state.btime == 2147483647:
+            if state.btime > 604800: # more than a week....
                 self.black_time = "Unlimited"
             else:
                 hours = state.btime // 3600

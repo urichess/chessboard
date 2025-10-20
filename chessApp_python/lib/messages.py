@@ -20,7 +20,19 @@ class GameState:
     status: GameStatus
 
 
+
+@dataclass
+class GameInfo:
+    gameid: str
+    initialPosition: str
+    wuser: str
+    buser: str
+    wrate: str
+    brate: str
+
+
+
 @dataclass
 class GameSync:
     aMove: str
-    turn: str
+    turn: str # if local player's turn, move is being sent. If remote player turn, move is not yet synced to the board
