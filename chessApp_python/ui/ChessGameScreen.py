@@ -52,12 +52,21 @@ class ChessGameScreen(Screen):
         except Exception:
             return time_str
 
-    def refresh_state(self, state: GameState):
+
+    def refresh_state(self, *args, **kwargs):
         """
         Update the game state based on the provided GameState object.
         """
         #if state.status:
         #    print(f"Game status: {state.status.name}")
+
+        obj = args[0] if args else kwargs if kwargs else None
+
+        if not isinstance(obj, GameState):
+            print("⚠️ No llegó GameState, llegó:", type(obj))
+            return
+        
+        state: GameState = obj
 
         if state.wtime is not None:
             if state.wtime == 2147483647:

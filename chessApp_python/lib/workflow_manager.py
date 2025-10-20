@@ -30,12 +30,6 @@ class WorkflowManager:
         self.go_to("game")
 
         # Pass the reporting callback to GameLogic
-        #self.game_logic = GameLogic(
-        #    lichess_token,
-        #    serial_port,
-        #    report_callback=lambda **kwargs: Clock.schedule_once(lambda dt: self.reportGameData(**kwargs))
-        #)
-
         self.game_logic = GameLogic(
             lichess_token,
             serial_port,
@@ -47,6 +41,6 @@ class WorkflowManager:
         # Start game loop in a background thread
         threading.Thread(target=self.game_logic.play, args=(), daemon=True).start()
 
-    def reportGameData(self, message: GameState):
+    def reportGameData(self, *args, **kwargs):
         game_screen = self.sm.get_screen("game")
-        game_screen.refresh_state( message )
+        game_screen.refresh_state( *args, **kwargs )

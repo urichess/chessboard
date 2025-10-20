@@ -18,3 +18,9 @@ class GameState:
     lastMove: str
     turn: str
     status: GameStatus
+
+
+@dataclass
+class GameSync:
+    aMove: str
+    turn: str
