@@ -1,5 +1,5 @@
 from kivy.uix.screenmanager import Screen
-from kivy.properties import StringProperty, NumericProperty
+from kivy.properties import StringProperty, NumericProperty, BooleanProperty
 from kivy.clock import Clock
 from lib.messages import GameState, BoardSync
 
@@ -26,6 +26,12 @@ class ChessGameScreen(Screen):
     game_status = StringProperty("In Progress")
 
     active_player = StringProperty("white")  # 'white' or 'black'
+
+    white_last_move_color = (0.2, 0.2, 0.2, 1)
+    black_last_move_color = (1,1,1,1)
+
+    white_last_move_red = BooleanProperty(False)
+    black_last_move_red = BooleanProperty(False)
 
     blackIsRemote = False
     whiteIsRemote = False
@@ -106,11 +112,13 @@ class ChessGameScreen(Screen):
             sync: BoardSync = obj
 
             if sync.aMove:
+                self.black_last_move_red = False
+                self.white_last_move_red = False
                 if sync.color == "white":
                     self.white_last_move = f"{sync.aMove}"
-                    self.black_last_move = "Your turn"
+                    self.black_last_move = ""
                 else:
-                    self.white_last_move = "Your turn"
+                    self.white_last_move = ""
                     self.black_last_move = f"{sync.aMove}"
 
         elif isinstance(obj, GameState):
@@ -137,12 +145,16 @@ class ChessGameScreen(Screen):
                 print(f"Last move: {state.lastMove} Turn: {state.turn}")
 
                 if state.turn == "white":
-                    self.white_last_move = "" if self.whiteIsRemote else "Opponent moved!!"
+                    self.white_last_move = ""
                     self.black_last_move = f"{state.lastMove}"
+                    if self.blackIsRemote:
+                        self.black_last_move_red = True
                     
                 else:
                     self.white_last_move = f"{state.lastMove}"
-                    self.black_last_move = "" if self.blackIsRemote else "Opponent moved!!"
+                    self.black_last_move = ""
+                    if self.whiteIsRemote:
+                        self.white_last_move_red = True
 
                 self.active_player = state.turn
                     
