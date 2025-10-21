@@ -70,24 +70,28 @@
             orientation: 'horizontal'
             spacing: 15
 
+
+
             # White player section
             BoxLayout:
                 orientation: 'vertical'
                 size_hint_x: 0.48
                 spacing: 8
                 padding: 10
+
                 canvas.before:
                     Color:
                         rgba: (0.85, 0.85, 0.85, 1)
                     Rectangle:
                         pos: self.pos
                         size: self.size
+
+                canvas.after:
                     Color:
-                        rgba: (1, 1, 1, 0.2)
-                    RoundedRectangle:
-                        pos: self.pos
-                        size: self.size
-                        radius: [15]
+                        rgba: (0, 1, 0, 0.8) if root.active_player == 'white' else (0, 0, 0, 0)
+                    Line:
+                        width: 4
+                        rounded_rectangle: [self.x, self.y, self.width, self.height, 15, 15, 15, 15]
 
                 Label:
                     text: "{} ({} Elo)".format(root.white_name, root.white_rating if hasattr(root, 'white_rating') else '?')
@@ -111,9 +115,6 @@
                     color: (1,0,0,1) if root.white_last_move_red else (0.2, 0.2, 0.2, 1)
                     size_hint_y: 0.2
 
-            # Divider
-            Widget:
-                size_hint_x: 0.04
 
             # Black player section
             BoxLayout:
@@ -121,18 +122,20 @@
                 size_hint_x: 0.48
                 spacing: 8
                 padding: 10
+
                 canvas.before:
                     Color:
                         rgba: (0.35, 0.35, 0.35, 1)
                     Rectangle:
                         pos: self.pos
                         size: self.size
+
+                canvas.after:
                     Color:
-                        rgba: (1, 1, 1, 0.2)
-                    RoundedRectangle:
-                        pos: self.pos
-                        size: self.size
-                        radius: [15]
+                        rgba: (0, 1, 0, 0.8) if root.active_player == 'black' else (0, 0, 0, 0)
+                    Line:
+                        width: 4
+                        rounded_rectangle: [self.x, self.y, self.width, self.height, 15, 15, 15, 15]
 
                 Label:
                     text: "{} ({} Elo)".format(root.black_name, root.black_rating if hasattr(root, 'black_rating') else '?')
