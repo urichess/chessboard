@@ -4,27 +4,65 @@ import berserk
 from berserk.exceptions import ResponseError
 import chess
 from datetime import datetime, timezone
+from lib.messages import GameState, GameStatus, GameInfo
 
 class LichessConnector:
-    def __init__(self, token: str):
+    def __init__(self, token, report_callback=None):
+        self.token = token
+        self.report_callback = report_callback
         self.session = berserk.TokenSession(token)
         self.client = berserk.Client(session=self.session)
         # self.start_event_listener()
+        self.accountInfo = self.client.account.get()
 
-    def getUsername(self) -> str:
-        account_info = self.client.account.get()
-        return account_info["username"]
+        print("self.accountInfo:", self.accountInfo)
 
-    def createGame(self):
-        pass
+    def getAccountInfo(self):
+        return self.accountInfo
 
-    def findGame(self) -> 'LichessConnector.LichessGame':
+    def createGame(self, oponente=None, minutos=15, incremento=10, rated=False, variante='standard', color='random'):
+        """
+        Crea una partida en Lichess.
+
+        Si se especifica un oponente, crea un desafío directo.  
+        Si oponente es None, crea una partida automática contra cualquier jugador disponible.
+
+        Args:
+            oponente (str or None): Nombre de usuario del oponente. None para matchmaking automático.
+            minutos (int): Tiempo inicial en minutos.
+            incremento (int): Incremento por jugada en segundos.
+            rated (bool): True si la partida es clasificada.
+            variante (str): Variante de ajedrez ('standard', 'chess960', etc.).
+            color (str): Color asignado ('white', 'black', 'random'). Solo aplica para desafíos directos.
+
+        Returns:
+            dict: Información de la partida creada.
+        """
+
+        if oponente:
+            # Crear desafío directo
+            pass
+
+        else:
+            # Crear partida automática
+            challenge = self.client.challenges.create_open(
+                clock_limit=minutos * 60,
+                clock_increment=incremento,
+                variant=variante
+            )
+
+        return challenge
+
+    def findGame(self, gameid = "None") -> 'LichessConnector.LichessGame':
         try:
             for event in self.client.board.stream_incoming_events():
                 if event["type"] == "gameStart":
                     new_game_id = event["game"]["id"]
+                    if gameid != "None" and new_game_id != gameid:
+                        print(f"Skipping game {new_game_id}, looking for {gameid}")
+                        continue
                     print(f"New game detected: {new_game_id}")
-                    return self.LichessGame(self, event)
+                    return self.LichessGame(self, event, self.report_callback)
         except Exception as e:
             print(f"[findGame] event listener error {e}")
             return None
@@ -42,13 +80,29 @@ class LichessConnector:
         listener_thread.start()
 
     class LichessGame:
-        def __init__(self, connector, event_start: dict):
+        def __init__(self, connector, event_start: dict, report_callback=None):
             self.connector = connector
             self.event_start = event_start
+            self.report_callback = report_callback
             print(event_start)
             #{'type': 'gameStart', 'game': {'fullId': '9zQU8L09BUnp', 'gameId': '9zQU8L09', 'fen': 'r1bqkbnr/ppp2ppp/8/4Q3/2P5/4P3/PP1P2PP/RNB1KB1R b KQkq - 0 7', 'color': 'black', 'lastMove': 'h5e5', 'source': 'ai', 'status': {'id': 20, 'name': 'started'}, 'variant': {'key': 'standard', 'name': 'Standard'}, 'speed': 'correspondence', 'perf': 'correspondence', 'rated': False, 'hasMoved': True, 'opponent': {'id': None, 'username': 'Stockfish level 8', 'ai': 8}, 'isMyTurn': True, 'compat': {'bot': False, 'board': True}, 'id': '9zQU8L09'}}
 
+            speed = event_start["game"]["speed"] #if "speed" in event_start["game"] else "blitz"
+            if event_start["game"]["opponent"].get("rating") is None:
+                opponent_rating = "0"
+            else:
+                opponent_rating = event_start["game"]["opponent"]["rating"]
 
+            self.realColor = "white" if event_start["game"]["color"] == "white" else "black"
+            self.gameInfo = GameInfo(gameid = event_start["game"]["id"], 
+                                     initialPosition=event_start["game"]["fen"],
+                                     wuser=event_start["game"]["opponent"]["username"] if event_start["game"]["color"] == "black" else connector.getAccountInfo()["username"],
+                                     buser=event_start["game"]["opponent"]["username"] if event_start["game"]["color"] == "white" else connector.getAccountInfo()["username"],
+                                     wrate=opponent_rating if event_start["game"]["color"] == "black" else connector.getAccountInfo()["perfs"][speed]["rating"], 
+                                     brate=opponent_rating if event_start["game"]["color"] == "white" else connector.getAccountInfo()["perfs"][speed]["rating"],
+                                     bremote=True if self.realColor == "white" else False, 
+                                     wremote=True if self.realColor == "black" else False )
+            
             self.initialPosition = event_start["game"]["fen"]
             self.current_board = chess.Board(self.initialPosition)
             self.board_lock = threading.Lock()
@@ -69,11 +123,12 @@ class LichessConnector:
 
             self.finished = False
 
-
             self.game_id = event_start["game"]["id"]
             self.thread = threading.Thread(target=self._monitor_game, daemon=True)
             self.start()
             time.sleep(0.5)
+
+            
 
         def start(self):
             #print(f"[LichessGame] Starting game state monitor for game {self.game_id}")
@@ -82,6 +137,9 @@ class LichessConnector:
 
         def finished(self):
             return self.finished
+        
+        def getGameInfo(self) -> GameInfo:
+            return self.gameInfo 
 
 
         def waitMyTurn(self) -> chess.Board:
@@ -147,12 +205,41 @@ class LichessConnector:
 
             print(
                 f"[{game_state['status'].upper()}] Last: {last_move} | "
-                f"W: {format_time(wtime)} (+{winc}s) | B: {format_time(btime)} (+{binc}s)"
+                #f"W: {format_time(wtime)} (+{winc}s) | B: {format_time(btime)} (+{binc}s)"
+                f"W: {wtime} (+{winc}s) | B: {format_time(btime)} (+{binc}s)"
             )
 
-            
+            if self.report_callback:
+                board = chess.Board()
+                moves = game_state.get('moves', '').split()
+                for move in moves:
+                    board.push_uci(move)
 
-           
+                currentTurn = "white" if board.turn == chess.WHITE else "black"
+
+                if moves:
+                    lMove = board.pop()
+                    sanMove = board.san(lMove)
+                else:
+                    sanMove = None  # No moves yet
+
+                #if self.realColor == "white" and
+
+
+                
+
+                #if self.myColor == chess.WHITE:
+                #    currentTurn="white" if board.turn else "black"
+                #else:
+                #    currentTurn="white" if not board.turn else "black"
+
+                self.report_callback(GameState(moves=game_state.get('moves', '').split(),
+                                            wtime=to_seconds(game_state['wtime']),
+                                            btime=to_seconds(game_state['btime']),
+                                            lastMove=sanMove,
+                                            turn=currentTurn,
+                                            status=GameStatus(game_state.get('status', 'started'))))
+            
 
         def processEventState(self, event):
             lastGameEvent = event
@@ -180,5 +267,8 @@ class LichessConnector:
                         self.current_board = board
                         self.isMyTurn = True
                         self.turn_event.set()  # Notify waitMyTurn()
+
+
+            
 #                else:
 #                    print ("Waitting opponent's move")
