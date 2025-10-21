@@ -14,8 +14,7 @@ class ChessGameScreen(Screen):
     black_name = StringProperty("???")
     white_time = StringProperty("05:00")
     black_time = StringProperty("05:00")
-    white_last_move = StringProperty("-")
-    black_last_move = StringProperty("-")
+    
     white_rating = NumericProperty(1500)
     black_rating = NumericProperty(1500)
 
@@ -27,16 +26,14 @@ class ChessGameScreen(Screen):
 
     active_player = StringProperty("white")  # 'white' or 'black'
 
-    white_last_move_color = (0.2, 0.2, 0.2, 1)
-    black_last_move_color = (1,1,1,1)
-
-    white_last_move_red = BooleanProperty(False)
-    black_last_move_red = BooleanProperty(False)
+    last_move = StringProperty("-")
+    last_move_red = BooleanProperty(False)
 
     blackIsRemote = False
     whiteIsRemote = False
 
     _timer_event = None
+    last_received_turn = None
 
     def setGameInfo(self, gameInfo):
         """Set initial game information from the workflow manager."""
@@ -112,14 +109,9 @@ class ChessGameScreen(Screen):
             sync: BoardSync = obj
 
             if sync.aMove:
-                self.black_last_move_red = False
-                self.white_last_move_red = False
-                if sync.color == "white":
-                    self.white_last_move = f"{sync.aMove}"
-                    self.black_last_move = ""
-                else:
-                    self.white_last_move = ""
-                    self.black_last_move = f"{sync.aMove}"
+                self.last_move_red = False
+                self.last_move = f"{sync.aMove}"
+                self.active_player = self.last_received_turn
 
         elif isinstance(obj, GameState):
         
@@ -144,19 +136,23 @@ class ChessGameScreen(Screen):
             if state.lastMove:
                 print(f"Last move: {state.lastMove} Turn: {state.turn}")
 
+                self.last_move = f"{state.lastMove}"
+
                 if state.turn == "white":
-                    self.white_last_move = ""
-                    self.black_last_move = f"{state.lastMove}"
                     if self.blackIsRemote:
-                        self.black_last_move_red = True
+                        self.last_move_red = True
+                    else:
+                        self.active_player = state.turn
                     
                 else:
-                    self.white_last_move = f"{state.lastMove}"
-                    self.black_last_move = ""
                     if self.whiteIsRemote:
-                        self.white_last_move_red = True
+                        self.last_move_red = True
+                    else:
+                        self.active_player = state.turn
 
-                self.active_player = state.turn
+                self.last_received_turn = state.turn
+
+                
                     
         else:
             print("Unknown object type:", type(obj))
