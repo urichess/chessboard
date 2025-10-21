@@ -60,11 +60,11 @@ class ChessGameScreen(Screen):
 
     def _decrement_time(self, dt):
         """Decrement the active player's time by 1 second."""
-        if self.active_player == "white":
+        if self.last_received_turn == "white":
             if self.white_time != "Unlimited":
                 self.white_time_seconds = (self.white_time_seconds-1) if self.white_time_seconds > 0 else 0
                 self.white_time = self._seconds_to_time_str( self.white_time_seconds)
-        elif self.active_player == "black":
+        elif self.last_received_turn == "black":
             if self.black_time != "Unlimited":
                 self.black_time_seconds = (self.black_time_seconds-1) if self.black_time_seconds > 0 else 0
                 self.black_time = self._seconds_to_time_str( self.black_time_seconds)
@@ -141,12 +141,15 @@ class ChessGameScreen(Screen):
                 if state.turn == "white":
                     if self.blackIsRemote:
                         self.last_move_red = True
+                        self.active_player = "black"
+
                     else:
                         self.active_player = state.turn
                     
                 else:
                     if self.whiteIsRemote:
                         self.last_move_red = True
+                        self.active_player = "white"
                     else:
                         self.active_player = state.turn
 
