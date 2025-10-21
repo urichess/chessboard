@@ -11,9 +11,32 @@ class GameLogic:
         self.lichess = LichessConnector(lichess_token, report_callback=report_callback)
         self.game = None
 
+
+
     def findGame(self):
         self.game = self.lichess.findGame()
-        return self.getGameInfo()
+
+        gameInfo = self.getGameInfo()
+
+        if self.report_callback:
+            self.report_callback( gameInfo )
+
+        return gameInfo
+    
+    def createGame(self, oponente=None, minutos=15, incremento=10, rated=False, variante='standard', color='random'):
+        challenge = self.lichess.createGame(oponente, minutos, incremento, rated, variante, color) 
+
+        print (challenge)
+
+        self.game = self.lichess.findGame(challenge["id"])
+
+        gameInfo = self.getGameInfo()
+
+        if self.report_callback:
+            self.report_callback( gameInfo )
+
+        return gameInfo
+    
     
     def play(self):        
         currentBoard = self.game.waitMyTurn()

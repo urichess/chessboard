@@ -2,7 +2,7 @@ from kivy.uix.screenmanager import SlideTransition
 import threading
 from kivy.clock import Clock
 from lib.game_logic import GameLogic
-from lib.messages import GameState
+from lib.messages import GameState, BoardSync, GameInfo
 
 SERIAL_BAUDRATE = 115200
 
@@ -23,10 +23,10 @@ class WorkflowManager:
 
     def bind_menu_events(self, menu_screen):
         menu_screen.bind(on_start_game=self.on_start_game)
+        menu_screen.bind(on_attach_game=self.on_attach_game)
 
-    def on_start_game(self, instance, lichess_token, serial_port):
-
-
+    def on_attach_game(self, instance, lichess_token, serial_port):
+       
         # Pass the reporting callback to GameLogic
         self.game_logic = GameLogic(
             lichess_token,
@@ -36,17 +36,34 @@ class WorkflowManager:
             )
         )
 
-        gameInfo = self.game_logic.findGame()
+        # Start game loop in a background thread
+        threading.Thread(target=self.game_logic.findGame, args=(), daemon=True).start()
 
-        if gameInfo:
+    def on_start_game(self, instance, lichess_token, serial_port):
+       
+        # Pass the reporting callback to GameLogic
+        self.game_logic = GameLogic(
+            lichess_token,
+            serial_port,
+            report_callback=lambda *args, **kwargs: Clock.schedule_once(
+                lambda dt: self.reportGameData(*args, **kwargs)
+            )
+        )
+
+        # Start game loop in a background thread
+        threading.Thread(target=self.game_logic.createGame, args=(), daemon=True).start()
+            
+    def reportGameData(self, *args, **kwargs):
+        obj = args[0] if args else kwargs if kwargs else None
+
+        if isinstance(obj, GameInfo):
             # Set up game screen values before switching
             game_screen = self.sm.get_screen("game") 
-            game_screen.setGameInfo(gameInfo)
+            game_screen.setGameInfo(obj)
             self.go_to("game")
 
             # Start game loop in a background thread
             threading.Thread(target=self.game_logic.play, args=(), daemon=True).start()
-
-    def reportGameData(self, *args, **kwargs):
-        game_screen = self.sm.get_screen("game")
-        game_screen.refresh_state( *args, **kwargs )
+        else:
+            game_screen = self.sm.get_screen("game")
+            game_screen.refresh_state( *args, **kwargs )

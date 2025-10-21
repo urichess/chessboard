@@ -20,14 +20,47 @@ class LichessConnector:
     def getAccountInfo(self):
         return self.accountInfo
 
-    def createGame(self):
-        pass
+    def createGame(self, oponente=None, minutos=15, incremento=10, rated=False, variante='standard', color='random'):
+        """
+        Crea una partida en Lichess.
 
-    def findGame(self) -> 'LichessConnector.LichessGame':
+        Si se especifica un oponente, crea un desafío directo.  
+        Si oponente es None, crea una partida automática contra cualquier jugador disponible.
+
+        Args:
+            oponente (str or None): Nombre de usuario del oponente. None para matchmaking automático.
+            minutos (int): Tiempo inicial en minutos.
+            incremento (int): Incremento por jugada en segundos.
+            rated (bool): True si la partida es clasificada.
+            variante (str): Variante de ajedrez ('standard', 'chess960', etc.).
+            color (str): Color asignado ('white', 'black', 'random'). Solo aplica para desafíos directos.
+
+        Returns:
+            dict: Información de la partida creada.
+        """
+
+        if oponente:
+            # Crear desafío directo
+            pass
+
+        else:
+            # Crear partida automática
+            challenge = self.client.challenges.create_open(
+                clock_limit=minutos * 60,
+                clock_increment=incremento,
+                variant=variante
+            )
+
+        return challenge
+
+    def findGame(self, gameid = "None") -> 'LichessConnector.LichessGame':
         try:
             for event in self.client.board.stream_incoming_events():
                 if event["type"] == "gameStart":
                     new_game_id = event["game"]["id"]
+                    if gameid != "None" and new_game_id != gameid:
+                        print(f"Skipping game {new_game_id}, looking for {gameid}")
+                        continue
                     print(f"New game detected: {new_game_id}")
                     return self.LichessGame(self, event, self.report_callback)
         except Exception as e:
@@ -183,9 +216,12 @@ class LichessConnector:
                     board.push_uci(move)
 
                 currentTurn = "white" if board.turn == chess.WHITE else "black"
-                
-                lMove = board.pop()
-                sanMove = board.san(lMove)
+
+                if moves:
+                    lMove = board.pop()
+                    sanMove = board.san(lMove)
+                else:
+                    sanMove = None  # No moves yet
 
                 #if self.realColor == "white" and
 
