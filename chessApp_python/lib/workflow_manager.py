@@ -22,11 +22,18 @@ class WorkflowManager:
         elif state == "wait":
             self.sm.transition = SlideTransition(direction='left')
             self.sm.current = "wait"
+        elif state == "config":
+            self.sm.transition = SlideTransition(direction='left')
+            self.sm.current = "config"
         # Add more states/screens as needed
 
     def bind_menu_events(self, menu_screen):
+        menu_screen.bind(on_configure=self.on_configure)
         menu_screen.bind(on_start_game=self.on_start_game)
         menu_screen.bind(on_attach_game=self.on_attach_game)
+
+    def bind_config_events(self, screen):
+        screen.bind(on_back_to_menu=self.on_back_to_menu)
 
     def on_attach_game(self, instance, lichess_token, serial_port):
 
@@ -43,6 +50,13 @@ class WorkflowManager:
 
         # Start game loop in a background thread
         threading.Thread(target=self.game_logic.findGame, args=(), daemon=True).start()
+
+    def on_configure(self, instance):
+        self.go_to("config")
+
+    def on_back_to_menu(self, instance):
+        print ("holaaa")
+        self.go_to("menu")
 
     def on_start_game(self, instance, lichess_token, serial_port):
 

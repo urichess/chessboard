@@ -11,17 +11,12 @@
             font_size: '24sp'
             size_hint_y: 0.2
 
-        TextInput:
-            id: token_input
-            hint_text: "Enter Lichess Token"
-            multiline: False
+        Button:
+            text: "Configure"
             size_hint_y: 0.2
-
-        TextInput:
-            id: serial_input
-            hint_text: "Enter Serial Port (e.g., COM3 or /dev/ttyUSB0)"
-            multiline: False
-            size_hint_y: 0.2
+            background_color: 0.1, 0.6, 0.3, 1
+            on_press:
+                root.configure()
 
         Button:
             text: "Attach to ongoing game"
@@ -36,6 +31,43 @@
             background_color: 0.1, 0.6, 0.3, 1
             on_press:
                 root.start_game()
+
+<ConfigScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        padding: 20
+        spacing: 15
+
+        Label:
+            text: "Urichess configurations"
+            font_size: '24sp'
+            size_hint_y: 0.2
+
+        TextInput:
+            id: token_input
+            hint_text: "Enter Lichess Token"
+            multiline: False
+            size_hint_y: 0.2
+
+        TextInput:
+            id: serial_input
+            hint_text: "Enter Serial Port (e.g., COM3 or /dev/ttyUSB0)"
+            multiline: False
+            size_hint_y: 0.2
+
+        Button:
+            text: "Save"
+            size_hint_y: 0.2
+            background_color: 0.1, 0.6, 0.3, 1
+            on_press:
+                root.on_save()
+
+        Button:
+            text: "Cancel"
+            size_hint_y: 0.2
+            background_color: 0.1, 0.6, 0.3, 1
+            on_press:
+                root.on_cancel()
 
 <WaitScreen>:
     BoxLayout:
