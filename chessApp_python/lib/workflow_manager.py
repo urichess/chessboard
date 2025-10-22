@@ -19,6 +19,9 @@ class WorkflowManager:
         elif state == "game":
             self.sm.transition = SlideTransition(direction='left')
             self.sm.current = "game"
+        elif state == "wait":
+            self.sm.transition = SlideTransition(direction='left')
+            self.sm.current = "wait"
         # Add more states/screens as needed
 
     def bind_menu_events(self, menu_screen):
@@ -26,6 +29,8 @@ class WorkflowManager:
         menu_screen.bind(on_attach_game=self.on_attach_game)
 
     def on_attach_game(self, instance, lichess_token, serial_port):
+
+        self.go_to("wait")
        
         # Pass the reporting callback to GameLogic
         self.game_logic = GameLogic(
@@ -40,6 +45,8 @@ class WorkflowManager:
         threading.Thread(target=self.game_logic.findGame, args=(), daemon=True).start()
 
     def on_start_game(self, instance, lichess_token, serial_port):
+
+        self.go_to("wait")
        
         # Pass the reporting callback to GameLogic
         self.game_logic = GameLogic(
