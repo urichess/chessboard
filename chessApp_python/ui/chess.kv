@@ -26,7 +26,7 @@
                 root.attach_game()
 
         Button:
-            text: "15+10"
+            text: "Create a game"
             size_hint_y: 0.2
             background_color: 0.1, 0.6, 0.3, 1
             on_press:
@@ -206,3 +206,162 @@
                     font_size: '36sp'
                     color: (1,0,0,1) if root.black_time_seconds <= 30 else (0,0.5,0,1) if root.black_time_seconds < 604800 else (1,1,1,1)
                     size_hint_y: 0.35
+
+
+<CreateGameScreen>:
+    name: "create_game"
+
+    BoxLayout:
+        orientation: "vertical"
+        padding: "20dp"
+        spacing: "15dp"
+
+        Label:
+            text: "Create New Game on Lichess"
+            font_size: "24sp"
+            bold: True
+            halign: "center"
+            size_hint_y: None
+            height: self.texture_size[1] + dp(10)
+
+        # --- BASE TIME ---
+        BoxLayout:
+            orientation: "horizontal"
+            spacing: "10dp"
+            size_hint_y: None
+            height: "40dp"
+
+            Label:
+                text: "Duration:"
+                size_hint_x: None
+                width: "100dp"
+                halign: "left"
+
+            Spinner:
+                id: hours_spinner
+                text: "0 h"
+                values: [f"{i} h" for i in range(0, 3)]
+                size_hint_x: None
+                width: "80dp"
+
+            Spinner:
+                id: minutes_spinner
+                text: "5 m"
+                values: [f"{i} m" for i in range(0, 61)]
+                size_hint_x: None
+                width: "80dp"
+
+            Spinner:
+                id: seconds_spinner
+                text: "0 s"
+                values: [f"{i} s" for i in range(0, 61)]
+                size_hint_x: None
+                width: "80dp"
+
+        # --- INCREMENT ---
+        BoxLayout:
+            orientation: "horizontal"
+            spacing: "10dp"
+            size_hint_y: None
+            height: "40dp"
+
+            Label:
+                text: "Increment per move:"
+                size_hint_x: None
+                width: "180dp"
+                halign: "left"
+
+            Spinner:
+                id: increment_spinner
+                text: "0 s"
+                values: [f"{i} s" for i in range(0, 31)]
+                size_hint_x: None
+                width: "100dp"
+
+        # --- OPPONENT TYPE ---
+        BoxLayout:
+            orientation: "horizontal"
+            spacing: "10dp"
+            size_hint_y: None
+            height: "40dp"
+
+            Label:
+                text: "Opponent:"
+                size_hint_x: None
+                width: "100dp"
+                halign: "left"
+
+            Spinner:
+                id: opponent_spinner
+                text: "Random"
+                values: ["Random", "User", "Stockfish"]
+                size_hint_x: None
+                width: "150dp"
+                on_text: root.update_opponent_fields(self.text)
+
+            TextInput:
+                id: username_input
+                hint_text: "Username (if applicable)"
+                multiline: False
+                size_hint_x: 1
+                disabled: True
+
+        # --- STOCKFISH LEVEL ---
+        BoxLayout:
+            id: stockfish_box
+            orientation: "horizontal"
+            spacing: "10dp"
+            size_hint_y: None
+            height: "40dp"
+            opacity: 0
+            disabled: True
+
+            Label:
+                text: "Stockfish Level:"
+                size_hint_x: None
+                width: "180dp"
+                halign: "left"
+
+            Spinner:
+                id: stockfish_level_spinner
+                text: "5"
+                values: [str(i) for i in range(1, 9)]
+                size_hint_x: None
+                width: "100dp"
+
+        # --- COLOR ---
+        BoxLayout:
+            orientation: "horizontal"
+            spacing: "10dp"
+            size_hint_y: None
+            height: "40dp"
+
+            Label:
+                text: "Color:"
+                size_hint_x: None
+                width: "100dp"
+                halign: "left"
+
+            Spinner:
+                id: color_spinner
+                text: "Random"
+                values: ["White", "Black", "Random"]
+                size_hint_x: None
+                width: "150dp"
+
+        # --- BUTTONS ---
+        BoxLayout:
+            orientation: "horizontal"
+            spacing: "20dp"
+            size_hint_y: None
+            height: "60dp"
+
+            Button:
+                text: "Cancel"
+                background_color: (0.8, 0.2, 0.2, 1)
+                on_release: root.cancel_create_game()
+
+            Button:
+                text: "Start"
+                background_color: (0.2, 0.8, 0.2, 1)
+                on_release: root.start_create_game(hours_spinner.text, minutes_spinner.text, seconds_spinner.text, increment_spinner.text, opponent_spinner.text, username_input.text, color_spinner.text, stockfish_level_spinner.text)

@@ -5,6 +5,7 @@ from ui.WaitScreen import WaitScreen
 from ui.ConfigScreen import ConfigScreen
 from kivy.uix.screenmanager import ScreenManager, SlideTransition
 from lib.workflow_manager import WorkflowManager
+from ui.CreateGameScreen import CreateGameScreen
 
 class ChessApp(App):
     def build(self):
@@ -15,6 +16,7 @@ class ChessApp(App):
         sm.add_widget(ChessGameScreen(name="game"))
         sm.add_widget(WaitScreen(name="wait"))
         sm.add_widget(config)
+        sm.add_widget(CreateGameScreen(name="create_game"))
         
         self.workflow = WorkflowManager(sm)
         self.workflow.bind_menu_events(menu)

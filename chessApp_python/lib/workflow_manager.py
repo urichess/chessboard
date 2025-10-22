@@ -25,6 +25,9 @@ class WorkflowManager:
         elif state == "config":
             self.sm.transition = SlideTransition(direction='left')
             self.sm.current = "config"
+        elif state == "create_game":
+            self.sm.transition = SlideTransition(direction='left')
+            self.sm.current = "create_game"
         # Add more states/screens as needed
 
     def bind_menu_events(self, menu_screen):
@@ -58,21 +61,10 @@ class WorkflowManager:
         print ("holaaa")
         self.go_to("menu")
 
-    def on_start_game(self, instance, lichess_token, serial_port):
+    def on_start_game(self, instance):
+        self.go_to("create_game")
 
-        self.go_to("wait")
-       
-        # Pass the reporting callback to GameLogic
-        self.game_logic = GameLogic(
-            lichess_token,
-            serial_port,
-            report_callback=lambda *args, **kwargs: Clock.schedule_once(
-                lambda dt: self.reportGameData(*args, **kwargs)
-            )
-        )
 
-        # Start game loop in a background thread
-        threading.Thread(target=self.game_logic.createGame, args=(), daemon=True).start()
             
     def reportGameData(self, *args, **kwargs):
         obj = args[0] if args else kwargs if kwargs else None
