@@ -13,32 +13,31 @@ class CreateGameScreen(Screen):
 
     def on_back_to_menu(self):
         pass  # To be bound by the workflow manager or App
-      
+
 
     def on_pre_enter(self):
-        """
-        When the screen is about to be displayed, load saved settings.
-        """
         if self.store.exists("settings"):
             data = self.store.get("settings")
             ids = self.ids
 
-            ids.hours_spinner.text = data.get("hours", "0 h")
-            ids.minutes_spinner.text = data.get("minutes", "5 m")
-            ids.seconds_spinner.text = data.get("seconds", "0 s")
-            ids.increment_spinner.text = data.get("increment", "0 s")
+            ids.time_control_spinner.text = data.get("time_control", "Real time")
+            ids.minutes_slider.value = data.get("minutes", 5)
+            ids.increment_slider.value = data.get("increment", 0)
             ids.opponent_spinner.text = data.get("opponent", "Random")
             ids.username_input.text = data.get("username", "")
-            ids.color_spinner.text = data.get("color", "Random")
             ids.stockfish_level_spinner.text = data.get("stockfish_level", "5")
 
-            # Update visibility based on opponent type
+            if data.get("mode", "Casual") == "Rated":
+                ids.rated_btn.state = "down"
+                ids.casual_btn.state = "normal"
+            else:
+                ids.casual_btn.state = "down"
+                ids.rated_btn.state = "normal"
+
+            # Restore visibility of fields based on opponent
             self.update_opponent_fields(ids.opponent_spinner.text)
 
     def update_opponent_fields(self, opponent_type):
-        """
-        Show or hide fields depending on the selected opponent type.
-        """
         username_input = self.ids.username_input
         stockfish_box = self.ids.stockfish_box
 
@@ -59,30 +58,27 @@ class CreateGameScreen(Screen):
             stockfish_box.opacity = 0
 
     def cancel_create_game(self):
-        print ("kkkk")
         self.dispatch('on_back_to_menu')
 
-    def start_create_game(self, hours, minutes, seconds, increment, opponent, username, color, stockfish_level):
-        """
-        Start the game and save current settings to memory.
-        """
-        print(f"Time: {hours} {minutes} {seconds}")
+    def start_create_game(self, time_control, minutes, increment, mode, opponent, username, stockfish_level):
+        print(f"Time control: {time_control}")
+        print(f"Minutes: {minutes}")
         print(f"Increment: {increment}")
+        print(f"Mode: {mode}")
         print(f"Opponent: {opponent} ({username})")
         print(f"Stockfish level: {stockfish_level}")
-        print(f"Color: {color}")
 
-        # Save current settings to JSON
+        # Save to JSON store
         self.store.put(
             "settings",
-            hours=hours,
+            time_control=time_control,
             minutes=minutes,
-            seconds=seconds,
             increment=increment,
+            mode=mode,
             opponent=opponent,
             username=username,
-            color=color,
-            stockfish_level=stockfish_level,
+            stockfish_level=stockfish_level
         )
 
-        # Here you would add the logic to create the game on Lichess via API
+        # Here you’d trigger the actual Lichess API call
+
