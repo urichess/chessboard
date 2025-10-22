@@ -16,11 +16,13 @@ class ChessApp(App):
         sm.add_widget(ChessGameScreen(name="game"))
         sm.add_widget(WaitScreen(name="wait"))
         sm.add_widget(config)
-        sm.add_widget(CreateGameScreen(name="create_game"))
+        createGame = CreateGameScreen(name="create_game")
+        sm.add_widget(createGame)
         
         self.workflow = WorkflowManager(sm)
         self.workflow.bind_menu_events(menu)
         self.workflow.bind_config_events(config)
+        self.workflow.bind_createGame_events(createGame)
         return sm
 
 

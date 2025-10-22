@@ -38,6 +38,9 @@ class WorkflowManager:
     def bind_config_events(self, screen):
         screen.bind(on_back_to_menu=self.on_back_to_menu)
 
+    def bind_createGame_events(self, screen):
+        screen.bind(on_back_to_menu=self.on_back_to_menu)
+
     def on_attach_game(self, instance, lichess_token, serial_port):
 
         self.go_to("wait")

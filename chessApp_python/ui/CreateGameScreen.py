@@ -5,9 +5,15 @@ import os
 class CreateGameScreen(Screen):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
+        self.register_event_type('on_back_to_menu')
+
         # Path for local storage (inside the user's home folder)
         self.store_path = os.path.join(os.path.expanduser("~"), ".lichess_game_settings.json")
         self.store = JsonStore(self.store_path)
+
+    def on_back_to_menu(self):
+        pass  # To be bound by the workflow manager or App
+      
 
     def on_pre_enter(self):
         """
@@ -53,8 +59,8 @@ class CreateGameScreen(Screen):
             stockfish_box.opacity = 0
 
     def cancel_create_game(self):
-        print("Game creation canceled.")
-        # Here you could navigate back to the main screen
+        print ("kkkk")
+        self.dispatch('on_back_to_menu')
 
     def start_create_game(self, hours, minutes, seconds, increment, opponent, username, color, stockfish_level):
         """
