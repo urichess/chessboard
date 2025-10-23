@@ -37,3 +37,14 @@ class GameInfo:
 class BoardSync:
     aMove: str
     color: str
+
+
+@dataclass
+class CreateGameData:
+    time_control: str
+    minutes: int
+    increment: int
+    mode: str
+    opponent: str
+    username: str
+    stockfish_level: int

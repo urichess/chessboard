@@ -40,7 +40,8 @@ class WorkflowManager:
 
     def bind_createGame_events(self, screen):
         screen.bind(on_back_to_menu=self.on_back_to_menu)
-
+        screen.bind(on_start_new_game=self.on_start_new_game)
+        
     def on_attach_game(self, instance, lichess_token, serial_port):
 
         self.go_to("wait")
@@ -56,6 +57,22 @@ class WorkflowManager:
 
         # Start game loop in a background thread
         threading.Thread(target=self.game_logic.findGame, args=(), daemon=True).start()
+
+    def on_start_new_game(self, instance, gameData, lichess_token, serial_port):
+
+        self.go_to("wait")
+       
+        # Pass the reporting callback to GameLogic
+        self.game_logic = GameLogic(
+            lichess_token,
+            serial_port,
+            report_callback=lambda *args, **kwargs: Clock.schedule_once(
+                lambda dt: self.reportGameData(*args, **kwargs)
+            )
+        )
+
+        # Start game loop in a background thread
+        threading.Thread(target=self.game_logic.createNewGame, args=(gameData,), daemon=True).start()
 
     def on_configure(self, instance):
         self.go_to("config")

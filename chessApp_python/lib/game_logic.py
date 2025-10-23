@@ -23,6 +23,11 @@ class GameLogic:
 
         return gameInfo
     
+    def createNewGame(self, gameData):
+        print (gameData)
+        print ("recibido!!")
+        pass
+    
     def createGame(self, oponente=None, minutos=15, incremento=10, rated=False, variante='standard', color='random'):
         challenge = self.lichess.createGame(oponente, minutos, incremento, rated, variante, color) 
 

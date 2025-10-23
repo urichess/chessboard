@@ -1,11 +1,17 @@
 from kivy.uix.screenmanager import Screen
 from kivy.storage.jsonstore import JsonStore
+from lib.messages import CreateGameData
+import json
 import os
+
+CONFIG_FILE = "config.json"
 
 class CreateGameScreen(Screen):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.register_event_type('on_back_to_menu')
+        self.register_event_type('on_start_new_game')
+        
 
         # Path for local storage (inside the user's home folder)
         self.store_path = os.path.join(os.path.expanduser("~"), ".lichess_game_settings.json")
@@ -14,8 +20,17 @@ class CreateGameScreen(Screen):
     def on_back_to_menu(self):
         pass  # To be bound by the workflow manager or App
 
+    def on_start_new_game(self, gameData, lichess_token, serial_port):
+        pass  # To be bound by the workflow manager or App
+
 
     def on_pre_enter(self):
+        if os.path.exists(CONFIG_FILE):
+            with open(CONFIG_FILE, "r") as f:
+                data = json.load(f)
+                self.lichess_token = data.get("lichess_token", "")
+                self.serial_port = data.get("serial_port", "")
+
         if self.store.exists("settings"):
             data = self.store.get("settings")
             ids = self.ids
@@ -80,5 +95,15 @@ class CreateGameScreen(Screen):
             stockfish_level=stockfish_level
         )
 
+        gameData = CreateGameData( time_control=time_control,
+                                   minutes=minutes,
+                                   increment=increment,
+                                   mode=mode,
+                                   opponent=opponent,
+                                   username=username,
+                                   stockfish_level=stockfish_level )
+        
+
+        self.dispatch('on_start_new_game', gameData, self.lichess_token, self.serial_port)
         # Here you’d trigger the actual Lichess API call
 
