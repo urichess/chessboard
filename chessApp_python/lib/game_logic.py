@@ -24,24 +24,14 @@ class GameLogic:
         return gameInfo
     
     def createNewGame(self, gameData):
-        print (gameData)
-        print ("recibido!!")
-        pass
-    
-    def createGame(self, oponente=None, minutos=15, incremento=10, rated=False, variante='standard', color='random'):
-        challenge = self.lichess.createGame(oponente, minutos, incremento, rated, variante, color) 
-
-        print (challenge)
-
-        self.game = self.lichess.findGame(challenge["id"])
+        self.game = self.lichess.createNewGame(gameData)
 
         gameInfo = self.getGameInfo()
-
+    
         if self.report_callback:
             self.report_callback( gameInfo )
 
         return gameInfo
-    
     
     def play(self):        
         currentBoard = self.game.waitMyTurn()

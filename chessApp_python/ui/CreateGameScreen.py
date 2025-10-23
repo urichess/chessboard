@@ -75,13 +75,15 @@ class CreateGameScreen(Screen):
     def cancel_create_game(self):
         self.dispatch('on_back_to_menu')
 
-    def start_create_game(self, time_control, minutes, increment, mode, opponent, username, stockfish_level):
+    def start_create_game(self, time_control, minutes, increment, mode, opponent, username, stockfish_level, color):
         print(f"Time control: {time_control}")
         print(f"Minutes: {minutes}")
         print(f"Increment: {increment}")
         print(f"Mode: {mode}")
         print(f"Opponent: {opponent} ({username})")
         print(f"Stockfish level: {stockfish_level}")
+        print(f"Color: {color}")
+
 
         # Save to JSON store
         self.store.put(
@@ -101,7 +103,9 @@ class CreateGameScreen(Screen):
                                    mode=mode,
                                    opponent=opponent,
                                    username=username,
-                                   stockfish_level=stockfish_level )
+                                   stockfish_level=stockfish_level,
+                                   color = color,
+                                   variant = 'standard' )
         
 
         self.dispatch('on_start_new_game', gameData, self.lichess_token, self.serial_port)

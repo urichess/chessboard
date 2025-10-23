@@ -48,3 +48,5 @@ class CreateGameData:
     opponent: str
     username: str
     stockfish_level: int
+    variant: str
+    color: str

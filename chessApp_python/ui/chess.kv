@@ -359,6 +359,25 @@
                 size_hint_x: None
                 width: "100dp"
 
+        # --- COLOR OPTION ---
+        BoxLayout:
+            orientation: "horizontal"
+            spacing: "10dp"
+            size_hint_y: None
+            height: "50dp"
+
+            Label:
+                text: "Color:"
+                size_hint_x: None
+                width: "120dp"
+
+            Spinner:
+                id: color_spinner
+                text: "Random"
+                values: ["White", "Black", "Random"]
+                size_hint_x: None
+                width: "150dp"
+
         # --- BUTTONS ---
         BoxLayout:
             orientation: "horizontal"
@@ -374,5 +393,4 @@
             Button:
                 text: "Play"
                 background_color: (0.2, 0.8, 0.2, 1)
-                on_release: root.start_create_game(time_control_spinner.text,int(minutes_slider.value),int(increment_slider.value), "Rated" if rated_btn.state == "down" else "Casual", opponent_spinner.text, username_input.text,  stockfish_level_spinner.text)
-
+                on_release: root.start_create_game( time_control_spinner.text, int(minutes_slider.value), int(increment_slider.value), "Rated" if rated_btn.state == "down" else "Casual", opponent_spinner.text, username_input.text, stockfish_level_spinner.text, color_spinner.text.lower())

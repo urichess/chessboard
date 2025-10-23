@@ -20,6 +20,62 @@ class LichessConnector:
     def getAccountInfo(self):
         return self.accountInfo
 
+    def createNewGame(self, gameData):
+        print (gameData)
+        print ("Create game request received. Creating...")
+        if gameData.opponent == "User":
+            # Crear desafío directo
+            challenge = self.client.challenges.create(
+                username="maia9",
+                clock_limit=gameData.minutes * 60,
+                clock_increment=gameData.increment,
+                rated=False,
+                variant='standard',
+                color="white"
+            )
+
+        elif gameData.opponent == "Random":
+            # Crear partida automática
+            challenge = self.client.challenges.create_open(
+                clock_limit=gameData.minutes * 60,
+                clock_increment=gameData.increment,
+                variant=gameData.variante,
+                rated=gameData.rated
+            )
+        elif gameData.opponent == "Stockfish":
+            # Crear partida contra Stockfish
+            challenge = self.client.challenges.create_ai(
+                level=gameData.stockfish_level,
+                clock_limit=gameData.minutes * 60,
+                clock_increment=gameData.increment,
+                variant=gameData.variant,
+                color=gameData.color
+            )
+        else:
+            print("Unknown opponent type:", gameData.opponent)
+            return
+
+        print(challenge)
+        gameid = challenge["id"]
+
+            #wait acceptal
+        try:
+            for event in self.client.board.stream_incoming_events():
+                if event["type"] == "gameStart":
+                    new_game_id = event["game"]["id"]
+                    if gameid != "None" and new_game_id != gameid:
+                        print(f"Skipping game {new_game_id}, looking for {gameid}")
+                        continue
+                    print(f"New game detected: {new_game_id}")
+                    return self.LichessGame(self, event, self.report_callback)
+        except Exception as e:
+            print(f"[findGame] event listener error {e}")
+            return None
+
+
+
+            print(f"Direct challenge created against {gameData.opponent}")
+
     def createGame(self, oponente=None, minutos=15, incremento=10, rated=False, variante='standard', color='random'):
         """
         Crea una partida en Lichess.
