@@ -29,9 +29,9 @@ class LichessConnector:
                 username="maia9",
                 clock_limit=gameData.minutes * 60,
                 clock_increment=gameData.increment,
-                rated=False,
-                variant='standard',
-                color="white"
+                rated=gameData.rated,
+                variant=gameData.variant,
+                color=gameData.color
             )
 
         elif gameData.opponent == "Random":
@@ -39,7 +39,7 @@ class LichessConnector:
             challenge = self.client.challenges.create_open(
                 clock_limit=gameData.minutes * 60,
                 clock_increment=gameData.increment,
-                variant=gameData.variante,
+                variant=gameData.variant,
                 rated=gameData.rated
             )
         elif gameData.opponent == "Stockfish":

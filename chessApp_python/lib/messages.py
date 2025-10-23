@@ -50,3 +50,4 @@ class CreateGameData:
     stockfish_level: int
     variant: str
     color: str
+    rated: bool

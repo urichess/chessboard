@@ -83,6 +83,7 @@ class CreateGameScreen(Screen):
         print(f"Opponent: {opponent} ({username})")
         print(f"Stockfish level: {stockfish_level}")
         print(f"Color: {color}")
+        rated = False
 
 
         # Save to JSON store
@@ -94,7 +95,9 @@ class CreateGameScreen(Screen):
             mode=mode,
             opponent=opponent,
             username=username,
-            stockfish_level=stockfish_level
+            stockfish_level=stockfish_level,
+            color=color,
+            rated=rated
         )
 
         gameData = CreateGameData( time_control=time_control,
@@ -105,7 +108,9 @@ class CreateGameScreen(Screen):
                                    username=username,
                                    stockfish_level=stockfish_level,
                                    color = color,
-                                   variant = 'standard' )
+                                   variant = 'standard',
+                                   rated = rated
+                                   )
         
 
         self.dispatch('on_start_new_game', gameData, self.lichess_token, self.serial_port)
