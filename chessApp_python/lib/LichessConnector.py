@@ -205,6 +205,7 @@ class LichessConnector:
 
             with self.board_lock:
                 if self.finished:
+                    print("Game finished. Exiting waitMyTurn().")
                     return None
                 else:
                     return self.current_board.copy(stack=True)
@@ -233,6 +234,10 @@ class LichessConnector:
                         else:
                             if event["type"] == "gameState":
                                 self.processEventState(event)
+                        
+                        if self.finished:
+                            print(f"[LichessGame] Game {self.game_id} finished. Exiting monitor.")
+                            return
                     
                         
                 except Exception as e:
@@ -309,7 +314,11 @@ class LichessConnector:
                 print(f"Game ended or aborted with status: {status}")
                 self.finished = True
                 with self.board_lock:
+                    print ("Notifying finish to waitMyTurn()")
                     self.turn_event.set()  # Notify waitMyTurn()
+
+                if self.report_callback:
+                    self.report_callback( GameStatus( GameStatus.ABORTED ) )
                     
             else:
                 #board = chess.Board(self.initialPosition)

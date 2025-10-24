@@ -1,6 +1,6 @@
 from lib.LichessConnector import LichessConnector
 from lib.BoardSerial import BoardSerial
-from lib.messages import BoardSync
+from lib.messages import BoardSync, GameStatus
 
 SERIAL_BAUDRATE = 115200
 
@@ -58,6 +58,7 @@ class GameLogic:
                        
             currentBoard = self.game.waitMyTurn()
         
+        print("Game over.")
         self.game = None
 
     def getGameInfo(self):
