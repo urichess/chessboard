@@ -83,7 +83,7 @@ class CreateGameScreen(Screen):
         print(f"Opponent: {opponent} ({username})")
         print(f"Stockfish level: {stockfish_level}")
         print(f"Color: {color}")
-        rated = False
+        
 
 
         # Save to JSON store
@@ -96,14 +96,13 @@ class CreateGameScreen(Screen):
             opponent=opponent,
             username=username,
             stockfish_level=stockfish_level,
-            color=color,
-            rated=rated
+            color=color
         )
 
+        rated = True if mode == "Rated" else False
         gameData = CreateGameData( time_control=time_control,
                                    minutes=minutes,
                                    increment=increment,
-                                   mode=mode,
                                    opponent=opponent,
                                    username=username,
                                    stockfish_level=stockfish_level,
