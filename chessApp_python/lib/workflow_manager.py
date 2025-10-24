@@ -19,13 +19,32 @@ class WorkflowManager:
         elif state == "game":
             self.sm.transition = SlideTransition(direction='left')
             self.sm.current = "game"
+        elif state == "wait":
+            self.sm.transition = SlideTransition(direction='left')
+            self.sm.current = "wait"
+        elif state == "config":
+            self.sm.transition = SlideTransition(direction='left')
+            self.sm.current = "config"
+        elif state == "create_game":
+            self.sm.transition = SlideTransition(direction='left')
+            self.sm.current = "create_game"
         # Add more states/screens as needed
 
     def bind_menu_events(self, menu_screen):
+        menu_screen.bind(on_configure=self.on_configure)
         menu_screen.bind(on_start_game=self.on_start_game)
         menu_screen.bind(on_attach_game=self.on_attach_game)
 
+    def bind_config_events(self, screen):
+        screen.bind(on_back_to_menu=self.on_back_to_menu)
+
+    def bind_createGame_events(self, screen):
+        screen.bind(on_back_to_menu=self.on_back_to_menu)
+        screen.bind(on_start_new_game=self.on_start_new_game)
+        
     def on_attach_game(self, instance, lichess_token, serial_port):
+
+        self.go_to("wait")
        
         # Pass the reporting callback to GameLogic
         self.game_logic = GameLogic(
@@ -39,7 +58,9 @@ class WorkflowManager:
         # Start game loop in a background thread
         threading.Thread(target=self.game_logic.findGame, args=(), daemon=True).start()
 
-    def on_start_game(self, instance, lichess_token, serial_port):
+    def on_start_new_game(self, instance, gameData, lichess_token, serial_port):
+
+        self.go_to("wait")
        
         # Pass the reporting callback to GameLogic
         self.game_logic = GameLogic(
@@ -51,7 +72,19 @@ class WorkflowManager:
         )
 
         # Start game loop in a background thread
-        threading.Thread(target=self.game_logic.createGame, args=(), daemon=True).start()
+        threading.Thread(target=self.game_logic.createNewGame, args=(gameData,), daemon=True).start()
+
+    def on_configure(self, instance):
+        self.go_to("config")
+
+    def on_back_to_menu(self, instance):
+        print ("holaaa")
+        self.go_to("menu")
+
+    def on_start_game(self, instance):
+        self.go_to("create_game")
+
+
             
     def reportGameData(self, *args, **kwargs):
         obj = args[0] if args else kwargs if kwargs else None

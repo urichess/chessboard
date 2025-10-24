@@ -1,6 +1,6 @@
 from lib.LichessConnector import LichessConnector
 from lib.BoardSerial import BoardSerial
-from lib.messages import BoardSync
+from lib.messages import BoardSync, GameStatus
 
 SERIAL_BAUDRATE = 115200
 
@@ -23,20 +23,15 @@ class GameLogic:
 
         return gameInfo
     
-    def createGame(self, oponente=None, minutos=15, incremento=10, rated=False, variante='standard', color='random'):
-        challenge = self.lichess.createGame(oponente, minutos, incremento, rated, variante, color) 
-
-        print (challenge)
-
-        self.game = self.lichess.findGame(challenge["id"])
+    def createNewGame(self, gameData):
+        self.game = self.lichess.createNewGame(gameData)
 
         gameInfo = self.getGameInfo()
-
+    
         if self.report_callback:
             self.report_callback( gameInfo )
 
         return gameInfo
-    
     
     def play(self):        
         currentBoard = self.game.waitMyTurn()
@@ -63,6 +58,7 @@ class GameLogic:
                        
             currentBoard = self.game.waitMyTurn()
         
+        print("Game over.")
         self.game = None
 
     def getGameInfo(self):
