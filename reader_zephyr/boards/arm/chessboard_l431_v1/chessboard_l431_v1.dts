@@ -184,44 +184,44 @@
 //	};
 //};
 
-
 &flash0 {
     partitions {
         compatible = "fixed-partitions";
         #address-cells = <1>;
         #size-cells = <1>;
 
-        /* MCUboot bootloader: 48 KB (0xC000) */
+        /* MCUboot bootloader: 36 KB */
         boot_partition: partition@0 {
             label = "mcuboot";
-            reg = <0x00000000 0x0000C000>;
+            reg = <0x00000000 DT_SIZE_K(36)>;
         };
 
-        /* Primary image slot: 76 KB (0x13000) */
-        slot0_partition: partition@c000 {
+        /* Primary image slot: 98 KB */
+        slot0_partition: partition@9000 {
             label = "image-0";
-            reg = <0x0000C000 0x00013000>;
+            reg = <0x00009000 DT_SIZE_K(98)>;
         };
 
-        /* Secondary image slot: 76 KB (0x13000) */
-        slot1_partition: partition@1f000 {
+        /* Secondary image slot: 98 KB */
+        slot1_partition: partition@11D00 {
             label = "image-1";
-            reg = <0x0001F000 0x00013000>;
+            reg = <0x00011D00 DT_SIZE_K(98)>;
         };
 
-        /* Scratch: 8 KB (0x2000) */
-        scratch_partition: partition@32000 {
+        /* Scratch: 8 KB */
+        scratch_partition: partition@3A000 {
             label = "image-scratch";
-            reg = <0x00032000 0x00002000>;
+            reg = <0x0003A000 DT_SIZE_K(8)>;
         };
 
-        /* Storage / NVS: remaining 48 KB (0xC000) */
-        storage_partition: partition@34000 {
+        /* Storage / NVS: 16 KB at end of flash */
+        storage_partition: partition@3C000 {
             label = "storage";
-            reg = <0x00034000 0x0000C000>;
+            reg = <0x0003C000 DT_SIZE_K(16)>;
         };
     };
 };
+
 
 &adc1 {
     pinctrl-0 = <&adc1_in6_pa1 &adc1_in7_pa2 &adc1_in8_pa3 &adc1_in9_pa4>;  // add whatever inputs you need
