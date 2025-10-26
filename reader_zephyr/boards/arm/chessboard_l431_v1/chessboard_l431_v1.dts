@@ -20,6 +20,7 @@
 		//zephyr,canbus = &can1;
                 uart-sender = &usart3;
                 config-data = &storage_partition;
+		zephyr,code-partition = &slot0_partition;
 	};
 
 	leds: leds {
@@ -167,21 +168,61 @@
 
 */
 
-&flash0 {
-	partitions {
-		compatible = "fixed-partitions";
-		#address-cells = <1>;
-		#size-cells = <1>;
+//&flash0 {
+//	partitions {
+//		compatible = "fixed-partitions";
+//		#address-cells = <1>;
+//		#size-cells = <1>;
 
-		/*
-		 * Reserve the final 16 KiB for file system partition
-		 */
-		storage_partition: partition@3c000 {
-			label = "storage";
-			reg = <0x0003c000 DT_SIZE_K(16)>;
-		};
-	};
+//		/*
+//		 * Reserve the final 16 KiB for file system partition
+//		 */
+//		storage_partition: partition@3c000 {
+//			label = "storage";
+//			reg = <0x0003c000 DT_SIZE_K(16)>;
+//		};
+//	};
+//};
+
+
+&flash0 {
+    partitions {
+        compatible = "fixed-partitions";
+        #address-cells = <1>;
+        #size-cells = <1>;
+
+        /* MCUboot bootloader: 48 KB (0xC000) */
+        boot_partition: partition@0 {
+            label = "mcuboot";
+            reg = <0x00000000 0x0000C000>;
+        };
+
+        /* Primary image slot: 76 KB (0x13000) */
+        slot0_partition: partition@c000 {
+            label = "image-0";
+            reg = <0x0000C000 0x00013000>;
+        };
+
+        /* Secondary image slot: 76 KB (0x13000) */
+        slot1_partition: partition@1f000 {
+            label = "image-1";
+            reg = <0x0001F000 0x00013000>;
+        };
+
+        /* Scratch: 8 KB (0x2000) */
+        scratch_partition: partition@32000 {
+            label = "image-scratch";
+            reg = <0x00032000 0x00002000>;
+        };
+
+        /* Storage / NVS: remaining 48 KB (0xC000) */
+        storage_partition: partition@34000 {
+            label = "storage";
+            reg = <0x00034000 0x0000C000>;
+        };
+    };
 };
+
 &adc1 {
     pinctrl-0 = <&adc1_in6_pa1 &adc1_in7_pa2 &adc1_in8_pa3 &adc1_in9_pa4>;  // add whatever inputs you need
     pinctrl-names = "default";
