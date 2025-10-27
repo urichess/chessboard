@@ -1,16 +1,17 @@
 #INIT ENV
-export ZEPHYR_BASE=~/zephyrproject/zephyr
-source ~/zephyrproject/.venv/bin/activate
+. ./scripts/activate
 
 #COMPILE
+
+./scripts/build_all.sh [-clean]
+
+
+#ZEPHYR COMMANDS TO COMPILE
 
 west build -p always -b arduino_uno_r4_wifi
 
 west build -p always -b nucleo_g474re
 west build -p auto -b nucleo_g474re
-
-
-
 west build -p always -b nucleo_g474re -t dt
 
 #CONFIG
