@@ -21,6 +21,7 @@
                 uart-sender = &usart3;
                 config-data = &storage_partition;
 		zephyr,code-partition = &slot0_partition;
+		zephyr,uart-mcumgr = &usart3;
 	};
 
 	leds: leds {

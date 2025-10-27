@@ -14,9 +14,10 @@ west build -p always -b nucleo_g474re
 west build -p auto -b nucleo_g474re
 west build -p always -b nucleo_g474re -t dt
 
+
 #CONFIG
 
-west build -b arduino_uno_r4_wifi -t menuconfig
+west build -b chessboard_l431_v1 -t menuconfig app
 
 #UTILS
 west boards
