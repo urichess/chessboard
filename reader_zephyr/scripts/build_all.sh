@@ -15,7 +15,7 @@ done
 #echo "Using West parameter: $PRISTINE"
 
 echo "Building MCUboot..."
-west build -p $PRISTINE $WEST_PARAM -b $BOARD -d build/mcuboot bootloader/mcuboot/boot/zephyr
+west build -p $PRISTINE $WEST_PARAM -b $BOARD -d build/mcuboot bootloader/mcuboot/boot/zephyr -DCONFIG_BOOT_SIGNATURE_KEY_FILE=\"/home/elotro/keys/mykey.pem\"
 
 echo "Building App..."
 west build -p $PRISTINE -b $BOARD -d build/app app
