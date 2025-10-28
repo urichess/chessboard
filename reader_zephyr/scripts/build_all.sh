@@ -85,7 +85,7 @@ function build_target() {
 
 # MCUboot
 build_target "MCUboot" "$MCUBOOT_BUILD_DIR" "$MCUBOOT_DIR" \
-    -DCONFIG_BOOT_SIGNATURE_KEY_FILE="\"$KEY_FILE\""
+    -DCONFIG_BOOT_SIGNATURE_KEY_FILE="\"$KEY_FILE\"" --extra-conf /home/elotro/work/chessApps/chessboard/reader_zephyr/bootloader/config_overrides.conf
 
 # Application
 build_target "Application" "$APP_BUILD_DIR" "$APP_DIR" \

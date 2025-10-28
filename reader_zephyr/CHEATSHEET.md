@@ -31,3 +31,4 @@ west update
 west packages pip --install
 
 python -m serial.tools.miniterm /dev/ttyACM0 115200
+west build -b chessboard_l431_v1  -d build/mcuboot/ -p auto  bootloader/mcuboot/boot/zephyr/ -t menuconfig --extra-conf /home/elotro/work/chessApps/chessboard/reader_zephyr/bootloader/config_overrides.conf 
