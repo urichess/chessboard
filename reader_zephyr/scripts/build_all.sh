@@ -17,8 +17,10 @@ set -euo pipefail
 BOARD="chessboard_l431_v1"
 MCUBOOT_DIR="bootloader/mcuboot/boot/zephyr"
 APP_DIR="app"
+UPGRADER_DIR="upgrader"
 MCUBOOT_BUILD_DIR="build/mcuboot"
 APP_BUILD_DIR="build/app"
+UPGRADER_BUILD_DIR="build/upgrader"
 KEY_FILE="/home/elotro/keys/mykey.pem"
 
 # Default West parameter
@@ -91,6 +93,10 @@ build_target "MCUboot" "$MCUBOOT_BUILD_DIR" "$MCUBOOT_DIR" \
 build_target "Application" "$APP_BUILD_DIR" "$APP_DIR" \
     -DCONFIG_MCUBOOT_SIGNATURE_KEY_FILE="\"$KEY_FILE\""
 
+# Upgrader
+build_target "Upgrader" "$UPGRADER_BUILD_DIR" "$UPGRADER_DIR" \
+    -DCONFIG_MCUBOOT_SIGNATURE_KEY_FILE="\"$KEY_FILE\""
+
 # ---------------------------------------------------------------------
 # Summary
 # ---------------------------------------------------------------------
@@ -98,4 +104,5 @@ echo ""
 echo -e "\n${GREEN}✅ Build complete!${NC}"
 echo "MCUboot build: $MCUBOOT_BUILD_DIR"
 echo "App build:     $APP_BUILD_DIR"
+echo "Upgrader build:$UPGRADER_BUILD_DIR"
 
