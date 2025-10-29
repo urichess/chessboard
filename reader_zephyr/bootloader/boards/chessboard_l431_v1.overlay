@@ -1,6 +1,6 @@
 / {
 	chosen {
-		zephyr,code-partition = &slot1_partition;
+		
 		zephyr,uart-mcumgr = &usart3;
 	};
 
