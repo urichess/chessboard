@@ -15,6 +15,11 @@
 #include <zephyr/sys/__assert.h>
 #include <zephyr/shell/shell.h>
 
+//#include <zephyr/bootutil/bootutil_public.h>
+
+#include <zephyr/dfu/mcuboot.h>
+#include <zephyr/sys/reboot.h>
+
 #include <string.h>
 #include <ctype.h>
 
@@ -33,10 +38,22 @@
 #error "Unsupported board: led0 devicetree alias is not defined"
 #endif
 
+extern "C" int main(void)
+{
+    printk("Updater running (slot 1). Simulating update for 10 seconds...\n");
+    k_sleep(K_SECONDS(10));
 
-int main(void) {
-	printk("Hello from upgrader!");
+    printk("Update simulation done. Marking Slot 1 as confirmed so MCUboot returns to Slot 0.\n");
 
-	return 0;
+    // Tell MCUboot we are finished with Slot 1
+    boot_write_img_confirmed();
+//    boot_set_confirmed();
+
+    printk("Rebooting to boot Slot 0...\n");
+    sys_reboot(SYS_REBOOT_COLD);
+
+    while(1) {}
+
+    return 0;
 }
 
