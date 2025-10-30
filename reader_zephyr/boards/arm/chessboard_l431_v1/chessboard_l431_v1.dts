@@ -145,7 +145,7 @@
             reg = <0x00000000 DT_SIZE_K(36)>;
         };
 
-        /* Primary image slot: 98 KB */
+        /* Primary image slot: 98 KB - 18800h */
         slot0_partition: partition@9000 {
             label = "image-0";
             reg = <0x00009000 DT_SIZE_K(98)>;
@@ -154,7 +154,7 @@
         /* Secondary image slot: 98 KB */
         slot1_partition: partition@11D00 {
             label = "image-1";
-            reg = <0x00011D00 DT_SIZE_K(98)>;
+            reg = <0x00021800 DT_SIZE_K(98)>;
         };
 
         /* Scratch: 8 KB */
