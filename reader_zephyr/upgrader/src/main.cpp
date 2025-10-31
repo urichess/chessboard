@@ -46,13 +46,13 @@ extern "C" int main(void)
     printk("Update simulation done. Marking Slot 1 as confirmed so MCUboot returns to Slot 0.\n");
 
     // Tell MCUboot we are finished with Slot 1
-    boot_write_img_confirmed();
-//    boot_set_confirmed();
+    //boot_write_img_confirmed();
+    //boot_write_img_confirmed_multi(0);
+    //    boot_set_confirmed();
 
     printk("Rebooting to boot Slot 0...\n");
-    sys_reboot(SYS_REBOOT_COLD);
+    //sys_reboot(SYS_REBOOT_COLD);
 
-    while(1) {}
 
     return 0;
 }
