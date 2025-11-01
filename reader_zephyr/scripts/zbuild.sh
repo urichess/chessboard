@@ -112,13 +112,11 @@ if [[ "$TARGET" == "mcuboot" || "$TARGET" == "all" ]]; then
 fi
 
 if [[ "$TARGET" == "app" || "$TARGET" == "all" ]]; then
-    build_target "Application" "$APP_BUILD_DIR" "$APP_DIR" \
-        -DCONFIG_MCUBOOT_SIGNATURE_KEY_FILE="\"$KEY_FILE\""
+    build_target "Application" "$APP_BUILD_DIR" "$APP_DIR"
 fi
 
 if [[ "$TARGET" == "upgrader" || "$TARGET" == "all" ]]; then
-    build_target "Upgrader" "$UPGRADER_BUILD_DIR" "$UPGRADER_DIR" \
-        -DCONFIG_MCUBOOT_SIGNATURE_KEY_FILE="\"$KEY_FILE\""
+    build_target "Upgrader" "$UPGRADER_BUILD_DIR" "$UPGRADER_DIR"
 fi
 
 # ---------------------------------------------------------------------
