@@ -1,0 +1,11 @@
+/ {
+	chosen {
+		zephyr,code-partition = &slot0_partition;
+                uart-sender = &usart3;
+                config-data = &storage_partition;
+	};
+};
+
+&adc1 {
+    status = "okay";
+};

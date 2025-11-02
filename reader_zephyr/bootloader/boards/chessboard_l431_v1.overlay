@@ -1,0 +1,9 @@
+/ {
+	chosen {
+		
+		zephyr,uart-mcumgr = &usart3;
+	};
+
+};
+
+
