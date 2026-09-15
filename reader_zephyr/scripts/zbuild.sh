@@ -22,6 +22,9 @@ TARGET="all"
 EXTRA_PARAMS=""   
 MENUCONFIG=""
 
+SCRIPT_PATH=$(dirname "$(realpath "${BASH_SOURCE[0]}")")
+ROOT_DIR="${SCRIPT_PATH}/.."
+
 # ---------------------------------------------------------------------
 # Colors
 # ---------------------------------------------------------------------
@@ -107,8 +110,8 @@ function build_target() {
 # ---------------------------------------------------------------------
 if [[ "$TARGET" == "mcuboot" || "$TARGET" == "all" ]]; then
     build_target "MCUboot" "$MCUBOOT_BUILD_DIR" "$MCUBOOT_DIR" \
-        --extra-conf /home/elotro/work/chessApps/chessboard/reader_zephyr/bootloader/config_overrides.conf \
-        --extra-dtc-overlay /home/elotro/work/chessApps/chessboard/reader_zephyr/bootloader/boards/chessboard_l431_v1.overlay
+        --extra-conf $ROOT_DIR/bootloader/config_overrides.conf \
+        --extra-dtc-overlay $ROOT_DIR/bootloader/boards/chessboard_l431_v1.overlay
 fi
 
 if [[ "$TARGET" == "app" || "$TARGET" == "all" ]]; then
