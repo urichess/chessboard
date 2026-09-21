@@ -18,31 +18,37 @@ static size_t rx_line_pos = 0;
 
 
 //This is a placeholder for a protocol. there should be another thread processing messages and that thread should be doing this.
-static void uart_cb(const struct device *dev, void *user_data) {
-	
+static void uart_cb(const struct device *dev, void *user_data)
+{
     UartSender* theSender = static_cast<UartSender*>(user_data);
 
-    while (uart_irq_update(dev) && uart_irq_is_pending(dev)) {
+    uart_irq_update(dev);
+
+    while (uart_irq_is_pending(dev)) {
         if (uart_irq_rx_ready(dev)) {
             uint8_t buf[64];
             int recv_len = uart_fifo_read(dev, buf, sizeof(buf));
+
             for (int i = 0; i < recv_len; i++) {
                 char c = buf[i];
+
                 if (c == '\n' || rx_line_pos >= sizeof(rx_line_buf) - 1) {
                     rx_line_buf[rx_line_pos] = '\0';
+
                     if (strcmp(rx_line_buf, "REQUEST:1") == 0) {
                         if (theSender) {
                             theSender->resend();
                         }
                     }
-                    rx_line_pos = 0; // Reset for next line
-                } else if (c != '\r') {
+
+                    rx_line_pos = 0;
+                }
+                else if (c != '\r') {
                     rx_line_buf[rx_line_pos++] = c;
                 }
             }
         }
     }
-	
 }
 
 bool UartSender::initialize() {

@@ -145,17 +145,35 @@
             reg = <0x00000000 DT_SIZE_K(36)>;
         };
 
+	  /* Primary image slot: 196 KB */
+//        slot0_partition: partition@9000 {
+//            label = "image-0";
+//            reg = <0x00009000 DT_SIZE_K(196)>;
+//        };
+
+        	/* Primary image: 136 KB */
+	slot0_partition: partition@9000 {
+	    label = "image-0";
+	    reg = <0x00009000 DT_SIZE_K(136)>;
+	};
+
+	/* Secondary image: 60 KB */
+	slot1_partition: partition@2B000 {
+	    label = "image-1";
+	    reg = <0x0002B000 DT_SIZE_K(60)>;
+	};
+
         /* Primary image slot: 98 KB - 18800h */
-        slot0_partition: partition@9000 {
-            label = "image-0";
-            reg = <0x00009000 DT_SIZE_K(98)>;
-        };
+//        slot0_partition: partition@9000 {
+//            label = "image-0";
+//            reg = <0x00009000 DT_SIZE_K(98)>;
+//        };
 
         /* Secondary image slot: 98 KB */
-        slot1_partition: partition@11D00 {
-            label = "image-1";
-            reg = <0x00021800 DT_SIZE_K(98)>;
-        };
+//        slot1_partition: partition@11D00 {
+//            label = "image-1";
+//            reg = <0x00021800 DT_SIZE_K(98)>;
+//        };
 
         /* Scratch: 8 KB */
         scratch_partition: partition@3A000 {
