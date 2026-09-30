@@ -452,7 +452,7 @@
     "pinned_symbol_libs": []
   },
   "meta": {
-    "filename": "CHESS PIECES DETECTION.kicad_pro",
+    "filename": "FULL_BOARD_SQ5.kicad_pro",
     "version": 3
   },
   "net_settings": {
@@ -638,6 +638,22 @@
     [
       "9efc52ae-bc4a-45a9-ae90-3bdc8c654efe",
       "Root"
+    ],
+    [
+      "d7c74820-fa9e-4c02-a32b-3a46be2a1287",
+      "sensor_matrix0"
+    ],
+    [
+      "0403344a-9df1-4912-a766-beb4e9a9b1c8",
+      "sensor_matrix1"
+    ],
+    [
+      "9383c920-7ceb-439b-a62a-1e0e6f780953",
+      "sensor_matrix2"
+    ],
+    [
+      "8a86a6c4-076e-4638-b98f-c938876732d3",
+      "sensor_matrix3"
     ]
   ],
   "text_variables": {}
