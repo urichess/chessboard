@@ -10066,7 +10066,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Connector_USB:USB_C_Receptacle_GCT_USB4105-xx-A_16P_TopMnt_Horizontal_Modified"
+		(property "Footprint" "Connector_USB:USB_C_Receptacle_GCT_USB4105-xx-A_16P_TopMnt_Horizontal"
 			(at 328.93 184.15 0)
 			(effects
 				(font
@@ -13007,7 +13007,7 @@
 				(hide yes)
 			)
 		)
-		(property "Footprint" "Crystal_AKL:Crystal_SMD_MicroCrystal_CC7V-T1A-2Pin_3.2x1.5mm_HandSoldering"
+		(property "Footprint" "PCM_Crystal_AKL:Crystal_SMD_MicroCrystal_CC7V-T1A-2Pin_3.2x1.5mm_HandSoldering"
 			(at 133.35 68.58 0)
 			(effects
 				(font
@@ -13958,7 +13958,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Package_SO_AKL:TSOP-6_1.65x3.05mm_P0.95mm"
+		(property "Footprint" "PCM_Package_SO_AKL:TSOP-6_1.65x3.05mm_P0.95mm"
 			(at 370.84 198.12 0)
 			(effects
 				(font
@@ -16088,7 +16088,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Package_TO_SOT_SMD_AKL:SOT-23"
+		(property "Footprint" "PCM_Package_TO_SOT_SMD_AKL:SOT-23"
 			(at 328.93 31.75 0)
 			(effects
 				(font
