@@ -16796,7 +16796,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Sheetfile" "sensor_matrix"
+		(property "Sheetfile" "sensor_matrix.kicad_sch"
 			(at 44.45 88.2146 0)
 			(effects
 				(font
@@ -16888,7 +16888,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Sheetfile" "sensor_matrix"
+		(property "Sheetfile" "sensor_matrix.kicad_sch"
 			(at 45.72 158.0646 0)
 			(effects
 				(font
@@ -16980,7 +16980,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Sheetfile" "sensor_matrix"
+		(property "Sheetfile" "sensor_matrix.kicad_sch"
 			(at 45.72 122.5046 0)
 			(effects
 				(font
@@ -17072,7 +17072,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Sheetfile" "sensor_matrix"
+		(property "Sheetfile" "sensor_matrix.kicad_sch"
 			(at 43.18 51.3846 0)
 			(effects
 				(font
