@@ -3916,7 +3916,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" "Package_TO_SOT_THT:TO-92_Inline"
+		(property "Footprint" "PCM_Package_TO_SOT_SMD_AKL:SOT-23_Handsoldering"
 			(at 115.57 38.1 0)
 			(effects
 				(font
@@ -4395,7 +4395,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" "Package_TO_SOT_THT:TO-92_Inline"
+		(property "Footprint" "PCM_Package_TO_SOT_SMD_AKL:SOT-23_Handsoldering"
 			(at 115.57 80.01 0)
 			(effects
 				(font
@@ -4643,7 +4643,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" "Package_TO_SOT_THT:TO-92_Inline"
+		(property "Footprint" "PCM_Package_TO_SOT_SMD_AKL:SOT-23_Handsoldering"
 			(at 43.18 123.19 0)
 			(effects
 				(font
@@ -5043,7 +5043,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" "Package_TO_SOT_THT:TO-92_Inline"
+		(property "Footprint" "PCM_Package_TO_SOT_SMD_AKL:SOT-23_Handsoldering"
 			(at 151.13 38.1 0)
 			(effects
 				(font
@@ -5205,7 +5205,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" "Package_TO_SOT_THT:TO-92_Inline"
+		(property "Footprint" "PCM_Package_TO_SOT_SMD_AKL:SOT-23_Handsoldering"
 			(at 151.13 80.01 0)
 			(effects
 				(font
@@ -5449,7 +5449,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" "Package_TO_SOT_THT:TO-92_Inline"
+		(property "Footprint" "PCM_Package_TO_SOT_SMD_AKL:SOT-23_Handsoldering"
 			(at 151.13 123.19 0)
 			(effects
 				(font
@@ -5615,7 +5615,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" "Package_TO_SOT_THT:TO-92_Inline"
+		(property "Footprint" "PCM_Package_TO_SOT_SMD_AKL:SOT-23_Handsoldering"
 			(at 43.18 80.01 0)
 			(effects
 				(font
@@ -5699,7 +5699,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" "Package_TO_SOT_THT:TO-92_Inline"
+		(property "Footprint" "PCM_Package_TO_SOT_SMD_AKL:SOT-23_Handsoldering"
 			(at 80.01 165.1 0)
 			(effects
 				(font
@@ -5783,7 +5783,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" "Package_TO_SOT_THT:TO-92_Inline"
+		(property "Footprint" "PCM_Package_TO_SOT_SMD_AKL:SOT-23_Handsoldering"
 			(at 43.18 165.1 0)
 			(effects
 				(font
@@ -5867,7 +5867,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" "Package_TO_SOT_THT:TO-92_Inline"
+		(property "Footprint" "PCM_Package_TO_SOT_SMD_AKL:SOT-23_Handsoldering"
 			(at 151.13 165.1 0)
 			(effects
 				(font
@@ -6357,7 +6357,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" "Package_TO_SOT_THT:TO-92_Inline"
+		(property "Footprint" "PCM_Package_TO_SOT_SMD_AKL:SOT-23_Handsoldering"
 			(at 115.57 165.1 0)
 			(effects
 				(font
@@ -6523,7 +6523,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" "Package_TO_SOT_THT:TO-92_Inline"
+		(property "Footprint" "PCM_Package_TO_SOT_SMD_AKL:SOT-23_Handsoldering"
 			(at 43.18 38.1 0)
 			(effects
 				(font
@@ -6689,7 +6689,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" "Package_TO_SOT_THT:TO-92_Inline"
+		(property "Footprint" "PCM_Package_TO_SOT_SMD_AKL:SOT-23_Handsoldering"
 			(at 80.01 123.19 0)
 			(effects
 				(font
@@ -6929,7 +6929,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" "Package_TO_SOT_THT:TO-92_Inline"
+		(property "Footprint" "PCM_Package_TO_SOT_SMD_AKL:SOT-23_Handsoldering"
 			(at 115.57 123.19 0)
 			(effects
 				(font
@@ -7333,7 +7333,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" "Package_TO_SOT_THT:TO-92_Inline"
+		(property "Footprint" "PCM_Package_TO_SOT_SMD_AKL:SOT-23_Handsoldering"
 			(at 80.01 38.1 0)
 			(effects
 				(font
@@ -7495,7 +7495,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" "Package_TO_SOT_THT:TO-92_Inline"
+		(property "Footprint" "PCM_Package_TO_SOT_SMD_AKL:SOT-23_Handsoldering"
 			(at 80.01 80.01 0)
 			(effects
 				(font
