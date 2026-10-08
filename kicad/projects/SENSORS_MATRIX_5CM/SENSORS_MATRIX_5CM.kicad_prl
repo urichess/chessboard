@@ -1,6 +1,6 @@
 {
   "board": {
-    "active_layer": 2,
+    "active_layer": 25,
     "active_layer_preset": "All Layers",
     "auto_track_width": false,
     "hidden_netclasses": [],
@@ -59,7 +59,7 @@
     "ssh_key": ""
   },
   "meta": {
-    "filename": "FULL_BOARD_SQ5.kicad_prl",
+    "filename": "SENSORS_MATRIX_5CM.kicad_prl",
     "version": 5
   },
   "net_inspector_panel": {
