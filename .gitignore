@@ -1,0 +1,38 @@
+# ==========================================
+# Archivos temporales y de copia de seguridad
+# ==========================================
+*.000
+*.bak
+*.bck
+*.kicad_pcb-bak
+*.kicad_sch-bak
+*.sch-bak
+*~
+~*
+_autosave-*
+#-save.pro      # Descomenta si no quieres guardar copias previas de la configuración
+#-save.kicad_pcb
+fp-info-cache
+fp-info-cache.txt
+~*.lck
+
+# Historial local automatizado e interno (KiCad 9.0+)
+.history/
+
+# Respaldos comprimidos automáticos
+*-backups/
+**/*-backups/*.zip
+
+# Preferencias específicas y locales de tu espacio de trabajo
+*.kicad_prl
+
+# ==========================================
+# Archivos exportados o generados por el usuario
+# (Opcional: descomenta si prefieres generarlos en limpio cada vez)
+# ==========================================
+# *.net       # Listas de nodos (Netlists)
+# *.dsn       # Archivos de autorruteo
+# *.ses       # Archivos de sesión de autorruteo
+# *.xml       # Listas de materiales (BOM) en XML
+# *.csv       # Listas de materiales (BOM) en CSV
+
