@@ -2018,6 +2018,16 @@
 	)
 	(wire
 		(pts
+			(xy 232.41 29.21) (xy 236.22 29.21)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d28d4863-e833-4adb-a981-d61b483c0c0b")
+	)
+	(wire
+		(pts
 			(xy 193.04 54.61) (xy 193.04 59.69)
 		)
 		(stroke
@@ -2354,7 +2364,7 @@
 	)
 	(global_label "FBK_3V3_SENSORS"
 		(shape input)
-		(at 224.79 29.21 0)
+		(at 236.22 29.21 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -2364,7 +2374,7 @@
 		)
 		(uuid "20895fb4-903e-4bed-ac0b-ee993df9be8f")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 245.5551 29.21 0)
+			(at 256.9851 29.21 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3234,6 +3244,81 @@
 			(project "SENSORS_MATRIX_5CM"
 				(path "/9efc52ae-bc4a-45a9-ae90-3bdc8c654efe"
 					(reference "C1")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R")
+		(at 228.6 29.21 270)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "0dddf0bd-b445-41b9-8b07-256e866798a0")
+		(property "Reference" "R10"
+			(at 232.156 31.242 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "0"
+			(at 225.806 31.242 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder"
+			(at 228.6 27.432 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 228.6 29.21 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor"
+			(at 228.6 29.21 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC p/n" ""
+			(at 228.6 29.21 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "8370b1db-bc1a-4c30-bf66-30aad8ac0406")
+		)
+		(pin "2"
+			(uuid "4a248857-c27c-441f-90aa-4d5ccf465c60")
+		)
+		(instances
+			(project "SENSORS_MATRIX_5CM"
+				(path "/9efc52ae-bc4a-45a9-ae90-3bdc8c654efe"
+					(reference "R10")
 					(unit 1)
 				)
 			)
