@@ -11850,28 +11850,6 @@
 			)
 		)
 	)
-	(global_label "SENSORS_HW_ID0"
-		(shape input)
-		(at 369.57 129.54 0)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "c7100440-e090-4afe-89ce-0ca9acf521eb")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 389.0651 129.54 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-				(hide yes)
-			)
-		)
-	)
 	(global_label "3V3_OUT"
 		(shape input)
 		(at 377.19 68.58 0)
@@ -13414,7 +13392,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2412232100_YAGEO-RC0805FR-0710KL_C84376.pdf"
+		(property "Datasheet" "https://www.lcsc.com/datasheet/C126351.pdf?spm=wm.sxq.inf.ggs&lcsc_vid=E1APAwdRQ1VeXlFQFANfA11XFQQPUVdeQlJeXgIEEgAxVlNfRVBbUVJVQlhdVjtW"
 			(at 76.2 262.89 0)
 			(effects
 				(font
@@ -13432,7 +13410,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC p/n" ""
+		(property "LCSC p/n" "C126351"
 			(at 78.74 264.1599 0)
 			(effects
 				(font
@@ -13452,7 +13430,16 @@
 				(hide yes)
 			)
 		)
-		(property "shop" ""
+		(property "shop" "https://www.lcsc.com/product-detail/Chip-Resistor-Surface-Mount_YAGEO-RC0805FR-0747KL_C126351.html"
+			(at 76.2 262.89 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "RC0805FR-0747KL"
 			(at 76.2 262.89 0)
 			(effects
 				(font
@@ -15644,7 +15631,7 @@
 		(at 374.65 55.88 180)
 		(unit 1)
 		(exclude_from_sim no)
-		(in_bom no)
+		(in_bom yes)
 		(on_board yes)
 		(dnp yes)
 		(uuid "55a17da0-8dd8-4ef7-bd32-e591e4c08f5a")
@@ -17667,7 +17654,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2304140030_YAGEO-RC0805FR-0747KL_C126351.pdf"
+		(property "Datasheet" "https://www.lcsc.com/datasheet/C126351.pdf?spm=wm.sxq.inf.ggs&lcsc_vid=E1APAwdRQ1VeXlFQFANfA11XFQQPUVdeQlJeXgIEEgAxVlNfRVBbUVJVQlhdVjtW"
 			(at 109.22 124.46 0)
 			(effects
 				(font
@@ -17706,6 +17693,15 @@
 			)
 		)
 		(property "shop" "https://www.lcsc.com/product-detail/Chip-Resistor-Surface-Mount_YAGEO-RC0805FR-0747KL_C126351.html"
+			(at 109.22 124.46 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "RC0805FR-0747KL"
 			(at 109.22 124.46 0)
 			(effects
 				(font

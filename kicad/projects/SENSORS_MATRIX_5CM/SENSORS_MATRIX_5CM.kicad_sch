@@ -3283,7 +3283,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" "https://www.lcsc.com/datasheet/C96345.pdf"
 			(at 228.6 29.21 0)
 			(effects
 				(font
@@ -3301,12 +3301,30 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC p/n" ""
+		(property "LCSC p/n" "C96345"
 			(at 228.6 29.21 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
+			)
+		)
+		(property "MP" "RC0805JR-070RL"
+			(at 228.6 29.21 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "shop" "https://www.lcsc.com/product-detail/C96345.html?s_z=n_q_t_resistor%25200%2520ohm"
+			(at 228.6 29.21 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
 			)
 		)
 		(pin "1"
@@ -3358,7 +3376,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" "https://www.lcsc.com/datasheet/C96345.pdf"
 			(at 140.97 180.34 0)
 			(effects
 				(font
@@ -3376,12 +3394,30 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC p/n" ""
+		(property "LCSC p/n" "C96345"
 			(at 140.97 180.34 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
+			)
+		)
+		(property "MP" "RC0805JR-070RL"
+			(at 140.97 180.34 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "shop" "https://www.lcsc.com/product-detail/C96345.html?s_z=n_q_t_resistor%25200%2520ohm"
+			(at 140.97 180.34 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
 			)
 		)
 		(pin "1"
@@ -3501,7 +3537,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" "https://www.lcsc.com/datasheet/C114519.pdf"
 			(at 213.36 139.7 0)
 			(effects
 				(font
@@ -3511,6 +3547,33 @@
 			)
 		)
 		(property "Description" "Resistor"
+			(at 213.36 139.7 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC p/n" "C114519"
+			(at 213.36 139.7 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MP" "RC0805FR-07220RL"
+			(at 213.36 139.7 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "shop" "https://www.lcsc.com/product-detail/C114519.html?s_z=n_q_t_resistor%2520220"
 			(at 213.36 139.7 0)
 			(effects
 				(font
@@ -3571,7 +3634,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" "https://www.lcsc.com/datasheet/C114519.pdf"
 			(at 227.33 139.7 0)
 			(effects
 				(font
@@ -3581,6 +3644,33 @@
 			)
 		)
 		(property "Description" "Resistor"
+			(at 227.33 139.7 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC p/n" "C114519"
+			(at 227.33 139.7 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MP" "RC0805FR-07220RL"
+			(at 227.33 139.7 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "shop" "https://www.lcsc.com/product-detail/C114519.html?s_z=n_q_t_resistor%2520220"
 			(at 227.33 139.7 0)
 			(effects
 				(font
@@ -3638,7 +3728,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" "https://www.lcsc.com/datasheet/C96345.pdf"
 			(at 107.95 180.34 0)
 			(effects
 				(font
@@ -3656,12 +3746,30 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC p/n" ""
+		(property "LCSC p/n" "C96345"
 			(at 107.95 180.34 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
+			)
+		)
+		(property "MP" "RC0805JR-070RL"
+			(at 107.95 180.34 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "shop" "https://www.lcsc.com/product-detail/C96345.html?s_z=n_q_t_resistor%25200%2520ohm"
+			(at 107.95 180.34 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
 			)
 		)
 		(pin "1"
@@ -3713,7 +3821,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" "https://www.lcsc.com/datasheet/C96345.pdf"
 			(at 140.97 177.8 0)
 			(effects
 				(font
@@ -3731,12 +3839,30 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC p/n" ""
+		(property "LCSC p/n" "C96345"
 			(at 140.97 177.8 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
+			)
+		)
+		(property "MP" "RC0805JR-070RL"
+			(at 140.97 177.8 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "shop" "https://www.lcsc.com/product-detail/C96345.html?s_z=n_q_t_resistor%25200%2520ohm"
+			(at 140.97 177.8 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
 			)
 		)
 		(pin "1"
@@ -3791,7 +3917,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" "https://www.lcsc.com/datasheet/C114519.pdf"
 			(at 227.33 104.14 0)
 			(effects
 				(font
@@ -3801,6 +3927,33 @@
 			)
 		)
 		(property "Description" "Resistor"
+			(at 227.33 104.14 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC p/n" "C114519"
+			(at 227.33 104.14 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MP" "RC0805FR-07220RL"
+			(at 227.33 104.14 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "shop" "https://www.lcsc.com/product-detail/C114519.html?s_z=n_q_t_resistor%2520220"
 			(at 227.33 104.14 0)
 			(effects
 				(font
@@ -3990,7 +4143,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" "https://www.lcsc.com/datasheet/C96345.pdf"
 			(at 107.95 177.8 0)
 			(effects
 				(font
@@ -4008,12 +4161,30 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC p/n" ""
+		(property "LCSC p/n" "C96345"
 			(at 107.95 177.8 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
+			)
+		)
+		(property "MP" "RC0805JR-070RL"
+			(at 107.95 177.8 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "shop" "https://www.lcsc.com/product-detail/C96345.html?s_z=n_q_t_resistor%25200%2520ohm"
+			(at 107.95 177.8 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
 			)
 		)
 		(pin "1"
@@ -4236,7 +4407,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" "https://www.lcsc.com/datasheet/C96345.pdf"
 			(at 140.97 175.26 0)
 			(effects
 				(font
@@ -4254,12 +4425,30 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC p/n" ""
+		(property "LCSC p/n" "C96345"
 			(at 140.97 175.26 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
+			)
+		)
+		(property "MP" "RC0805JR-070RL"
+			(at 140.97 175.26 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "shop" "https://www.lcsc.com/product-detail/C96345.html?s_z=n_q_t_resistor%25200%2520ohm"
+			(at 140.97 175.26 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
 			)
 		)
 		(pin "1"
@@ -4304,7 +4493,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder"
+		(property "Footprint" "Capacitor_SMD:C_1206_3216Metric_Pad1.33x1.80mm_HandSolder"
 			(at 221.9452 52.07 0)
 			(effects
 				(font
@@ -4331,7 +4520,7 @@
 				(hide yes)
 			)
 		)
-		(property "shop" ""
+		(property "shop" "https://www.lcsc.com/product-detail/C5672.html?s_z=n_q_c5672&globalKeyword=c5672"
 			(at 220.98 48.26 0)
 			(effects
 				(font
@@ -4340,7 +4529,7 @@
 				(hide yes)
 			)
 		)
-		(property "MP" ""
+		(property "MP" "CL31A226KPHNNNE"
 			(at 220.98 48.26 0)
 			(effects
 				(font
@@ -4349,7 +4538,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC p/n" ""
+		(property "LCSC p/n" "C5672"
 			(at 220.98 48.26 0)
 			(effects
 				(font
@@ -4541,7 +4730,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" "https://www.lcsc.com/datasheet/C434437.pdf"
 			(at 227.33 92.71 0)
 			(effects
 				(font
@@ -4552,6 +4741,33 @@
 		)
 		(property "Description" "Light emitting diode"
 			(at 227.33 92.71 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC p/n" "C434437"
+			(at 227.33 92.71 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MP" "SZYY0805O"
+			(at 227.33 92.71 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "shop" "https://www.lcsc.com/product-detail/LED-Indication-Discrete_Yongyu-Photoelectric-SZYY0805O_C434437.html"
+			(at 227.33 92.71 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4676,7 +4892,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" "https://www.lcsc.com/datasheet/C434437.pdf"
 			(at 213.36 128.27 0)
 			(effects
 				(font
@@ -4687,6 +4903,33 @@
 		)
 		(property "Description" "Light emitting diode"
 			(at 213.36 128.27 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC p/n" "C434437"
+			(at 213.36 128.27 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MP" "SZYY0805O"
+			(at 213.36 128.27 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "shop" "https://www.lcsc.com/product-detail/LED-Indication-Discrete_Yongyu-Photoelectric-SZYY0805O_C434437.html"
+			(at 213.36 128.27 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5236,7 +5479,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" "https://www.lcsc.com/datasheet/C114519.pdf"
 			(at 214.63 104.14 0)
 			(effects
 				(font
@@ -5246,6 +5489,33 @@
 			)
 		)
 		(property "Description" "Resistor"
+			(at 214.63 104.14 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC p/n" "C114519"
+			(at 214.63 104.14 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MP" "RC0805FR-07220RL"
+			(at 214.63 104.14 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "shop" "https://www.lcsc.com/product-detail/C114519.html?s_z=n_q_t_resistor%2520220"
 			(at 214.63 104.14 0)
 			(effects
 				(font
@@ -5306,7 +5576,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" "https://www.lcsc.com/datasheet/C434437.pdf"
 			(at 214.63 92.71 0)
 			(effects
 				(font
@@ -5317,6 +5587,33 @@
 		)
 		(property "Description" "Light emitting diode"
 			(at 214.63 92.71 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC p/n" "C434437"
+			(at 214.63 92.71 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MP" "SZYY0805O"
+			(at 214.63 92.71 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "shop" "https://www.lcsc.com/product-detail/LED-Indication-Discrete_Yongyu-Photoelectric-SZYY0805O_C434437.html"
+			(at 214.63 92.71 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5442,7 +5739,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" "https://www.lcsc.com/datasheet/C434437.pdf"
 			(at 227.33 128.27 0)
 			(effects
 				(font
@@ -5453,6 +5750,33 @@
 		)
 		(property "Description" "Light emitting diode"
 			(at 227.33 128.27 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC p/n" "C434437"
+			(at 227.33 128.27 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MP" "SZYY0805O"
+			(at 227.33 128.27 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "shop" "https://www.lcsc.com/product-detail/LED-Indication-Discrete_Yongyu-Photoelectric-SZYY0805O_C434437.html"
+			(at 227.33 128.27 90)
 			(effects
 				(font
 					(size 1.27 1.27)

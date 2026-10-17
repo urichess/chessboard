@@ -564,19 +564,19 @@
           "show": true
         },
         {
-          "group_by": true,
+          "group_by": false,
           "label": "DNP",
           "name": "${DNP}",
           "show": true
         },
         {
-          "group_by": true,
+          "group_by": false,
           "label": "Exclude from BOM",
           "name": "${EXCLUDE_FROM_BOM}",
           "show": true
         },
         {
-          "group_by": true,
+          "group_by": false,
           "label": "Exclude from Board",
           "name": "${EXCLUDE_FROM_BOARD}",
           "show": true
@@ -669,7 +669,7 @@
           "group_by": false,
           "label": "shop",
           "name": "shop",
-          "show": false
+          "show": true
         },
         {
           "group_by": false,
@@ -687,6 +687,12 @@
           "group_by": false,
           "label": "#",
           "name": "${ITEM_NUMBER}",
+          "show": false
+        },
+        {
+          "group_by": false,
+          "label": "M/P",
+          "name": "M/P",
           "show": false
         }
       ],

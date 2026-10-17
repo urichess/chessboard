@@ -3388,7 +3388,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" "https://www.lcsc.com/datasheet/C1711.pdf"
 			(at 64.77 121.92 0)
 			(effects
 				(font
@@ -3398,6 +3398,33 @@
 			)
 		)
 		(property "Description" "Unpolarized capacitor"
+			(at 64.77 121.92 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC p/n" "C1711"
+			(at 64.77 121.92 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MP" "CL21B104KBCNNNC"
+			(at 64.77 121.92 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "shop" "https://www.lcsc.com/product-detail/Multilayer-Ceramic-Capacitors-MLCC-SMD-SMT_Samsung-Electro-Mechanics-CL21B104KBCNNNC_C1711.html?s_z=n_CL21B104KBCNNNC"
 			(at 64.77 121.92 0)
 			(effects
 				(font
@@ -3470,7 +3497,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" "https://www.lcsc.com/datasheet/C1711.pdf"
 			(at 27.94 78.74 0)
 			(effects
 				(font
@@ -3480,6 +3507,33 @@
 			)
 		)
 		(property "Description" "Unpolarized capacitor"
+			(at 27.94 78.74 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC p/n" "C1711"
+			(at 27.94 78.74 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MP" "CL21B104KBCNNNC"
+			(at 27.94 78.74 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "shop" "https://www.lcsc.com/product-detail/Multilayer-Ceramic-Capacitors-MLCC-SMD-SMT_Samsung-Electro-Mechanics-CL21B104KBCNNNC_C1711.html?s_z=n_CL21B104KBCNNNC"
 			(at 27.94 78.74 0)
 			(effects
 				(font
@@ -3533,7 +3587,7 @@
 				(justify right)
 			)
 		)
-		(property "Value" "HALL_SENSOR3"
+		(property "Value" "DRV5055Z4QDBZR"
 			(at 128.778 28.448 0)
 			(effects
 				(font
@@ -3560,7 +3614,7 @@
 				(hide yes)
 			)
 		)
-		(property "Description" "12.5mV/mT,±169-mT, 20-kHz, 3.3/5V, TO-92"
+		(property "Description" "Proportional linear Hall effect sensor 12.5mV/mT"
 			(at 115.57 38.1 0)
 			(effects
 				(font
@@ -3663,7 +3717,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" "https://www.lcsc.com/datasheet/C1711.pdf"
 			(at 100.33 121.92 0)
 			(effects
 				(font
@@ -3673,6 +3727,33 @@
 			)
 		)
 		(property "Description" "Unpolarized capacitor"
+			(at 100.33 121.92 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC p/n" "C1711"
+			(at 100.33 121.92 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MP" "CL21B104KBCNNNC"
+			(at 100.33 121.92 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "shop" "https://www.lcsc.com/product-detail/Multilayer-Ceramic-Capacitors-MLCC-SMD-SMT_Samsung-Electro-Mechanics-CL21B104KBCNNNC_C1711.html?s_z=n_CL21B104KBCNNNC"
 			(at 100.33 121.92 0)
 			(effects
 				(font
@@ -3921,7 +4002,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" "https://www.lcsc.com/datasheet/C1711.pdf"
 			(at 64.77 163.83 0)
 			(effects
 				(font
@@ -3931,6 +4012,33 @@
 			)
 		)
 		(property "Description" "Unpolarized capacitor"
+			(at 64.77 163.83 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC p/n" "C1711"
+			(at 64.77 163.83 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MP" "CL21B104KBCNNNC"
+			(at 64.77 163.83 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "shop" "https://www.lcsc.com/product-detail/Multilayer-Ceramic-Capacitors-MLCC-SMD-SMT_Samsung-Electro-Mechanics-CL21B104KBCNNNC_C1711.html?s_z=n_CL21B104KBCNNNC"
 			(at 64.77 163.83 0)
 			(effects
 				(font
@@ -4003,7 +4111,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" "https://www.lcsc.com/datasheet/C1711.pdf"
 			(at 64.77 78.74 0)
 			(effects
 				(font
@@ -4013,6 +4121,33 @@
 			)
 		)
 		(property "Description" "Unpolarized capacitor"
+			(at 64.77 78.74 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC p/n" "C1711"
+			(at 64.77 78.74 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MP" "CL21B104KBCNNNC"
+			(at 64.77 78.74 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "shop" "https://www.lcsc.com/product-detail/Multilayer-Ceramic-Capacitors-MLCC-SMD-SMT_Samsung-Electro-Mechanics-CL21B104KBCNNNC_C1711.html?s_z=n_CL21B104KBCNNNC"
 			(at 64.77 78.74 0)
 			(effects
 				(font
@@ -4066,7 +4201,7 @@
 				(justify right)
 			)
 		)
-		(property "Value" "HALL_SENSOR7"
+		(property "Value" "DRV5055Z4QDBZR"
 			(at 128.778 70.358 0)
 			(effects
 				(font
@@ -4093,7 +4228,7 @@
 				(hide yes)
 			)
 		)
-		(property "Description" "12.5mV/mT,±169-mT, 20-kHz, 3.3/5V, TO-92"
+		(property "Description" "Proportional linear Hall effect sensor 12.5mV/mT"
 			(at 115.57 80.01 0)
 			(effects
 				(font
@@ -4196,7 +4331,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" "https://www.lcsc.com/datasheet/C1711.pdf"
 			(at 135.89 163.83 0)
 			(effects
 				(font
@@ -4206,6 +4341,33 @@
 			)
 		)
 		(property "Description" "Unpolarized capacitor"
+			(at 135.89 163.83 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC p/n" "C1711"
+			(at 135.89 163.83 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MP" "CL21B104KBCNNNC"
+			(at 135.89 163.83 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "shop" "https://www.lcsc.com/product-detail/Multilayer-Ceramic-Capacitors-MLCC-SMD-SMT_Samsung-Electro-Mechanics-CL21B104KBCNNNC_C1711.html?s_z=n_CL21B104KBCNNNC"
 			(at 135.89 163.83 0)
 			(effects
 				(font
@@ -4278,7 +4440,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" "https://www.lcsc.com/datasheet/C1711.pdf"
 			(at 135.89 36.83 0)
 			(effects
 				(font
@@ -4288,6 +4450,33 @@
 			)
 		)
 		(property "Description" "Unpolarized capacitor"
+			(at 135.89 36.83 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC p/n" "C1711"
+			(at 135.89 36.83 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MP" "CL21B104KBCNNNC"
+			(at 135.89 36.83 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "shop" "https://www.lcsc.com/product-detail/Multilayer-Ceramic-Capacitors-MLCC-SMD-SMT_Samsung-Electro-Mechanics-CL21B104KBCNNNC_C1711.html?s_z=n_CL21B104KBCNNNC"
 			(at 135.89 36.83 0)
 			(effects
 				(font
@@ -4341,7 +4530,7 @@
 				(justify right)
 			)
 		)
-		(property "Value" "HALL_SENSOR_9"
+		(property "Value" "DRV5055Z4QDBZR"
 			(at 57.15 114.3 0)
 			(effects
 				(font
@@ -4368,7 +4557,7 @@
 				(hide yes)
 			)
 		)
-		(property "Description" "12.5mV/mT,±169-mT, 20-kHz, 3.3/5V, TO-92"
+		(property "Description" "Proportional linear Hall effect sensor 12.5mV/mT"
 			(at 43.18 123.19 0)
 			(effects
 				(font
@@ -4705,7 +4894,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" "https://www.lcsc.com/datasheet/C1711.pdf"
 			(at 100.33 36.83 0)
 			(effects
 				(font
@@ -4715,6 +4904,33 @@
 			)
 		)
 		(property "Description" "Unpolarized capacitor"
+			(at 100.33 36.83 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC p/n" "C1711"
+			(at 100.33 36.83 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MP" "CL21B104KBCNNNC"
+			(at 100.33 36.83 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "shop" "https://www.lcsc.com/product-detail/Multilayer-Ceramic-Capacitors-MLCC-SMD-SMT_Samsung-Electro-Mechanics-CL21B104KBCNNNC_C1711.html?s_z=n_CL21B104KBCNNNC"
 			(at 100.33 36.83 0)
 			(effects
 				(font
@@ -4768,7 +4984,7 @@
 				(justify right)
 			)
 		)
-		(property "Value" "HALL_SENSOR4"
+		(property "Value" "DRV5055Z4QDBZR"
 			(at 164.084 28.702 0)
 			(effects
 				(font
@@ -4795,7 +5011,7 @@
 				(hide yes)
 			)
 		)
-		(property "Description" "12.5mV/mT,±169-mT, 20-kHz, 3.3/5V, TO-92"
+		(property "Description" "Proportional linear Hall effect sensor 12.5mV/mT"
 			(at 151.13 38.1 0)
 			(effects
 				(font
@@ -4957,7 +5173,7 @@
 				(justify right)
 			)
 		)
-		(property "Value" "HALL_SENSOR8"
+		(property "Value" "DRV5055Z4QDBZR"
 			(at 164.084 70.612 0)
 			(effects
 				(font
@@ -4984,7 +5200,7 @@
 				(hide yes)
 			)
 		)
-		(property "Description" "12.5mV/mT,±169-mT, 20-kHz, 3.3/5V, TO-92"
+		(property "Description" "Proportional linear Hall effect sensor 12.5mV/mT"
 			(at 151.13 80.01 0)
 			(effects
 				(font
@@ -5087,7 +5303,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" "https://www.lcsc.com/datasheet/C1711.pdf"
 			(at 135.89 78.74 0)
 			(effects
 				(font
@@ -5097,6 +5313,33 @@
 			)
 		)
 		(property "Description" "Unpolarized capacitor"
+			(at 135.89 78.74 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC p/n" "C1711"
+			(at 135.89 78.74 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MP" "CL21B104KBCNNNC"
+			(at 135.89 78.74 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "shop" "https://www.lcsc.com/product-detail/Multilayer-Ceramic-Capacitors-MLCC-SMD-SMT_Samsung-Electro-Mechanics-CL21B104KBCNNNC_C1711.html?s_z=n_CL21B104KBCNNNC"
 			(at 135.89 78.74 0)
 			(effects
 				(font
@@ -5228,7 +5471,7 @@
 				(justify right)
 			)
 		)
-		(property "Value" "HALL_SENSOR12"
+		(property "Value" "DRV5055Z4QDBZR"
 			(at 164.084 113.792 0)
 			(effects
 				(font
@@ -5255,7 +5498,7 @@
 				(hide yes)
 			)
 		)
-		(property "Description" "12.5mV/mT,±169-mT, 20-kHz, 3.3/5V, TO-92"
+		(property "Description" "Proportional linear Hall effect sensor 12.5mV/mT"
 			(at 151.13 123.19 0)
 			(effects
 				(font
@@ -5358,7 +5601,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" "https://www.lcsc.com/datasheet/C1711.pdf"
 			(at 135.89 121.92 0)
 			(effects
 				(font
@@ -5368,6 +5611,33 @@
 			)
 		)
 		(property "Description" "Unpolarized capacitor"
+			(at 135.89 121.92 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC p/n" "C1711"
+			(at 135.89 121.92 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MP" "CL21B104KBCNNNC"
+			(at 135.89 121.92 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "shop" "https://www.lcsc.com/product-detail/Multilayer-Ceramic-Capacitors-MLCC-SMD-SMT_Samsung-Electro-Mechanics-CL21B104KBCNNNC_C1711.html?s_z=n_CL21B104KBCNNNC"
 			(at 135.89 121.92 0)
 			(effects
 				(font
@@ -5421,7 +5691,7 @@
 				(justify right)
 			)
 		)
-		(property "Value" "HALL_SENSOR_5"
+		(property "Value" "DRV5055Z4QDBZR"
 			(at 57.15 71.12 0)
 			(effects
 				(font
@@ -5448,7 +5718,7 @@
 				(hide yes)
 			)
 		)
-		(property "Description" "12.5mV/mT,±169-mT, 20-kHz, 3.3/5V, TO-92"
+		(property "Description" "Proportional linear Hall effect sensor 12.5mV/mT"
 			(at 43.18 80.01 0)
 			(effects
 				(font
@@ -5532,7 +5802,7 @@
 				(justify right)
 			)
 		)
-		(property "Value" "HALL_SENSOR_14"
+		(property "Value" "DRV5055Z4QDBZR"
 			(at 94.234 155.956 0)
 			(effects
 				(font
@@ -5559,7 +5829,7 @@
 				(hide yes)
 			)
 		)
-		(property "Description" "12.5mV/mT,±169-mT, 20-kHz, 3.3/5V, TO-92"
+		(property "Description" "Proportional linear Hall effect sensor 12.5mV/mT"
 			(at 80.01 165.1 0)
 			(effects
 				(font
@@ -5643,7 +5913,7 @@
 				(justify right)
 			)
 		)
-		(property "Value" "HALL_SENSOR_13"
+		(property "Value" "DRV5055Z4QDBZR"
 			(at 57.15 156.21 0)
 			(effects
 				(font
@@ -5670,7 +5940,7 @@
 				(hide yes)
 			)
 		)
-		(property "Description" "12.5mV/mT,±169-mT, 20-kHz, 3.3/5V, TO-92"
+		(property "Description" "Proportional linear Hall effect sensor 12.5mV/mT"
 			(at 43.18 165.1 0)
 			(effects
 				(font
@@ -5754,7 +6024,7 @@
 				(justify right)
 			)
 		)
-		(property "Value" "HALL_SENSOR16"
+		(property "Value" "DRV5055Z4QDBZR"
 			(at 164.084 155.702 0)
 			(effects
 				(font
@@ -5781,7 +6051,7 @@
 				(hide yes)
 			)
 		)
-		(property "Description" "12.5mV/mT,±169-mT, 20-kHz, 3.3/5V, TO-92"
+		(property "Description" "Proportional linear Hall effect sensor 12.5mV/mT"
 			(at 151.13 165.1 0)
 			(effects
 				(font
@@ -5884,7 +6154,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" "https://www.lcsc.com/datasheet/C1711.pdf"
 			(at 27.94 121.92 0)
 			(effects
 				(font
@@ -5894,6 +6164,33 @@
 			)
 		)
 		(property "Description" "Unpolarized capacitor"
+			(at 27.94 121.92 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC p/n" "C1711"
+			(at 27.94 121.92 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MP" "CL21B104KBCNNNC"
+			(at 27.94 121.92 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "shop" "https://www.lcsc.com/product-detail/Multilayer-Ceramic-Capacitors-MLCC-SMD-SMT_Samsung-Electro-Mechanics-CL21B104KBCNNNC_C1711.html?s_z=n_CL21B104KBCNNNC"
 			(at 27.94 121.92 0)
 			(effects
 				(font
@@ -5966,7 +6263,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" "https://www.lcsc.com/datasheet/C1711.pdf"
 			(at 27.94 36.83 0)
 			(effects
 				(font
@@ -5976,6 +6273,33 @@
 			)
 		)
 		(property "Description" "Unpolarized capacitor"
+			(at 27.94 36.83 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC p/n" "C1711"
+			(at 27.94 36.83 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MP" "CL21B104KBCNNNC"
+			(at 27.94 36.83 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "shop" "https://www.lcsc.com/product-detail/Multilayer-Ceramic-Capacitors-MLCC-SMD-SMT_Samsung-Electro-Mechanics-CL21B104KBCNNNC_C1711.html?s_z=n_CL21B104KBCNNNC"
 			(at 27.94 36.83 0)
 			(effects
 				(font
@@ -6048,7 +6372,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" "https://www.lcsc.com/datasheet/C1711.pdf"
 			(at 27.94 163.83 0)
 			(effects
 				(font
@@ -6058,6 +6382,33 @@
 			)
 		)
 		(property "Description" "Unpolarized capacitor"
+			(at 27.94 163.83 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC p/n" "C1711"
+			(at 27.94 163.83 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MP" "CL21B104KBCNNNC"
+			(at 27.94 163.83 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "shop" "https://www.lcsc.com/product-detail/Multilayer-Ceramic-Capacitors-MLCC-SMD-SMT_Samsung-Electro-Mechanics-CL21B104KBCNNNC_C1711.html?s_z=n_CL21B104KBCNNNC"
 			(at 27.94 163.83 0)
 			(effects
 				(font
@@ -6130,7 +6481,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" "https://www.lcsc.com/datasheet/C1711.pdf"
 			(at 64.77 36.83 0)
 			(effects
 				(font
@@ -6140,6 +6491,33 @@
 			)
 		)
 		(property "Description" "Unpolarized capacitor"
+			(at 64.77 36.83 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC p/n" "C1711"
+			(at 64.77 36.83 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MP" "CL21B104KBCNNNC"
+			(at 64.77 36.83 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "shop" "https://www.lcsc.com/product-detail/Multilayer-Ceramic-Capacitors-MLCC-SMD-SMT_Samsung-Electro-Mechanics-CL21B104KBCNNNC_C1711.html?s_z=n_CL21B104KBCNNNC"
 			(at 64.77 36.83 0)
 			(effects
 				(font
@@ -6271,7 +6649,7 @@
 				(justify right)
 			)
 		)
-		(property "Value" "HALL_SENSOR15"
+		(property "Value" "DRV5055Z4QDBZR"
 			(at 128.778 155.448 0)
 			(effects
 				(font
@@ -6298,7 +6676,7 @@
 				(hide yes)
 			)
 		)
-		(property "Description" "12.5mV/mT,±169-mT, 20-kHz, 3.3/5V, TO-92"
+		(property "Description" "Proportional linear Hall effect sensor 12.5mV/mT"
 			(at 115.57 165.1 0)
 			(effects
 				(font
@@ -6491,7 +6869,7 @@
 				(justify right)
 			)
 		)
-		(property "Value" "HALL_SENSOR_1"
+		(property "Value" "DRV5055Z4QDBZR"
 			(at 57.15 29.21 0)
 			(effects
 				(font
@@ -6518,7 +6896,7 @@
 				(hide yes)
 			)
 		)
-		(property "Description" "hall sensor 12.5mv/mT"
+		(property "Description" "Proportional linear Hall effect sensor 12.5mV/mT"
 			(at 43.18 38.1 0)
 			(effects
 				(font
@@ -6711,7 +7089,7 @@
 				(justify right)
 			)
 		)
-		(property "Value" "HALL_SENSOR_10"
+		(property "Value" "DRV5055Z4QDBZR"
 			(at 94.234 114.046 0)
 			(effects
 				(font
@@ -6738,7 +7116,7 @@
 				(hide yes)
 			)
 		)
-		(property "Description" "12.5mV/mT,±169-mT, 20-kHz, 3.3/5V, TO-92"
+		(property "Description" "Proportional linear Hall effect sensor 12.5mV/mT"
 			(at 80.01 123.19 0)
 			(effects
 				(font
@@ -6978,7 +7356,7 @@
 				(justify right)
 			)
 		)
-		(property "Value" "HALL_SENSOR11"
+		(property "Value" "DRV5055Z4QDBZR"
 			(at 128.778 113.538 0)
 			(effects
 				(font
@@ -7005,7 +7383,7 @@
 				(hide yes)
 			)
 		)
-		(property "Description" "12.5mV/mT,±169-mT, 20-kHz, 3.3/5V, TO-92"
+		(property "Description" "Proportional linear Hall effect sensor 12.5mV/mT"
 			(at 115.57 123.19 0)
 			(effects
 				(font
@@ -7108,7 +7486,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" "https://www.lcsc.com/datasheet/C1711.pdf"
 			(at 187.96 78.74 0)
 			(effects
 				(font
@@ -7118,6 +7496,33 @@
 			)
 		)
 		(property "Description" "Unpolarized capacitor"
+			(at 187.96 78.74 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC p/n" "C1711"
+			(at 187.96 78.74 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MP" "CL21B104KBCNNNC"
+			(at 187.96 78.74 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "shop" "https://www.lcsc.com/product-detail/Multilayer-Ceramic-Capacitors-MLCC-SMD-SMT_Samsung-Electro-Mechanics-CL21B104KBCNNNC_C1711.html?s_z=n_CL21B104KBCNNNC"
 			(at 187.96 78.74 0)
 			(effects
 				(font
@@ -7190,7 +7595,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" "https://www.lcsc.com/datasheet/C1711.pdf"
 			(at 100.33 78.74 0)
 			(effects
 				(font
@@ -7200,6 +7605,33 @@
 			)
 		)
 		(property "Description" "Unpolarized capacitor"
+			(at 100.33 78.74 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC p/n" "C1711"
+			(at 100.33 78.74 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MP" "CL21B104KBCNNNC"
+			(at 100.33 78.74 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "shop" "https://www.lcsc.com/product-detail/Multilayer-Ceramic-Capacitors-MLCC-SMD-SMT_Samsung-Electro-Mechanics-CL21B104KBCNNNC_C1711.html?s_z=n_CL21B104KBCNNNC"
 			(at 100.33 78.74 0)
 			(effects
 				(font
@@ -7409,7 +7841,7 @@
 				(justify right)
 			)
 		)
-		(property "Value" "HALL_SENSOR_2"
+		(property "Value" "DRV5055Z4QDBZR"
 			(at 94.234 28.956 0)
 			(effects
 				(font
@@ -7436,7 +7868,7 @@
 				(hide yes)
 			)
 		)
-		(property "Description" "12.5mV/mT,±169-mT, 20-kHz, 3.3/5V, TO-92"
+		(property "Description" "Proportional linear Hall effect sensor 12.5mV/mT"
 			(at 80.01 38.1 0)
 			(effects
 				(font
@@ -7598,7 +8030,7 @@
 				(justify right)
 			)
 		)
-		(property "Value" "HALL_SENSOR_6"
+		(property "Value" "DRV5055Z4QDBZR"
 			(at 94.234 70.866 0)
 			(effects
 				(font
@@ -7625,7 +8057,7 @@
 				(hide yes)
 			)
 		)
-		(property "Description" "12.5mV/mT,±169-mT, 20-kHz, 3.3/5V, TO-92"
+		(property "Description" "Proportional linear Hall effect sensor 12.5mV/mT"
 			(at 80.01 80.01 0)
 			(effects
 				(font
@@ -7728,7 +8160,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" "https://www.lcsc.com/datasheet/C1711.pdf"
 			(at 100.33 163.83 0)
 			(effects
 				(font
@@ -7738,6 +8170,33 @@
 			)
 		)
 		(property "Description" "Unpolarized capacitor"
+			(at 100.33 163.83 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC p/n" "C1711"
+			(at 100.33 163.83 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MP" "CL21B104KBCNNNC"
+			(at 100.33 163.83 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "shop" "https://www.lcsc.com/product-detail/Multilayer-Ceramic-Capacitors-MLCC-SMD-SMT_Samsung-Electro-Mechanics-CL21B104KBCNNNC_C1711.html?s_z=n_CL21B104KBCNNNC"
 			(at 100.33 163.83 0)
 			(effects
 				(font
