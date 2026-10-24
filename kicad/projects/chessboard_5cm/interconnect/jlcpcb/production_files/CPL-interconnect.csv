@@ -1,0 +1,6 @@
+Designator,Val,Package,Mid X,Mid Y,Rotation,Layer
+J1,PZ254-1-13-W-8.5,PinHeader_1x13_P2.54mm_Horizontal,70.0,-425.75,-90.0,top
+J10,PM254-1-08-W-8.5,PinSocket_1x08_P2.54mm_Horizontal,79.0,-271.11,180.0,top
+J11,PM254-1-08-W-8.5,PinSocket_1x08_P2.54mm_Horizontal,79.0,-371.11,180.0,top
+J6,PM254-1-08-W-8.5,PinSocket_1x08_P2.54mm_Horizontal,79.0,-71.11,180.0,top
+J8,PM254-1-08-W-8.5,PinSocket_1x08_P2.54mm_Horizontal,79.0,-171.11,180.0,top
