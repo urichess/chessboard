@@ -52,40 +52,7 @@
         }
       },
       "diff_pair_dimensions": [],
-      "drc_exclusions": [
-        [
-          "hole_clearance|118080000|109670000|8a2459c0-fd61-4df2-8f23-08f2fec45226|96164025-13c8-41ab-a665-f1c89665feea",
-          ""
-        ],
-        [
-          "hole_clearance|118080000|109870000|8a2459c0-fd61-4df2-8f23-08f2fec45226|0f905534-527d-4e8c-a29b-69e38c160e06",
-          ""
-        ],
-        [
-          "hole_clearance|118080000|115270000|8ee82085-21da-4c57-b004-34d31cc83d03|3402fee0-dac3-4334-994e-8ba3a9ea420f",
-          ""
-        ],
-        [
-          "hole_clearance|118080000|115470000|8ee82085-21da-4c57-b004-34d31cc83d03|6a487ff3-fa2d-417c-aa1a-c702be24ec78",
-          ""
-        ],
-        [
-          "hole_clearance|118080000|123420000|3b04d4d4-259f-44aa-b915-beb5ea7da4af|762bc968-ae81-454b-8f8c-1a684c0ac88e",
-          ""
-        ],
-        [
-          "hole_clearance|118080000|123620000|3b04d4d4-259f-44aa-b915-beb5ea7da4af|c91f15ec-4f7c-4e4e-bf5b-4b8c1621bb90",
-          ""
-        ],
-        [
-          "hole_clearance|118080000|129020000|5f93238b-0e12-4b6f-92f1-6616055c81cf|5aee707c-a56e-4d5f-8c0b-3724b56ce7ec",
-          ""
-        ],
-        [
-          "hole_clearance|118080000|129220000|5f93238b-0e12-4b6f-92f1-6616055c81cf|de7f8ca0-c371-431e-a2cd-4eb704b85665",
-          ""
-        ]
-      ],
+      "drc_exclusions": [],
       "meta": {
         "version": 2
       },
@@ -601,12 +568,6 @@
         },
         {
           "group_by": false,
-          "label": "Description_1",
-          "name": "Description_1",
-          "show": true
-        },
-        {
-          "group_by": false,
           "label": "LCSC p/n",
           "name": "LCSC p/n",
           "show": true
@@ -615,6 +576,12 @@
           "group_by": false,
           "label": "MANUFACTURER",
           "name": "MANUFACTURER",
+          "show": true
+        },
+        {
+          "group_by": false,
+          "label": "Description_1",
+          "name": "Description_1",
           "show": true
         },
         {
@@ -701,7 +668,7 @@
       "include_excluded_from_bom": true,
       "name": "",
       "sort_asc": false,
-      "sort_field": "Datasheet"
+      "sort_field": "MANUFACTURER"
     },
     "connection_grid_size": 50.0,
     "drawing": {
