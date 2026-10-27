@@ -9,9 +9,9 @@ C15,"0,1uF",C_0805_2012Metric_Pad1.18x1.45mm_HandSolder,270.0,-175.0,-90.0,top
 C16,"0,1uF",C_0805_2012Metric_Pad1.18x1.45mm_HandSolder,470.0,-175.0,-90.0,top
 C17,1uF,C_0805_2012Metric_Pad1.18x1.45mm_HandSolder,474.01,-157.5,-90.0,top
 C18,"0,1uF",C_0805_2012Metric_Pad1.18x1.45mm_HandSolder,471.75,-157.4625,-90.0,top
-C19,1uF,C_0805_2012Metric_Pad1.18x1.45mm_HandSolder,494.0625,-167.0,180.0,top
 C2,"0,1uF",C_0805_2012Metric_Pad1.18x1.45mm_HandSolder,320.0,-125.0,-90.0,top
-C20,22uF,C_1206_3216Metric_Pad1.33x1.80mm_HandSolder,493.5,-164.0,180.0,top
+C21,1uF,C_0805_2012Metric_Pad1.18x1.45mm_HandSolder,493.25,-159.0,180.0,top
+C22,22uF,C_1206_3216Metric_Pad1.33x1.80mm_HandSolder,492.75,-161.25,180.0,top
 C3,"0,1uF",C_0805_2012Metric_Pad1.18x1.45mm_HandSolder,120.0,-175.0,-90.0,top
 C4,"0,1uF",C_0805_2012Metric_Pad1.18x1.45mm_HandSolder,320.0,-175.0,-90.0,top
 C5,"0,1uF",C_0805_2012Metric_Pad1.18x1.45mm_HandSolder,170.0,-125.0,-90.0,top
@@ -24,7 +24,7 @@ D2,ORANGE,LED_0805_2012Metric_Pad1.15x1.40mm_HandSolder,484.75,-154.0,180.0,bott
 D3,ORANGE,LED_0805_2012Metric_Pad1.15x1.40mm_HandSolder,484.5,-156.25,180.0,bottom
 D4,ORANGE,LED_0805_2012Metric_Pad1.15x1.40mm_HandSolder,484.5,-158.5,180.0,bottom
 D5,ORANGE,LED_0805_2012Metric_Pad1.15x1.40mm_HandSolder,484.525,-160.75,180.0,bottom
-J2,Conn_02x05_Odd_Even,PinHeader_2x05_P2.54mm_Vertical,493.73,-155.08,0.0,bottom
+J1,Conn_01x08,PinHeader_1x08_P2.54mm_Horizontal,495.75,-146.86,180.0,bottom
 R1,10k,R_0805_2012Metric_Pad1.20x1.40mm_HandSolder,458.25,-159.75,-90.0,top
 R2,5.1k,R_0805_2012Metric_Pad1.20x1.40mm_HandSolder,480.5,-154.0,0.0,bottom
 R3,5.1k,R_0805_2012Metric_Pad1.20x1.40mm_HandSolder,480.475,-156.25,0.0,bottom
