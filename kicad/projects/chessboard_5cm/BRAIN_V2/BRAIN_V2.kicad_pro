@@ -705,7 +705,7 @@
       "include_excluded_from_bom": true,
       "name": "",
       "sort_asc": false,
-      "sort_field": "MANUFACTURER"
+      "sort_field": "Value"
     },
     "connection_grid_size": 50.0,
     "drawing": {

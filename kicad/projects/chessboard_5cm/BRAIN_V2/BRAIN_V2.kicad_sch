@@ -17517,7 +17517,7 @@
 				(hide yes)
 			)
 		)
-		(property "shop" "https://www.lcsc.com/product-detail/LED-Indication-Discrete_Foshan-NationStar-Optoelectronics-NCD0805G1_C84260.html"
+		(property "shop" "https://www.lcsc.com/product-detail/C2296.html?s_z=n_q_C2296&globalKeyword=C2296"
 			(at 201.93 67.31 0)
 			(effects
 				(font
@@ -17526,7 +17526,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC p/n" "C84260"
+		(property "LCSC p/n" "C2297"
 			(at 201.93 67.31 0)
 			(effects
 				(font
@@ -17534,7 +17534,7 @@
 				)
 			)
 		)
-		(property "MANUFACTURER" "NCD0805G1"
+		(property "MANUFACTURER" "KT-0805G"
 			(at 201.93 67.31 90)
 			(effects
 				(font
@@ -18880,7 +18880,7 @@
 				(hide yes)
 			)
 		)
-		(property "shop" "https://www.lcsc.com/product-detail/LED-Indication-Discrete_Foshan-NationStar-Optoelectronics-NCD0805G1_C84260.html"
+		(property "shop" "https://www.lcsc.com/product-detail/C2296.html?s_z=n_q_C2296&globalKeyword=C2296"
 			(at 270.51 68.58 0)
 			(effects
 				(font
@@ -18889,7 +18889,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC p/n" "C84260"
+		(property "LCSC p/n" "C2297"
 			(at 270.51 68.58 0)
 			(effects
 				(font
@@ -18897,7 +18897,7 @@
 				)
 			)
 		)
-		(property "MANUFACTURER" "NCD0805G1"
+		(property "MANUFACTURER" "KT-0805G"
 			(at 270.51 68.58 90)
 			(effects
 				(font
@@ -19124,7 +19124,7 @@
 				(hide yes)
 			)
 		)
-		(property "shop" "https://www.lcsc.com/product-detail/LED-Indication-Discrete_Foshan-NationStar-Optoelectronics-NCD0805G1_C84260.html"
+		(property "shop" "https://www.lcsc.com/product-detail/C2296.html?s_z=n_q_C2296&globalKeyword=C2296"
 			(at 219.71 67.31 0)
 			(effects
 				(font
@@ -19133,7 +19133,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC p/n" "C84260"
+		(property "LCSC p/n" "C2297"
 			(at 219.71 67.31 0)
 			(effects
 				(font
@@ -19141,7 +19141,7 @@
 				)
 			)
 		)
-		(property "MANUFACTURER" "NCD0805G1"
+		(property "MANUFACTURER" "KT-0805G"
 			(at 219.71 67.31 90)
 			(effects
 				(font
@@ -21085,7 +21085,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "http://www.infineon.com/dgdl/Infineon-BC847SERIES_BC848SERIES_BC849SERIES_BC850SERIES-DS-v01_01-en.pdf?fileId=db3a304314dca389011541d4630a1657"
+		(property "Datasheet" "https://jlc-prod-smt.oss-eu-central-1.aliyuncs.com/smtDataManualFile/8639582106218377216-C2297.pdf?response-content-disposition=attachment%3B%20filename%3DC2297.pdf%3B%20filename%2A%3DUTF-8%27%27C2297.pdf&x-oss-date=20261028T225704Z&x-oss-expires=1800&x-oss-security-token=CAISgAN1q6Ft5B2yfSjIr5nCGd7Ah4dk1beDW1z2gGohddhpgKrIkjz2IHhMdHJsAOodtv0%2FmmhT6PkclqRLcbhpcmfjV%2BZHzLB8qdl76kox557b16cNrbH4M4H6aXeirtuwDsz9SNTCALjPD3nPii50x5bjaDymRCbLGJaViJlhHLN1Ow6jdmhpCctxLAlvo9NgFxm3D%2Fu2NQPwiWf9FVdhvhEG6Vly8qOi2MaRmFy8yFTx0b0SvJ%2BjYMrmPctoN9JnSdC5mfdzau3a1TJ84gRD0a5wkaVA1zbDs5bfISEIuUzebreLqY03dV4mOvdqIcMe8qigz88fk%2FfIioH6xyxKOexoSCnFTOiiupCcQLPyao9jLu6iayqViY7QaIOTqQohZmkAMwVOasAsI3Ngh4zF97Qt0cVNkXO9gWfLI8DtuMleWirpxNhSjJSgc5lCkRRYwGs1287ugXlSQzo890KPDAEovaKCnZ2ZSfh7Y4sNknI6i%2Bfc2Se2MIkIpDrBWaKWD5sagAGiLi8TLKkbwmlm7pISy8%2FkVataWJ1%2FHw%2BjURyel9EVGwLwRjOqwBdeJnzUsvykwW%2FhmoSW91igTHMS0ZohG9gqTFQlhCqkVgrgS1JyQX2RCNwdnQZHPWIxaGE6chQei0mdbREVl7GbZv9m9NtkvRanFtZsUXmMxTSjfMpDGqzP%2FCAA&x-oss-signature-version=OSS4-HMAC-SHA256&x-oss-credential=STS.NZwRdtjXEbuhYzGdjtyWEoocp%2F20261028%2Feu-central-1%2Foss%2Faliyun_v4_request&x-oss-signature=b23b426dad90a518e6dbc62cc78fc666dfb630e1c3cb827b7a5714bf1062451c"
 			(at 114.3 139.7 0)
 			(effects
 				(font
@@ -21114,7 +21114,7 @@
 				(hide yes)
 			)
 		)
-		(property "shop" "https://www.lcsc.com/product-detail/Bipolar-BJT_onsemi-MMBT4401LT1G_C31776.html"
+		(property "shop" ""
 			(at 114.3 139.7 0)
 			(effects
 				(font
@@ -21929,7 +21929,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC p/n" "C965817"
+		(property "LCSC p/n" "C2296"
 			(at 252.73 68.58 0)
 			(effects
 				(font
@@ -21937,7 +21937,7 @@
 				)
 			)
 		)
-		(property "MANUFACTURER" "XL-2012UBC"
+		(property "MANUFACTURER" "KT-0805Y"
 			(at 252.73 68.58 90)
 			(effects
 				(font
