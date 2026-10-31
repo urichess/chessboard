@@ -234,7 +234,7 @@
 			)
 		)
 		(property "Value" "10k"
-			(at -25.5 -0.85 0)
+			(at -0.75 0 0)
 			(layer "F.Fab")
 			(uuid "ddcf767b-d7eb-45e6-b815-ca72aebce083")
 			(effects
@@ -244,7 +244,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2412232100_YAGEO-RC0805FR-0710KL_C84376.pdf"
+		(property "Datasheet" "https://jlc-prod-smt.oss-eu-central-1.aliyuncs.com/smtDataManualFile/8562006748392685568-C17414.pdf?response-content-disposition=attachment%3B%20filename%3DC17414.pdf%3B%20filename%2A%3DUTF-8%27%27C17414.pdf&x-oss-date=20261029T110632Z&x-oss-expires=1800&x-oss-security-token=CAISgAN1q6Ft5B2yfSjIr5mCconCrOZY77Sce1P0tTcTfbcU1qL4iDz2IHhMdHJsAOodtv0%2FmmhT6PkclqRLcbhpcmfjV%2BZHzLB8qag0l18x557b16cNrbH4M4H6aXeirtuwDsz9SNTCALjPD3nPii50x5bjaDymRCbLGJaViJlhHLN1Ow6jdmhpCctxLAlvo9NgFxm3D%2Fu2NQPwiWf9FVdhvhEG6Vly8qOi2MaRmFy8yFTx0b0SvJ%2BjYMrmPctoN9JnSdC5mfdzau3a1TJ84gRD0a5wkaVA1zbDs5bfISEIuUzebreLqY03dV4mOvdqIcMe8qigz88fk%2FfIioH6xyxKOexoSCnFTOiiupCcQLPyao9jLu6iayqViY7QaIOTqQohZmkAMwVOasAsI3Ngh4zF97Qt0cVNkXO9gWfLI8DtuMleWsphX9ROjJSgc5lCkRRYwGs1287ugXlSQzo890KPDAEovaKCnZ2ZSfh7Y4sNknI6i%2Bfc2Se2MIkIJQiMxqKWD5sagAEA%2FwtMyHH0OMXc5g9%2Fzv2H0Zq4UexFv0cGndOYBydWre0QKr%2F8sVVJp35Vv3Riioy%2BMbGJvTcHBa2H9mfjlC6KlaVZEhmzz%2BpGSMVKzdvww5CUX2DZOf%2FzMvX2oPgFI%2FZ9BUgm26WUp5n3tbcb2uAka0lbTCUZsSckrRnZC1U6GSAA&x-oss-signature-version=OSS4-HMAC-SHA256&x-oss-credential=STS.NZ793vA9yXvwyuEQ7Fq889gSj%2F20261029%2Feu-central-1%2Foss%2Faliyun_v4_request&x-oss-signature=1cdfdb138a9e9459936acfc9edafdc74507aee9d16142e1fa9aaf699eb373c96"
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -268,7 +268,7 @@
 				)
 			)
 		)
-		(property "LCSC p/n" "C84376"
+		(property "LCSC p/n" "C17414"
 			(at 0 0 180)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -300,6 +300,19 @@
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "3069a013-17d3-43a2-9a25-74f730108633")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "MANUFACTURER" "0805W8F1002T5E"
+			(at 0 0 180)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "55737cdc-b416-4147-94c8-fec12d16b478")
 			(effects
 				(font
 					(size 1 1)
@@ -506,7 +519,7 @@
 				)
 			)
 		)
-		(property "shop" "https://www.lcsc.com/product-detail/Multilayer-Ceramic-Capacitors-MLCC-SMD-SMT_FH-Guangdong-Fenghua-Advanced-Tech-0805CG4R7C500NT_C1820.html?s_z=n_CL21C470JBANNNC"
+		(property "shop" ""
 			(at 0 0 270)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -538,6 +551,19 @@
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "0dbde5d6-86d4-427a-ac1e-ea52e9998a5e")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "MANUFACTURER" "0805CG4R7C500NT"
+			(at 0 0 270)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "a34721da-d2e7-4686-b0c6-ea560dcd0718")
 			(effects
 				(font
 					(size 1 1)
@@ -720,7 +746,7 @@
 				)
 			)
 		)
-		(property "Datasheet" ""
+		(property "Datasheet" "https://jlc-prod-smt.oss-eu-central-1.aliyuncs.com/smtDataManualFile/8579706711109648384-C17477.pdf?response-content-disposition=attachment%3B%20filename%3DC17477.pdf%3B%20filename%2A%3DUTF-8%27%27C17477.pdf&x-oss-date=20261029T110508Z&x-oss-expires=1800&x-oss-security-token=CAISgAN1q6Ft5B2yfSjIr5mCconCrOZY77Sce1P0tTcTfbcU1qL4iDz2IHhMdHJsAOodtv0%2FmmhT6PkclqRLcbhpcmfjV%2BZHzLB8qag0l18x557b16cNrbH4M4H6aXeirtuwDsz9SNTCALjPD3nPii50x5bjaDymRCbLGJaViJlhHLN1Ow6jdmhpCctxLAlvo9NgFxm3D%2Fu2NQPwiWf9FVdhvhEG6Vly8qOi2MaRmFy8yFTx0b0SvJ%2BjYMrmPctoN9JnSdC5mfdzau3a1TJ84gRD0a5wkaVA1zbDs5bfISEIuUzebreLqY03dV4mOvdqIcMe8qigz88fk%2FfIioH6xyxKOexoSCnFTOiiupCcQLPyao9jLu6iayqViY7QaIOTqQohZmkAMwVOasAsI3Ngh4zF97Qt0cVNkXO9gWfLI8DtuMleWsphX9ROjJSgc5lCkRRYwGs1287ugXlSQzo890KPDAEovaKCnZ2ZSfh7Y4sNknI6i%2Bfc2Se2MIkIJQiMxqKWD5sagAEA%2FwtMyHH0OMXc5g9%2Fzv2H0Zq4UexFv0cGndOYBydWre0QKr%2F8sVVJp35Vv3Riioy%2BMbGJvTcHBa2H9mfjlC6KlaVZEhmzz%2BpGSMVKzdvww5CUX2DZOf%2FzMvX2oPgFI%2FZ9BUgm26WUp5n3tbcb2uAka0lbTCUZsSckrRnZC1U6GSAA&x-oss-signature-version=OSS4-HMAC-SHA256&x-oss-credential=STS.NZ793vA9yXvwyuEQ7Fq889gSj%2F20261029%2Feu-central-1%2Foss%2Faliyun_v4_request&x-oss-signature=1734369e5d3bad5aa511ba914772d6639d1ce74a6e07256656e9a45d8520cad6"
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -744,12 +770,38 @@
 				)
 			)
 		)
-		(property "LCSC p/n" ""
+		(property "LCSC p/n" "C17477"
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "75807f15-c37c-4649-982c-5eb86bfd04bf")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "MANUFACTURER" "0805W8F0000T5E"
+			(at 0 0 0)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "63888ef2-13a9-4900-bb52-7aaaf53cedd2")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "shop" "https://www.lcsc.com/product-detail/C100045.html?s_z=n_q_RC0805FR&spm=wm.fly.bg.1.xh&lcsc_vid=RAJdXwJSE1ZcAVAHRVdfXlVfQABfAQJfFlRdX1JTR1YxVlNfRFFbUlVXTlNYUDsOAxUeFF5JWBYZEEoKFBINSQcJGk4NBhADEA4cHktXRlhXSQwSGg0%3D"
+			(at 0 0 0)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "07660dc4-6fd8-4233-a2a3-f3796e8f82f2")
 			(effects
 				(font
 					(size 1 1)
@@ -932,7 +984,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2304140030_Samsung-Electro-Mechanics-CL21B104KBCNNNC_C1711.pdf"
+		(property "Datasheet" "https://jlc-prod-smt.oss-eu-central-1.aliyuncs.com/smtDataManualFile/8586178643470503936-C28233.pdf?response-content-disposition=attachment%3B%20filename%3DC28233.pdf%3B%20filename%2A%3DUTF-8%27%27C28233.pdf&x-oss-date=20261029T103624Z&x-oss-expires=3600&x-oss-security-token=CAISgAN1q6Ft5B2yfSjIr5mCconCrOZY77Sce1P0tTcTfbcU1qL4iDz2IHhMdHJsAOodtv0%2FmmhT6PkclqRLcbhpcmfjV%2BZHzLB8qag0l18x557b16cNrbH4M4H6aXeirtuwDsz9SNTCALjPD3nPii50x5bjaDymRCbLGJaViJlhHLN1Ow6jdmhpCctxLAlvo9NgFxm3D%2Fu2NQPwiWf9FVdhvhEG6Vly8qOi2MaRmFy8yFTx0b0SvJ%2BjYMrmPctoN9JnSdC5mfdzau3a1TJ84gRD0a5wkaVA1zbDs5bfISEIuUzebreLqY03dV4mOvdqIcMe8qigz88fk%2FfIioH6xyxKOexoSCnFTOiiupCcQLPyao9jLu6iayqViY7QaIOTqQohZmkAMwVOasAsI3Ngh4zF97Qt0cVNkXO9gWfLI8DtuMleWsphX9ROjJSgc5lCkRRYwGs1287ugXlSQzo890KPDAEovaKCnZ2ZSfh7Y4sNknI6i%2Bfc2Se2MIkIJQiMxqKWD5sagAEA%2FwtMyHH0OMXc5g9%2Fzv2H0Zq4UexFv0cGndOYBydWre0QKr%2F8sVVJp35Vv3Riioy%2BMbGJvTcHBa2H9mfjlC6KlaVZEhmzz%2BpGSMVKzdvww5CUX2DZOf%2FzMvX2oPgFI%2FZ9BUgm26WUp5n3tbcb2uAka0lbTCUZsSckrRnZC1U6GSAA&x-oss-signature-version=OSS4-HMAC-SHA256&x-oss-credential=STS.NZ793vA9yXvwyuEQ7Fq889gSj%2F20261029%2Feu-central-1%2Foss%2Faliyun_v4_request&x-oss-signature=29d80851ae80d0eba222a38ba10dfb777a3f96afcf19f43f716b7104077fb67c"
 			(at 0 0 90)
 			(layer "F.Fab")
 			(hide yes)
@@ -956,7 +1008,7 @@
 				)
 			)
 		)
-		(property "shop" "https://www.lcsc.com/product-detail/Multilayer-Ceramic-Capacitors-MLCC-SMD-SMT_Samsung-Electro-Mechanics-CL21B104KBCNNNC_C1711.html?s_z=n_CL21B104KBCNNNC"
+		(property "shop" ""
 			(at 0 0 270)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -982,12 +1034,25 @@
 				)
 			)
 		)
-		(property "LCSC p/n" "C1711"
+		(property "LCSC p/n" "C28233"
 			(at 0 0 270)
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "d29e0353-573a-43dd-b19c-e609bca367be")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "MANUFACTURER" "CL21B104KCFNNNE"
+			(at 0 0 270)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "0038c4b9-543e-4dfe-bc16-74f2eb36e985")
 			(effects
 				(font
 					(size 1 1)
@@ -1170,7 +1235,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "http://www.infineon.com/dgdl/Infineon-BC847SERIES_BC848SERIES_BC849SERIES_BC850SERIES-DS-v01_01-en.pdf?fileId=db3a304314dca389011541d4630a1657"
+		(property "Datasheet" "https://jlc-prod-smt.oss-eu-central-1.aliyuncs.com/smtDataManualFile/8639582106218377216-C2297.pdf?response-content-disposition=attachment%3B%20filename%3DC2297.pdf%3B%20filename%2A%3DUTF-8%27%27C2297.pdf&x-oss-date=20261028T225704Z&x-oss-expires=1800&x-oss-security-token=CAISgAN1q6Ft5B2yfSjIr5nCGd7Ah4dk1beDW1z2gGohddhpgKrIkjz2IHhMdHJsAOodtv0%2FmmhT6PkclqRLcbhpcmfjV%2BZHzLB8qdl76kox557b16cNrbH4M4H6aXeirtuwDsz9SNTCALjPD3nPii50x5bjaDymRCbLGJaViJlhHLN1Ow6jdmhpCctxLAlvo9NgFxm3D%2Fu2NQPwiWf9FVdhvhEG6Vly8qOi2MaRmFy8yFTx0b0SvJ%2BjYMrmPctoN9JnSdC5mfdzau3a1TJ84gRD0a5wkaVA1zbDs5bfISEIuUzebreLqY03dV4mOvdqIcMe8qigz88fk%2FfIioH6xyxKOexoSCnFTOiiupCcQLPyao9jLu6iayqViY7QaIOTqQohZmkAMwVOasAsI3Ngh4zF97Qt0cVNkXO9gWfLI8DtuMleWirpxNhSjJSgc5lCkRRYwGs1287ugXlSQzo890KPDAEovaKCnZ2ZSfh7Y4sNknI6i%2Bfc2Se2MIkIpDrBWaKWD5sagAGiLi8TLKkbwmlm7pISy8%2FkVataWJ1%2FHw%2BjURyel9EVGwLwRjOqwBdeJnzUsvykwW%2FhmoSW91igTHMS0ZohG9gqTFQlhCqkVgrgS1JyQX2RCNwdnQZHPWIxaGE6chQei0mdbREVl7GbZv9m9NtkvRanFtZsUXmMxTSjfMpDGqzP%2FCAA&x-oss-signature-version=OSS4-HMAC-SHA256&x-oss-credential=STS.NZwRdtjXEbuhYzGdjtyWEoocp%2F20261028%2Feu-central-1%2Foss%2Faliyun_v4_request&x-oss-signature=b23b426dad90a518e6dbc62cc78fc666dfb630e1c3cb827b7a5714bf1062451c"
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -1207,7 +1272,7 @@
 				)
 			)
 		)
-		(property "shop" "https://www.lcsc.com/product-detail/Bipolar-BJT_onsemi-MMBT4401LT1G_C31776.html"
+		(property "shop" ""
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -1226,6 +1291,19 @@
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "86863ee2-943b-40c1-964a-b353e9b52bdf")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "MANUFACTURER" "MMBT4401LT1G"
+			(at 0 0 0)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "0b04432d-b555-4988-a5bf-f7213c521c9b")
 			(effects
 				(font
 					(size 1 1)
@@ -1592,7 +1670,7 @@
 				)
 			)
 		)
-		(property "shop" "https://www.lcsc.com/product-detail/LED-Indication-Discrete_Foshan-NationStar-Optoelectronics-NCD0805G1_C84260.html"
+		(property "shop" ""
 			(at 0 0 270)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -1605,12 +1683,25 @@
 				)
 			)
 		)
-		(property "LCSC p/n" "C84260"
+		(property "LCSC p/n" "C2297"
 			(at 0 0 270)
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "d764e97f-189e-434a-916d-2ccf41d9a00a")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "MANUFACTURER" "KT-0805G"
+			(at 0 0 270)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "d94d82b6-1fab-445a-a419-496397893ec0")
 			(effects
 				(font
 					(size 1 1)
@@ -1878,6 +1969,19 @@
 				)
 			)
 		)
+		(property "MANUFACTURER" "0805W8F1000T5E"
+			(at 0 0 0)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "95898904-f86c-4213-81fe-100a2a1ef29d")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "R_*")
 		(path "/af1762c2-0537-4ddc-841e-54fa870675eb")
 		(sheetname "/")
@@ -2053,7 +2157,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2304140030_Samsung-Electro-Mechanics-CL21B104KBCNNNC_C1711.pdf"
+		(property "Datasheet" "https://jlc-prod-smt.oss-eu-central-1.aliyuncs.com/smtDataManualFile/8586178643470503936-C28233.pdf?response-content-disposition=attachment%3B%20filename%3DC28233.pdf%3B%20filename%2A%3DUTF-8%27%27C28233.pdf&x-oss-date=20261029T103624Z&x-oss-expires=3600&x-oss-security-token=CAISgAN1q6Ft5B2yfSjIr5mCconCrOZY77Sce1P0tTcTfbcU1qL4iDz2IHhMdHJsAOodtv0%2FmmhT6PkclqRLcbhpcmfjV%2BZHzLB8qag0l18x557b16cNrbH4M4H6aXeirtuwDsz9SNTCALjPD3nPii50x5bjaDymRCbLGJaViJlhHLN1Ow6jdmhpCctxLAlvo9NgFxm3D%2Fu2NQPwiWf9FVdhvhEG6Vly8qOi2MaRmFy8yFTx0b0SvJ%2BjYMrmPctoN9JnSdC5mfdzau3a1TJ84gRD0a5wkaVA1zbDs5bfISEIuUzebreLqY03dV4mOvdqIcMe8qigz88fk%2FfIioH6xyxKOexoSCnFTOiiupCcQLPyao9jLu6iayqViY7QaIOTqQohZmkAMwVOasAsI3Ngh4zF97Qt0cVNkXO9gWfLI8DtuMleWsphX9ROjJSgc5lCkRRYwGs1287ugXlSQzo890KPDAEovaKCnZ2ZSfh7Y4sNknI6i%2Bfc2Se2MIkIJQiMxqKWD5sagAEA%2FwtMyHH0OMXc5g9%2Fzv2H0Zq4UexFv0cGndOYBydWre0QKr%2F8sVVJp35Vv3Riioy%2BMbGJvTcHBa2H9mfjlC6KlaVZEhmzz%2BpGSMVKzdvww5CUX2DZOf%2FzMvX2oPgFI%2FZ9BUgm26WUp5n3tbcb2uAka0lbTCUZsSckrRnZC1U6GSAA&x-oss-signature-version=OSS4-HMAC-SHA256&x-oss-credential=STS.NZ793vA9yXvwyuEQ7Fq889gSj%2F20261029%2Feu-central-1%2Foss%2Faliyun_v4_request&x-oss-signature=29d80851ae80d0eba222a38ba10dfb777a3f96afcf19f43f716b7104077fb67c"
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -2077,7 +2181,7 @@
 				)
 			)
 		)
-		(property "shop" "https://www.lcsc.com/product-detail/Multilayer-Ceramic-Capacitors-MLCC-SMD-SMT_Samsung-Electro-Mechanics-CL21B104KBCNNNC_C1711.html?s_z=n_CL21B104KBCNNNC"
+		(property "shop" ""
 			(at 0 0 180)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -2103,12 +2207,25 @@
 				)
 			)
 		)
-		(property "LCSC p/n" "C1711"
+		(property "LCSC p/n" "C28233"
 			(at 0 0 180)
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "deb280d9-4247-4528-af1e-c621823c8bc0")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "MANUFACTURER" "CL21B104KCFNNNE"
+			(at 0 0 180)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "4a45e29d-cb57-471f-b0aa-56cb16cd74ca")
 			(effects
 				(font
 					(size 1 1)
@@ -2280,7 +2397,7 @@
 				)
 			)
 		)
-		(property "Value" "Conn_02x04_Odd_Even"
+		(property "Value" "HCTL PM254-2-04-S-8.5"
 			(at 0 6.58 0)
 			(layer "F.Fab")
 			(uuid "ea3fa546-5288-48f0-a782-80f8598b3d62")
@@ -2311,6 +2428,45 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "LCSC p/n" "C3975149"
+			(at 0 0 180)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "250f222e-c0cb-4a83-9a3b-28fb0bfb35d2")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "MANUFACTURER" "PM254-2-04-S-8.5"
+			(at 0 0 180)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "99b8a5e6-6378-4d0c-8435-e6f4cf8bc3fd")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "shop" "https://www.lcsc.com/product-detail/C3975149.html?s_z=n_q_HCTL%2520PM254-2-04&spm=wm.fly.bg.3.xh&lcsc_vid=RAJdXwJSE1ZcAVAHRVdfXlVfQABfAQJfFlRdX1JTR1YxVlNfRFFbU1RTQFZfUjsOAxUeFF5JWBYZEEoKFBINSQcJGk4NBhADEA4cHktRTlJADxALGw%3D%3D"
+			(at 0 0 180)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "efd72fb3-b3e7-4b3e-bbae-3ca3e84cf5ca")
+			(effects
+				(font
+					(size 1 1)
 					(thickness 0.15)
 				)
 			)
@@ -2955,12 +3111,25 @@
 				)
 			)
 		)
-		(property "shop" "https://www.lcsc.com/product-detail/ESD-and-Surge-Protection-TVS-ESD_Nexperia-PESD5V0L2BT-215_C12324.html?s_z=n_PESD5V0L2BT"
+		(property "shop" ""
 			(at 0 0 90)
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "2b1827ca-d257-4aa6-8f65-1b5bfaa3ed91")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "MANUFACTURER" "PESD5V0L2BT,215"
+			(at 0 0 90)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "75cfe975-85e8-4b81-ac9b-79917536b76c")
 			(effects
 				(font
 					(size 1 1)
@@ -3264,7 +3433,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2412232100_YAGEO-RC0805FR-0710KL_C84376.pdf"
+		(property "Datasheet" "https://jlc-prod-smt.oss-eu-central-1.aliyuncs.com/smtDataManualFile/8562006748392685568-C17414.pdf?response-content-disposition=attachment%3B%20filename%3DC17414.pdf%3B%20filename%2A%3DUTF-8%27%27C17414.pdf&x-oss-date=20261029T110632Z&x-oss-expires=1800&x-oss-security-token=CAISgAN1q6Ft5B2yfSjIr5mCconCrOZY77Sce1P0tTcTfbcU1qL4iDz2IHhMdHJsAOodtv0%2FmmhT6PkclqRLcbhpcmfjV%2BZHzLB8qag0l18x557b16cNrbH4M4H6aXeirtuwDsz9SNTCALjPD3nPii50x5bjaDymRCbLGJaViJlhHLN1Ow6jdmhpCctxLAlvo9NgFxm3D%2Fu2NQPwiWf9FVdhvhEG6Vly8qOi2MaRmFy8yFTx0b0SvJ%2BjYMrmPctoN9JnSdC5mfdzau3a1TJ84gRD0a5wkaVA1zbDs5bfISEIuUzebreLqY03dV4mOvdqIcMe8qigz88fk%2FfIioH6xyxKOexoSCnFTOiiupCcQLPyao9jLu6iayqViY7QaIOTqQohZmkAMwVOasAsI3Ngh4zF97Qt0cVNkXO9gWfLI8DtuMleWsphX9ROjJSgc5lCkRRYwGs1287ugXlSQzo890KPDAEovaKCnZ2ZSfh7Y4sNknI6i%2Bfc2Se2MIkIJQiMxqKWD5sagAEA%2FwtMyHH0OMXc5g9%2Fzv2H0Zq4UexFv0cGndOYBydWre0QKr%2F8sVVJp35Vv3Riioy%2BMbGJvTcHBa2H9mfjlC6KlaVZEhmzz%2BpGSMVKzdvww5CUX2DZOf%2FzMvX2oPgFI%2FZ9BUgm26WUp5n3tbcb2uAka0lbTCUZsSckrRnZC1U6GSAA&x-oss-signature-version=OSS4-HMAC-SHA256&x-oss-credential=STS.NZ793vA9yXvwyuEQ7Fq889gSj%2F20261029%2Feu-central-1%2Foss%2Faliyun_v4_request&x-oss-signature=1cdfdb138a9e9459936acfc9edafdc74507aee9d16142e1fa9aaf699eb373c96"
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -3288,7 +3457,7 @@
 				)
 			)
 		)
-		(property "LCSC p/n" "C84376"
+		(property "LCSC p/n" "C17414"
 			(at 0 0 180)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -3320,6 +3489,19 @@
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "d66c371d-e5e5-4e61-9a18-4ebb974695f0")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "MANUFACTURER" "0805W8F1002T5E"
+			(at 0 0 180)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "21c07c5c-5deb-47f6-aea2-4e6f79ad0c89")
 			(effects
 				(font
 					(size 1 1)
@@ -3491,7 +3673,7 @@
 				)
 			)
 		)
-		(property "Value" "TL3342F450QG"
+		(property "Value" "TS-1187A-B-A-B"
 			(at 0 3.75 0)
 			(layer "F.Fab")
 			(uuid "69531705-2e7a-4cfb-9a8c-93327ee77259")
@@ -3560,6 +3742,19 @@
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "7d1bbda8-f100-470b-8298-893027c9f929")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "MANUFACTURER" "TS-1187A-B-A-B"
+			(at 0 0 0)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "259fc824-56dd-4d7c-ba6b-60409cd55aa0")
 			(effects
 				(font
 					(size 1 1)
@@ -4099,7 +4294,7 @@
 				)
 			)
 		)
-		(property "Value" "TL3342F450QG"
+		(property "Value" "TS-1187A-B-A-B"
 			(at 0 3.75 0)
 			(layer "F.Fab")
 			(uuid "9379bd50-2cdf-4025-ae7e-cadf92d0321d")
@@ -4168,6 +4363,19 @@
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "a209a741-b3e0-4f42-b518-8964504444e2")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "MANUFACTURER" "TS-1187A-B-A-B"
+			(at 0 0 0)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "a2246f36-2e30-4be7-a8b4-58d9dcc1a929")
 			(effects
 				(font
 					(size 1 1)
@@ -4718,7 +4926,7 @@
 				)
 			)
 		)
-		(property "Datasheet" ""
+		(property "Datasheet" "https://www.lcsc.com/datasheet/C492401.pdf?spm=wm.sxq.inf.ggs___wm.fly.bg.0.xh&lcsc_vid=RAJdXwJSE1ZcAVAHRVdfXlVfQABfAQJfFlRdX1JTR1YxVlNfRFFaUVFRRVBdUzsOAxUeFF5JWBYZEEoKFBINSQcJGk4eFQsCAgIaSgADAwAHC0s2Hg9DLwEHEwQcFDs%2BMSIgSjQ8RVRaMUlXRkxeUzQ5NFNYXlVSQ1lADxALGw%3D%3D"
 			(at 0 0 180)
 			(layer "F.Fab")
 			(hide yes)
@@ -4738,6 +4946,45 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "LCSC p/n" "C492401"
+			(at 0 0 180)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "8d36f038-158a-4bd2-ba84-bdeebf469610")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "MANUFACTURER" "PZ254V-11-02P"
+			(at 0 0 180)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "daa1a1a1-c77d-4471-a3e4-e9902069d306")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "shop" "https://www.lcsc.com/product-detail/C492401.html?s_z=s_p_PZ254V-11-02P&spm=wm.fly.bg.0.xh&lcsc_vid=RAJdXwJSE1ZcAVAHRVdfXlVfQABfAQJfFlRdX1JTR1YxVlNfRFFaUVFRRVBdUzsOAxUeFF5JWBYZEEoKFBINSQcJGk4eFQsCAgIaSgADAwAHC0s2Hg9DLwEHEwQcFDs%2BMSIgSjQ8RVRaMUlXRkxeUzQ5NFNYXlVSQ1lADxALGw%3D%3D"
+			(at 0 0 180)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "7d137f71-9a56-4494-8fd8-ec41d8f46982")
+			(effects
+				(font
+					(size 1 1)
 					(thickness 0.15)
 				)
 			)
@@ -4971,7 +5218,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2304140030_Samsung-Electro-Mechanics-CL21B105KOFNNNE_C24123.pdf"
+		(property "Datasheet" "https://jlc-prod-smt.oss-eu-central-1.aliyuncs.com/smtDataManualFile/8579706862000279552-C28323.pdf?response-content-disposition=attachment%3B%20filename%3DC28323.pdf%3B%20filename%2A%3DUTF-8%27%27C28323.pdf&x-oss-date=20261029T104123Z&x-oss-expires=1800&x-oss-security-token=CAISgAN1q6Ft5B2yfSjIr5mCconCrOZY77Sce1P0tTcTfbcU1qL4iDz2IHhMdHJsAOodtv0%2FmmhT6PkclqRLcbhpcmfjV%2BZHzLB8qag0l18x557b16cNrbH4M4H6aXeirtuwDsz9SNTCALjPD3nPii50x5bjaDymRCbLGJaViJlhHLN1Ow6jdmhpCctxLAlvo9NgFxm3D%2Fu2NQPwiWf9FVdhvhEG6Vly8qOi2MaRmFy8yFTx0b0SvJ%2BjYMrmPctoN9JnSdC5mfdzau3a1TJ84gRD0a5wkaVA1zbDs5bfISEIuUzebreLqY03dV4mOvdqIcMe8qigz88fk%2FfIioH6xyxKOexoSCnFTOiiupCcQLPyao9jLu6iayqViY7QaIOTqQohZmkAMwVOasAsI3Ngh4zF97Qt0cVNkXO9gWfLI8DtuMleWsphX9ROjJSgc5lCkRRYwGs1287ugXlSQzo890KPDAEovaKCnZ2ZSfh7Y4sNknI6i%2Bfc2Se2MIkIJQiMxqKWD5sagAEA%2FwtMyHH0OMXc5g9%2Fzv2H0Zq4UexFv0cGndOYBydWre0QKr%2F8sVVJp35Vv3Riioy%2BMbGJvTcHBa2H9mfjlC6KlaVZEhmzz%2BpGSMVKzdvww5CUX2DZOf%2FzMvX2oPgFI%2FZ9BUgm26WUp5n3tbcb2uAka0lbTCUZsSckrRnZC1U6GSAA&x-oss-signature-version=OSS4-HMAC-SHA256&x-oss-credential=STS.NZ793vA9yXvwyuEQ7Fq889gSj%2F20261029%2Feu-central-1%2Foss%2Faliyun_v4_request&x-oss-signature=83a973e4eb6e7c2f1b6f8cb34f52fdf1f8081a5b898437dd2ea7e4c8519f3d4c"
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -4995,7 +5242,7 @@
 				)
 			)
 		)
-		(property "shop" "https://www.lcsc.com/product-detail/Multilayer-Ceramic-Capacitors-MLCC-SMD-SMT_Samsung-Electro-Mechanics-CL21B105KBFNNNE_C28323.html?s_z=n_1uF"
+		(property "shop" ""
 			(at 0 0 180)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -5027,6 +5274,19 @@
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "2882c2fe-798b-4c5f-8efc-7b17b4e87bc7")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "MANUFACTURER" "CL21B105KBFNNNE"
+			(at 0 0 180)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "b31f8582-93c5-4110-aed2-fe0b4d5c4280")
 			(effects
 				(font
 					(size 1 1)
@@ -5209,7 +5469,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2304140030_Samsung-Electro-Mechanics-CL21B105KOFNNNE_C24123.pdf"
+		(property "Datasheet" "https://jlc-prod-smt.oss-eu-central-1.aliyuncs.com/smtDataManualFile/8579706862000279552-C28323.pdf?response-content-disposition=attachment%3B%20filename%3DC28323.pdf%3B%20filename%2A%3DUTF-8%27%27C28323.pdf&x-oss-date=20261029T104123Z&x-oss-expires=1800&x-oss-security-token=CAISgAN1q6Ft5B2yfSjIr5mCconCrOZY77Sce1P0tTcTfbcU1qL4iDz2IHhMdHJsAOodtv0%2FmmhT6PkclqRLcbhpcmfjV%2BZHzLB8qag0l18x557b16cNrbH4M4H6aXeirtuwDsz9SNTCALjPD3nPii50x5bjaDymRCbLGJaViJlhHLN1Ow6jdmhpCctxLAlvo9NgFxm3D%2Fu2NQPwiWf9FVdhvhEG6Vly8qOi2MaRmFy8yFTx0b0SvJ%2BjYMrmPctoN9JnSdC5mfdzau3a1TJ84gRD0a5wkaVA1zbDs5bfISEIuUzebreLqY03dV4mOvdqIcMe8qigz88fk%2FfIioH6xyxKOexoSCnFTOiiupCcQLPyao9jLu6iayqViY7QaIOTqQohZmkAMwVOasAsI3Ngh4zF97Qt0cVNkXO9gWfLI8DtuMleWsphX9ROjJSgc5lCkRRYwGs1287ugXlSQzo890KPDAEovaKCnZ2ZSfh7Y4sNknI6i%2Bfc2Se2MIkIJQiMxqKWD5sagAEA%2FwtMyHH0OMXc5g9%2Fzv2H0Zq4UexFv0cGndOYBydWre0QKr%2F8sVVJp35Vv3Riioy%2BMbGJvTcHBa2H9mfjlC6KlaVZEhmzz%2BpGSMVKzdvww5CUX2DZOf%2FzMvX2oPgFI%2FZ9BUgm26WUp5n3tbcb2uAka0lbTCUZsSckrRnZC1U6GSAA&x-oss-signature-version=OSS4-HMAC-SHA256&x-oss-credential=STS.NZ793vA9yXvwyuEQ7Fq889gSj%2F20261029%2Feu-central-1%2Foss%2Faliyun_v4_request&x-oss-signature=83a973e4eb6e7c2f1b6f8cb34f52fdf1f8081a5b898437dd2ea7e4c8519f3d4c"
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -5233,7 +5493,7 @@
 				)
 			)
 		)
-		(property "shop" "https://www.lcsc.com/product-detail/Multilayer-Ceramic-Capacitors-MLCC-SMD-SMT_Samsung-Electro-Mechanics-CL21B105KOFNNNE_C24123.html?s_z=n_CL21A105KOFNNNE"
+		(property "shop" ""
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -5259,12 +5519,25 @@
 				)
 			)
 		)
-		(property "LCSC p/n" "C24123"
+		(property "LCSC p/n" "C28323"
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "ebf5ba70-57f6-44d3-a679-2068e2c04acb")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "MANUFACTURER" "CL21B105KBFNNNE"
+			(at 0 0 0)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "3cbfef12-682b-4273-a526-224fc4edad91")
 			(effects
 				(font
 					(size 1 1)
@@ -5510,6 +5783,19 @@
 				)
 			)
 		)
+		(property "MANUFACTURER" "0805W8F1000T5E"
+			(at 0 0 0)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "d0c64e70-1e3a-430d-96a6-290577b8d6bd")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "R_*")
 		(path "/7ebef92d-268e-48dd-bd4d-0c6a5e6fe964")
 		(sheetname "/")
@@ -5735,7 +6021,7 @@
 				)
 			)
 		)
-		(property "shop" "https://www.lcsc.com/product-detail/LED-Indication-Discrete_Yongyu-Photoelectric-SZYY0805O_C434437.html"
+		(property "shop" ""
 			(at 0 0 270)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -5748,12 +6034,25 @@
 				)
 			)
 		)
-		(property "LCSC p/n" "C965817"
+		(property "LCSC p/n" "C2296"
 			(at 0 0 270)
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "8977efd1-38b1-481b-ab33-df995dc4a2d2")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "MANUFACTURER" "KT-0805Y"
+			(at 0 0 270)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "fd629109-8409-4397-becc-08964af5394c")
 			(effects
 				(font
 					(size 1 1)
@@ -5947,7 +6246,7 @@
 				)
 			)
 		)
-		(property "Value" "I2C"
+		(property "Value" "C2691448"
 			(at 0 10 90)
 			(layer "F.Fab")
 			(uuid "7b5eca16-10b5-4dab-9b6d-d8cc99896cac")
@@ -6014,6 +6313,19 @@
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "f0e5f661-909a-4dbf-a433-271698514ec4")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "MANUFACTURER" "PZ254V-11-04P"
+			(at 0 0 270)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "fb167103-b945-4abe-a431-f9c4e43ba90d")
 			(effects
 				(font
 					(size 1 1)
@@ -6328,6 +6640,19 @@
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "33b3fc83-0101-4ad1-b737-6f00cc218607")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "MANUFACTURER" "24LC512T-I/SN"
+			(at 0 0 0)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "e0f86134-6933-4eee-adf8-1836b20e0048")
 			(effects
 				(font
 					(size 1 1)
@@ -6672,7 +6997,7 @@
 				)
 			)
 		)
-		(property "Value" "TL3342F450QG"
+		(property "Value" "TS-1187A-B-A-B"
 			(at 0 3.75 0)
 			(layer "F.Fab")
 			(uuid "8dcacd9a-3b73-4f0c-bd2a-b3e70a6937a0")
@@ -6741,6 +7066,19 @@
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "d10c3f50-6b96-4dfb-a52e-e1866bbbab8d")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "MANUFACTURER" "TS-1187A-B-A-B"
+			(at 0 0 180)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "a205d635-3103-481c-81f9-d3764adcec82")
 			(effects
 				(font
 					(size 1 1)
@@ -7291,7 +7629,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2304140030_Samsung-Electro-Mechanics-CL21B105KOFNNNE_C24123.pdf"
+		(property "Datasheet" "https://jlc-prod-smt.oss-eu-central-1.aliyuncs.com/smtDataManualFile/8579706862000279552-C28323.pdf?response-content-disposition=attachment%3B%20filename%3DC28323.pdf%3B%20filename%2A%3DUTF-8%27%27C28323.pdf&x-oss-date=20261029T104123Z&x-oss-expires=1800&x-oss-security-token=CAISgAN1q6Ft5B2yfSjIr5mCconCrOZY77Sce1P0tTcTfbcU1qL4iDz2IHhMdHJsAOodtv0%2FmmhT6PkclqRLcbhpcmfjV%2BZHzLB8qag0l18x557b16cNrbH4M4H6aXeirtuwDsz9SNTCALjPD3nPii50x5bjaDymRCbLGJaViJlhHLN1Ow6jdmhpCctxLAlvo9NgFxm3D%2Fu2NQPwiWf9FVdhvhEG6Vly8qOi2MaRmFy8yFTx0b0SvJ%2BjYMrmPctoN9JnSdC5mfdzau3a1TJ84gRD0a5wkaVA1zbDs5bfISEIuUzebreLqY03dV4mOvdqIcMe8qigz88fk%2FfIioH6xyxKOexoSCnFTOiiupCcQLPyao9jLu6iayqViY7QaIOTqQohZmkAMwVOasAsI3Ngh4zF97Qt0cVNkXO9gWfLI8DtuMleWsphX9ROjJSgc5lCkRRYwGs1287ugXlSQzo890KPDAEovaKCnZ2ZSfh7Y4sNknI6i%2Bfc2Se2MIkIJQiMxqKWD5sagAEA%2FwtMyHH0OMXc5g9%2Fzv2H0Zq4UexFv0cGndOYBydWre0QKr%2F8sVVJp35Vv3Riioy%2BMbGJvTcHBa2H9mfjlC6KlaVZEhmzz%2BpGSMVKzdvww5CUX2DZOf%2FzMvX2oPgFI%2FZ9BUgm26WUp5n3tbcb2uAka0lbTCUZsSckrRnZC1U6GSAA&x-oss-signature-version=OSS4-HMAC-SHA256&x-oss-credential=STS.NZ793vA9yXvwyuEQ7Fq889gSj%2F20261029%2Feu-central-1%2Foss%2Faliyun_v4_request&x-oss-signature=83a973e4eb6e7c2f1b6f8cb34f52fdf1f8081a5b898437dd2ea7e4c8519f3d4c"
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -7315,7 +7653,7 @@
 				)
 			)
 		)
-		(property "shop" "https://www.lcsc.com/product-detail/Multilayer-Ceramic-Capacitors-MLCC-SMD-SMT_Samsung-Electro-Mechanics-CL21B105KBFNNNE_C28323.html?s_z=n_1uF"
+		(property "shop" ""
 			(at 0 0 180)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -7347,6 +7685,19 @@
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "12b4de4f-580d-4493-a611-96326a3e422b")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "MANUFACTURER" "CL21B105KBFNNNE"
+			(at 0 0 180)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "e2fade71-4229-4737-b1f3-8e30814aeab9")
 			(effects
 				(font
 					(size 1 1)
@@ -7529,7 +7880,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "https://www.vishay.com/docs/88746/ss12.pdf"
+		(property "Datasheet" "https://jlc-prod-smt.oss-eu-central-1.aliyuncs.com/smtDataManualFile/8757911605285789697-C2480.pdf?response-content-disposition=attachment%3B%20filename%3DC2480.pdf%3B%20filename%2A%3DUTF-8%27%27C2480.pdf&x-oss-date=20261029T104516Z&x-oss-expires=1800&x-oss-security-token=CAISgAN1q6Ft5B2yfSjIr5mCconCrOZY77Sce1P0tTcTfbcU1qL4iDz2IHhMdHJsAOodtv0%2FmmhT6PkclqRLcbhpcmfjV%2BZHzLB8qag0l18x557b16cNrbH4M4H6aXeirtuwDsz9SNTCALjPD3nPii50x5bjaDymRCbLGJaViJlhHLN1Ow6jdmhpCctxLAlvo9NgFxm3D%2Fu2NQPwiWf9FVdhvhEG6Vly8qOi2MaRmFy8yFTx0b0SvJ%2BjYMrmPctoN9JnSdC5mfdzau3a1TJ84gRD0a5wkaVA1zbDs5bfISEIuUzebreLqY03dV4mOvdqIcMe8qigz88fk%2FfIioH6xyxKOexoSCnFTOiiupCcQLPyao9jLu6iayqViY7QaIOTqQohZmkAMwVOasAsI3Ngh4zF97Qt0cVNkXO9gWfLI8DtuMleWsphX9ROjJSgc5lCkRRYwGs1287ugXlSQzo890KPDAEovaKCnZ2ZSfh7Y4sNknI6i%2Bfc2Se2MIkIJQiMxqKWD5sagAEA%2FwtMyHH0OMXc5g9%2Fzv2H0Zq4UexFv0cGndOYBydWre0QKr%2F8sVVJp35Vv3Riioy%2BMbGJvTcHBa2H9mfjlC6KlaVZEhmzz%2BpGSMVKzdvww5CUX2DZOf%2FzMvX2oPgFI%2FZ9BUgm26WUp5n3tbcb2uAka0lbTCUZsSckrRnZC1U6GSAA&x-oss-signature-version=OSS4-HMAC-SHA256&x-oss-credential=STS.NZ793vA9yXvwyuEQ7Fq889gSj%2F20261029%2Feu-central-1%2Foss%2Faliyun_v4_request&x-oss-signature=e5439d2ab7db588076de00e4ebb4d96e6c44e2340daaaf63ce1f6acc4f4baaa5"
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -7568,7 +7919,7 @@
 				)
 			)
 		)
-		(property "shop" "https://www.lcsc.com/product-detail/Schottky-Diodes_Vishay-Intertech-SS14-E3-61T_C47460.html?s_z=n_SS14"
+		(property "shop" ""
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -7581,12 +7932,25 @@
 				)
 			)
 		)
-		(property "LCSC p/n" "C47460"
+		(property "LCSC p/n" "C2480"
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "cc0fb50d-0bc0-440a-85e2-3d72eb7f314b")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "MANUFACTURER" "SS14"
+			(at 0 0 0)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "5a196ef2-07ac-490c-b59d-04e24e544431")
 			(effects
 				(font
 					(size 1 1)
@@ -7841,7 +8205,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2304140030_YAGEO-RC0805FR-075K1L_C84375.pdf"
+		(property "Datasheet" "https://jlc-prod-smt.oss-eu-central-1.aliyuncs.com/smtDataManualFile/8579706704589537280-C27834.pdf?response-content-disposition=attachment%3B%20filename%3DC27834.pdf%3B%20filename%2A%3DUTF-8%27%27C27834.pdf&x-oss-date=20261029T110312Z&x-oss-expires=1800&x-oss-security-token=CAISgAN1q6Ft5B2yfSjIr5mCconCrOZY77Sce1P0tTcTfbcU1qL4iDz2IHhMdHJsAOodtv0%2FmmhT6PkclqRLcbhpcmfjV%2BZHzLB8qag0l18x557b16cNrbH4M4H6aXeirtuwDsz9SNTCALjPD3nPii50x5bjaDymRCbLGJaViJlhHLN1Ow6jdmhpCctxLAlvo9NgFxm3D%2Fu2NQPwiWf9FVdhvhEG6Vly8qOi2MaRmFy8yFTx0b0SvJ%2BjYMrmPctoN9JnSdC5mfdzau3a1TJ84gRD0a5wkaVA1zbDs5bfISEIuUzebreLqY03dV4mOvdqIcMe8qigz88fk%2FfIioH6xyxKOexoSCnFTOiiupCcQLPyao9jLu6iayqViY7QaIOTqQohZmkAMwVOasAsI3Ngh4zF97Qt0cVNkXO9gWfLI8DtuMleWsphX9ROjJSgc5lCkRRYwGs1287ugXlSQzo890KPDAEovaKCnZ2ZSfh7Y4sNknI6i%2Bfc2Se2MIkIJQiMxqKWD5sagAEA%2FwtMyHH0OMXc5g9%2Fzv2H0Zq4UexFv0cGndOYBydWre0QKr%2F8sVVJp35Vv3Riioy%2BMbGJvTcHBa2H9mfjlC6KlaVZEhmzz%2BpGSMVKzdvww5CUX2DZOf%2FzMvX2oPgFI%2FZ9BUgm26WUp5n3tbcb2uAka0lbTCUZsSckrRnZC1U6GSAA&x-oss-signature-version=OSS4-HMAC-SHA256&x-oss-credential=STS.NZ793vA9yXvwyuEQ7Fq889gSj%2F20261029%2Feu-central-1%2Foss%2Faliyun_v4_request&x-oss-signature=7d34e458012377de348ce936e90a9ca7a6bd7f714e741906b49ccc3ff0b30556"
 			(at 0 0 90)
 			(layer "F.Fab")
 			(hide yes)
@@ -7865,7 +8229,7 @@
 				)
 			)
 		)
-		(property "LCSC p/n" "C84375"
+		(property "LCSC p/n" "C27834"
 			(at 0 0 90)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -7897,6 +8261,19 @@
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "2715c2f7-e5a5-4a85-87dd-4ed61f8de813")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "MANUFACTURER" "0805W8F5101T5E"
+			(at 0 0 90)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "24457cef-bb1a-4f4d-ac63-2c7853e9fdc1")
 			(effects
 				(font
 					(size 1 1)
@@ -8079,7 +8456,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2304140030_Samsung-Electro-Mechanics-CL21B105KOFNNNE_C24123.pdf"
+		(property "Datasheet" "https://jlc-prod-smt.oss-eu-central-1.aliyuncs.com/smtDataManualFile/8579706862000279552-C28323.pdf?response-content-disposition=attachment%3B%20filename%3DC28323.pdf%3B%20filename%2A%3DUTF-8%27%27C28323.pdf&x-oss-date=20261029T104123Z&x-oss-expires=1800&x-oss-security-token=CAISgAN1q6Ft5B2yfSjIr5mCconCrOZY77Sce1P0tTcTfbcU1qL4iDz2IHhMdHJsAOodtv0%2FmmhT6PkclqRLcbhpcmfjV%2BZHzLB8qag0l18x557b16cNrbH4M4H6aXeirtuwDsz9SNTCALjPD3nPii50x5bjaDymRCbLGJaViJlhHLN1Ow6jdmhpCctxLAlvo9NgFxm3D%2Fu2NQPwiWf9FVdhvhEG6Vly8qOi2MaRmFy8yFTx0b0SvJ%2BjYMrmPctoN9JnSdC5mfdzau3a1TJ84gRD0a5wkaVA1zbDs5bfISEIuUzebreLqY03dV4mOvdqIcMe8qigz88fk%2FfIioH6xyxKOexoSCnFTOiiupCcQLPyao9jLu6iayqViY7QaIOTqQohZmkAMwVOasAsI3Ngh4zF97Qt0cVNkXO9gWfLI8DtuMleWsphX9ROjJSgc5lCkRRYwGs1287ugXlSQzo890KPDAEovaKCnZ2ZSfh7Y4sNknI6i%2Bfc2Se2MIkIJQiMxqKWD5sagAEA%2FwtMyHH0OMXc5g9%2Fzv2H0Zq4UexFv0cGndOYBydWre0QKr%2F8sVVJp35Vv3Riioy%2BMbGJvTcHBa2H9mfjlC6KlaVZEhmzz%2BpGSMVKzdvww5CUX2DZOf%2FzMvX2oPgFI%2FZ9BUgm26WUp5n3tbcb2uAka0lbTCUZsSckrRnZC1U6GSAA&x-oss-signature-version=OSS4-HMAC-SHA256&x-oss-credential=STS.NZ793vA9yXvwyuEQ7Fq889gSj%2F20261029%2Feu-central-1%2Foss%2Faliyun_v4_request&x-oss-signature=83a973e4eb6e7c2f1b6f8cb34f52fdf1f8081a5b898437dd2ea7e4c8519f3d4c"
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -8103,7 +8480,7 @@
 				)
 			)
 		)
-		(property "shop" "https://www.lcsc.com/product-detail/Multilayer-Ceramic-Capacitors-MLCC-SMD-SMT_Samsung-Electro-Mechanics-CL21B105KOFNNNE_C24123.html?s_z=n_CL21A105KOFNNNE"
+		(property "shop" ""
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -8129,12 +8506,25 @@
 				)
 			)
 		)
-		(property "LCSC p/n" "C24123"
+		(property "LCSC p/n" "C28323"
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "38ce7a67-c14e-4d83-8f45-cf075f2ad97d")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "MANUFACTURER" "CL21B105KBFNNNE"
+			(at 0 0 0)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "777fb2f8-f64a-4f99-8de3-6c2a288ef65a")
 			(effects
 				(font
 					(size 1 1)
@@ -8317,7 +8707,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2304140030_YAGEO-RC0805FR-075K1L_C84375.pdf"
+		(property "Datasheet" "https://jlc-prod-smt.oss-eu-central-1.aliyuncs.com/smtDataManualFile/8579706704589537280-C27834.pdf?response-content-disposition=attachment%3B%20filename%3DC27834.pdf%3B%20filename%2A%3DUTF-8%27%27C27834.pdf&x-oss-date=20261029T110312Z&x-oss-expires=1800&x-oss-security-token=CAISgAN1q6Ft5B2yfSjIr5mCconCrOZY77Sce1P0tTcTfbcU1qL4iDz2IHhMdHJsAOodtv0%2FmmhT6PkclqRLcbhpcmfjV%2BZHzLB8qag0l18x557b16cNrbH4M4H6aXeirtuwDsz9SNTCALjPD3nPii50x5bjaDymRCbLGJaViJlhHLN1Ow6jdmhpCctxLAlvo9NgFxm3D%2Fu2NQPwiWf9FVdhvhEG6Vly8qOi2MaRmFy8yFTx0b0SvJ%2BjYMrmPctoN9JnSdC5mfdzau3a1TJ84gRD0a5wkaVA1zbDs5bfISEIuUzebreLqY03dV4mOvdqIcMe8qigz88fk%2FfIioH6xyxKOexoSCnFTOiiupCcQLPyao9jLu6iayqViY7QaIOTqQohZmkAMwVOasAsI3Ngh4zF97Qt0cVNkXO9gWfLI8DtuMleWsphX9ROjJSgc5lCkRRYwGs1287ugXlSQzo890KPDAEovaKCnZ2ZSfh7Y4sNknI6i%2Bfc2Se2MIkIJQiMxqKWD5sagAEA%2FwtMyHH0OMXc5g9%2Fzv2H0Zq4UexFv0cGndOYBydWre0QKr%2F8sVVJp35Vv3Riioy%2BMbGJvTcHBa2H9mfjlC6KlaVZEhmzz%2BpGSMVKzdvww5CUX2DZOf%2FzMvX2oPgFI%2FZ9BUgm26WUp5n3tbcb2uAka0lbTCUZsSckrRnZC1U6GSAA&x-oss-signature-version=OSS4-HMAC-SHA256&x-oss-credential=STS.NZ793vA9yXvwyuEQ7Fq889gSj%2F20261029%2Feu-central-1%2Foss%2Faliyun_v4_request&x-oss-signature=7d34e458012377de348ce936e90a9ca7a6bd7f714e741906b49ccc3ff0b30556"
 			(at 0 0 90)
 			(layer "F.Fab")
 			(hide yes)
@@ -8341,7 +8731,7 @@
 				)
 			)
 		)
-		(property "LCSC p/n" "C84375"
+		(property "LCSC p/n" "C27834"
 			(at 0 0 90)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -8373,6 +8763,19 @@
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "39ece3b3-0e20-4699-a664-6f8c7fdb850b")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "MANUFACTURER" "0805W8F5101T5E"
+			(at 0 0 90)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "7faef510-12d1-460e-b602-234f505b37a2")
 			(effects
 				(font
 					(size 1 1)
@@ -8555,7 +8958,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2304140030_YAGEO-RC0805FR-075K1L_C84375.pdf"
+		(property "Datasheet" "https://jlc-prod-smt.oss-eu-central-1.aliyuncs.com/smtDataManualFile/8579706704589537280-C27834.pdf?response-content-disposition=attachment%3B%20filename%3DC27834.pdf%3B%20filename%2A%3DUTF-8%27%27C27834.pdf&x-oss-date=20261029T110312Z&x-oss-expires=1800&x-oss-security-token=CAISgAN1q6Ft5B2yfSjIr5mCconCrOZY77Sce1P0tTcTfbcU1qL4iDz2IHhMdHJsAOodtv0%2FmmhT6PkclqRLcbhpcmfjV%2BZHzLB8qag0l18x557b16cNrbH4M4H6aXeirtuwDsz9SNTCALjPD3nPii50x5bjaDymRCbLGJaViJlhHLN1Ow6jdmhpCctxLAlvo9NgFxm3D%2Fu2NQPwiWf9FVdhvhEG6Vly8qOi2MaRmFy8yFTx0b0SvJ%2BjYMrmPctoN9JnSdC5mfdzau3a1TJ84gRD0a5wkaVA1zbDs5bfISEIuUzebreLqY03dV4mOvdqIcMe8qigz88fk%2FfIioH6xyxKOexoSCnFTOiiupCcQLPyao9jLu6iayqViY7QaIOTqQohZmkAMwVOasAsI3Ngh4zF97Qt0cVNkXO9gWfLI8DtuMleWsphX9ROjJSgc5lCkRRYwGs1287ugXlSQzo890KPDAEovaKCnZ2ZSfh7Y4sNknI6i%2Bfc2Se2MIkIJQiMxqKWD5sagAEA%2FwtMyHH0OMXc5g9%2Fzv2H0Zq4UexFv0cGndOYBydWre0QKr%2F8sVVJp35Vv3Riioy%2BMbGJvTcHBa2H9mfjlC6KlaVZEhmzz%2BpGSMVKzdvww5CUX2DZOf%2FzMvX2oPgFI%2FZ9BUgm26WUp5n3tbcb2uAka0lbTCUZsSckrRnZC1U6GSAA&x-oss-signature-version=OSS4-HMAC-SHA256&x-oss-credential=STS.NZ793vA9yXvwyuEQ7Fq889gSj%2F20261029%2Feu-central-1%2Foss%2Faliyun_v4_request&x-oss-signature=7d34e458012377de348ce936e90a9ca7a6bd7f714e741906b49ccc3ff0b30556"
 			(at 0 0 90)
 			(layer "F.Fab")
 			(hide yes)
@@ -8579,7 +8982,7 @@
 				)
 			)
 		)
-		(property "LCSC p/n" "C84375"
+		(property "LCSC p/n" "C27834"
 			(at 0 0 90)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -8611,6 +9014,19 @@
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "54539cf8-80c1-441f-be5b-da1ac37ab3cd")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "MANUFACTURER" "0805W8F5101T5E"
+			(at 0 0 90)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "46b44276-b812-4aa3-9959-c9d1d51b2a6e")
 			(effects
 				(font
 					(size 1 1)
@@ -8849,6 +9265,19 @@
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "6a03bd8e-a40a-40ef-9991-0db41fe19361")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "MANUFACTURER" "AP2112K-3.3TRG1"
+			(at 0 0 90)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "950d7eb5-9222-4180-9f93-1d1dca6c30ea")
 			(effects
 				(font
 					(size 1 1)
@@ -9185,7 +9614,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2412232100_YAGEO-RC0805FR-0710KL_C84376.pdf"
+		(property "Datasheet" "https://jlc-prod-smt.oss-eu-central-1.aliyuncs.com/smtDataManualFile/8562006748392685568-C17414.pdf?response-content-disposition=attachment%3B%20filename%3DC17414.pdf%3B%20filename%2A%3DUTF-8%27%27C17414.pdf&x-oss-date=20261029T110632Z&x-oss-expires=1800&x-oss-security-token=CAISgAN1q6Ft5B2yfSjIr5mCconCrOZY77Sce1P0tTcTfbcU1qL4iDz2IHhMdHJsAOodtv0%2FmmhT6PkclqRLcbhpcmfjV%2BZHzLB8qag0l18x557b16cNrbH4M4H6aXeirtuwDsz9SNTCALjPD3nPii50x5bjaDymRCbLGJaViJlhHLN1Ow6jdmhpCctxLAlvo9NgFxm3D%2Fu2NQPwiWf9FVdhvhEG6Vly8qOi2MaRmFy8yFTx0b0SvJ%2BjYMrmPctoN9JnSdC5mfdzau3a1TJ84gRD0a5wkaVA1zbDs5bfISEIuUzebreLqY03dV4mOvdqIcMe8qigz88fk%2FfIioH6xyxKOexoSCnFTOiiupCcQLPyao9jLu6iayqViY7QaIOTqQohZmkAMwVOasAsI3Ngh4zF97Qt0cVNkXO9gWfLI8DtuMleWsphX9ROjJSgc5lCkRRYwGs1287ugXlSQzo890KPDAEovaKCnZ2ZSfh7Y4sNknI6i%2Bfc2Se2MIkIJQiMxqKWD5sagAEA%2FwtMyHH0OMXc5g9%2Fzv2H0Zq4UexFv0cGndOYBydWre0QKr%2F8sVVJp35Vv3Riioy%2BMbGJvTcHBa2H9mfjlC6KlaVZEhmzz%2BpGSMVKzdvww5CUX2DZOf%2FzMvX2oPgFI%2FZ9BUgm26WUp5n3tbcb2uAka0lbTCUZsSckrRnZC1U6GSAA&x-oss-signature-version=OSS4-HMAC-SHA256&x-oss-credential=STS.NZ793vA9yXvwyuEQ7Fq889gSj%2F20261029%2Feu-central-1%2Foss%2Faliyun_v4_request&x-oss-signature=1cdfdb138a9e9459936acfc9edafdc74507aee9d16142e1fa9aaf699eb373c96"
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -9209,7 +9638,7 @@
 				)
 			)
 		)
-		(property "LCSC p/n" "C84376"
+		(property "LCSC p/n" "C17414"
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -9241,6 +9670,19 @@
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "4a32867c-ea83-43d8-8f35-4d1bf5bdd67f")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "MANUFACTURER" "0805W8F1002T5E"
+			(at 0 0 0)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "f6dca9ab-8f5c-4220-bf42-dc7fa6e51f45")
 			(effects
 				(font
 					(size 1 1)
@@ -9423,7 +9865,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2304140030_Samsung-Electro-Mechanics-CL21B104KBCNNNC_C1711.pdf"
+		(property "Datasheet" "https://jlc-prod-smt.oss-eu-central-1.aliyuncs.com/smtDataManualFile/8586178643470503936-C28233.pdf?response-content-disposition=attachment%3B%20filename%3DC28233.pdf%3B%20filename%2A%3DUTF-8%27%27C28233.pdf&x-oss-date=20261029T103624Z&x-oss-expires=3600&x-oss-security-token=CAISgAN1q6Ft5B2yfSjIr5mCconCrOZY77Sce1P0tTcTfbcU1qL4iDz2IHhMdHJsAOodtv0%2FmmhT6PkclqRLcbhpcmfjV%2BZHzLB8qag0l18x557b16cNrbH4M4H6aXeirtuwDsz9SNTCALjPD3nPii50x5bjaDymRCbLGJaViJlhHLN1Ow6jdmhpCctxLAlvo9NgFxm3D%2Fu2NQPwiWf9FVdhvhEG6Vly8qOi2MaRmFy8yFTx0b0SvJ%2BjYMrmPctoN9JnSdC5mfdzau3a1TJ84gRD0a5wkaVA1zbDs5bfISEIuUzebreLqY03dV4mOvdqIcMe8qigz88fk%2FfIioH6xyxKOexoSCnFTOiiupCcQLPyao9jLu6iayqViY7QaIOTqQohZmkAMwVOasAsI3Ngh4zF97Qt0cVNkXO9gWfLI8DtuMleWsphX9ROjJSgc5lCkRRYwGs1287ugXlSQzo890KPDAEovaKCnZ2ZSfh7Y4sNknI6i%2Bfc2Se2MIkIJQiMxqKWD5sagAEA%2FwtMyHH0OMXc5g9%2Fzv2H0Zq4UexFv0cGndOYBydWre0QKr%2F8sVVJp35Vv3Riioy%2BMbGJvTcHBa2H9mfjlC6KlaVZEhmzz%2BpGSMVKzdvww5CUX2DZOf%2FzMvX2oPgFI%2FZ9BUgm26WUp5n3tbcb2uAka0lbTCUZsSckrRnZC1U6GSAA&x-oss-signature-version=OSS4-HMAC-SHA256&x-oss-credential=STS.NZ793vA9yXvwyuEQ7Fq889gSj%2F20261029%2Feu-central-1%2Foss%2Faliyun_v4_request&x-oss-signature=29d80851ae80d0eba222a38ba10dfb777a3f96afcf19f43f716b7104077fb67c"
 			(at 0 0 90)
 			(layer "F.Fab")
 			(hide yes)
@@ -9447,7 +9889,7 @@
 				)
 			)
 		)
-		(property "shop" "https://www.lcsc.com/product-detail/Multilayer-Ceramic-Capacitors-MLCC-SMD-SMT_Samsung-Electro-Mechanics-CL21B104KBCNNNC_C1711.html?s_z=n_CL21B104KBCNNNC"
+		(property "shop" ""
 			(at 0 0 90)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -9473,12 +9915,25 @@
 				)
 			)
 		)
-		(property "LCSC p/n" "C1711"
+		(property "LCSC p/n" "C28233"
 			(at 0 0 90)
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "dec7bb00-c147-49e6-8006-bebc3c56b235")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "MANUFACTURER" "CL21B104KCFNNNE"
+			(at 0 0 90)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "86ca3516-4868-4f76-99da-a42c6509b407")
 			(effects
 				(font
 					(size 1 1)
@@ -9650,7 +10105,7 @@
 				)
 			)
 		)
-		(property "Value" "UART"
+		(property "Value" "C2691448"
 			(at 0 10 0)
 			(layer "F.Fab")
 			(uuid "89c05628-301f-4fef-b610-2b38aeb7a87c")
@@ -9717,6 +10172,19 @@
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "8afc9134-5369-44f7-b787-b3b070a15dfd")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "MANUFACTURER" "PZ254V-11-04P"
+			(at 0 0 180)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "41367001-8994-49b3-8d04-a9b24ea11561")
 			(effects
 				(font
 					(size 1 1)
@@ -10025,7 +10493,7 @@
 				)
 			)
 		)
-		(property "shop" "https://www.lcsc.com/product-detail/LED-Indication-Discrete_Foshan-NationStar-Optoelectronics-NCD0805R1_C84256.html"
+		(property "shop" ""
 			(at 0 0 270)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -10044,6 +10512,19 @@
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "f8093a17-a41e-4ddd-ae6d-de1309dad9df")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "MANUFACTURER" "NCD0805R1"
+			(at 0 0 270)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "9e6b9b5b-168c-4153-a2f0-6f24b5c9da10")
 			(effects
 				(font
 					(size 1 1)
@@ -10248,7 +10729,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2304140030_Samsung-Electro-Mechanics-CL21B105KOFNNNE_C24123.pdf"
+		(property "Datasheet" "https://jlc-prod-smt.oss-eu-central-1.aliyuncs.com/smtDataManualFile/8579706862000279552-C28323.pdf?response-content-disposition=attachment%3B%20filename%3DC28323.pdf%3B%20filename%2A%3DUTF-8%27%27C28323.pdf&x-oss-date=20261029T104123Z&x-oss-expires=1800&x-oss-security-token=CAISgAN1q6Ft5B2yfSjIr5mCconCrOZY77Sce1P0tTcTfbcU1qL4iDz2IHhMdHJsAOodtv0%2FmmhT6PkclqRLcbhpcmfjV%2BZHzLB8qag0l18x557b16cNrbH4M4H6aXeirtuwDsz9SNTCALjPD3nPii50x5bjaDymRCbLGJaViJlhHLN1Ow6jdmhpCctxLAlvo9NgFxm3D%2Fu2NQPwiWf9FVdhvhEG6Vly8qOi2MaRmFy8yFTx0b0SvJ%2BjYMrmPctoN9JnSdC5mfdzau3a1TJ84gRD0a5wkaVA1zbDs5bfISEIuUzebreLqY03dV4mOvdqIcMe8qigz88fk%2FfIioH6xyxKOexoSCnFTOiiupCcQLPyao9jLu6iayqViY7QaIOTqQohZmkAMwVOasAsI3Ngh4zF97Qt0cVNkXO9gWfLI8DtuMleWsphX9ROjJSgc5lCkRRYwGs1287ugXlSQzo890KPDAEovaKCnZ2ZSfh7Y4sNknI6i%2Bfc2Se2MIkIJQiMxqKWD5sagAEA%2FwtMyHH0OMXc5g9%2Fzv2H0Zq4UexFv0cGndOYBydWre0QKr%2F8sVVJp35Vv3Riioy%2BMbGJvTcHBa2H9mfjlC6KlaVZEhmzz%2BpGSMVKzdvww5CUX2DZOf%2FzMvX2oPgFI%2FZ9BUgm26WUp5n3tbcb2uAka0lbTCUZsSckrRnZC1U6GSAA&x-oss-signature-version=OSS4-HMAC-SHA256&x-oss-credential=STS.NZ793vA9yXvwyuEQ7Fq889gSj%2F20261029%2Feu-central-1%2Foss%2Faliyun_v4_request&x-oss-signature=83a973e4eb6e7c2f1b6f8cb34f52fdf1f8081a5b898437dd2ea7e4c8519f3d4c"
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -10272,7 +10753,7 @@
 				)
 			)
 		)
-		(property "shop" "https://www.lcsc.com/product-detail/Multilayer-Ceramic-Capacitors-MLCC-SMD-SMT_Samsung-Electro-Mechanics-CL21B105KBFNNNE_C28323.html?s_z=n_1uF"
+		(property "shop" ""
 			(at 0 0 180)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -10304,6 +10785,19 @@
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "77880f2f-daf8-4f04-9228-2681202d19c0")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "MANUFACTURER" "CL21B105KBFNNNE"
+			(at 0 0 180)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "73bbf18b-afa1-4e5c-82d1-200c30171f13")
 			(effects
 				(font
 					(size 1 1)
@@ -10486,7 +10980,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "https://www.vishay.com/docs/88746/ss12.pdf"
+		(property "Datasheet" "https://jlc-prod-smt.oss-eu-central-1.aliyuncs.com/smtDataManualFile/8757911605285789697-C2480.pdf?response-content-disposition=attachment%3B%20filename%3DC2480.pdf%3B%20filename%2A%3DUTF-8%27%27C2480.pdf&x-oss-date=20261029T104516Z&x-oss-expires=1800&x-oss-security-token=CAISgAN1q6Ft5B2yfSjIr5mCconCrOZY77Sce1P0tTcTfbcU1qL4iDz2IHhMdHJsAOodtv0%2FmmhT6PkclqRLcbhpcmfjV%2BZHzLB8qag0l18x557b16cNrbH4M4H6aXeirtuwDsz9SNTCALjPD3nPii50x5bjaDymRCbLGJaViJlhHLN1Ow6jdmhpCctxLAlvo9NgFxm3D%2Fu2NQPwiWf9FVdhvhEG6Vly8qOi2MaRmFy8yFTx0b0SvJ%2BjYMrmPctoN9JnSdC5mfdzau3a1TJ84gRD0a5wkaVA1zbDs5bfISEIuUzebreLqY03dV4mOvdqIcMe8qigz88fk%2FfIioH6xyxKOexoSCnFTOiiupCcQLPyao9jLu6iayqViY7QaIOTqQohZmkAMwVOasAsI3Ngh4zF97Qt0cVNkXO9gWfLI8DtuMleWsphX9ROjJSgc5lCkRRYwGs1287ugXlSQzo890KPDAEovaKCnZ2ZSfh7Y4sNknI6i%2Bfc2Se2MIkIJQiMxqKWD5sagAEA%2FwtMyHH0OMXc5g9%2Fzv2H0Zq4UexFv0cGndOYBydWre0QKr%2F8sVVJp35Vv3Riioy%2BMbGJvTcHBa2H9mfjlC6KlaVZEhmzz%2BpGSMVKzdvww5CUX2DZOf%2FzMvX2oPgFI%2FZ9BUgm26WUp5n3tbcb2uAka0lbTCUZsSckrRnZC1U6GSAA&x-oss-signature-version=OSS4-HMAC-SHA256&x-oss-credential=STS.NZ793vA9yXvwyuEQ7Fq889gSj%2F20261029%2Feu-central-1%2Foss%2Faliyun_v4_request&x-oss-signature=e5439d2ab7db588076de00e4ebb4d96e6c44e2340daaaf63ce1f6acc4f4baaa5"
 			(at 0 0 270)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -10525,7 +11019,7 @@
 				)
 			)
 		)
-		(property "shop" "https://www.lcsc.com/product-detail/Schottky-Diodes_Vishay-Intertech-SS14-E3-61T_C47460.html?s_z=n_SS14"
+		(property "shop" ""
 			(at 0 0 270)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -10538,12 +11032,25 @@
 				)
 			)
 		)
-		(property "LCSC p/n" "C47460"
+		(property "LCSC p/n" "C2480"
 			(at 0 0 270)
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "bc8adca6-cedb-4a17-ba3e-9d10284510ac")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "MANUFACTURER" "SS14"
+			(at 0 0 270)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "7e516731-70ad-4a35-b03e-ec5b8c2f8230")
 			(effects
 				(font
 					(size 1 1)
@@ -10798,7 +11305,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2304140030_YAGEO-RC0805FR-075K1L_C84375.pdf"
+		(property "Datasheet" "https://jlc-prod-smt.oss-eu-central-1.aliyuncs.com/smtDataManualFile/8579706704589537280-C27834.pdf?response-content-disposition=attachment%3B%20filename%3DC27834.pdf%3B%20filename%2A%3DUTF-8%27%27C27834.pdf&x-oss-date=20261029T110312Z&x-oss-expires=1800&x-oss-security-token=CAISgAN1q6Ft5B2yfSjIr5mCconCrOZY77Sce1P0tTcTfbcU1qL4iDz2IHhMdHJsAOodtv0%2FmmhT6PkclqRLcbhpcmfjV%2BZHzLB8qag0l18x557b16cNrbH4M4H6aXeirtuwDsz9SNTCALjPD3nPii50x5bjaDymRCbLGJaViJlhHLN1Ow6jdmhpCctxLAlvo9NgFxm3D%2Fu2NQPwiWf9FVdhvhEG6Vly8qOi2MaRmFy8yFTx0b0SvJ%2BjYMrmPctoN9JnSdC5mfdzau3a1TJ84gRD0a5wkaVA1zbDs5bfISEIuUzebreLqY03dV4mOvdqIcMe8qigz88fk%2FfIioH6xyxKOexoSCnFTOiiupCcQLPyao9jLu6iayqViY7QaIOTqQohZmkAMwVOasAsI3Ngh4zF97Qt0cVNkXO9gWfLI8DtuMleWsphX9ROjJSgc5lCkRRYwGs1287ugXlSQzo890KPDAEovaKCnZ2ZSfh7Y4sNknI6i%2Bfc2Se2MIkIJQiMxqKWD5sagAEA%2FwtMyHH0OMXc5g9%2Fzv2H0Zq4UexFv0cGndOYBydWre0QKr%2F8sVVJp35Vv3Riioy%2BMbGJvTcHBa2H9mfjlC6KlaVZEhmzz%2BpGSMVKzdvww5CUX2DZOf%2FzMvX2oPgFI%2FZ9BUgm26WUp5n3tbcb2uAka0lbTCUZsSckrRnZC1U6GSAA&x-oss-signature-version=OSS4-HMAC-SHA256&x-oss-credential=STS.NZ793vA9yXvwyuEQ7Fq889gSj%2F20261029%2Feu-central-1%2Foss%2Faliyun_v4_request&x-oss-signature=7d34e458012377de348ce936e90a9ca7a6bd7f714e741906b49ccc3ff0b30556"
 			(at 0 0 90)
 			(layer "F.Fab")
 			(hide yes)
@@ -10822,7 +11329,7 @@
 				)
 			)
 		)
-		(property "LCSC p/n" "C84375"
+		(property "LCSC p/n" "C27834"
 			(at 0 0 90)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -10854,6 +11361,19 @@
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "13a29c17-67fb-4dd3-85dc-38d6776d2bdb")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "MANUFACTURER" "0805W8F5101T5E"
+			(at 0 0 90)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "36adcc9f-583c-43be-b0c9-ab38542e96cb")
 			(effects
 				(font
 					(size 1 1)
@@ -11036,7 +11556,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2304140030_YAGEO-RC0805FR-075K1L_C84375.pdf"
+		(property "Datasheet" "https://jlc-prod-smt.oss-eu-central-1.aliyuncs.com/smtDataManualFile/8579706704589537280-C27834.pdf?response-content-disposition=attachment%3B%20filename%3DC27834.pdf%3B%20filename%2A%3DUTF-8%27%27C27834.pdf&x-oss-date=20261029T110312Z&x-oss-expires=1800&x-oss-security-token=CAISgAN1q6Ft5B2yfSjIr5mCconCrOZY77Sce1P0tTcTfbcU1qL4iDz2IHhMdHJsAOodtv0%2FmmhT6PkclqRLcbhpcmfjV%2BZHzLB8qag0l18x557b16cNrbH4M4H6aXeirtuwDsz9SNTCALjPD3nPii50x5bjaDymRCbLGJaViJlhHLN1Ow6jdmhpCctxLAlvo9NgFxm3D%2Fu2NQPwiWf9FVdhvhEG6Vly8qOi2MaRmFy8yFTx0b0SvJ%2BjYMrmPctoN9JnSdC5mfdzau3a1TJ84gRD0a5wkaVA1zbDs5bfISEIuUzebreLqY03dV4mOvdqIcMe8qigz88fk%2FfIioH6xyxKOexoSCnFTOiiupCcQLPyao9jLu6iayqViY7QaIOTqQohZmkAMwVOasAsI3Ngh4zF97Qt0cVNkXO9gWfLI8DtuMleWsphX9ROjJSgc5lCkRRYwGs1287ugXlSQzo890KPDAEovaKCnZ2ZSfh7Y4sNknI6i%2Bfc2Se2MIkIJQiMxqKWD5sagAEA%2FwtMyHH0OMXc5g9%2Fzv2H0Zq4UexFv0cGndOYBydWre0QKr%2F8sVVJp35Vv3Riioy%2BMbGJvTcHBa2H9mfjlC6KlaVZEhmzz%2BpGSMVKzdvww5CUX2DZOf%2FzMvX2oPgFI%2FZ9BUgm26WUp5n3tbcb2uAka0lbTCUZsSckrRnZC1U6GSAA&x-oss-signature-version=OSS4-HMAC-SHA256&x-oss-credential=STS.NZ793vA9yXvwyuEQ7Fq889gSj%2F20261029%2Feu-central-1%2Foss%2Faliyun_v4_request&x-oss-signature=7d34e458012377de348ce936e90a9ca7a6bd7f714e741906b49ccc3ff0b30556"
 			(at 0 0 90)
 			(layer "F.Fab")
 			(hide yes)
@@ -11060,7 +11580,7 @@
 				)
 			)
 		)
-		(property "LCSC p/n" "C84375"
+		(property "LCSC p/n" "C27834"
 			(at 0 0 90)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -11092,6 +11612,19 @@
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "360dcc2e-32da-4979-a891-385c908abba7")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "MANUFACTURER" "0805W8F5101T5E"
+			(at 0 0 90)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "d978dfff-99c7-4eb6-8d25-cf11b80a6aa4")
 			(effects
 				(font
 					(size 1 1)
@@ -11274,7 +11807,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2304140030_Samsung-Electro-Mechanics-CL21B105KOFNNNE_C24123.pdf"
+		(property "Datasheet" "https://jlc-prod-smt.oss-eu-central-1.aliyuncs.com/smtDataManualFile/8579706862000279552-C28323.pdf?response-content-disposition=attachment%3B%20filename%3DC28323.pdf%3B%20filename%2A%3DUTF-8%27%27C28323.pdf&x-oss-date=20261029T104123Z&x-oss-expires=1800&x-oss-security-token=CAISgAN1q6Ft5B2yfSjIr5mCconCrOZY77Sce1P0tTcTfbcU1qL4iDz2IHhMdHJsAOodtv0%2FmmhT6PkclqRLcbhpcmfjV%2BZHzLB8qag0l18x557b16cNrbH4M4H6aXeirtuwDsz9SNTCALjPD3nPii50x5bjaDymRCbLGJaViJlhHLN1Ow6jdmhpCctxLAlvo9NgFxm3D%2Fu2NQPwiWf9FVdhvhEG6Vly8qOi2MaRmFy8yFTx0b0SvJ%2BjYMrmPctoN9JnSdC5mfdzau3a1TJ84gRD0a5wkaVA1zbDs5bfISEIuUzebreLqY03dV4mOvdqIcMe8qigz88fk%2FfIioH6xyxKOexoSCnFTOiiupCcQLPyao9jLu6iayqViY7QaIOTqQohZmkAMwVOasAsI3Ngh4zF97Qt0cVNkXO9gWfLI8DtuMleWsphX9ROjJSgc5lCkRRYwGs1287ugXlSQzo890KPDAEovaKCnZ2ZSfh7Y4sNknI6i%2Bfc2Se2MIkIJQiMxqKWD5sagAEA%2FwtMyHH0OMXc5g9%2Fzv2H0Zq4UexFv0cGndOYBydWre0QKr%2F8sVVJp35Vv3Riioy%2BMbGJvTcHBa2H9mfjlC6KlaVZEhmzz%2BpGSMVKzdvww5CUX2DZOf%2FzMvX2oPgFI%2FZ9BUgm26WUp5n3tbcb2uAka0lbTCUZsSckrRnZC1U6GSAA&x-oss-signature-version=OSS4-HMAC-SHA256&x-oss-credential=STS.NZ793vA9yXvwyuEQ7Fq889gSj%2F20261029%2Feu-central-1%2Foss%2Faliyun_v4_request&x-oss-signature=83a973e4eb6e7c2f1b6f8cb34f52fdf1f8081a5b898437dd2ea7e4c8519f3d4c"
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -11298,7 +11831,7 @@
 				)
 			)
 		)
-		(property "shop" "https://www.lcsc.com/product-detail/Multilayer-Ceramic-Capacitors-MLCC-SMD-SMT_Samsung-Electro-Mechanics-CL21B105KOFNNNE_C24123.html?s_z=n_CL21A105KOFNNNE"
+		(property "shop" ""
 			(at 0 0 180)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -11324,12 +11857,25 @@
 				)
 			)
 		)
-		(property "LCSC p/n" "C24123"
+		(property "LCSC p/n" "C28323"
 			(at 0 0 180)
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "2ee279ae-3a49-4480-8741-e77f06abc669")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "MANUFACTURER" "CL21B105KBFNNNE"
+			(at 0 0 180)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "50a3d7f0-b115-49fe-bd96-1410025fc369")
 			(effects
 				(font
 					(size 1 1)
@@ -11512,7 +12058,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2412232102_YAGEO-RC0805FR-071KL_C95781.pdf"
+		(property "Datasheet" "https://jlc-prod-smt.oss-eu-central-1.aliyuncs.com/smtDataManualFile/8579706499678978048-C17513.pdf?response-content-disposition=attachment%3B%20filename%3DC17513.pdf%3B%20filename%2A%3DUTF-8%27%27C17513.pdf&x-oss-date=20261029T105736Z&x-oss-expires=1800&x-oss-security-token=CAISgAN1q6Ft5B2yfSjIr5mCconCrOZY77Sce1P0tTcTfbcU1qL4iDz2IHhMdHJsAOodtv0%2FmmhT6PkclqRLcbhpcmfjV%2BZHzLB8qag0l18x557b16cNrbH4M4H6aXeirtuwDsz9SNTCALjPD3nPii50x5bjaDymRCbLGJaViJlhHLN1Ow6jdmhpCctxLAlvo9NgFxm3D%2Fu2NQPwiWf9FVdhvhEG6Vly8qOi2MaRmFy8yFTx0b0SvJ%2BjYMrmPctoN9JnSdC5mfdzau3a1TJ84gRD0a5wkaVA1zbDs5bfISEIuUzebreLqY03dV4mOvdqIcMe8qigz88fk%2FfIioH6xyxKOexoSCnFTOiiupCcQLPyao9jLu6iayqViY7QaIOTqQohZmkAMwVOasAsI3Ngh4zF97Qt0cVNkXO9gWfLI8DtuMleWsphX9ROjJSgc5lCkRRYwGs1287ugXlSQzo890KPDAEovaKCnZ2ZSfh7Y4sNknI6i%2Bfc2Se2MIkIJQiMxqKWD5sagAEA%2FwtMyHH0OMXc5g9%2Fzv2H0Zq4UexFv0cGndOYBydWre0QKr%2F8sVVJp35Vv3Riioy%2BMbGJvTcHBa2H9mfjlC6KlaVZEhmzz%2BpGSMVKzdvww5CUX2DZOf%2FzMvX2oPgFI%2FZ9BUgm26WUp5n3tbcb2uAka0lbTCUZsSckrRnZC1U6GSAA&x-oss-signature-version=OSS4-HMAC-SHA256&x-oss-credential=STS.NZ793vA9yXvwyuEQ7Fq889gSj%2F20261029%2Feu-central-1%2Foss%2Faliyun_v4_request&x-oss-signature=7053310f26d44e5b9838155b9373995a235ef20ef47b63505a96fa0c068e6b33"
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -11536,7 +12082,7 @@
 				)
 			)
 		)
-		(property "LCSC p/n" "C95781"
+		(property "LCSC p/n" "C17513"
 			(at 0 0 180)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -11568,6 +12114,19 @@
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "da788335-8f72-4c78-8bad-55e8d58a11a2")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "MANUFACTURER" "0805W8F1001T5E"
+			(at 0 0 180)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "9ec98eed-0c88-423a-8886-086da7b99a4d")
 			(effects
 				(font
 					(size 1 1)
@@ -11750,7 +12309,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2304140030_Samsung-Electro-Mechanics-CL21B104KBCNNNC_C1711.pdf"
+		(property "Datasheet" "https://jlc-prod-smt.oss-eu-central-1.aliyuncs.com/smtDataManualFile/8586178643470503936-C28233.pdf?response-content-disposition=attachment%3B%20filename%3DC28233.pdf%3B%20filename%2A%3DUTF-8%27%27C28233.pdf&x-oss-date=20261029T103624Z&x-oss-expires=3600&x-oss-security-token=CAISgAN1q6Ft5B2yfSjIr5mCconCrOZY77Sce1P0tTcTfbcU1qL4iDz2IHhMdHJsAOodtv0%2FmmhT6PkclqRLcbhpcmfjV%2BZHzLB8qag0l18x557b16cNrbH4M4H6aXeirtuwDsz9SNTCALjPD3nPii50x5bjaDymRCbLGJaViJlhHLN1Ow6jdmhpCctxLAlvo9NgFxm3D%2Fu2NQPwiWf9FVdhvhEG6Vly8qOi2MaRmFy8yFTx0b0SvJ%2BjYMrmPctoN9JnSdC5mfdzau3a1TJ84gRD0a5wkaVA1zbDs5bfISEIuUzebreLqY03dV4mOvdqIcMe8qigz88fk%2FfIioH6xyxKOexoSCnFTOiiupCcQLPyao9jLu6iayqViY7QaIOTqQohZmkAMwVOasAsI3Ngh4zF97Qt0cVNkXO9gWfLI8DtuMleWsphX9ROjJSgc5lCkRRYwGs1287ugXlSQzo890KPDAEovaKCnZ2ZSfh7Y4sNknI6i%2Bfc2Se2MIkIJQiMxqKWD5sagAEA%2FwtMyHH0OMXc5g9%2Fzv2H0Zq4UexFv0cGndOYBydWre0QKr%2F8sVVJp35Vv3Riioy%2BMbGJvTcHBa2H9mfjlC6KlaVZEhmzz%2BpGSMVKzdvww5CUX2DZOf%2FzMvX2oPgFI%2FZ9BUgm26WUp5n3tbcb2uAka0lbTCUZsSckrRnZC1U6GSAA&x-oss-signature-version=OSS4-HMAC-SHA256&x-oss-credential=STS.NZ793vA9yXvwyuEQ7Fq889gSj%2F20261029%2Feu-central-1%2Foss%2Faliyun_v4_request&x-oss-signature=29d80851ae80d0eba222a38ba10dfb777a3f96afcf19f43f716b7104077fb67c"
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -11774,7 +12333,7 @@
 				)
 			)
 		)
-		(property "shop" "https://www.lcsc.com/product-detail/Multilayer-Ceramic-Capacitors-MLCC-SMD-SMT_Samsung-Electro-Mechanics-CL21B104KBCNNNC_C1711.html?s_z=n_CL21B104KBCNNNC"
+		(property "shop" ""
 			(at 0 0 180)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -11800,12 +12359,25 @@
 				)
 			)
 		)
-		(property "LCSC p/n" "C1711"
+		(property "LCSC p/n" "C28233"
 			(at 0 0 180)
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "e8f35ba8-bdd6-4362-bf5f-639622db5591")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "MANUFACTURER" "CL21B104KCFNNNE"
+			(at 0 0 180)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "8957d578-6cd9-4446-9d5a-d35931acb8c5")
 			(effects
 				(font
 					(size 1 1)
@@ -11988,7 +12560,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2412232100_YAGEO-RC0805FR-0710KL_C84376.pdf"
+		(property "Datasheet" "https://jlc-prod-smt.oss-eu-central-1.aliyuncs.com/smtDataManualFile/8562006748392685568-C17414.pdf?response-content-disposition=attachment%3B%20filename%3DC17414.pdf%3B%20filename%2A%3DUTF-8%27%27C17414.pdf&x-oss-date=20261029T110632Z&x-oss-expires=1800&x-oss-security-token=CAISgAN1q6Ft5B2yfSjIr5mCconCrOZY77Sce1P0tTcTfbcU1qL4iDz2IHhMdHJsAOodtv0%2FmmhT6PkclqRLcbhpcmfjV%2BZHzLB8qag0l18x557b16cNrbH4M4H6aXeirtuwDsz9SNTCALjPD3nPii50x5bjaDymRCbLGJaViJlhHLN1Ow6jdmhpCctxLAlvo9NgFxm3D%2Fu2NQPwiWf9FVdhvhEG6Vly8qOi2MaRmFy8yFTx0b0SvJ%2BjYMrmPctoN9JnSdC5mfdzau3a1TJ84gRD0a5wkaVA1zbDs5bfISEIuUzebreLqY03dV4mOvdqIcMe8qigz88fk%2FfIioH6xyxKOexoSCnFTOiiupCcQLPyao9jLu6iayqViY7QaIOTqQohZmkAMwVOasAsI3Ngh4zF97Qt0cVNkXO9gWfLI8DtuMleWsphX9ROjJSgc5lCkRRYwGs1287ugXlSQzo890KPDAEovaKCnZ2ZSfh7Y4sNknI6i%2Bfc2Se2MIkIJQiMxqKWD5sagAEA%2FwtMyHH0OMXc5g9%2Fzv2H0Zq4UexFv0cGndOYBydWre0QKr%2F8sVVJp35Vv3Riioy%2BMbGJvTcHBa2H9mfjlC6KlaVZEhmzz%2BpGSMVKzdvww5CUX2DZOf%2FzMvX2oPgFI%2FZ9BUgm26WUp5n3tbcb2uAka0lbTCUZsSckrRnZC1U6GSAA&x-oss-signature-version=OSS4-HMAC-SHA256&x-oss-credential=STS.NZ793vA9yXvwyuEQ7Fq889gSj%2F20261029%2Feu-central-1%2Foss%2Faliyun_v4_request&x-oss-signature=1cdfdb138a9e9459936acfc9edafdc74507aee9d16142e1fa9aaf699eb373c96"
 			(at 0 0 90)
 			(layer "F.Fab")
 			(hide yes)
@@ -12012,7 +12584,7 @@
 				)
 			)
 		)
-		(property "LCSC p/n" "C84376"
+		(property "LCSC p/n" "C17414"
 			(at 0 0 270)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -12044,6 +12616,19 @@
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "c00ee708-8e0f-49f6-bcc0-c437377f3257")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "MANUFACTURER" "0805W8F1002T5E"
+			(at 0 0 270)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "d84b3c78-29d8-4da6-b8c6-b7c91251a177")
 			(effects
 				(font
 					(size 1 1)
@@ -12250,7 +12835,7 @@
 				)
 			)
 		)
-		(property "LCSC p/n" "C126351"
+		(property "LCSC p/n" "C17713"
 			(at 0 0 270)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -12289,7 +12874,7 @@
 				)
 			)
 		)
-		(property "MANUFACTURER" "RC0805FR-0747KL"
+		(property "MANUFACTURER" "0805W8F4702T5E"
 			(at 0 0 270)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -12477,7 +13062,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2412232100_YAGEO-RC0805FR-0710KL_C84376.pdf"
+		(property "Datasheet" "https://jlc-prod-smt.oss-eu-central-1.aliyuncs.com/smtDataManualFile/8562006748392685568-C17414.pdf?response-content-disposition=attachment%3B%20filename%3DC17414.pdf%3B%20filename%2A%3DUTF-8%27%27C17414.pdf&x-oss-date=20261029T110632Z&x-oss-expires=1800&x-oss-security-token=CAISgAN1q6Ft5B2yfSjIr5mCconCrOZY77Sce1P0tTcTfbcU1qL4iDz2IHhMdHJsAOodtv0%2FmmhT6PkclqRLcbhpcmfjV%2BZHzLB8qag0l18x557b16cNrbH4M4H6aXeirtuwDsz9SNTCALjPD3nPii50x5bjaDymRCbLGJaViJlhHLN1Ow6jdmhpCctxLAlvo9NgFxm3D%2Fu2NQPwiWf9FVdhvhEG6Vly8qOi2MaRmFy8yFTx0b0SvJ%2BjYMrmPctoN9JnSdC5mfdzau3a1TJ84gRD0a5wkaVA1zbDs5bfISEIuUzebreLqY03dV4mOvdqIcMe8qigz88fk%2FfIioH6xyxKOexoSCnFTOiiupCcQLPyao9jLu6iayqViY7QaIOTqQohZmkAMwVOasAsI3Ngh4zF97Qt0cVNkXO9gWfLI8DtuMleWsphX9ROjJSgc5lCkRRYwGs1287ugXlSQzo890KPDAEovaKCnZ2ZSfh7Y4sNknI6i%2Bfc2Se2MIkIJQiMxqKWD5sagAEA%2FwtMyHH0OMXc5g9%2Fzv2H0Zq4UexFv0cGndOYBydWre0QKr%2F8sVVJp35Vv3Riioy%2BMbGJvTcHBa2H9mfjlC6KlaVZEhmzz%2BpGSMVKzdvww5CUX2DZOf%2FzMvX2oPgFI%2FZ9BUgm26WUp5n3tbcb2uAka0lbTCUZsSckrRnZC1U6GSAA&x-oss-signature-version=OSS4-HMAC-SHA256&x-oss-credential=STS.NZ793vA9yXvwyuEQ7Fq889gSj%2F20261029%2Feu-central-1%2Foss%2Faliyun_v4_request&x-oss-signature=1cdfdb138a9e9459936acfc9edafdc74507aee9d16142e1fa9aaf699eb373c96"
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -12501,7 +13086,7 @@
 				)
 			)
 		)
-		(property "LCSC p/n" "C84376"
+		(property "LCSC p/n" "C17414"
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -12533,6 +13118,19 @@
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "59b6ff5b-d290-4668-a91b-653051b78727")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "MANUFACTURER" "0805W8F1002T5E"
+			(at 0 0 0)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "6451269a-9a70-47f4-bfc2-d039ae63e111")
 			(effects
 				(font
 					(size 1 1)
@@ -12715,7 +13313,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2412232100_YAGEO-RC0805FR-0710KL_C84376.pdf"
+		(property "Datasheet" "https://jlc-prod-smt.oss-eu-central-1.aliyuncs.com/smtDataManualFile/8588881992896798720-C25611.pdf?response-content-disposition=attachment%3B%20filename%3DC25611.pdf%3B%20filename%2A%3DUTF-8%27%27C25611.pdf&x-oss-date=20261029T110835Z&x-oss-expires=1800&x-oss-security-token=CAISgAN1q6Ft5B2yfSjIr5mCconCrOZY77Sce1P0tTcTfbcU1qL4iDz2IHhMdHJsAOodtv0%2FmmhT6PkclqRLcbhpcmfjV%2BZHzLB8qag0l18x557b16cNrbH4M4H6aXeirtuwDsz9SNTCALjPD3nPii50x5bjaDymRCbLGJaViJlhHLN1Ow6jdmhpCctxLAlvo9NgFxm3D%2Fu2NQPwiWf9FVdhvhEG6Vly8qOi2MaRmFy8yFTx0b0SvJ%2BjYMrmPctoN9JnSdC5mfdzau3a1TJ84gRD0a5wkaVA1zbDs5bfISEIuUzebreLqY03dV4mOvdqIcMe8qigz88fk%2FfIioH6xyxKOexoSCnFTOiiupCcQLPyao9jLu6iayqViY7QaIOTqQohZmkAMwVOasAsI3Ngh4zF97Qt0cVNkXO9gWfLI8DtuMleWsphX9ROjJSgc5lCkRRYwGs1287ugXlSQzo890KPDAEovaKCnZ2ZSfh7Y4sNknI6i%2Bfc2Se2MIkIJQiMxqKWD5sagAEA%2FwtMyHH0OMXc5g9%2Fzv2H0Zq4UexFv0cGndOYBydWre0QKr%2F8sVVJp35Vv3Riioy%2BMbGJvTcHBa2H9mfjlC6KlaVZEhmzz%2BpGSMVKzdvww5CUX2DZOf%2FzMvX2oPgFI%2FZ9BUgm26WUp5n3tbcb2uAka0lbTCUZsSckrRnZC1U6GSAA&x-oss-signature-version=OSS4-HMAC-SHA256&x-oss-credential=STS.NZ793vA9yXvwyuEQ7Fq889gSj%2F20261029%2Feu-central-1%2Foss%2Faliyun_v4_request&x-oss-signature=85cc3041be36a2df29060048db340edc13ec838aa40316d54b5076c8624b4510"
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -12739,7 +13337,7 @@
 				)
 			)
 		)
-		(property "LCSC p/n" ""
+		(property "LCSC p/n" "C25611"
 			(at 0 0 180)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -12765,12 +13363,25 @@
 				)
 			)
 		)
-		(property "shop" ""
+		(property "shop" "https://www.lcsc.com/product-detail/C96346.html?s_z=n_q_RC0805FR&spm=wm.fly.bg.0.xh&lcsc_vid=RAJdXwJSE1ZcAVAHRVdfXlVfQABfAQJfFlRdX1JTR1YxVlNfRFFbU1JUTlNeUDsOAxUeFF5JWBYZEEoKFBINSQcJGk4NBhADEA4cHktXRlhXSQwSGg0%3D"
 			(at 0 0 180)
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "398dcd25-d6ec-4cd4-8f5d-0e07e6ff5708")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "MANUFACTURER" "0805W8J0104T5E"
+			(at 0 0 180)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "60a52bf7-f4a2-49b9-b8c3-1aaa1d840784")
 			(effects
 				(font
 					(size 1 1)
@@ -13003,7 +13614,7 @@
 				)
 			)
 		)
-		(property "shop" "https://www.lcsc.com/product-detail/LED-Indication-Discrete_Foshan-NationStar-Optoelectronics-NCD0805G1_C84260.html"
+		(property "shop" ""
 			(at 0 0 180)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -13016,12 +13627,25 @@
 				)
 			)
 		)
-		(property "LCSC p/n" "C84260"
+		(property "LCSC p/n" "C2297"
 			(at 0 0 180)
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "b8a9531b-2eee-4133-b1b7-e9cb1f673957")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "MANUFACTURER" "KT-0805G"
+			(at 0 0 180)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "50b6cfac-019e-4bae-af8f-9eaf35e34275")
 			(effects
 				(font
 					(size 1 1)
@@ -13226,7 +13850,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2412232100_YAGEO-RC0805FR-0710KL_C84376.pdf"
+		(property "Datasheet" "https://jlc-prod-smt.oss-eu-central-1.aliyuncs.com/smtDataManualFile/8562006748392685568-C17414.pdf?response-content-disposition=attachment%3B%20filename%3DC17414.pdf%3B%20filename%2A%3DUTF-8%27%27C17414.pdf&x-oss-date=20261029T110632Z&x-oss-expires=1800&x-oss-security-token=CAISgAN1q6Ft5B2yfSjIr5mCconCrOZY77Sce1P0tTcTfbcU1qL4iDz2IHhMdHJsAOodtv0%2FmmhT6PkclqRLcbhpcmfjV%2BZHzLB8qag0l18x557b16cNrbH4M4H6aXeirtuwDsz9SNTCALjPD3nPii50x5bjaDymRCbLGJaViJlhHLN1Ow6jdmhpCctxLAlvo9NgFxm3D%2Fu2NQPwiWf9FVdhvhEG6Vly8qOi2MaRmFy8yFTx0b0SvJ%2BjYMrmPctoN9JnSdC5mfdzau3a1TJ84gRD0a5wkaVA1zbDs5bfISEIuUzebreLqY03dV4mOvdqIcMe8qigz88fk%2FfIioH6xyxKOexoSCnFTOiiupCcQLPyao9jLu6iayqViY7QaIOTqQohZmkAMwVOasAsI3Ngh4zF97Qt0cVNkXO9gWfLI8DtuMleWsphX9ROjJSgc5lCkRRYwGs1287ugXlSQzo890KPDAEovaKCnZ2ZSfh7Y4sNknI6i%2Bfc2Se2MIkIJQiMxqKWD5sagAEA%2FwtMyHH0OMXc5g9%2Fzv2H0Zq4UexFv0cGndOYBydWre0QKr%2F8sVVJp35Vv3Riioy%2BMbGJvTcHBa2H9mfjlC6KlaVZEhmzz%2BpGSMVKzdvww5CUX2DZOf%2FzMvX2oPgFI%2FZ9BUgm26WUp5n3tbcb2uAka0lbTCUZsSckrRnZC1U6GSAA&x-oss-signature-version=OSS4-HMAC-SHA256&x-oss-credential=STS.NZ793vA9yXvwyuEQ7Fq889gSj%2F20261029%2Feu-central-1%2Foss%2Faliyun_v4_request&x-oss-signature=1cdfdb138a9e9459936acfc9edafdc74507aee9d16142e1fa9aaf699eb373c96"
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -13250,7 +13874,7 @@
 				)
 			)
 		)
-		(property "LCSC p/n" "C84376"
+		(property "LCSC p/n" "C17414"
 			(at 0 0 180)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -13282,6 +13906,19 @@
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "db6d0169-b473-4000-814c-a662cb72a90d")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "MANUFACTURER" "0805W8F1002T5E"
+			(at 0 0 180)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "009566c0-fe7d-4d04-b540-a6e01be47b8b")
 			(effects
 				(font
 					(size 1 1)
@@ -13464,7 +14101,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2304140030_Samsung-Electro-Mechanics-CL21B105KOFNNNE_C24123.pdf"
+		(property "Datasheet" "https://jlc-prod-smt.oss-eu-central-1.aliyuncs.com/smtDataManualFile/8579706862000279552-C28323.pdf?response-content-disposition=attachment%3B%20filename%3DC28323.pdf%3B%20filename%2A%3DUTF-8%27%27C28323.pdf&x-oss-date=20261029T104123Z&x-oss-expires=1800&x-oss-security-token=CAISgAN1q6Ft5B2yfSjIr5mCconCrOZY77Sce1P0tTcTfbcU1qL4iDz2IHhMdHJsAOodtv0%2FmmhT6PkclqRLcbhpcmfjV%2BZHzLB8qag0l18x557b16cNrbH4M4H6aXeirtuwDsz9SNTCALjPD3nPii50x5bjaDymRCbLGJaViJlhHLN1Ow6jdmhpCctxLAlvo9NgFxm3D%2Fu2NQPwiWf9FVdhvhEG6Vly8qOi2MaRmFy8yFTx0b0SvJ%2BjYMrmPctoN9JnSdC5mfdzau3a1TJ84gRD0a5wkaVA1zbDs5bfISEIuUzebreLqY03dV4mOvdqIcMe8qigz88fk%2FfIioH6xyxKOexoSCnFTOiiupCcQLPyao9jLu6iayqViY7QaIOTqQohZmkAMwVOasAsI3Ngh4zF97Qt0cVNkXO9gWfLI8DtuMleWsphX9ROjJSgc5lCkRRYwGs1287ugXlSQzo890KPDAEovaKCnZ2ZSfh7Y4sNknI6i%2Bfc2Se2MIkIJQiMxqKWD5sagAEA%2FwtMyHH0OMXc5g9%2Fzv2H0Zq4UexFv0cGndOYBydWre0QKr%2F8sVVJp35Vv3Riioy%2BMbGJvTcHBa2H9mfjlC6KlaVZEhmzz%2BpGSMVKzdvww5CUX2DZOf%2FzMvX2oPgFI%2FZ9BUgm26WUp5n3tbcb2uAka0lbTCUZsSckrRnZC1U6GSAA&x-oss-signature-version=OSS4-HMAC-SHA256&x-oss-credential=STS.NZ793vA9yXvwyuEQ7Fq889gSj%2F20261029%2Feu-central-1%2Foss%2Faliyun_v4_request&x-oss-signature=83a973e4eb6e7c2f1b6f8cb34f52fdf1f8081a5b898437dd2ea7e4c8519f3d4c"
 			(at 0 0 90)
 			(layer "F.Fab")
 			(hide yes)
@@ -13488,7 +14125,7 @@
 				)
 			)
 		)
-		(property "shop" "https://www.lcsc.com/product-detail/Multilayer-Ceramic-Capacitors-MLCC-SMD-SMT_Samsung-Electro-Mechanics-CL21B105KOFNNNE_C24123.html?s_z=n_CL21A105KOFNNNE"
+		(property "shop" ""
 			(at 0 0 90)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -13514,12 +14151,25 @@
 				)
 			)
 		)
-		(property "LCSC p/n" "C24123"
+		(property "LCSC p/n" "C28323"
 			(at 0 0 90)
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "39bd4b72-1b9a-4aa1-a8de-3723cdbfe107")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "MANUFACTURER" "CL21B105KBFNNNE"
+			(at 0 0 90)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "f87fc60d-a30b-4cf5-b290-772759ac7899")
 			(effects
 				(font
 					(size 1 1)
@@ -13702,7 +14352,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2304140030_YAGEO-RC0805FR-075K1L_C84375.pdf"
+		(property "Datasheet" "https://jlc-prod-smt.oss-eu-central-1.aliyuncs.com/smtDataManualFile/8579706704589537280-C27834.pdf?response-content-disposition=attachment%3B%20filename%3DC27834.pdf%3B%20filename%2A%3DUTF-8%27%27C27834.pdf&x-oss-date=20261029T110312Z&x-oss-expires=1800&x-oss-security-token=CAISgAN1q6Ft5B2yfSjIr5mCconCrOZY77Sce1P0tTcTfbcU1qL4iDz2IHhMdHJsAOodtv0%2FmmhT6PkclqRLcbhpcmfjV%2BZHzLB8qag0l18x557b16cNrbH4M4H6aXeirtuwDsz9SNTCALjPD3nPii50x5bjaDymRCbLGJaViJlhHLN1Ow6jdmhpCctxLAlvo9NgFxm3D%2Fu2NQPwiWf9FVdhvhEG6Vly8qOi2MaRmFy8yFTx0b0SvJ%2BjYMrmPctoN9JnSdC5mfdzau3a1TJ84gRD0a5wkaVA1zbDs5bfISEIuUzebreLqY03dV4mOvdqIcMe8qigz88fk%2FfIioH6xyxKOexoSCnFTOiiupCcQLPyao9jLu6iayqViY7QaIOTqQohZmkAMwVOasAsI3Ngh4zF97Qt0cVNkXO9gWfLI8DtuMleWsphX9ROjJSgc5lCkRRYwGs1287ugXlSQzo890KPDAEovaKCnZ2ZSfh7Y4sNknI6i%2Bfc2Se2MIkIJQiMxqKWD5sagAEA%2FwtMyHH0OMXc5g9%2Fzv2H0Zq4UexFv0cGndOYBydWre0QKr%2F8sVVJp35Vv3Riioy%2BMbGJvTcHBa2H9mfjlC6KlaVZEhmzz%2BpGSMVKzdvww5CUX2DZOf%2FzMvX2oPgFI%2FZ9BUgm26WUp5n3tbcb2uAka0lbTCUZsSckrRnZC1U6GSAA&x-oss-signature-version=OSS4-HMAC-SHA256&x-oss-credential=STS.NZ793vA9yXvwyuEQ7Fq889gSj%2F20261029%2Feu-central-1%2Foss%2Faliyun_v4_request&x-oss-signature=7d34e458012377de348ce936e90a9ca7a6bd7f714e741906b49ccc3ff0b30556"
 			(at 0 0 90)
 			(layer "F.Fab")
 			(hide yes)
@@ -13726,7 +14376,7 @@
 				)
 			)
 		)
-		(property "LCSC p/n" "C84375"
+		(property "LCSC p/n" "C27834"
 			(at 0 0 90)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -13758,6 +14408,19 @@
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "197438bc-ee5c-4c96-95fb-c2c94ab78c51")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "MANUFACTURER" "0805W8F5101T5E"
+			(at 0 0 90)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "32e60547-5238-4d7b-82b7-e108321798a9")
 			(effects
 				(font
 					(size 1 1)
@@ -13940,7 +14603,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2412232100_YAGEO-RC0805FR-0710KL_C84376.pdf"
+		(property "Datasheet" "https://jlc-prod-smt.oss-eu-central-1.aliyuncs.com/smtDataManualFile/8562006748392685568-C17414.pdf?response-content-disposition=attachment%3B%20filename%3DC17414.pdf%3B%20filename%2A%3DUTF-8%27%27C17414.pdf&x-oss-date=20261029T110632Z&x-oss-expires=1800&x-oss-security-token=CAISgAN1q6Ft5B2yfSjIr5mCconCrOZY77Sce1P0tTcTfbcU1qL4iDz2IHhMdHJsAOodtv0%2FmmhT6PkclqRLcbhpcmfjV%2BZHzLB8qag0l18x557b16cNrbH4M4H6aXeirtuwDsz9SNTCALjPD3nPii50x5bjaDymRCbLGJaViJlhHLN1Ow6jdmhpCctxLAlvo9NgFxm3D%2Fu2NQPwiWf9FVdhvhEG6Vly8qOi2MaRmFy8yFTx0b0SvJ%2BjYMrmPctoN9JnSdC5mfdzau3a1TJ84gRD0a5wkaVA1zbDs5bfISEIuUzebreLqY03dV4mOvdqIcMe8qigz88fk%2FfIioH6xyxKOexoSCnFTOiiupCcQLPyao9jLu6iayqViY7QaIOTqQohZmkAMwVOasAsI3Ngh4zF97Qt0cVNkXO9gWfLI8DtuMleWsphX9ROjJSgc5lCkRRYwGs1287ugXlSQzo890KPDAEovaKCnZ2ZSfh7Y4sNknI6i%2Bfc2Se2MIkIJQiMxqKWD5sagAEA%2FwtMyHH0OMXc5g9%2Fzv2H0Zq4UexFv0cGndOYBydWre0QKr%2F8sVVJp35Vv3Riioy%2BMbGJvTcHBa2H9mfjlC6KlaVZEhmzz%2BpGSMVKzdvww5CUX2DZOf%2FzMvX2oPgFI%2FZ9BUgm26WUp5n3tbcb2uAka0lbTCUZsSckrRnZC1U6GSAA&x-oss-signature-version=OSS4-HMAC-SHA256&x-oss-credential=STS.NZ793vA9yXvwyuEQ7Fq889gSj%2F20261029%2Feu-central-1%2Foss%2Faliyun_v4_request&x-oss-signature=1cdfdb138a9e9459936acfc9edafdc74507aee9d16142e1fa9aaf699eb373c96"
 			(at 0 0 90)
 			(layer "F.Fab")
 			(hide yes)
@@ -13964,7 +14627,7 @@
 				)
 			)
 		)
-		(property "LCSC p/n" "C84376"
+		(property "LCSC p/n" "C17414"
 			(at 0 0 90)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -13996,6 +14659,19 @@
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "aa802034-dd37-48f2-90f1-fcbe99731460")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "MANUFACTURER" "0805W8F1002T5E"
+			(at 0 0 90)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "f0f4b1cc-ee29-42f0-a038-fb42a2659f10")
 			(effects
 				(font
 					(size 1 1)
@@ -14165,7 +14841,7 @@
 				)
 			)
 		)
-		(property "Value" "Conn_ARM_JTAG_SWD_10"
+		(property "Value" "FTSH-105-01-L-DV-P"
 			(at 14.355 5.385 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -14177,7 +14853,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "http://infocenter.arm.com/help/topic/com.arm.doc.ddi0314h/DDI0314H_coresight_components_trm.pdf"
+		(property "Datasheet" "https://jlc-prod-smt.oss-eu-central-1.aliyuncs.com/smtDataManualFile/8603519178368569344-C21170646.pdf?response-content-disposition=attachment%3B%20filename%3DC21170646.pdf%3B%20filename%2A%3DUTF-8%27%27C21170646.pdf&x-oss-date=20261029T105013Z&x-oss-expires=3600&x-oss-security-token=CAISgAN1q6Ft5B2yfSjIr5mCconCrOZY77Sce1P0tTcTfbcU1qL4iDz2IHhMdHJsAOodtv0%2FmmhT6PkclqRLcbhpcmfjV%2BZHzLB8qag0l18x557b16cNrbH4M4H6aXeirtuwDsz9SNTCALjPD3nPii50x5bjaDymRCbLGJaViJlhHLN1Ow6jdmhpCctxLAlvo9NgFxm3D%2Fu2NQPwiWf9FVdhvhEG6Vly8qOi2MaRmFy8yFTx0b0SvJ%2BjYMrmPctoN9JnSdC5mfdzau3a1TJ84gRD0a5wkaVA1zbDs5bfISEIuUzebreLqY03dV4mOvdqIcMe8qigz88fk%2FfIioH6xyxKOexoSCnFTOiiupCcQLPyao9jLu6iayqViY7QaIOTqQohZmkAMwVOasAsI3Ngh4zF97Qt0cVNkXO9gWfLI8DtuMleWsphX9ROjJSgc5lCkRRYwGs1287ugXlSQzo890KPDAEovaKCnZ2ZSfh7Y4sNknI6i%2Bfc2Se2MIkIJQiMxqKWD5sagAEA%2FwtMyHH0OMXc5g9%2Fzv2H0Zq4UexFv0cGndOYBydWre0QKr%2F8sVVJp35Vv3Riioy%2BMbGJvTcHBa2H9mfjlC6KlaVZEhmzz%2BpGSMVKzdvww5CUX2DZOf%2FzMvX2oPgFI%2FZ9BUgm26WUp5n3tbcb2uAka0lbTCUZsSckrRnZC1U6GSAA&x-oss-signature-version=OSS4-HMAC-SHA256&x-oss-credential=STS.NZ793vA9yXvwyuEQ7Fq889gSj%2F20261029%2Feu-central-1%2Foss%2Faliyun_v4_request&x-oss-signature=24d88e24494b81d5a9e6051442caad6c6bbc8bf0975f161caeae7d9190a275da"
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -14214,7 +14890,7 @@
 				)
 			)
 		)
-		(property "shop" "https://www.lcsc.com/product-detail/Wire-To-Board-Connector_Global-Connector-Technology-BD125-16-A-0305-0580-L-B_C17283499.html?s_z=n_GCT_BD125-10-A-0305-0580-L-B"
+		(property "shop" ""
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -14227,12 +14903,25 @@
 				)
 			)
 		)
-		(property "LCSC p/n" "C17283499"
+		(property "LCSC p/n" "C21170646"
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "312f7dc4-29e2-4299-92a4-3c7acd879769")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "MANUFACTURER" "FTSH-105-01-L-DV-P"
+			(at 0 0 0)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "20f292ff-ed89-4410-8812-f5e6a966230e")
 			(effects
 				(font
 					(size 1 1)
@@ -14508,7 +15197,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2304140030_Samsung-Electro-Mechanics-CL21B105KOFNNNE_C24123.pdf"
+		(property "Datasheet" "https://jlc-prod-smt.oss-eu-central-1.aliyuncs.com/smtDataManualFile/8579706862000279552-C28323.pdf?response-content-disposition=attachment%3B%20filename%3DC28323.pdf%3B%20filename%2A%3DUTF-8%27%27C28323.pdf&x-oss-date=20261029T104123Z&x-oss-expires=1800&x-oss-security-token=CAISgAN1q6Ft5B2yfSjIr5mCconCrOZY77Sce1P0tTcTfbcU1qL4iDz2IHhMdHJsAOodtv0%2FmmhT6PkclqRLcbhpcmfjV%2BZHzLB8qag0l18x557b16cNrbH4M4H6aXeirtuwDsz9SNTCALjPD3nPii50x5bjaDymRCbLGJaViJlhHLN1Ow6jdmhpCctxLAlvo9NgFxm3D%2Fu2NQPwiWf9FVdhvhEG6Vly8qOi2MaRmFy8yFTx0b0SvJ%2BjYMrmPctoN9JnSdC5mfdzau3a1TJ84gRD0a5wkaVA1zbDs5bfISEIuUzebreLqY03dV4mOvdqIcMe8qigz88fk%2FfIioH6xyxKOexoSCnFTOiiupCcQLPyao9jLu6iayqViY7QaIOTqQohZmkAMwVOasAsI3Ngh4zF97Qt0cVNkXO9gWfLI8DtuMleWsphX9ROjJSgc5lCkRRYwGs1287ugXlSQzo890KPDAEovaKCnZ2ZSfh7Y4sNknI6i%2Bfc2Se2MIkIJQiMxqKWD5sagAEA%2FwtMyHH0OMXc5g9%2Fzv2H0Zq4UexFv0cGndOYBydWre0QKr%2F8sVVJp35Vv3Riioy%2BMbGJvTcHBa2H9mfjlC6KlaVZEhmzz%2BpGSMVKzdvww5CUX2DZOf%2FzMvX2oPgFI%2FZ9BUgm26WUp5n3tbcb2uAka0lbTCUZsSckrRnZC1U6GSAA&x-oss-signature-version=OSS4-HMAC-SHA256&x-oss-credential=STS.NZ793vA9yXvwyuEQ7Fq889gSj%2F20261029%2Feu-central-1%2Foss%2Faliyun_v4_request&x-oss-signature=83a973e4eb6e7c2f1b6f8cb34f52fdf1f8081a5b898437dd2ea7e4c8519f3d4c"
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -14532,7 +15221,7 @@
 				)
 			)
 		)
-		(property "shop" "https://www.lcsc.com/product-detail/Multilayer-Ceramic-Capacitors-MLCC-SMD-SMT_Samsung-Electro-Mechanics-CL21B105KBFNNNE_C28323.html?s_z=n_1uF"
+		(property "shop" ""
 			(at 0 0 180)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -14564,6 +15253,19 @@
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "a42ef969-3373-44ab-93e2-60d1b69c093f")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "MANUFACTURER" "CL21B105KBFNNNE"
+			(at 0 0 180)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "b41c8a5f-5dee-4ad8-b114-4f0b31098c1b")
 			(effects
 				(font
 					(size 1 1)
@@ -14746,7 +15448,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2412232100_YAGEO-RC0805FR-0710KL_C84376.pdf"
+		(property "Datasheet" "https://jlc-prod-smt.oss-eu-central-1.aliyuncs.com/smtDataManualFile/8562006748392685568-C17414.pdf?response-content-disposition=attachment%3B%20filename%3DC17414.pdf%3B%20filename%2A%3DUTF-8%27%27C17414.pdf&x-oss-date=20261029T110632Z&x-oss-expires=1800&x-oss-security-token=CAISgAN1q6Ft5B2yfSjIr5mCconCrOZY77Sce1P0tTcTfbcU1qL4iDz2IHhMdHJsAOodtv0%2FmmhT6PkclqRLcbhpcmfjV%2BZHzLB8qag0l18x557b16cNrbH4M4H6aXeirtuwDsz9SNTCALjPD3nPii50x5bjaDymRCbLGJaViJlhHLN1Ow6jdmhpCctxLAlvo9NgFxm3D%2Fu2NQPwiWf9FVdhvhEG6Vly8qOi2MaRmFy8yFTx0b0SvJ%2BjYMrmPctoN9JnSdC5mfdzau3a1TJ84gRD0a5wkaVA1zbDs5bfISEIuUzebreLqY03dV4mOvdqIcMe8qigz88fk%2FfIioH6xyxKOexoSCnFTOiiupCcQLPyao9jLu6iayqViY7QaIOTqQohZmkAMwVOasAsI3Ngh4zF97Qt0cVNkXO9gWfLI8DtuMleWsphX9ROjJSgc5lCkRRYwGs1287ugXlSQzo890KPDAEovaKCnZ2ZSfh7Y4sNknI6i%2Bfc2Se2MIkIJQiMxqKWD5sagAEA%2FwtMyHH0OMXc5g9%2Fzv2H0Zq4UexFv0cGndOYBydWre0QKr%2F8sVVJp35Vv3Riioy%2BMbGJvTcHBa2H9mfjlC6KlaVZEhmzz%2BpGSMVKzdvww5CUX2DZOf%2FzMvX2oPgFI%2FZ9BUgm26WUp5n3tbcb2uAka0lbTCUZsSckrRnZC1U6GSAA&x-oss-signature-version=OSS4-HMAC-SHA256&x-oss-credential=STS.NZ793vA9yXvwyuEQ7Fq889gSj%2F20261029%2Feu-central-1%2Foss%2Faliyun_v4_request&x-oss-signature=1cdfdb138a9e9459936acfc9edafdc74507aee9d16142e1fa9aaf699eb373c96"
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -14770,7 +15472,7 @@
 				)
 			)
 		)
-		(property "LCSC p/n" "C84376"
+		(property "LCSC p/n" "C17414"
 			(at 0 0 180)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -14802,6 +15504,19 @@
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "4f914749-a270-49bb-b62c-2f8cb0040d08")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "MANUFACTURER" "0805W8F1002T5E"
+			(at 0 0 180)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "46c52e25-39d7-48b7-8910-de9af412711a")
 			(effects
 				(font
 					(size 1 1)
@@ -14984,7 +15699,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2304140030_Samsung-Electro-Mechanics-CL21B104KBCNNNC_C1711.pdf"
+		(property "Datasheet" "https://jlc-prod-smt.oss-eu-central-1.aliyuncs.com/smtDataManualFile/8586178643470503936-C28233.pdf?response-content-disposition=attachment%3B%20filename%3DC28233.pdf%3B%20filename%2A%3DUTF-8%27%27C28233.pdf&x-oss-date=20261029T103624Z&x-oss-expires=3600&x-oss-security-token=CAISgAN1q6Ft5B2yfSjIr5mCconCrOZY77Sce1P0tTcTfbcU1qL4iDz2IHhMdHJsAOodtv0%2FmmhT6PkclqRLcbhpcmfjV%2BZHzLB8qag0l18x557b16cNrbH4M4H6aXeirtuwDsz9SNTCALjPD3nPii50x5bjaDymRCbLGJaViJlhHLN1Ow6jdmhpCctxLAlvo9NgFxm3D%2Fu2NQPwiWf9FVdhvhEG6Vly8qOi2MaRmFy8yFTx0b0SvJ%2BjYMrmPctoN9JnSdC5mfdzau3a1TJ84gRD0a5wkaVA1zbDs5bfISEIuUzebreLqY03dV4mOvdqIcMe8qigz88fk%2FfIioH6xyxKOexoSCnFTOiiupCcQLPyao9jLu6iayqViY7QaIOTqQohZmkAMwVOasAsI3Ngh4zF97Qt0cVNkXO9gWfLI8DtuMleWsphX9ROjJSgc5lCkRRYwGs1287ugXlSQzo890KPDAEovaKCnZ2ZSfh7Y4sNknI6i%2Bfc2Se2MIkIJQiMxqKWD5sagAEA%2FwtMyHH0OMXc5g9%2Fzv2H0Zq4UexFv0cGndOYBydWre0QKr%2F8sVVJp35Vv3Riioy%2BMbGJvTcHBa2H9mfjlC6KlaVZEhmzz%2BpGSMVKzdvww5CUX2DZOf%2FzMvX2oPgFI%2FZ9BUgm26WUp5n3tbcb2uAka0lbTCUZsSckrRnZC1U6GSAA&x-oss-signature-version=OSS4-HMAC-SHA256&x-oss-credential=STS.NZ793vA9yXvwyuEQ7Fq889gSj%2F20261029%2Feu-central-1%2Foss%2Faliyun_v4_request&x-oss-signature=29d80851ae80d0eba222a38ba10dfb777a3f96afcf19f43f716b7104077fb67c"
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -15008,7 +15723,7 @@
 				)
 			)
 		)
-		(property "shop" "https://www.lcsc.com/product-detail/Multilayer-Ceramic-Capacitors-MLCC-SMD-SMT_Samsung-Electro-Mechanics-CL21B104KBCNNNC_C1711.html?s_z=n_CL21B104KBCNNNC"
+		(property "shop" ""
 			(at 0 0 180)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -15034,12 +15749,25 @@
 				)
 			)
 		)
-		(property "LCSC p/n" "C1711"
+		(property "LCSC p/n" "C28233"
 			(at 0 0 180)
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "4b3fa3b7-93e0-48f2-a489-27b906d04fa7")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "MANUFACTURER" "CL21B104KCFNNNE"
+			(at 0 0 180)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "e0b6cfd9-310f-4f2f-9fb3-ee60929ef9a3")
 			(effects
 				(font
 					(size 1 1)
@@ -15280,6 +16008,19 @@
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "c702ad71-cb3e-4502-b104-95b419feb52a")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "MANUFACTURER" "U262-161N-4BS165"
+			(at 0 0 0)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "13476e3e-ab1c-4826-a487-c2fb335ea8a2")
 			(effects
 				(font
 					(size 1 1)
@@ -17073,7 +17814,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2304140030_Samsung-Electro-Mechanics-CL21B105KOFNNNE_C24123.pdf"
+		(property "Datasheet" "https://jlc-prod-smt.oss-eu-central-1.aliyuncs.com/smtDataManualFile/8579706862000279552-C28323.pdf?response-content-disposition=attachment%3B%20filename%3DC28323.pdf%3B%20filename%2A%3DUTF-8%27%27C28323.pdf&x-oss-date=20261029T104123Z&x-oss-expires=1800&x-oss-security-token=CAISgAN1q6Ft5B2yfSjIr5mCconCrOZY77Sce1P0tTcTfbcU1qL4iDz2IHhMdHJsAOodtv0%2FmmhT6PkclqRLcbhpcmfjV%2BZHzLB8qag0l18x557b16cNrbH4M4H6aXeirtuwDsz9SNTCALjPD3nPii50x5bjaDymRCbLGJaViJlhHLN1Ow6jdmhpCctxLAlvo9NgFxm3D%2Fu2NQPwiWf9FVdhvhEG6Vly8qOi2MaRmFy8yFTx0b0SvJ%2BjYMrmPctoN9JnSdC5mfdzau3a1TJ84gRD0a5wkaVA1zbDs5bfISEIuUzebreLqY03dV4mOvdqIcMe8qigz88fk%2FfIioH6xyxKOexoSCnFTOiiupCcQLPyao9jLu6iayqViY7QaIOTqQohZmkAMwVOasAsI3Ngh4zF97Qt0cVNkXO9gWfLI8DtuMleWsphX9ROjJSgc5lCkRRYwGs1287ugXlSQzo890KPDAEovaKCnZ2ZSfh7Y4sNknI6i%2Bfc2Se2MIkIJQiMxqKWD5sagAEA%2FwtMyHH0OMXc5g9%2Fzv2H0Zq4UexFv0cGndOYBydWre0QKr%2F8sVVJp35Vv3Riioy%2BMbGJvTcHBa2H9mfjlC6KlaVZEhmzz%2BpGSMVKzdvww5CUX2DZOf%2FzMvX2oPgFI%2FZ9BUgm26WUp5n3tbcb2uAka0lbTCUZsSckrRnZC1U6GSAA&x-oss-signature-version=OSS4-HMAC-SHA256&x-oss-credential=STS.NZ793vA9yXvwyuEQ7Fq889gSj%2F20261029%2Feu-central-1%2Foss%2Faliyun_v4_request&x-oss-signature=83a973e4eb6e7c2f1b6f8cb34f52fdf1f8081a5b898437dd2ea7e4c8519f3d4c"
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -17097,7 +17838,7 @@
 				)
 			)
 		)
-		(property "shop" "https://www.lcsc.com/product-detail/Multilayer-Ceramic-Capacitors-MLCC-SMD-SMT_Samsung-Electro-Mechanics-CL21B105KOFNNNE_C24123.html?s_z=n_CL21A105KOFNNNE"
+		(property "shop" ""
 			(at 0 0 180)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -17123,12 +17864,25 @@
 				)
 			)
 		)
-		(property "LCSC p/n" "C24123"
+		(property "LCSC p/n" "C28323"
 			(at 0 0 180)
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "e50879ae-4002-4d9a-98e5-e3004ff7c8c1")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "MANUFACTURER" "CL21B105KBFNNNE"
+			(at 0 0 180)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "c31bbae4-f7ae-45fd-a4df-ef9cab5caebe")
 			(effects
 				(font
 					(size 1 1)
@@ -17374,6 +18128,19 @@
 				)
 			)
 		)
+		(property "MANUFACTURER" "0805W8F1000T5E"
+			(at 0 0 0)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "492e81a2-d9ea-4c53-9e69-72a46c175738")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "R_*")
 		(path "/99642d86-bade-4086-819c-4dc23755ecfd")
 		(sheetname "/")
@@ -17607,6 +18374,19 @@
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "445b500d-527a-44fc-a710-db8c20af8f01")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "MANUFACTURER" "U262-161N-4BS165"
+			(at 0 0 0)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "e4a4913a-ebc1-46e8-9172-90b9ef2e5bcb")
 			(effects
 				(font
 					(size 1 1)
@@ -18032,7 +18812,7 @@
 				)
 			)
 		)
-		(property "shop" "https://www.lcsc.com/product-detail/ESD-and-Surge-Protection-TVS-ESD_TECH-PUBLIC-TVS3V3L4U_C28642315.html?s_z=n_TVS3V3L4U"
+		(property "shop" ""
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -18064,6 +18844,19 @@
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "85155628-4110-4da9-8511-cdd8a0c01443")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "MANUFACTURER" "TVS3V3L4U"
+			(at 0 0 0)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "a2854020-9d64-415c-b863-b190c7a9afbb")
 			(effects
 				(font
 					(size 1 1)
@@ -18510,7 +19303,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2304140030_YAGEO-RC0805FR-075K1L_C84375.pdf"
+		(property "Datasheet" "https://jlc-prod-smt.oss-eu-central-1.aliyuncs.com/smtDataManualFile/8579706704589537280-C27834.pdf?response-content-disposition=attachment%3B%20filename%3DC27834.pdf%3B%20filename%2A%3DUTF-8%27%27C27834.pdf&x-oss-date=20261029T110312Z&x-oss-expires=1800&x-oss-security-token=CAISgAN1q6Ft5B2yfSjIr5mCconCrOZY77Sce1P0tTcTfbcU1qL4iDz2IHhMdHJsAOodtv0%2FmmhT6PkclqRLcbhpcmfjV%2BZHzLB8qag0l18x557b16cNrbH4M4H6aXeirtuwDsz9SNTCALjPD3nPii50x5bjaDymRCbLGJaViJlhHLN1Ow6jdmhpCctxLAlvo9NgFxm3D%2Fu2NQPwiWf9FVdhvhEG6Vly8qOi2MaRmFy8yFTx0b0SvJ%2BjYMrmPctoN9JnSdC5mfdzau3a1TJ84gRD0a5wkaVA1zbDs5bfISEIuUzebreLqY03dV4mOvdqIcMe8qigz88fk%2FfIioH6xyxKOexoSCnFTOiiupCcQLPyao9jLu6iayqViY7QaIOTqQohZmkAMwVOasAsI3Ngh4zF97Qt0cVNkXO9gWfLI8DtuMleWsphX9ROjJSgc5lCkRRYwGs1287ugXlSQzo890KPDAEovaKCnZ2ZSfh7Y4sNknI6i%2Bfc2Se2MIkIJQiMxqKWD5sagAEA%2FwtMyHH0OMXc5g9%2Fzv2H0Zq4UexFv0cGndOYBydWre0QKr%2F8sVVJp35Vv3Riioy%2BMbGJvTcHBa2H9mfjlC6KlaVZEhmzz%2BpGSMVKzdvww5CUX2DZOf%2FzMvX2oPgFI%2FZ9BUgm26WUp5n3tbcb2uAka0lbTCUZsSckrRnZC1U6GSAA&x-oss-signature-version=OSS4-HMAC-SHA256&x-oss-credential=STS.NZ793vA9yXvwyuEQ7Fq889gSj%2F20261029%2Feu-central-1%2Foss%2Faliyun_v4_request&x-oss-signature=7d34e458012377de348ce936e90a9ca7a6bd7f714e741906b49ccc3ff0b30556"
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -18534,7 +19327,7 @@
 				)
 			)
 		)
-		(property "LCSC p/n" "C84375"
+		(property "LCSC p/n" "C27834"
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -18566,6 +19359,19 @@
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "1a530da4-1369-4bff-b00f-4b9d0e82b854")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "MANUFACTURER" "0805W8F5101T5E"
+			(at 0 0 0)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "10a819f8-40b9-440d-9d5d-24d1f7601d81")
 			(effects
 				(font
 					(size 1 1)
@@ -18748,7 +19554,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2304140030_YAGEO-RC0805FR-075K1L_C84375.pdf"
+		(property "Datasheet" "https://jlc-prod-smt.oss-eu-central-1.aliyuncs.com/smtDataManualFile/8579706704589537280-C27834.pdf?response-content-disposition=attachment%3B%20filename%3DC27834.pdf%3B%20filename%2A%3DUTF-8%27%27C27834.pdf&x-oss-date=20261029T110312Z&x-oss-expires=1800&x-oss-security-token=CAISgAN1q6Ft5B2yfSjIr5mCconCrOZY77Sce1P0tTcTfbcU1qL4iDz2IHhMdHJsAOodtv0%2FmmhT6PkclqRLcbhpcmfjV%2BZHzLB8qag0l18x557b16cNrbH4M4H6aXeirtuwDsz9SNTCALjPD3nPii50x5bjaDymRCbLGJaViJlhHLN1Ow6jdmhpCctxLAlvo9NgFxm3D%2Fu2NQPwiWf9FVdhvhEG6Vly8qOi2MaRmFy8yFTx0b0SvJ%2BjYMrmPctoN9JnSdC5mfdzau3a1TJ84gRD0a5wkaVA1zbDs5bfISEIuUzebreLqY03dV4mOvdqIcMe8qigz88fk%2FfIioH6xyxKOexoSCnFTOiiupCcQLPyao9jLu6iayqViY7QaIOTqQohZmkAMwVOasAsI3Ngh4zF97Qt0cVNkXO9gWfLI8DtuMleWsphX9ROjJSgc5lCkRRYwGs1287ugXlSQzo890KPDAEovaKCnZ2ZSfh7Y4sNknI6i%2Bfc2Se2MIkIJQiMxqKWD5sagAEA%2FwtMyHH0OMXc5g9%2Fzv2H0Zq4UexFv0cGndOYBydWre0QKr%2F8sVVJp35Vv3Riioy%2BMbGJvTcHBa2H9mfjlC6KlaVZEhmzz%2BpGSMVKzdvww5CUX2DZOf%2FzMvX2oPgFI%2FZ9BUgm26WUp5n3tbcb2uAka0lbTCUZsSckrRnZC1U6GSAA&x-oss-signature-version=OSS4-HMAC-SHA256&x-oss-credential=STS.NZ793vA9yXvwyuEQ7Fq889gSj%2F20261029%2Feu-central-1%2Foss%2Faliyun_v4_request&x-oss-signature=7d34e458012377de348ce936e90a9ca7a6bd7f714e741906b49ccc3ff0b30556"
 			(at 0 0 90)
 			(layer "F.Fab")
 			(hide yes)
@@ -18772,7 +19578,7 @@
 				)
 			)
 		)
-		(property "LCSC p/n" "C84375"
+		(property "LCSC p/n" "C27834"
 			(at 0 0 90)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -18804,6 +19610,19 @@
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "4171b4f3-f438-4b17-b036-6a497187a38f")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "MANUFACTURER" "0805W8F5101T5E"
+			(at 0 0 90)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "f9486d7d-3b17-42c4-80b1-d68206b4b308")
 			(effects
 				(font
 					(size 1 1)
@@ -19138,7 +19957,7 @@
 				)
 			)
 		)
-		(property "MANUFACTURER" "CUI INC"
+		(property "MANUFACTURER" "CMT-1203-SMT-TR"
 			(at 0 0 180)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -19164,7 +19983,7 @@
 				)
 			)
 		)
-		(property "LCSC p/n" ""
+		(property "LCSC p/n" "C3811958"
 			(at 0 0 180)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -19499,7 +20318,7 @@
 				)
 			)
 		)
-		(property "Value" "STM32L433CCTx"
+		(property "Value" "STM32L433CCT6"
 			(at 4.875 2.32 0)
 			(layer "F.Fab")
 			(uuid "eae5611a-603d-4660-855b-461ace7986b1")
@@ -19530,6 +20349,45 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "LCSC p/n" "C110061"
+			(at 0 0 270)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "6097342e-3f74-4bce-80fd-84a0ee8cfda8")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "MANUFACTURER" "STM32L433CCT6"
+			(at 0 0 270)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "517ccfb1-e472-4d80-8207-ce193fd11264")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "shop" "https://www.lcsc.com/product-detail/C110061.html?s_z=n_q_p_STM32L433CCTx&spm=wm.ssy.bg.0.xh&lcsc_vid=RAJdXwJSE1ZcAVAHRVdfXlVfQABfAQJfFlRdX1JTR1YxVlNfRFFaUVNWRlJZVDsOAxUeFF5JWBYZEEoKFBINSQcJGk4eFQsCAgIaSgADAwAHC0slQ1hcU1RXWQkaCgg%3D"
+			(at 0 0 270)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "0fa20d5d-7b72-4849-83aa-705b15a09c77")
+			(effects
+				(font
+					(size 1 1)
 					(thickness 0.15)
 				)
 			)
@@ -20476,6 +21334,19 @@
 				)
 			)
 		)
+		(property "MANUFACTURER" "0805W8F1000T5E"
+			(at 0 0 0)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "d5dcaa7d-0ad9-405d-b94c-9e9ae4bc9911")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "R_*")
 		(path "/e60ddad2-9334-4d15-84cd-f81fb8baba98")
 		(sheetname "/")
@@ -20640,7 +21511,7 @@
 				)
 			)
 		)
-		(property "Value" "Conn_02x06_Odd_Even"
+		(property "Value" "HCTL PM254-2-06-S-8.5"
 			(at 0 9.12 0)
 			(layer "F.Fab")
 			(uuid "f52b9dfe-ce4c-4eb1-9894-d95ef91cfa93")
@@ -20671,6 +21542,45 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "LCSC p/n" "C3975151"
+			(at 0 0 180)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "89041057-f7af-4ee3-989c-6bc019b8801b")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "MANUFACTURER" "PM254-2-06-S-8.5"
+			(at 0 0 180)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "d7926674-e6eb-4248-b874-8693300714e7")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "shop" "https://www.lcsc.com/product-detail/C3975151.html?s_z=n_q_PM254-2-06-S-8.5&spm=wm.fly.bg.0.xh&lcsc_vid=RAJdXwJSE1ZcAVAHRVdfXlVfQABfAQJfFlRdX1JTR1YxVlNfRFFbU1ZST1lYVTsOAxUeFF5JWBYZEEoKFBINSQcJGk4eFQsCAgIaSgADAwAHC0slRFhZUlVSTk8GEwkK"
+			(at 0 0 180)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "3983629c-6d25-4f91-ac89-2e271967d7f3")
+			(effects
+				(font
+					(size 1 1)
 					(thickness 0.15)
 				)
 			)
@@ -21511,7 +22421,7 @@
 				)
 			)
 		)
-		(property "shop" "https://www.lcsc.com/product-detail/LED-Indication-Discrete_Foshan-NationStar-Optoelectronics-NCD0805G1_C84260.html"
+		(property "shop" ""
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -21524,12 +22434,25 @@
 				)
 			)
 		)
-		(property "LCSC p/n" "C84260"
+		(property "LCSC p/n" "C2297"
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "e9778d51-5d64-4dff-8538-0e89ec88da57")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "MANUFACTURER" "KT-0805G"
+			(at 0 0 0)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "bdf314b0-53c7-47f6-aa12-5a3abb16f18e")
 			(effects
 				(font
 					(size 1 1)
@@ -21790,6 +22713,19 @@
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "fc717518-52ae-415f-b856-c39511f0d825")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "MANUFACTURER" "AP2112K-3.3TRG1"
+			(at 0 0 90)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "53a0e551-2e34-4852-be9f-7a299ff4125f")
 			(effects
 				(font
 					(size 1 1)
@@ -22151,7 +23087,7 @@
 				)
 			)
 		)
-		(property "shop" "https://www.lcsc.com/product-detail/Multilayer-Ceramic-Capacitors-MLCC-SMD-SMT_FH-Guangdong-Fenghua-Advanced-Tech-0805CG4R7C500NT_C1820.html?s_z=n_CL21C470JBANNNC"
+		(property "shop" ""
 			(at 0 0 180)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -22183,6 +23119,19 @@
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "8f79583b-743e-4fd1-ab23-e926e7c4ef75")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "MANUFACTURER" "0805CG4R7C500NT"
+			(at 0 0 180)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "a0c91739-88f9-47c1-ab9a-c2e1cccadbe8")
 			(effects
 				(font
 					(size 1 1)
@@ -22365,7 +23314,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2412232100_YAGEO-RC0805FR-0710KL_C84376.pdf"
+		(property "Datasheet" "https://jlc-prod-smt.oss-eu-central-1.aliyuncs.com/smtDataManualFile/8562006748392685568-C17414.pdf?response-content-disposition=attachment%3B%20filename%3DC17414.pdf%3B%20filename%2A%3DUTF-8%27%27C17414.pdf&x-oss-date=20261029T110632Z&x-oss-expires=1800&x-oss-security-token=CAISgAN1q6Ft5B2yfSjIr5mCconCrOZY77Sce1P0tTcTfbcU1qL4iDz2IHhMdHJsAOodtv0%2FmmhT6PkclqRLcbhpcmfjV%2BZHzLB8qag0l18x557b16cNrbH4M4H6aXeirtuwDsz9SNTCALjPD3nPii50x5bjaDymRCbLGJaViJlhHLN1Ow6jdmhpCctxLAlvo9NgFxm3D%2Fu2NQPwiWf9FVdhvhEG6Vly8qOi2MaRmFy8yFTx0b0SvJ%2BjYMrmPctoN9JnSdC5mfdzau3a1TJ84gRD0a5wkaVA1zbDs5bfISEIuUzebreLqY03dV4mOvdqIcMe8qigz88fk%2FfIioH6xyxKOexoSCnFTOiiupCcQLPyao9jLu6iayqViY7QaIOTqQohZmkAMwVOasAsI3Ngh4zF97Qt0cVNkXO9gWfLI8DtuMleWsphX9ROjJSgc5lCkRRYwGs1287ugXlSQzo890KPDAEovaKCnZ2ZSfh7Y4sNknI6i%2Bfc2Se2MIkIJQiMxqKWD5sagAEA%2FwtMyHH0OMXc5g9%2Fzv2H0Zq4UexFv0cGndOYBydWre0QKr%2F8sVVJp35Vv3Riioy%2BMbGJvTcHBa2H9mfjlC6KlaVZEhmzz%2BpGSMVKzdvww5CUX2DZOf%2FzMvX2oPgFI%2FZ9BUgm26WUp5n3tbcb2uAka0lbTCUZsSckrRnZC1U6GSAA&x-oss-signature-version=OSS4-HMAC-SHA256&x-oss-credential=STS.NZ793vA9yXvwyuEQ7Fq889gSj%2F20261029%2Feu-central-1%2Foss%2Faliyun_v4_request&x-oss-signature=1cdfdb138a9e9459936acfc9edafdc74507aee9d16142e1fa9aaf699eb373c96"
 			(at 0 0 90)
 			(layer "F.Fab")
 			(hide yes)
@@ -22389,7 +23338,7 @@
 				)
 			)
 		)
-		(property "LCSC p/n" "C84376"
+		(property "LCSC p/n" "C17414"
 			(at 0 0 90)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -22421,6 +23370,19 @@
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "ff7de01b-c7d1-452a-acc1-3bdca5b9b741")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "MANUFACTURER" "0805W8F1002T5E"
+			(at 0 0 90)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "827ecb10-c8b5-4352-ab09-f7c04c06106a")
 			(effects
 				(font
 					(size 1 1)
@@ -22603,7 +23565,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2304140030_YAGEO-RC0805FR-075K1L_C84375.pdf"
+		(property "Datasheet" "https://jlc-prod-smt.oss-eu-central-1.aliyuncs.com/smtDataManualFile/8579706704589537280-C27834.pdf?response-content-disposition=attachment%3B%20filename%3DC27834.pdf%3B%20filename%2A%3DUTF-8%27%27C27834.pdf&x-oss-date=20261029T110312Z&x-oss-expires=1800&x-oss-security-token=CAISgAN1q6Ft5B2yfSjIr5mCconCrOZY77Sce1P0tTcTfbcU1qL4iDz2IHhMdHJsAOodtv0%2FmmhT6PkclqRLcbhpcmfjV%2BZHzLB8qag0l18x557b16cNrbH4M4H6aXeirtuwDsz9SNTCALjPD3nPii50x5bjaDymRCbLGJaViJlhHLN1Ow6jdmhpCctxLAlvo9NgFxm3D%2Fu2NQPwiWf9FVdhvhEG6Vly8qOi2MaRmFy8yFTx0b0SvJ%2BjYMrmPctoN9JnSdC5mfdzau3a1TJ84gRD0a5wkaVA1zbDs5bfISEIuUzebreLqY03dV4mOvdqIcMe8qigz88fk%2FfIioH6xyxKOexoSCnFTOiiupCcQLPyao9jLu6iayqViY7QaIOTqQohZmkAMwVOasAsI3Ngh4zF97Qt0cVNkXO9gWfLI8DtuMleWsphX9ROjJSgc5lCkRRYwGs1287ugXlSQzo890KPDAEovaKCnZ2ZSfh7Y4sNknI6i%2Bfc2Se2MIkIJQiMxqKWD5sagAEA%2FwtMyHH0OMXc5g9%2Fzv2H0Zq4UexFv0cGndOYBydWre0QKr%2F8sVVJp35Vv3Riioy%2BMbGJvTcHBa2H9mfjlC6KlaVZEhmzz%2BpGSMVKzdvww5CUX2DZOf%2FzMvX2oPgFI%2FZ9BUgm26WUp5n3tbcb2uAka0lbTCUZsSckrRnZC1U6GSAA&x-oss-signature-version=OSS4-HMAC-SHA256&x-oss-credential=STS.NZ793vA9yXvwyuEQ7Fq889gSj%2F20261029%2Feu-central-1%2Foss%2Faliyun_v4_request&x-oss-signature=7d34e458012377de348ce936e90a9ca7a6bd7f714e741906b49ccc3ff0b30556"
 			(at 0 0 90)
 			(layer "F.Fab")
 			(hide yes)
@@ -22627,7 +23589,7 @@
 				)
 			)
 		)
-		(property "LCSC p/n" "C84375"
+		(property "LCSC p/n" "C27834"
 			(at 0 0 90)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -22659,6 +23621,19 @@
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "68c572ef-c984-405d-b88a-b39a2cfb520b")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "MANUFACTURER" "0805W8F5101T5E"
+			(at 0 0 90)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "819e383d-9bc4-4f2f-bf0f-8f9ae2b89f8a")
 			(effects
 				(font
 					(size 1 1)
