@@ -9038,7 +9038,7 @@
 		(path "/496bd54e-c127-4425-ad0d-470f95507b7b")
 		(sheetname "/")
 		(sheetfile "BRAIN_V2.kicad_sch")
-		(attr smd)
+		(attr smd dnp)
 		(fp_line
 			(start -0.227064 -0.735)
 			(end 0.227064 -0.735)
@@ -10185,6 +10185,19 @@
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "41367001-8994-49b3-8d04-a9b24ea11561")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "JLCPCB Rotation Offset" "-90"
+			(at 0 0 180)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "4cae65a9-bc71-40bc-9bfa-4fe3be1b74e4")
 			(effects
 				(font
 					(size 1 1)
@@ -16484,6 +16497,19 @@
 				)
 			)
 		)
+		(property "JLCPCB Rotation Offset" "-90"
+			(at 0 0 0)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "aaa84a7f-2ce9-4864-9c7b-c953b3ce97d0")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "Connector*:*_1x??_*")
 		(path "/7015a963-6513-4c69-b348-1445b9bc6a0b")
 		(sheetname "/")
@@ -19634,7 +19660,7 @@
 		(path "/e83b32e4-60f2-4675-892b-405ceef06edd")
 		(sheetname "/")
 		(sheetfile "BRAIN_V2.kicad_sch")
-		(attr smd)
+		(attr smd dnp)
 		(fp_line
 			(start -0.227064 -0.735)
 			(end 0.227064 -0.735)
